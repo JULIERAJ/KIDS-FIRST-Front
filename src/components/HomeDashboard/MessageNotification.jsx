@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import "./HomeDashboard.css";
+import './HomeDashboard.css';
 const messagesList = [
   {
-    sender: "M",
-    time: "9 minutes ego",
-    message: "A new message from .....",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    sender: 'M',
+    time: '9 minutes ego',
+    message: 'A new message from .....',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
 ];
 

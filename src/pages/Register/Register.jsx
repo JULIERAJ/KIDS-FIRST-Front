@@ -5,13 +5,14 @@ import Row from 'react-bootstrap/Row';
 
 import { useParams } from 'react-router-dom';
 
+import { register } from '../../api';
+
+import Header from '../../components/Header';
+
 import EmailVerify from './EmailVerify';
 import styles from './Register.module.css';
 
 import RegisterForm from './RegisterForm';
-
-import { register } from '../../api';
-import Header from '../../components/Header';
 
 const Register = () => {
   const params = useParams();

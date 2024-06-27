@@ -3,8 +3,6 @@ import { Container, Form, Button } from 'react-bootstrap';
 
 import { useParams, Link } from 'react-router-dom';
 
-import styles from './ResetPassword.module.css';
-
 import { resetPasswordLink, resetPassword } from '../../api';
 // import { resetPasswordLink } from '../../api';
 
@@ -14,6 +12,8 @@ import Header from '../../components/Header/Header';
 import MessageBar from '../../components/MessageBar';
 import TextLink from '../../components/TextLink';
 import logoPswdChanged from '../../media/icons/pswd-changed.png';
+
+import styles from './ResetPassword.module.css';
 
 const DEFAULT_ERROR_MESSAGE = 'You are using symbols in your passwords or your passwords do not match.';
 

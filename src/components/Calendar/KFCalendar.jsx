@@ -1,12 +1,16 @@
 import moment from 'moment';
+
 import React, { useState, useContext, useMemo } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import { getOverlapCount, DayViewHeader } from './utils/dateUtils.jsx';
 
 import { DayEvent } from './DayEvent.jsx';
-import EventContext from './EventContext';
+import EventContext from './EventContext.jsx';
+
 import KFToolbar from './KFToolbar.jsx';
 import MonthEvent from './MonthEvent.jsx';
+
+import { getOverlapCount, DayViewHeader } from './utils/dateUtils';
+
 import './styles.css';
 import WeekEvent from './WeekEvent.jsx';
 
@@ -21,7 +25,7 @@ const KFCalendar = () => {
   // Define the handleCreateButtonClick function
   // eslint-disable-next-line no-unused-vars
   const handleCreateButtonClick = () => {
-    console.log('Create button clicked!');
+    // console.log('Create button clicked!');
     // Additional logic for creating a new event
   };
 

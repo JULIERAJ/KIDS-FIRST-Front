@@ -3,15 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { Image, Container, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
+import kidsFirstLogo from '../../media/logo/LOGO-BYME.png';
+
 import styles from './Sidebar.module.css';
 import { SIDEBAR_DATA } from './sidebarData';
-
-import kidsFirstLogo from '../../media/logo/LOGO-BYME.png';
 
 const SidebarItemsCard = ({ title, icon, activeIcon, hoverIcon, path, isActive, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (isActive) {
@@ -30,7 +29,6 @@ const SidebarItemsCard = ({ title, icon, activeIcon, hoverIcon, path, isActive, 
     }
   };
 
-
   return (
     <>
       <Nav.Item
@@ -42,11 +40,11 @@ const SidebarItemsCard = ({ title, icon, activeIcon, hoverIcon, path, isActive, 
         role="button"
         tabIndex={0}
         onKeyDown={handleKeyDown}
-        >
-          {isActive ? activeIcon : (isHovered ? hoverIcon : icon)}
-          <span className={`${styles.sidebarMenuItem}`}>
-            {title}
-          </span>
+      >
+        {isActive ? activeIcon : (isHovered ? hoverIcon : icon)}
+        <span className={`${styles.sidebarMenuItem}`}>
+          {title}
+        </span>
       </Nav.Item>
     </>
   );

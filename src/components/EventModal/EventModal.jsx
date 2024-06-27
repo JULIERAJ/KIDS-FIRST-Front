@@ -86,7 +86,7 @@ const EventModal = ({ onClose }) => {
 
   const handleShareWithChange = (value) => {
     setShareWith(value);
-    if (value === "Enter Parent's Name") {
+    if (value === 'Enter Parent\'s Name') {
       setShowParentInput(true);
     } else {
       setShowParentInput(false);
@@ -96,7 +96,7 @@ const EventModal = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let shareWithDisplay = shareWith;
-    if (shareWith === "Enter Parent's Name") {
+    if (shareWith === 'Enter Parent\'s Name') {
       shareWithDisplay = parentName;
     }
     const resultString = `Title: ${title}\nDescription: ${description}\nStart Date:

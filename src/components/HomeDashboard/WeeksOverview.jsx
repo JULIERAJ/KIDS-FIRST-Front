@@ -1,8 +1,9 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaCircle } from 'react-icons/fa6';
-import "./HomeDashboard.css";
+import './HomeDashboard.css';
 
 // Add your custom styles directly into the component file
 const customStyles = {
@@ -35,30 +36,27 @@ const DayCard = ({ day, date, events, isToday }) => {
         flex: '1 1 230px',
         borderRadius: '24px',
         marginTop: '10px',
-        maxWidth:'230px',
-        minWidth:'140px',
+        maxWidth: '230px',
+        minWidth: '140px',
         width: '100%',
         height: '245px',
-      }}
-    >
+      }}>
       <Card.Header
-        className="text-center"
+        className='text-center'
         style={{
           ...headerColor,
           borderTopLeftRadius: '24px',
           borderTopRightRadius: '24px',
           height: '60.6px',
           width: '100%',
-        }}
-      >
+        }}>
         <div
           style={{
             fontSize: '22px',
             fontWeight: '600',
             lineHeight: '25.78px',
             color: textColor, // text color for today and other days
-          }}
-        >
+          }}>
           {day}
         </div>
         <div
@@ -67,18 +65,17 @@ const DayCard = ({ day, date, events, isToday }) => {
             fontWeight: '400',
             lineHeight: '21.09px',
             color: textColor, // text color for today and other days
-          }}
-        >
+          }}>
           {date}
         </div>
       </Card.Header>
       <Card.Body>
         {events.map((event) => (
-          <div key={event.id} className="d-flex">
+          <div key={event.id} className='d-flex'>
             <FaCircle
               style={{ width: '10.8px', height: '11px' }}
               color={event.color}
-              className="me-2 mt-1 align-self-start"
+              className='me-2 mt-1 align-self-start'
             />
             <div>
               <div
@@ -86,16 +83,14 @@ const DayCard = ({ day, date, events, isToday }) => {
                   fontSize: '14px',
                   color: 'gray',
                   fontWeight: '200',
-                }}
-              >
+                }}>
                 {event.time}
               </div>
               <div
                 style={{
                   fontSize: '16px',
                   fontWeight: '400',
-                }}
-              >
+                }}>
                 {event.title}
               </div>
             </div>
@@ -126,7 +121,12 @@ export default function WeeksOverview() {
       day: 'Tue',
       date: 'Nov 03',
       events: [
-        { id: 2, time: '08:00 - 11:00 AM', title: 'Field Trip', color: '#FF6B6D' },
+        {
+          id: 2,
+          time: '08:00 - 11:00 AM',
+          title: 'Field Trip',
+          color: '#FF6B6D',
+        },
         {
           id: 3,
           time: '05:00 - 06:00 PM',
@@ -153,7 +153,12 @@ export default function WeeksOverview() {
       day: 'Thu',
       date: 'Nov 05',
       events: [
-        { id: 5, time: '08:00 - 11:00 AM', title: 'Field Trip', color: '#FF6B6D' },
+        {
+          id: 5,
+          time: '08:00 - 11:00 AM',
+          title: 'Field Trip',
+          color: '#FF6B6D',
+        },
       ],
     },
     {
@@ -207,7 +212,7 @@ export default function WeeksOverview() {
   });
 
   return (
-    <div className="week-event">
+    <div className='week-event'>
       <div>
         <h5
           style={{
@@ -215,8 +220,7 @@ export default function WeeksOverview() {
             fontWeight: '500',
             fontSize: '16px',
             lineHeight: '18.75px',
-          }}
-        >
+          }}>
           Calendar
         </h5>
       </div>
@@ -228,12 +232,11 @@ export default function WeeksOverview() {
             fontWeight: '300',
             fontSize: '16px',
             lineHeight: '18.75px',
-          }}
-        >
+          }}>
           Overview of this week’s events.
         </p>
       </div>
-      <Row className="flex-nowrap" style={{ overflowX: 'auto' }}>
+      <Row className='flex-nowrap' style={{ overflowX: 'auto' }}>
         {days.map((day) => (
           <Col key={day.id} style={{ flex: 1, minWidth: '160px' }}>
             <DayCard
@@ -248,3 +251,17 @@ export default function WeeksOverview() {
     </div>
   );
 }
+
+DayCard.propTypes = {
+  day: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+      time: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  isToday: PropTypes.bool.isRequired,
+};

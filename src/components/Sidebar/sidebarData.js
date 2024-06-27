@@ -5,15 +5,15 @@ export const SIDEBAR_DATA = [
     icon:
     (<span className="material-symbols-rounded "style={{ 'fontSize': '32px' }}>
       home
-      </span>),
+    </span>),
     activeIcon: (
-    <span className="material-symbols-rounded "
-      style={{
-        'fontSize': '32px',
-        fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40',
-        color: '#DB5C00'
-      }}
-    >home</span>
+      <span className="material-symbols-rounded "
+        style={{
+          'fontSize': '32px',
+          fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40',
+          color: '#DB5C00'
+        }}
+      >home</span>
     ),
     hoverIcon:
     <span className="material-symbols-rounded "

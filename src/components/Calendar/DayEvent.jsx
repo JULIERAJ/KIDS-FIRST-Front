@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
-import './DayMonthEventStyles.css';
+
 import { formatEventTime } from './utils/dateUtils';
+
+import './DayMonthEventStyles.css';
 
 export const DayEvent = ({ event }) => {
   const { title, color, kidsName, start, end, desc, type } = event;
@@ -18,7 +20,7 @@ export const DayEvent = ({ event }) => {
     top: 0,
     left: 0,
     marginLeft: '5px',
-    marginTop: '15px'
+    marginTop: '15px',
   };
 
   const boxStyle = {
@@ -33,37 +35,37 @@ export const DayEvent = ({ event }) => {
     start: 'top',
     display: 'flex',
     paddingRight: '5px',
-    paddingBottom: '5px'
+    paddingBottom: '5px',
   };
 
   return (
     <div className='event-box' style={boxStyle}>
-      <div className="DayEventContentWrapperStyle content-wrapper">
-        <div className="title titleStyle" >
-          {title && <span>{title}</span>}
+      <div className='DayEventContentWrapperStyle content-wrapper'>
+        <div className='title titleStyle'>{title && <span>{title}</span>}</div>
+        <div className='DayEventTimingStyle'>
+          {start && end && <span>{formatEventTime(start, end)}</span>}
         </div>
-        <div className="DayEventTimingStyle" >
-          {start && end && (
-            <span>{formatEventTime(start, end)}</span>
+        <div className='descStyle'>{desc && <span>{desc}</span>}</div>
+        <div style={{ fontSize: '14px', opacity: '0.4' }}>
+          {type && (
+            <span>
+              {' '}
+              <span
+                style={{
+                  fontFamily: 'Material Symbols Outlined',
+                  fontSize: '18px',
+                  lineHeight: '18px',
+                  marginRight: '8px',
+                  verticalAlign: 'middle',
+                }}>
+                {type.includes('Solo') ? 'person' : 'group'}
+              </span>
+              {type}
+            </span>
           )}
         </div>
-        <div className="descStyle">
-          {desc && <span>{desc}</span>}
-        </div>
-        <div style={{ fontSize: '14px', opacity: '0.4' }}>
-          {type && <span> <span
-            style={{
-              fontFamily: 'Material Symbols Outlined',
-              fontSize: '18px',
-              lineHeight: '18px',
-              marginRight: '8px',
-              verticalAlign: 'middle'
-            }}>
-            {type.includes('Solo') ? 'person' : 'group'}
-          </span>{type}</span>}
-        </div>
       </div>
-      <span className="circle" style={circleStyle}>
+      <span className='circle' style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
     </div>

@@ -16,8 +16,6 @@ import {
 } from 'react-social-login-buttons';
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 
-import styles from './Register.module.css';
-
 import { loginSocial, loginFacebook } from '../../api';
 
 import FormEmailInput from '../../components/form/FormEmailInput';
@@ -30,6 +28,8 @@ import FormPasswordInput from '../../components/form/FormPasswordInput';
 import MessageBar from '../../components/MessageBar';
 import facebookIcon from '../../media/icons/facebook.png';
 import googleIcon from '../../media/icons/google.png';
+
+import styles from './Register.module.css';
 
 const regexUpperCase = /[A-Z]/;
 const regexLowerCase = /[a-z]/;

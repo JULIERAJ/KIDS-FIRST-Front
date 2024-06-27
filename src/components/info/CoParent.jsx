@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Form, Image } from 'react-bootstrap';
 
-import styles from './CoParent.module.css';
-
 import useFormContext from '../../hooks/useFormContext';
 import coParents from '../../media/co-parents.png';
+
+import styles from './CoParent.module.css';
 
 const CoParent = () => {
   const { data, handleChange } = useFormContext();

@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import styles from './Dashboard.module.css';
-
 import DashboardHeader from '../../components/DashboardHeader/DashboardHeader';
 import Sidebar from '../../components/Sidebar/Sidebar';
+
+import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
   const [title, setTitle] = useState('Dashboard');

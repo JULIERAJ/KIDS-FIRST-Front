@@ -8,11 +8,11 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   document.body.classList.add('fonts-loading');
 });
 
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
   document.body.classList.remove('fonts-loading');
 });
 

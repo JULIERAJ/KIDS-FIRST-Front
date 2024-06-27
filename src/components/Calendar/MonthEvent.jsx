@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import './viewStyles.css';
 import './DayMonthEventStyles.css';
 
@@ -44,12 +43,18 @@ const MonthEvent = ({ event }) => {
   const truncatedTitle = getTruncatedTitle(title);
 
   return (
-    <div className="rbc-event-content" >
-      <div className="kid-events-container" style={boxStyle}>
-        <span className="circle" style={circleStyle}>
+    <div className='rbc-event-content'>
+      <div className='kid-events-container' style={boxStyle}>
+        <span className='circle' style={circleStyle}>
           {kidsName.charAt(0).toUpperCase()}
         </span>
-        {truncatedTitle && <span className="title" style={{ marginLeft: '-30px', marginTop: '-5px' }}>{truncatedTitle}</span>}
+        {truncatedTitle && (
+          <span
+            className='title'
+            style={{ marginLeft: '-30px', marginTop: '-5px' }}>
+            {truncatedTitle}
+          </span>
+        )}
       </div>
     </div>
   );

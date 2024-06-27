@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import styles from './EmailVerify.module.css';
-
 import { resendEmailVerification } from '../../api';
 import FeedbackBlock from '../../components/Feedback/FeedbackBlock';
 import envelopeImg from '../../media/icons/email_sent.png';
+
+import styles from './EmailVerify.module.css';
 
 const EmailVerify = ({ userData }) => {
   const email = userData.email;

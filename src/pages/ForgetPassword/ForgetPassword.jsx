@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import styles from './ForgetPassword.module.css';
-
 import { forgetPassword } from '../../api';
 import FatherSonBlock from '../../components/FatherSonBlock';
 import FormEmailInput from '../../components/form/FormEmailInput';
@@ -11,6 +9,8 @@ import Header from '../../components/Header/Header';
 import MessageBar from '../../components/MessageBar';
 import TextLink from '../../components/TextLink';
 import logoEmailSent from '../../media/icons/email_sent.png';
+
+import styles from './ForgetPassword.module.css';
 
 const HeaderLink = <TextLink title='Not a member?' to='/register' linkTitle='Sign up' />;
 

@@ -84,7 +84,7 @@ export default function Home() {
           </div>
         </div>
         <span className="more-link">
-         {/* eslint-disable-next-line */}
+          {/* eslint-disable-next-line */}
           <a href="#" alt="">
             More Features
           </a>

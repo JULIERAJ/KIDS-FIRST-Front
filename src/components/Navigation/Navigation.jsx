@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Dropdown, Container, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import styles from './Navigation.module.css';
-
 import { navigationLink } from '../../data/features.data';
 import arrowDown from '../../media/features/arrow_down.svg';
+
+import styles from './Navigation.module.css';
 
 const Navigation = () => {
 

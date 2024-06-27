@@ -6,10 +6,13 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FiPlus } from 'react-icons/fi';
 
 import './kidsCircles.css';
-import EventContext from './EventContext';
+
+import EventModal from '../EventModal/EventModal.jsx';
+
+import EventContext from './EventContext.jsx';
+
 import events from './events';
 
-import EventModal from '../EventModal/EventModal';
 import './headerStyles.css';
 
 const KFToolbar = ({

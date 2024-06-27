@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
-
 import { NavLink, useNavigate } from 'react-router-dom';
+
 import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from 'react-social-login-buttons';
 import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
-
-import styles from './Sigin.module.css';
 
 import { login, loginFacebook, loginSocial } from '../../api';
 import FormEmailInput from '../../components/form/FormEmailInput';
@@ -18,6 +16,8 @@ import Header from '../../components/Header';
 import facebookIcon from '../../media/icons/facebook.png';
 import googleIcon from '../../media/icons/google.png';
 import { EMAIL_REG_EXP } from '../../utils/index';
+
+import styles from './Sigin.module.css';
 
 export default function Signin() {
   const [email, setEmail] = useState('');
@@ -31,9 +31,9 @@ export default function Signin() {
   const handleLogin = (e) => {
     e.preventDefault();
     setErrorMesasage('');
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Remember Me:', rememberMe);
+    // console.log('Email:', email);
+    // console.log('Password:', password);
+    // console.log('Remember Me:', rememberMe);
 
     if (validateEmail) {
       login(email, password)
@@ -100,6 +100,7 @@ export default function Signin() {
 
         localStorage.setItem('storedUser', user);
         navigate('/dashboard');
+        // eslint-disable-next-line
         console.groupCollapsed(response.data);
       })
       .catch(() => {
