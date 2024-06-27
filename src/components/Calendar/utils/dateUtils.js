@@ -35,7 +35,6 @@ export const getOverlapCount = (event, allEvents) => {
     ).length + 1
   ); // Include the event itself in the count
 };
-
 export const DayViewHeader = ({ date }) => {
   const formatDate = (date) => {
     const options = { weekday: 'short', day: '2-digit' };
@@ -43,7 +42,6 @@ export const DayViewHeader = ({ date }) => {
   };
   return <div>{formatDate(date)}</div>;
 };
-
 DayViewHeader.propTypes = {
   date: PropTypes.string,
 };
