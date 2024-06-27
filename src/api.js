@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 const API_PORT = process.env.REACT_APP_API_PORT;
-//const API_URL = 'http://localhost:8000/api/';
-
 const API_URL = `http://localhost:${API_PORT}/api/`;
 
 /*
