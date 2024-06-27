@@ -46,7 +46,7 @@
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^15.6.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "lint-staged": "^15.2.7",
     "prop-types": "^15.8.1"
   },
