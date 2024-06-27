@@ -368,6 +368,7 @@ export const RegisterForm = (props) => {
                   `You are not able to login with Google.
                   Please try again later`
                 );
+                /* eslint-disable no-console */
                 console.log(err);
               }}
             >
@@ -387,10 +388,10 @@ export const RegisterForm = (props) => {
               appId={process.env.APP_ID}
               onResolve={(response) => {
                 handleFacebookLoginSuccess(response);
-                console.log(response);
               }}
               onReject={(error) => {
                 // handleFacebookLoginFailure(error);
+                /* eslint-disable no-console */
                 console.log(error);
               }}
             >

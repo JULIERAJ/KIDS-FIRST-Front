@@ -187,6 +187,7 @@ export default function Signin() {
                           }
                           onResolve={loginfromGoogle}
                           onReject={(err) => {
+                            /* eslint-disable no-console */
                             console.log(err);
                           }}>
                           <GoogleLoginButton
@@ -210,10 +211,12 @@ export default function Signin() {
                           appId={process.env.APP_ID}
                           onResolve={(response) => {
                             handleFacebookLoginSuccess(response);
+                            /* eslint-disable no-console */
                             console.log(response);
                           }}
                           onReject={(error) => {
                             // handleFacebookLoginFailure(error);
+                            /* eslint-disable no-console */
                             console.log(error);
                           }}>
                           <FacebookLoginButton
