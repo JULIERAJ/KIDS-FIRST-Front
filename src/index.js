@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import './globalStyles.css';
+import './styles/globalStyles.css';
 
 import App from './App';
 

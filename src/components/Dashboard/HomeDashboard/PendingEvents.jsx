@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './HomeDashboard.css';
 
-import decline from '../../media/icons/Thumbs down.png';
+import decline from '../../../media/icons/Thumbs down.png';
 
-import accept from '../../media/icons/Thumbs up.png';
+import accept from '../../../media/icons/Thumbs up.png';
 
 //////
 const getColorForBackground = (name) => {

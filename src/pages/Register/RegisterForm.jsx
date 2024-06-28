@@ -6,26 +6,26 @@
 */
 //import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { Col, Row, Form, Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import {
-  GoogleLoginButton,
   FacebookLoginButton,
+  GoogleLoginButton,
 } from 'react-social-login-buttons';
-import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
+import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
-import { loginSocial, loginFacebook } from '../../api';
+import { loginFacebook, loginSocial } from '../../api';
 
-import FormEmailInput from '../../components/form/FormEmailInput';
+import MessageBar from '../../components/MessageBar';
+import FormEmailInput from '../../components/shared/ui/form/FormEmailInput';
 import {
   FormFirstNameInput,
   FormLastNameInput,
-} from '../../components/form/FormNameInput';
-import FormPasswordInput from '../../components/form/FormPasswordInput';
+} from '../../components/shared/ui/form/FormNameInput';
+import FormPasswordInput from '../../components/shared/ui/form/FormPasswordInput';
 
-import MessageBar from '../../components/MessageBar';
 import facebookIcon from '../../media/icons/facebook.png';
 import googleIcon from '../../media/icons/google.png';
 

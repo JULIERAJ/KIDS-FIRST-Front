@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { Image, Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-import kidsFirstLogo from '../../media/logo/LOGO-BYME.png';
+import kidsFirstLogo from '../../../media/logo/LOGO-BYME.png';
 
 import styles from './Sidebar.module.css';
 import { SIDEBAR_DATA } from './sidebarData';

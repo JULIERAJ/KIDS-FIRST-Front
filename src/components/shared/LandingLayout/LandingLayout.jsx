@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import Footer from '../Footer';
 import Header from '../Header';
-import Navigation from '../Navigation';
+import Navigation from '../Navigation/Navigation';
 
 import styles from './LandingLayout.module.css';
 

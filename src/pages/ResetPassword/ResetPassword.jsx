@@ -1,16 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { useCallback, useEffect, useState } from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
 
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-import { resetPasswordLink, resetPassword } from '../../api';
-// import { resetPasswordLink } from '../../api';
+import { resetPassword, resetPasswordLink } from '../../api';
 
-import FatherSonBlock from '../../components/FatherSonBlock';
-import FormPasswordInput from '../../components/form/FormPasswordInput';
-import Header from '../../components/Header/Header';
 import MessageBar from '../../components/MessageBar';
-import TextLink from '../../components/TextLink';
+import FatherSonBlock from '../../components/shared/FatherSonBlock';
+import Header from '../../components/shared/Header';
+import FormPasswordInput from '../../components/shared/ui/form/FormPasswordInput';
+import TextLink from '../../components/shared/ui/TextLink';
 import logoPswdChanged from '../../media/icons/pswd-changed.png';
 
 import styles from './ResetPassword.module.css';
