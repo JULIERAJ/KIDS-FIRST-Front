@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.registerTitle {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+}
+.text p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 0;
+  line-height: 21px;
+}
+
+.customButton {
+  margin-top: 24px;
+  width: 442px;
+  height: 56px;
+  background-color: #eb7005;
+  font-family: Roboto;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 25.2px;
+  text-align: center;
+  color: #fcfcfc;
+}
+
+.customButton:hover,
+.customButton:active,
+.customButton:focus-visible,
+.customButton:focus {
+  color: #eb7005 !important;
+}
