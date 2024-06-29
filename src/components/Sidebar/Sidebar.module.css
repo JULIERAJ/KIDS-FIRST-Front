@@ -37,6 +37,7 @@
   border-right: 4px solid transparent;
   background-color: transparent;
   outline: none;
+  transition: all 0.5s ease;
 }
 
 .sidebarMenuItem:hover {
