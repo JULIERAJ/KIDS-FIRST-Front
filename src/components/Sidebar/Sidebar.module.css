@@ -19,7 +19,7 @@
   padding: 24px 43px 4px;
 }
 
-.sidebarMenu{
+.sidebarMenu {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,7 +39,7 @@
   outline: none;
 }
 
-.sidebarMenuItem:hover{
+.sidebarMenuItem:hover {
   font-weight: 700;
 }
 
@@ -51,6 +51,7 @@
   font-weight: 400;
   padding: 6.4px 0;
 }
+
 .sidebarLink:hover {
   color: black;
 
@@ -69,24 +70,32 @@
   display: flex;
   align-items: center;
   padding-left: 16px;
+  border: 4px solid transparent;
 }
-.nav:active, .nav.active {
+
+.nav:active,
+.nav.active {
   border-right: 4px solid #EB7005;
   color: #DB5C00;
   font-weight: 700;
 }
 
-.nav:active, .nav.active:hover{
+.nav:active,
+.nav.active:hover {
   font-weight: 900;
+  border: 4px solid transparent;
 }
+
 .nav:focus-within {
   outline: none;
   border: 4px solid #EF8A37;
 }
 
-.nav:hover{
+.nav:hover {
   background-color: #FDF1E6;
+  border: 4px solid transparent;
 }
+
 @media (max-width: 768px) {
   .sidebar {
     width: calc(100% - 24px);
