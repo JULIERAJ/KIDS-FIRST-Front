@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { Navbar, Container } from 'react-bootstrap';
+import { Container, Navbar } from 'react-bootstrap';
 
-import logo from '../../media/logo/kids_first_logo_beta.png';
+import logo from '../../../media/logo/kids_first_logo_beta.png';
 
 const Header = ({ bg, widget, containerFlexOptions }) => {
   return (

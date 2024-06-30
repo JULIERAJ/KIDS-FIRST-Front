@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { useEffect, useRef, useState } from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { forgetPassword } from '../../api';
-import FatherSonBlock from '../../components/FatherSonBlock';
-import FormEmailInput from '../../components/form/FormEmailInput';
-import Header from '../../components/Header/Header';
 import MessageBar from '../../components/MessageBar';
-import TextLink from '../../components/TextLink';
+import FatherSonBlock from '../../components/shared/FatherSonBlock';
+import Header from '../../components/shared/Header/Header';
+import FormEmailInput from '../../components/shared/ui/form/FormEmailInput';
+import TextLink from '../../components/shared/ui/TextLink';
 import logoEmailSent from '../../media/icons/email_sent.png';
 
 import styles from './ForgetPassword.module.css';

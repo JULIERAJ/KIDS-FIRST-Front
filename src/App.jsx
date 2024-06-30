@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { EventProvider } from './components/Calendar/EventContext';
-import KFCalendar from './components/Calendar/KFCalendar';
+import KFCalendar from './components/Dashboard/Calendar/Calendar/KFCalendar';
 
-import HomeDashboard from './components/HomeDashboard/HomeDashboard';
-import LandingLayout from './components/LandingLayout';
+import HomeDashboard from './components/Dashboard/HomeDashboard/HomeDashboard';
+import LandingLayout from './components/shared/LandingLayout';
+import { EventProvider } from './context/EventContext';
 import Activate from './pages/Activate/Activate';
 import Dashboard from './pages/Dashboard/Dashboard';
 

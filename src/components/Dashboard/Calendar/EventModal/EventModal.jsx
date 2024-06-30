@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { FaChevronDown, FaPlusCircle } from 'react-icons/fa'; // Importing the chevron down icon
+import { FaChevronDown, FaPlusCircle } from 'react-icons/fa'; 
 
 import styles from './EventModal.module.css';
 

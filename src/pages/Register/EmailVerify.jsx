@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import { resendEmailVerification } from '../../api';
-import FeedbackBlock from '../../components/Feedback/FeedbackBlock';
+import FeedbackBlock from '../../components/shared/Feedback/FeedbackBlock';
 import envelopeImg from '../../media/icons/email_sent.png';
 
 import styles from './EmailVerify.module.css';

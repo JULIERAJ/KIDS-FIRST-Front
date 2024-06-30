@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import DashboardHeader from '../../components/DashboardHeader/DashboardHeader';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import DashboardHeader from '../../components/Dashboard/DashboardHeader/DashboardHeader';
+import Sidebar from '../../components/Dashboard/Sidebar/Sidebar';
 
 import styles from './Dashboard.module.css';
 

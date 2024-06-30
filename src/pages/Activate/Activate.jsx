@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { activate } from '../../api';
-import FatherSonBlock from '../../components/FatherSonBlock';
-import FeedbackBlock from '../../components/Feedback/FeedbackBlock';
-import Header from '../../components/Header';
-import TextLink from '../../components/TextLink';
+import FatherSonBlock from '../../components/shared/FatherSonBlock';
+import FeedbackBlock from '../../components/shared/Feedback/FeedbackBlock';
+import Header from '../../components/shared/Header';
+import TextLink from '../../components/shared/ui/TextLink';
 import SuccessImg from '../../media/icons/pswd-changed.png';
 
 import styles from './Activate.module.css';
