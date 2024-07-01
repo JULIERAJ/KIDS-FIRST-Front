@@ -1,5 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -11,6 +9,8 @@ import EventContext from '../../../../context/EventContext.jsx';
 import EventModal from '../EventModal/EventModal.jsx';
 
 import events from '../events.js';
+
+import styles from './KFToolbar.module.css';
 
 import '../styles/headerStyles.css';
 
@@ -129,9 +129,7 @@ const KFToolbar = ({
                     {/* Change button text based on view */}
                     {view === 'day'
                       ? 'Daily'
-                      : view === 'week'
-                      ? 'Weekly'
-                      : 'Monthly'}
+                      : view === 'week' ? 'Weekly' : 'Monthly'}
                   </button>
                 ))}
               </div>
@@ -153,21 +151,23 @@ const KFToolbar = ({
       </div>
 
       {/* Container for kid events */}
-      <div className='kid-events-container'>
+      <div className={styles['kid-events-container']}>
         {/* Iterate over unique kid names and create circles */}
         {uniqueKidNames.map(({ eventId, kidsName }) => {
           // Find the first event with the current kid's name
           const event = events.find((event) => event.kidsName === kidsName);
           return event ? (
-            <div className='wrapper' key={eventId}>
-              <div className='circle' style={{ backgroundColor: event.color }}>
-                <span className='initial'>{kidsName.charAt(0)}</span>
+            <div className={styles.wrapper} key={eventId}>
+              <div
+                className={styles.circle}
+                style={{ backgroundColor: event.color }}>
+                <span className={styles.initial}>{kidsName.charAt(0)}</span>
               </div>
-              <div className='info-wrapper'>
-                <p className='kid-name'>{kidsName}</p>
+              <div className={styles['info-wrapper']}>
+                <p className={styles['kid-name']}>{kidsName}</p>
                 {/* Toggle button */}
                 <button
-                  className='toggle-event-button'
+                  className={styles['toggle-event-button']}
                   onClick={() => handleFilterEvents(kidsName)}>
                   {' '}
                   {selectedChildren.includes(kidsName) ? (

@@ -1,3 +1,1 @@
-import CardFeature from './CardFeature';
-
-export default CardFeature;
+export { default } from './CardFeature';
