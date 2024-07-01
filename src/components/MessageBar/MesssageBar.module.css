@@ -6,7 +6,7 @@
 .message-bar-error {
   background-color: var(--main-red);
 }
- 
+
 .message-bar-success {
   background-color: var(--main-green);
 }

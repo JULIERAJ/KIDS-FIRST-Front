@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #FDFDFD;
+  background-color: #fdfdfd;
   border-radius: 20px;
   border: 1px solid #e5e5e5;
   padding: 0;
@@ -19,7 +19,7 @@
   padding: 24px 43px 4px;
 }
 
-.sidebarMenu{
+.sidebarMenu {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,7 +39,7 @@
   outline: none;
 }
 
-.sidebarMenuItem:hover{
+.sidebarMenuItem:hover {
   font-weight: 700;
 }
 
@@ -53,7 +53,6 @@
 }
 .sidebarLink:hover {
   color: black;
-
 }
 
 .otherItemsContainer,
@@ -70,22 +69,24 @@
   align-items: center;
   padding-left: 16px;
 }
-.nav:active, .nav.active {
-  border-right: 4px solid #EB7005;
-  color: #DB5C00;
+.nav:active,
+.nav.active {
+  border-right: 4px solid #eb7005;
+  color: #db5c00;
   font-weight: 700;
 }
 
-.nav:active, .nav.active:hover{
+.nav:active,
+.nav.active:hover {
   font-weight: 900;
 }
 .nav:focus-within {
   outline: none;
-  border: 4px solid #EF8A37;
+  border: 4px solid #ef8a37;
 }
 
-.nav:hover{
-  background-color: #FDF1E6;
+.nav:hover {
+  background-color: #fdf1e6;
 }
 @media (max-width: 768px) {
   .sidebar {
