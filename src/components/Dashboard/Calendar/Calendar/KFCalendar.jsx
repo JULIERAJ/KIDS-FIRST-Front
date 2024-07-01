@@ -9,8 +9,9 @@ import { DayViewHeader, getOverlapCount } from '../../../../utils/dateUtils.js';
 import MonthEvent from '../../Calendar/MonthEvent/MonthEvent.jsx';
 import KFToolbar from '../../Calendar/Toolbar/KFToolbar.jsx';
 
-import WeekEvent from '../../Calendar/WeekEvent/WeekEvent.jsx';
-import { DayEvent } from '../DayEvent/DayEvent.jsx';
+import DayEvent from '../DayEvent/DayEvent.jsx';
+import WeekEvent from '../WeekEvent/WeekEvent.jsx';
+
 import '../styles/styles.css';
 
 // Set up moment localizer

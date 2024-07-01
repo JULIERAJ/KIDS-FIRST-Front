@@ -2,50 +2,30 @@ import PropTypes from 'prop-types';
 
 import { formatEventTime } from '../../../../utils/dateUtils';
 
-import '../styles/DayMonthEventStyles.css';
+import styles from './DayEvent.module.css';
 
 export const DayEvent = ({ event }) => {
   const { title, color, kidsName, start, end, desc, type } = event;
 
   const circleStyle = {
-    width: '40px',
-    height: '40px',
-    backgroundColor: color,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '18px',
-    color: 'white',
-    borderRadius: '50%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    marginLeft: '5px',
-    marginTop: '15px',
+    '--circle-bg-color': color,
   };
 
   const boxStyle = {
-    backgroundColor: `${color}4D`,
-    borderLeft: `5px solid ${color}`,
-    height: '100%',
-    width: '100%',
-    alignItems: 'center',
-    position: 'relative',
-    top: 0,
-    left: '-4px',
-    start: 'top',
-    display: 'flex',
-    paddingRight: '5px',
-    paddingBottom: '5px',
+    '--box-bg-color': `${color}4D`,
+    '--border-left-color': color,
   };
 
   return (
-    <div className='event-box' style={boxStyle}>
-      <div className='DayEventContentWrapperStyle content-wrapper'>
-        <div className='title titleStyle'>{title && <span>{title}</span>}</div>
-        <div className='DayEventTimingStyle'>
+    <div className={`${styles.box} event-box`} style={boxStyle}>
+      <div className={`${styles.dayEventContentWrapper} content-wrapper`}>
+        <div className={`title ${styles.titleStyle}`}>
+          {title && <span>{title}</span>}
+        </div>
+        <div className={`${styles.dayEventTiming}`}>
           {start && end && <span>{formatEventTime(start, end)}</span>}
         </div>
-        <div className='descStyle'>{desc && <span>{desc}</span>}</div>
+        <div className={`${styles.desc}`}>{desc && <span>{desc}</span>}</div>
         <div style={{ fontSize: '14px', opacity: '0.4' }}>
           {type && (
             <span>
@@ -65,7 +45,7 @@ export const DayEvent = ({ event }) => {
           )}
         </div>
       </div>
-      <span className='circle' style={circleStyle}>
+      <span className={`${styles.circle} circle`} style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
     </div>

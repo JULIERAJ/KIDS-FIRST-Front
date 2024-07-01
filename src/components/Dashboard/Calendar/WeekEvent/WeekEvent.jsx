@@ -1,37 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import '../styles/viewStyles.css';
-import './WeekEventStyles.css';
+
+import styles from './WeekEvent.module.css';
 
 const WeekEvent = ({ event }) => {
   const { color, kidsName, title, start, end } = event;
 
   const circleStyle = {
-    width: '25px',
-    height: '25px',
-    backgroundColor: color,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '18px',
-    color: 'white',
-    borderRadius: '50%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    marginLeft: '0px',
-    marginTop: '15px'
+    '--circle-bg-color': color,
   };
 
   const boxStyle = {
-    backgroundColor: `${color}4D`,
-    borderLeft: `5px solid ${color}`,
-    height: '100%',
-    alignItems: 'center',
-    position: 'relative',
-    top: 0,
-    left: '-4px',
-    start: 'top',
-    display: 'flex'
+    '--box-bg-color': `${color}4D`,
+    '--box-border-color': color,
   };
 
   const getTruncatedTitle = (title) => {
@@ -51,21 +33,20 @@ const WeekEvent = ({ event }) => {
     return `${startTime} - ${endTime}`;
   };
   return (
-    <div className="event-box" style={boxStyle}>
-      <div className="contentWrapperStyle content-wrapper">
-        {truncatedTitle && <span className="titleStyle title" >{truncatedTitle}</span>}
-        <div className="timingStyle">
-          {(start && end) && (
-            <span>{formatEventTime(start, end)}</span>
-          )}
+    <div className={`${styles.box} event-box`} style={boxStyle}>
+      <div className={`${styles['content-wrapper']} content-wrapper}`}>
+        {truncatedTitle && (
+          <span className={`${styles.title} title}`}>{truncatedTitle}</span>
+        )}
+        <div className={styles.timing}>
+          {start && end && <span>{formatEventTime(start, end)}</span>}
         </div>
       </div>
-      <div>
-      </div>
-      <span className="circle" style={circleStyle}>
+      <div></div>
+      <span className={`${styles.circle} circle`} style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
-    </div >
+    </div>
   );
 };
 

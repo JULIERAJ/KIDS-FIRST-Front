@@ -1,0 +1,75 @@
+.title {
+  font-family: Roboto;
+  color: #081821;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.75px;
+  text-align: left;
+  margin-left: 0px;
+  position: absolute;
+  top: 5px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+.desc {
+  font-family: Roboto;
+  color: #081821;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  opacity: 0.75;
+}
+
+.dayEventContentWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  margin-top: 0px;
+}
+
+.dayEventTiming {
+  font-size: 14px;
+  opacity: 0.4;
+  font-weight: 200;
+  line-height: 40px;
+  top: 10px;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  background-color: var(--circle-bg-color);
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 5px;
+  margin-top: 15px;
+}
+
+.box {
+  background-color: var(--box-bg-color);
+  border-left: 5px solid var(--border-left-color);
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: -4px;
+  /* start: top; */
+  display: flex;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
