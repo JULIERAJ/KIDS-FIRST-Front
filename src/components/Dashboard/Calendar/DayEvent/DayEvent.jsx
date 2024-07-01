@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { formatEventTime } from './utils/dateUtils';
+import { formatEventTime } from '../../../../utils/dateUtils';
 
-import './DayMonthEventStyles.css';
+import '../styles/DayMonthEventStyles.css';
 
 export const DayEvent = ({ event }) => {
   const { title, color, kidsName, start, end, desc, type } = event;

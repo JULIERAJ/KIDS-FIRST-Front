@@ -3,9 +3,9 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import MessageNotification from './MessageNotification'; // Import MessageNotification component
-import PendingEvents from './PendingEvents'; // Import PendingEvents component
-import WeeksOverview from './WeeksOverview'; // Import WeeksOverview component
+import MessageNotification from './MessageNotification'; 
+import PendingEvents from './PendingEvents'; 
+import WeeksOverview from './WeeksOverview'; 
 
 const HomeDashboard = () => {
   return (

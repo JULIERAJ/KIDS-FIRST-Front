@@ -1,19 +1,18 @@
 /* eslint-disable indent */
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiPlus } from 'react-icons/fi';
 
-import './kidsCircles.css';
+import '../styles/kidsCircles.css';
 
+import EventContext from '../../../../context/EventContext.jsx';
 import EventModal from '../EventModal/EventModal.jsx';
 
-import EventContext from './EventContext.jsx';
+import events from '../events.js';
 
-import events from './events';
-
-import './headerStyles.css';
+import '../styles/headerStyles.css';
 
 const KFToolbar = ({
   activeView,

@@ -1,18 +1,17 @@
 import moment from 'moment';
 
-import React, { useState, useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 
-import { DayEvent } from './DayEvent.jsx';
-import EventContext from './EventContext.jsx';
+import EventContext from '../../../../context/EventContext.jsx';
+import { DayViewHeader, getOverlapCount } from '../../../../utils/dateUtils.js';
 
-import KFToolbar from './KFToolbar.jsx';
-import MonthEvent from './MonthEvent.jsx';
+import MonthEvent from '../../Calendar/MonthEvent/MonthEvent.jsx';
+import KFToolbar from '../../Calendar/Toolbar/KFToolbar.jsx';
 
-import { getOverlapCount, DayViewHeader } from './utils/dateUtils';
-
-import './styles.css';
-import WeekEvent from './WeekEvent.jsx';
+import WeekEvent from '../../Calendar/WeekEvent/WeekEvent.jsx';
+import { DayEvent } from '../DayEvent/DayEvent.jsx';
+import '../styles/styles.css';
 
 // Set up moment localizer
 moment.locale('en-GB');

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import './viewStyles.css';
-import './DayMonthEventStyles.css';
+import '../styles/DayMonthEventStyles.css';
+import '../styles/viewStyles.css';
 
 const MonthEvent = ({ event }) => {
   const { color, kidsName, title } = event;

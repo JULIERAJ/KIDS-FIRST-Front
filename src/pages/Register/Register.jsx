@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 import { register } from '../../api';
 
-import Header from '../../components/Header';
+import Header from '../../components/shared/Header';
 
 import EmailVerify from './EmailVerify';
 import styles from './Register.module.css';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Form, Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import {
@@ -9,13 +9,13 @@ import {
 import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
 import { login, loginFacebook, loginSocial } from '../../api';
-import FormEmailInput from '../../components/form/FormEmailInput';
-import FormPasswordInput from '../../components/form/FormPasswordInput';
-import Header from '../../components/Header';
-// import TextLink from '../../components/TextLink';
+import Header from '../../components/shared/Header';
+import FormEmailInput from '../../components/shared/ui/form/FormEmailInput';
+import FormPasswordInput from '../../components/shared/ui/form/FormPasswordInput';
+
 import facebookIcon from '../../media/icons/facebook.png';
 import googleIcon from '../../media/icons/google.png';
-import { EMAIL_REG_EXP } from '../../utils/index';
+import { EMAIL_REG_EXP } from '../../utils/regexPatterns';
 
 import styles from './Sigin.module.css';
 
