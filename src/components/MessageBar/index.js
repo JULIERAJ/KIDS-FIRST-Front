@@ -1,3 +1,1 @@
-import MessageBar from './MessageBar';
-
-export default MessageBar;
+export { default } from './MessageBar';

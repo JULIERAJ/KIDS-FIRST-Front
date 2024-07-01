@@ -1,0 +1,72 @@
+.title {
+  font-family: Roboto;
+  color: #081821;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.75px;
+  text-align: left;
+  margin-left: 0px;
+  position: absolute;
+  top: 5px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+.desc {
+  font-family: Roboto;
+  color: #081821;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  opacity: 0.75;
+}
+
+.dayEventContentWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  margin-top: 0px;
+}
+
+.dayEventTiming {
+  font-size: 14px;
+  opacity: 0.4;
+  font-weight: 200;
+  line-height: 40px;
+  top: 10px;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.circle {
+  width: 20.36px;
+  height: 21px;
+  background-color: var(--circle-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: -5;
+  left: -20;
+  margin-left: 30px;
+  margin-top: 12px;
+}
+
+.box {
+  background-color: var(--box-bg-color);
+  border-left: 4px solid var(--box-border-left-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  margin-left: -9px;
+  border-radius: 0px 7px 7px 0px;
+}

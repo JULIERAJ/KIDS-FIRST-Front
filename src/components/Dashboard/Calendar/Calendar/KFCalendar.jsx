@@ -6,10 +6,9 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import EventContext from '../../../../context/EventContext.jsx';
 import { DayViewHeader, getOverlapCount } from '../../../../utils/dateUtils.js';
 
-import MonthEvent from '../../Calendar/MonthEvent/MonthEvent.jsx';
-import KFToolbar from '../../Calendar/Toolbar/KFToolbar.jsx';
-
 import DayEvent from '../DayEvent/DayEvent.jsx';
+import MonthEvent from '../MonthEvent/MonthEvent.jsx';
+import KFToolbar from '../Toolbar/KFToolbar.jsx';
 import WeekEvent from '../WeekEvent/WeekEvent.jsx';
 
 import '../styles/styles.css';

@@ -3,16 +3,13 @@ import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiPlus } from 'react-icons/fi';
 
-import '../styles/kidsCircles.css';
-
 import EventContext from '../../../../context/EventContext.jsx';
+
 import EventModal from '../EventModal/EventModal.jsx';
 
 import events from '../events.js';
 
 import styles from './KFToolbar.module.css';
-
-import '../styles/headerStyles.css';
 
 const KFToolbar = ({
   activeView,
@@ -71,7 +68,7 @@ const KFToolbar = ({
   };
 
   return (
-    <div className='KF-toolbar'>
+    <div className={styles['KF-toolbar']}>
       <div className='toolbar'>
         <div className='rbc-btn-group'>
           <button
@@ -100,24 +97,24 @@ const KFToolbar = ({
           </button>
         </div>
 
-        <div className='rbc-toolbar-label'>{label}</div>
+        <div className={styles['rbc-toolbar-label']}>{label}</div>
 
         {/* Container for buttons */}
-        <div className='buttonsContainer'>
+        <div className={styles.buttonsContainer}>
           {/* Big button */}
-          <div className='bigButtonContainer'>
+          <div className={styles.bigButtonContainer}>
             <div
               onClick={handleCreateButtonClick}
-              className='bigButton'
+              className={styles.bigButton}
               style={{ border: '2px solid #EB7005' }}>
               {/* smaller buttons inside big button */}
-              <div className='smallButtonsContainer'>
+              <div className={styles.smallButtonsContainer}>
                 {views.map((view) => (
                   <button
                     key={view}
                     type='button'
                     onClick={() => handleViewButtonClick(view)}
-                    className={`controlButton 
+                    className={`${styles.controlButton} 
                       ${activeView === view ? 'active' : ''}`}
                     style={{
                       backgroundColor:
@@ -141,7 +138,7 @@ const KFToolbar = ({
               openModal();
               handleCreateButtonClick();
             }}
-            className='createButton'>
+            className={styles.createButton}>
             Create&nbsp;
             <div style={{ width: '8px', height: '8px', marginBottom: '20px' }}>
               <FiPlus />

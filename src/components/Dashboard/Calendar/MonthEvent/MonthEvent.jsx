@@ -1,36 +1,17 @@
 import PropTypes from 'prop-types';
-import '../styles/DayMonthEventStyles.css';
-import '../styles/viewStyles.css';
 
+import '../styles/viewStyles.css';
+import styles from './MonthEvent.module.css';
 const MonthEvent = ({ event }) => {
   const { color, kidsName, title } = event;
 
   const circleStyle = {
-    width: '20.36px',
-    height: '21px',
-    backgroundColor: color,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '18px',
-    color: 'white',
-    borderRadius: '50%',
-    position: 'absolute',
-    top: -5,
-    left: -20,
-    marginLeft: '30px',
-    marginTop: '12px',
+    '--circle-bg-color': color,
   };
 
   const boxStyle = {
-    backgroundColor: `${color}4D`,
-    borderLeft: `4px solid ${color}`,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'relative',
-    marginLeft: '-9px',
-    borderRadius: '0px 7px 7px 0px',
+    '--box-bg-color': `${color}4D`,
+    '--box-border-left-color': color,
   };
 
   const getTruncatedTitle = (title) => {
@@ -44,13 +25,13 @@ const MonthEvent = ({ event }) => {
 
   return (
     <div className='rbc-event-content'>
-      <div className='kid-events-container' style={boxStyle}>
-        <span className='circle' style={circleStyle}>
+      <div className={`${styles.box} kid-events-container`} style={boxStyle}>
+        <span className={`${styles.circle} circle`} style={circleStyle}>
           {kidsName.charAt(0).toUpperCase()}
         </span>
         {truncatedTitle && (
           <span
-            className='title'
+            className={styles.title}
             style={{ marginLeft: '-30px', marginTop: '-5px' }}>
             {truncatedTitle}
           </span>
