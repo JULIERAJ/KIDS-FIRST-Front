@@ -5,7 +5,7 @@ import { FiPlus } from 'react-icons/fi';
 
 import EventContext from '@context/EventContext';
 
-import EventModal from '../EventModal/index.js';
+import EventModal from '../EventModal';
 
 import events from '../events.js';
 

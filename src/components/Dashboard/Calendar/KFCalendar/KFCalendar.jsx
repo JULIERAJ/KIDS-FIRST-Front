@@ -7,10 +7,10 @@ import EventContext from '@context/EventContext.jsx';
 
 import { DayViewHeader, getOverlapCount } from '@utils/dateUtils.js';
 
-import DayEvent from './DayEvent/DayEvent.jsx';
-import MonthEvent from './MonthEvent/MonthEvent.jsx';
-import KFToolbar from './Toolbar/KFToolbar.jsx';
-import WeekEvent from './WeekEvent/WeekEvent.jsx';
+import DayEvent from './DayEvent';
+import MonthEvent from './MonthEvent';
+import KFToolbar from './Toolbar';
+import WeekEvent from './WeekEvent';
 
 import '../styles/styles.css';
 
