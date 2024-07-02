@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import '../../styles/viewStyles.css';
 
+import { Container } from 'react-bootstrap';
+
 import styles from './WeekEvent.module.css';
 
 const WeekEvent = ({ event }) => {
@@ -33,20 +35,20 @@ const WeekEvent = ({ event }) => {
     return `${startTime} - ${endTime}`;
   };
   return (
-    <div className={`${styles.box} box`} style={boxStyle}>
-      <div className={`${styles['content-wrapper']} content-wrapper`}>
+    <Container className={styles.box} style={boxStyle}>
+      <div className={styles['content-wrapper']}>
         {truncatedTitle && (
           <span className={styles.title}>{truncatedTitle}</span>
         )}
-        <div className={styles.timing}>
-          {start && end && <span>{formatEventTime(start, end)}</span>}
-        </div>
+
+        {start && end && (
+          <span className={styles.timing}>{formatEventTime(start, end)}</span>
+        )}
       </div>
-      <div></div>
       <span className={styles.circle} style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
-    </div>
+    </Container>
   );
 };
 

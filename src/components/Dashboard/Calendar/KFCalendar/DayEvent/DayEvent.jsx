@@ -21,9 +21,13 @@ export const DayEvent = ({ event }) => {
   return (
     <Container className={styles.box} style={boxStyle}>
       <div className={styles['day-event-content-wrapper']}>
-        <div className={styles.title}>{title && <span>{title}</span>}</div>
-        <div className={styles.dayEventTiming}>
-          {start && end && <span>{formatEventTime(start, end)}</span>}
+        <div className={styles.dayEventHeader}>
+          {title && <span className={styles.title}>{title}</span>}
+          {start && end && (
+            <span className={styles.dayEventTiming}>
+              {formatEventTime(start, end)}
+            </span>
+          )}
         </div>
         <div className={styles.desc}>{desc && <span>{desc}</span>}</div>
         <div style={{ fontSize: '14px', opacity: '0.4' }}>
