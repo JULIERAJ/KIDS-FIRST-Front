@@ -17,15 +17,13 @@ export const DayEvent = ({ event }) => {
   };
 
   return (
-    <div className={`${styles.box} event-box`} style={boxStyle}>
-      <div className={`${styles.dayEventContentWrapper} content-wrapper`}>
-        <div className={`title ${styles.titleStyle}`}>
-          {title && <span>{title}</span>}
-        </div>
-        <div className={`${styles.dayEventTiming}`}>
+    <div className={styles.box} style={boxStyle}>
+      <div className={styles.dayEventContentWrapper}>
+        <div className={styles.title}>{title && <span>{title}</span>}</div>
+        <div className={styles.dayEventTiming}>
           {start && end && <span>{formatEventTime(start, end)}</span>}
         </div>
-        <div className={`${styles.desc}`}>{desc && <span>{desc}</span>}</div>
+        <div className={styles.desc}>{desc && <span>{desc}</span>}</div>
         <div style={{ fontSize: '14px', opacity: '0.4' }}>
           {type && (
             <span>
@@ -45,7 +43,7 @@ export const DayEvent = ({ event }) => {
           )}
         </div>
       </div>
-      <span className={`${styles.circle} circle`} style={circleStyle}>
+      <span className={styles.circle} style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
     </div>

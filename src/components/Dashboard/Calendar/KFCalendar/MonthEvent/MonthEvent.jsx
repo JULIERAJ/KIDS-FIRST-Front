@@ -26,8 +26,8 @@ const MonthEvent = ({ event }) => {
 
   return (
     <div className='rbc-event-content'>
-      <div className={`${styles.box} kid-events-container`} style={boxStyle}>
-        <span className={`${styles.circle} circle`} style={circleStyle}>
+      <div className={styles.box} style={boxStyle}>
+        <span className={styles.circle} style={circleStyle}>
           {kidsName.charAt(0).toUpperCase()}
         </span>
         {truncatedTitle && (
