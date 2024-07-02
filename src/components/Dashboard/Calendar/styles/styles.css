@@ -105,8 +105,6 @@ button.rbc-input::-moz-focus-inner {
 /* Negar added following style */
 .rbc-time-view .rbc-header+.rbc-header {
   border-left: none;
-
-
 }
 
 .rbc-time-view .rbc-header {
@@ -538,8 +536,8 @@ button.rbc-input::-moz-focus-inner {
 .rbc-time-column .rbc-timeslot-group {
   min-height: 50px;
   min-width: 113px;
-  align-items: center;
-  align-content: center;
+  /* align-items: center; */
+  /* align-content: center; */
 }
 
 /* Negar: add border to all time slots without a label */
