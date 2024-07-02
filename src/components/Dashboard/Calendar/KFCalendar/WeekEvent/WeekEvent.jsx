@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import '../styles/viewStyles.css';
+import '../../styles/viewStyles.css';
 
 import styles from './WeekEvent.module.css';
 
