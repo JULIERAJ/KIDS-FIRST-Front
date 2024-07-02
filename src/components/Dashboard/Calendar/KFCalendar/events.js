@@ -4,12 +4,11 @@ export default [
     id: 1,
     title: 'James-All Day Event very long title',
     kidsName: 'James',
-    start: new Date(2024, 1, 1, 8, 0), // Start time: 8:00 AM
-    end: new Date(2024, 1, 1, 17, 0), // End time: 5:00 PM
+    start: new Date(2024, 6, 2, 8, 0), // Start time: 8:00 AM
+    end: new Date(2024, 6, 2, 9, 0), // End time: 5:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for All Day Event very long title',
-    color: '#C29EEF'
-
+    color: '#C29EEF',
   },
   {
     id: 2,
@@ -19,17 +18,17 @@ export default [
     end: new Date(2024, 3, 22, 2, 0, 0),
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for All Day Event very long title',
-    color: '#C29EEF'
+    color: '#C29EEF',
   },
   {
     id: 3,
     title: 'Viki-Dentist Appointment',
     kidsName: 'Viki',
-    start: new Date(2024, 2, 13, 10, 0), // Start time: 10:00 AM
-    end: new Date(2024, 2, 13, 11, 0), // End time: 11:00 AM
+    start: new Date(2024, 6, 2, 10, 0), // Start time: 10:00 AM
+    end: new Date(2024, 6, 2, 11, 0), // End time: 11:00 AM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'Appointment for dental check up',
-    color: '#FF6B6D'
+    color: '#FF6B6D',
   },
   {
     id: 4,
@@ -39,17 +38,17 @@ export default [
     end: new Date(2024, 2, 6, 15, 0), // End time: 3:00 PM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'Appointment for dental check up',
-    color: '#C29EEF'
+    color: '#C29EEF',
   },
   {
     id: 5,
     title: 'Sarah-Tennis practice',
     kidsName: 'Sarah',
-    start: new Date(2024, 2, 18, 16, 0), // Start time: 4:00 PM
-    end: new Date(2024, 2, 18, 17, 0), // End time: 5:00 PM
+    start: new Date(2024, 6, 2, 16, 0), // Start time: 4:00 PM
+    end: new Date(2024, 6, 2, 17, 0), // End time: 5:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for Some Event',
-    color: '#FFD666'
+    color: '#FFD666',
   },
   {
     id: 6,
@@ -59,7 +58,7 @@ export default [
     end: new Date(2024, 3, 11, 17, 0), // End time: 5:00 PM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'A description for Conference',
-    color: '#FF6B6D'
+    color: '#FF6B6D',
   },
   {
     id: 7,
@@ -69,7 +68,7 @@ export default [
     end: new Date(2024, 3, 12, 11, 30), // End time: 11:30 AM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'A description for Meeting',
-    color: '#C29EEF'
+    color: '#C29EEF',
   },
   {
     id: 8,
@@ -79,7 +78,7 @@ export default [
     end: new Date(2024, 2, 22, 11, 0), // End time: March 22, 2024, 11:00 AM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'Make the reservation before',
-    color: '#FFD666'
+    color: '#FFD666',
   },
   {
     id: 9,
@@ -89,7 +88,7 @@ export default [
     end: new Date(2024, 2, 9, 18, 0), // End time: March 9, 2024, 6:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'Make the reservation before',
-    color: '#FFD666'
+    color: '#FFD666',
   },
   {
     id: 10,
@@ -99,7 +98,7 @@ export default [
     end: new Date(2024, 3, 12, 18, 0), // End time: 1:30 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'Make the reservation before',
-    color: '#FFD666'
+    color: '#FFD666',
   },
   {
     id: 11,
@@ -109,7 +108,7 @@ export default [
     end: new Date(2024, 3, 12, 18, 0), // End time: 3:00 PM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'Register for ballet classes',
-    color: '#FF6B6D'
+    color: '#FF6B6D',
   },
   {
     id: 12,
@@ -119,7 +118,7 @@ export default [
     end: new Date(2024, 3, 12, 19, 0), // End time: 7:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for Happy Hour',
-    color: '#C29EEF'
+    color: '#C29EEF',
   },
   {
     id: 13,
@@ -129,7 +128,7 @@ export default [
     end: new Date(2024, 3, 12, 20, 0), // End time: 8:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for Dinner',
-    color: '#FFD666'
+    color: '#FFD666',
   },
   {
     id: 14,
@@ -139,6 +138,6 @@ export default [
     end: new Date(2024, 3, 13, 11, 0), // End time: 11:00 AM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'A description for Birthday Party',
-    color: '#FF6B6D'
-  }
+    color: '#FF6B6D',
+  },
 ];

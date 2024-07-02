@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import { Container } from 'react-bootstrap';
+
 import { formatEventTime } from '@utils/dateUtils';
 
 import styles from './DayEvent.module.css';
@@ -17,8 +19,8 @@ export const DayEvent = ({ event }) => {
   };
 
   return (
-    <div className={styles.box} style={boxStyle}>
-      <div className={styles.dayEventContentWrapper}>
+    <Container className={styles.box} style={boxStyle}>
+      <div className={styles['day-event-content-wrapper']}>
         <div className={styles.title}>{title && <span>{title}</span>}</div>
         <div className={styles.dayEventTiming}>
           {start && end && <span>{formatEventTime(start, end)}</span>}
@@ -46,7 +48,7 @@ export const DayEvent = ({ event }) => {
       <span className={styles.circle} style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
-    </div>
+    </Container>
   );
 };
 
