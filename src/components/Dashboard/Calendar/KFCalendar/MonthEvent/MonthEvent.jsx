@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../../styles/styles.css';
 
 import styles from './MonthEvent.module.css';
+
 const MonthEvent = ({ event }) => {
   const { color, kidsName, title } = event;
 
@@ -25,19 +26,11 @@ const MonthEvent = ({ event }) => {
   const truncatedTitle = getTruncatedTitle(title);
 
   return (
-    <div className='rbc-event-content'>
-      <div className={styles.box} style={boxStyle}>
-        <span className={styles.circle} style={circleStyle}>
-          {kidsName.charAt(0).toUpperCase()}
-        </span>
-        {truncatedTitle && (
-          <span
-            className={styles.title}
-            style={{ marginLeft: '-30px', marginTop: '-5px' }}>
-            {truncatedTitle}
-          </span>
-        )}
-      </div>
+    <div className={styles.box} style={boxStyle}>
+      <span className={styles.circle} style={circleStyle}>
+        {kidsName.charAt(0).toUpperCase()}
+      </span>
+      {truncatedTitle && <span className={styles.title}>{truncatedTitle}</span>}
     </div>
   );
 };

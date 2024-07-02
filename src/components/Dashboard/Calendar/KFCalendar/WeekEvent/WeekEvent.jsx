@@ -33,8 +33,8 @@ const WeekEvent = ({ event }) => {
     return `${startTime} - ${endTime}`;
   };
   return (
-    <div className={`${styles.box} event-box`} style={boxStyle}>
-      <div className={`${styles['content-wrapper']} content-wrapper}`}>
+    <div className={`${styles.box} box`} style={boxStyle}>
+      <div className={`${styles['content-wrapper']} content-wrapper`}>
         {truncatedTitle && (
           <span className={styles.title}>{truncatedTitle}</span>
         )}

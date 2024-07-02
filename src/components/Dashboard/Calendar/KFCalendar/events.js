@@ -5,7 +5,7 @@ export default [
     title: 'James-All Day Event very long title',
     kidsName: 'James',
     start: new Date(2024, 6, 2, 8, 0), // Start time: 8:00 AM
-    end: new Date(2024, 6, 2, 9, 0), // End time: 5:00 PM
+    end: new Date(2024, 6, 2, 10, 0), // End time: 5:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for All Day Event very long title',
     color: '#C29EEF',
@@ -34,8 +34,8 @@ export default [
     id: 4,
     title: 'James-Dentist Appointment',
     kidsName: 'James',
-    start: new Date(2024, 2, 6, 14, 0), // Start time: 2:00 PM
-    end: new Date(2024, 2, 6, 15, 0), // End time: 3:00 PM
+    start: new Date(2024, 6, 6, 14, 0), // Start time: 2:00 PM
+    end: new Date(2024, 6, 6, 15, 0), // End time: 3:00 PM
     type: 'Shared event (your ex-partner will also be attending this event)',
     desc: 'Appointment for dental check up',
     color: '#C29EEF',
@@ -44,8 +44,8 @@ export default [
     id: 5,
     title: 'Sarah-Tennis practice',
     kidsName: 'Sarah',
-    start: new Date(2024, 6, 2, 16, 0), // Start time: 4:00 PM
-    end: new Date(2024, 6, 2, 17, 0), // End time: 5:00 PM
+    start: new Date(2024, 6, 4, 16, 0), // Start time: 4:00 PM
+    end: new Date(2024, 6, 4, 17, 0), // End time: 5:00 PM
     type: 'Solo event (your ex-partner will not be present at this event)',
     desc: 'A description for Some Event',
     color: '#FFD666',
