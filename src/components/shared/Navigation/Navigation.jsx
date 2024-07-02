@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Dropdown, Container, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import { navigationLink } from '../../../data/features.data';
-import arrowDown from '../../../media/features/arrow_down.svg';
+import { navigationLink } from '@data/features.data';
+
+import arrowDown from '@media/features/arrow_down.svg';
 
 import styles from './Navigation.module.css';
 
 const Navigation = () => {
-
   return (
     <>
       <Nav className={styles.navigation}>
@@ -28,26 +28,26 @@ const Navigation = () => {
         <Dropdown>
           <Dropdown.Toggle
             className={styles.navigation__lang_menu}
-            id="langDropdown"
-            size="sm"
-          >
+            id='langDropdown'
+            size='sm'>
             EN
             <img
               src={arrowDown}
               alt='Arrow Down'
-              className={styles.navigation__lang_arrow} />
+              className={styles.navigation__lang_arrow}
+            />
           </Dropdown.Toggle>
           <Dropdown.Menu className={styles.navigation__lang_menu}>
-            <Button type="button" className={styles.navigation__lang_option}>
+            <Button type='button' className={styles.navigation__lang_option}>
               FR
             </Button>
           </Dropdown.Menu>
         </Dropdown>
         <Button className={styles.navigation__login_button}>
-          <NavLink to="/signin">Log in</NavLink>
+          <NavLink to='/signin'>Log in</NavLink>
         </Button>
         <Button className={styles.navigation__signup_button}>
-          <NavLink to="/register">Sign up</NavLink>
+          <NavLink to='/register'>Sign up</NavLink>
         </Button>
       </Container>
     </>
