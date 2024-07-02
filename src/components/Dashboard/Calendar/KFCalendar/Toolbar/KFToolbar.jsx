@@ -69,7 +69,7 @@ const KFToolbar = ({
 
   return (
     <div className={styles['KF-toolbar']}>
-      <div className='toolbar'>
+      <div className={styles.toolbar}>
         <div className='rbc-btn-group'>
           <button
             type='button'

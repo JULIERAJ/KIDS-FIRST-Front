@@ -50,6 +50,19 @@
   background: #fcfcfc;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 5px;
+  align-items: center;
+}
+
+.toolbar button {
+  margin: 5px;
+  border-radius: 8px;
+  border-color: #eb7005;
+}
+
 /* Toolbar Label */
 .rbc-toolbar-label {
   font-size: 18px;
