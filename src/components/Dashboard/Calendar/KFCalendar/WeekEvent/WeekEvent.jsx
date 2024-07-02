@@ -43,7 +43,7 @@ const WeekEvent = ({ event }) => {
         </div>
       </div>
       <div></div>
-      <span className={`${styles.circle} circle`} style={circleStyle}>
+      <span className={styles.circle} style={circleStyle}>
         {kidsName && kidsName.charAt(0).toUpperCase()}
       </span>
     </div>

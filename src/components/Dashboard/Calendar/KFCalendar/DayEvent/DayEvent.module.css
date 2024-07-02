@@ -5,9 +5,9 @@
   font-weight: 500;
   line-height: 18.75px;
   text-align: left;
-  margin-left: 0px;
+  margin-left: 5px;
   position: absolute;
-  top: 5px;
+  top: -10;
   margin-top: 30px;
   margin-bottom: 0px;
 }
@@ -20,7 +20,7 @@
   line-height: 40px;
   display: flex;
   flex-direction: column;
-  margin-left: 0;
+  margin-left: 5px;
   margin-top: -10px;
   margin-bottom: -10px;
   opacity: 0.75;
@@ -31,6 +31,7 @@
   flex-direction: column;
   margin-left: 50px;
   margin-top: 0px;
+  width: 100%;
 }
 
 .dayEventTiming {
@@ -38,15 +39,17 @@
   opacity: 0.4;
   font-weight: 200;
   line-height: 40px;
-  top: 10px;
+  top: 0;
   margin-left: auto;
   margin-right: 5px;
+  position: relative;
 }
 
 .circle {
   width: 40px;
   height: 40px;
   background-color: var(--circle-bg-color);
+  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
