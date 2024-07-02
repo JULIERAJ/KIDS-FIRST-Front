@@ -3,8 +3,9 @@ import moment from 'moment';
 import React, { useContext, useMemo, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 
-import EventContext from '../../../../context/EventContext.jsx';
-import { DayViewHeader, getOverlapCount } from '../../../../utils/dateUtils.js';
+import EventContext from '@context/EventContext.jsx';
+
+import { DayViewHeader, getOverlapCount } from '@utils/dateUtils.js';
 
 import DayEvent from '../DayEvent/DayEvent.jsx';
 import MonthEvent from '../MonthEvent/MonthEvent.jsx';

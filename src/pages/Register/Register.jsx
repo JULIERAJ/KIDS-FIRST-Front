@@ -1,17 +1,13 @@
 import { useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-
+import { Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
-import { register } from '../../api';
+import { register } from '@api';
 
-import Header from '../../components/shared/Header';
+import Header from '@components/shared/Header';
 
 import EmailVerify from './EmailVerify';
 import styles from './Register.module.css';
-
 import RegisterForm from './RegisterForm';
 
 const Register = () => {
@@ -46,7 +42,7 @@ const Register = () => {
     <>
       <div className={styles.page}>
         <div>
-          <Header/>
+          <Header />
         </div>
         <Container className={styles.page__window}>
           <div>

@@ -1,1 +1,3 @@
-export { default } from './WeekEvent';
+import WeekEvent from './WeekEvent';
+
+export default WeekEvent;

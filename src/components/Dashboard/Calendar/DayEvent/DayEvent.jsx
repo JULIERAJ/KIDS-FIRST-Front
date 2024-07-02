@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { formatEventTime } from '../../../../utils/dateUtils';
+import { formatEventTime } from '@utils/dateUtils';
 
 import styles from './DayEvent.module.css';
 

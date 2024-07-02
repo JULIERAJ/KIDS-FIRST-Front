@@ -1,11 +1,10 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 
-import MessageNotification from './MessageNotification'; 
-import PendingEvents from './PendingEvents'; 
-import WeeksOverview from './WeeksOverview'; 
+import { Col, Row, Container } from 'react-bootstrap';
+
+import MessageNotification from './MessageNotification';
+import PendingEvents from './PendingEvents';
+import WeeksOverview from './WeeksOverview';
 
 const HomeDashboard = () => {
   return (
@@ -15,17 +14,16 @@ const HomeDashboard = () => {
         <WeeksOverview />
       </Row>
 
-      <Row style={{ marginTop : 40 }}>
+      <Row style={{ marginTop: 40 }}>
         {/* Pending Events */}
-        <Col >
+        <Col>
           <PendingEvents />
         </Col>
         {/* Message Notification */}
-        <Col >
+        <Col>
           <MessageNotification />
         </Col>
       </Row>
-
     </Container>
   );
 };

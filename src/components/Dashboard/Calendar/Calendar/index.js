@@ -1,1 +1,3 @@
-export { default } from './KFCalendar';
+import KFCalendar from './KFCalendar';
+
+export default KFCalendar;

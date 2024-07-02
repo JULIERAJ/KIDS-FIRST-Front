@@ -36,8 +36,20 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx"]
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@config", "./src/config"],
+          ["@context", "./src/context"],
+          ["@data", "./src/data"],
+          ["@hooks", "./src/hooks"],
+          ["@media", "./src/media"],
+          ["@pages", "./src/pages"],
+          ["@styles", "./src/styles"],
+          ["@utils", "./src/utils"],
+          ["@api", "./src/api.js"]
+        ],
+        "extensions": [".js", ".jsx", ".json"]
       }
     },
     "react": {

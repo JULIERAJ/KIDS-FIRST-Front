@@ -1,1 +1,3 @@
-export { default } from './EventModal';
+import EventModal from './EventModal';
+
+export default EventModal;

@@ -1,1 +1,3 @@
-export { default } from './KFToolbar';
+import KFToolbar from './KFToolbar';
+
+export default KFToolbar;

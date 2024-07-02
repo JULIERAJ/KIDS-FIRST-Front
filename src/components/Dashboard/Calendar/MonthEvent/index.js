@@ -1,1 +1,3 @@
-export { default } from './MonthEvent';
+import MonthEvent from './MonthEvent';
+
+export default MonthEvent;

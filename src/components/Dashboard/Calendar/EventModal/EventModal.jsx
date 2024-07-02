@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { FaChevronDown, FaPlusCircle } from 'react-icons/fa'; 
+import { FaChevronDown, FaPlusCircle } from 'react-icons/fa';
 
 import styles from './EventModal.module.css';
 
@@ -31,16 +31,28 @@ const CustomDropdown = ({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             className={styles.selectField}
-            style={{ height: '48px' }}
-          >
-            <option value='' disabled hidden>{placeholder}</option>
+            style={{ height: '48px' }}>
+            <option value='' disabled hidden>
+              {placeholder}
+            </option>
             {options.map((option) => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option} value={option}>
+                {option}
+              </option>
             ))}
           </Form.Control>
-          {hasPlusIcon && value === '' && <FaPlusCircle className={styles.dropdownIcon}
-            style={{ color: 'gray', fontSize: '24px', marginRight: '90%' }} />}
-          {hasChevronIcon && <FaChevronDown className={styles.dropdownIcon} onClick={() => setIsOpen(!isOpen)} />}
+          {hasPlusIcon && value === '' && (
+            <FaPlusCircle
+              className={styles.dropdownIcon}
+              style={{ color: 'gray', fontSize: '24px', marginRight: '90%' }}
+            />
+          )}
+          {hasChevronIcon && (
+            <FaChevronDown
+              className={styles.dropdownIcon}
+              onClick={() => setIsOpen(!isOpen)}
+            />
+          )}
         </div>
       </div>
       {isOpen && (

@@ -2,17 +2,21 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { forgetPassword } from '../../api';
-import MessageBar from '../../components/MessageBar';
-import FatherSonBlock from '../../components/shared/FatherSonBlock';
-import Header from '../../components/shared/Header/Header';
-import FormEmailInput from '../../components/shared/ui/form/FormEmailInput';
-import TextLink from '../../components/shared/ui/TextLink';
-import logoEmailSent from '../../media/icons/email_sent.png';
+import { forgetPassword } from '@api';
+
+import MessageBar from '@components/MessageBar';
+import FatherSonBlock from '@components/shared/FatherSonBlock';
+import Header from '@components/shared/Header';
+import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
+import TextLink from '@components/shared/ui/TextLink';
+
+import logoEmailSent from '@media/icons/email_sent.png';
 
 import styles from './ForgetPassword.module.css';
 
-const HeaderLink = <TextLink title='Not a member?' to='/register' linkTitle='Sign up' />;
+const HeaderLink = (
+  <TextLink title='Not a member?' to='/register' linkTitle='Sign up' />
+);
 
 export default function ForgetPassword() {
   const emailDisplay = useRef('');
@@ -62,7 +66,7 @@ export default function ForgetPassword() {
       //eslint-disable-next-line
       console.error(err);
       setErrMsg(
-        'An error occurred while resending the email. Please try again later.',
+        'An error occurred while resending the email. Please try again later.'
       );
     }
   };

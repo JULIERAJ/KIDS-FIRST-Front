@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
+import { Card } from 'react-bootstrap';
 
 import styles from './MessageBar';
 
@@ -8,7 +8,6 @@ const MessageBar = ({ variant, children }) => {
     <>
       <Card
         className={`my-2 ${styles['message-bar']} ${styles['message-bar']}-${variant}`}>
-        ;
         <Card.Body>
           <div>{children}</div>
         </Card.Body>

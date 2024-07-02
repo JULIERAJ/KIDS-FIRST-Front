@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './HomeDashboard.css';
+import styles from './MessageNotification.module.css';
+
 const messagesList = [
   {
     sender: 'M',
@@ -12,16 +13,16 @@ const messagesList = [
 
 const MessageNotification = () => {
   return (
-    <div>
+    <>
       <h5>Message Notification</h5>
       <p>To read complete text go to message from the left bar.</p>
-      <div className="rounded">
+      <div className={styles.rounded}>
         {Array.from({ length: 5 }).map((_, i) =>
           messagesList.map((data) => (
-            <div key={i} className="messages">
-              <div className="circleShape">{data.sender} </div>
+            <div key={i} className={styles.messages}>
+              <div className={styles.circleShape}>{data.sender} </div>
               <div>
-                <div className="message">{data.message}</div>
+                <div className={styles.message}>{data.message}</div>
                 <div>{data.content}</div>
               </div>
               <div>
@@ -31,7 +32,7 @@ const MessageNotification = () => {
           ))
         )}
       </div>
-    </div>
+    </>
   );
 };
 

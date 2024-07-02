@@ -3,9 +3,9 @@ import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiPlus } from 'react-icons/fi';
 
-import EventContext from '../../../../context/EventContext.jsx';
+import EventContext from '@context/EventContext';
 
-import EventModal from '../EventModal/EventModal.jsx';
+import EventModal from '../EventModal';
 
 import events from '../events.js';
 
@@ -126,7 +126,7 @@ const KFToolbar = ({
                     {/* Change button text based on view */}
                     {view === 'day'
                       ? 'Daily'
-                      : view === 'week' ? 'Weekly' : 'Monthly'}
+                      : view === 'week' ? 'Weekly': 'Monthly'}
                   </button>
                 ))}
               </div>
