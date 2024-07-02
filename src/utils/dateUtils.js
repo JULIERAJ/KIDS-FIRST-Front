@@ -45,5 +45,5 @@ export const DayViewHeader = ({ date }) => {
 };
 
 DayViewHeader.propTypes = {
-  date: PropTypes.string,
+  date: PropTypes.date,
 };

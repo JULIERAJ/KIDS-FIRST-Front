@@ -257,7 +257,7 @@ DayCard.propTypes = {
   date: PropTypes.string.isRequired,
   events: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       color: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
