@@ -36,7 +36,7 @@ const WeekEvent = ({ event }) => {
     <div className={`${styles.box} event-box`} style={boxStyle}>
       <div className={`${styles['content-wrapper']} content-wrapper}`}>
         {truncatedTitle && (
-          <span className={`${styles.title} title}`}>{truncatedTitle}</span>
+          <span className={styles.title}>{truncatedTitle}</span>
         )}
         <div className={styles.timing}>
           {start && end && <span>{formatEventTime(start, end)}</span>}
