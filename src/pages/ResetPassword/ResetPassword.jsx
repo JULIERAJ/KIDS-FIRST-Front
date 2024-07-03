@@ -1,20 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-
 import { Link, useParams } from 'react-router-dom';
 
-import { resetPassword, resetPasswordLink } from '../../api';
+import { resetPassword, resetPasswordLink } from '@api';
 
-import MessageBar from '../../components/MessageBar';
-import FatherSonBlock from '../../components/shared/FatherSonBlock';
-import Header from '../../components/shared/Header';
-import FormPasswordInput from '../../components/shared/ui/form/FormPasswordInput';
-import TextLink from '../../components/shared/ui/TextLink';
-import logoPswdChanged from '../../media/icons/pswd-changed.png';
+import MessageBar from '@components/MessageBar';
+
+import FatherSonBlock from '@components/shared/FatherSonBlock';
+import Header from '@components/shared/Header';
+import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
+import TextLink from '@components/shared/ui/TextLink';
+import logoPswdChanged from '@media/icons/pswd-changed.png';
 
 import styles from './ResetPassword.module.css';
 
-const DEFAULT_ERROR_MESSAGE = 'You are using symbols in your passwords or your passwords do not match.';
+const DEFAULT_ERROR_MESSAGE =
+  'You are using symbols in your passwords or your passwords do not match.';
 
 export default function ResetPassword() {
   const { email, resetPasswordToken } = useParams();
@@ -54,7 +55,7 @@ export default function ResetPassword() {
         const { data } = await resetPassword(
           email,
           password,
-          resetPasswordToken,
+          resetPasswordToken
         );
         setUserValid(data);
         setSuccess(true);
@@ -63,7 +64,7 @@ export default function ResetPassword() {
         setErrorMessage(DEFAULT_ERROR_MESSAGE);
       }
     },
-    [email, password, confirmPassword, resetPasswordToken],
+    [email, password, confirmPassword, resetPasswordToken]
   );
 
   return (

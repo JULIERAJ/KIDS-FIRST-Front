@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 // Helper function to check if the event spans multiple days
 export const isMultiDay = (startDate, endDate) => {
   return (
@@ -42,12 +41,4 @@ export const DayViewHeader = ({ date }) => {
     return new Date(date).toLocaleDateString('en-GB', options);
   };
   return <div>{formatDate(date)}</div>;
-};
-
-DayViewHeader.propTypes = {
-  date: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.instanceOf(Date),
-  ]).isRequired,
 };

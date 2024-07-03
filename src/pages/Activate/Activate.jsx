@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import { Button, Container } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { activate } from '../../api';
-import FatherSonBlock from '../../components/shared/FatherSonBlock';
-import FeedbackBlock from '../../components/shared/Feedback/FeedbackBlock';
-import Header from '../../components/shared/Header';
-import TextLink from '../../components/shared/ui/TextLink';
-import SuccessImg from '../../media/icons/pswd-changed.png';
+import { activate } from '@api';
+import FatherSonBlock from '@components/shared/FatherSonBlock';
+import FeedbackBlock from '@components/shared/Feedback/FeedbackBlock';
+import Header from '@components/shared/Header';
+import TextLink from '@components/shared/ui/TextLink';
+
+import successImg from '@media/icons/pswd-changed.png';
 
 import styles from './Activate.module.css';
 
@@ -67,7 +67,7 @@ const Activate = () => {
           {/* Show success message if email is activated */}
           {!loading && userData.emailIsActivated && (
             <>
-              <FeedbackBlock message={userData.message} image={SuccessImg} />
+              <FeedbackBlock message={userData.message} image={successImg} />
               <div className={styles.text}>
                 <p> Your email address has been verified</p>
                 <p>To proceed, click next</p>

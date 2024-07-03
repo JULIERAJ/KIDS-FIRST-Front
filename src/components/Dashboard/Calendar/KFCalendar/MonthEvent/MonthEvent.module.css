@@ -1,0 +1,25 @@
+.box {
+  background-color: var(--box-bg-color);
+  border-left: 4px solid var(--box-border-left-color);
+  display: flex;
+  position: relative;
+  padding: 0.3rem;
+  border-radius: 0px 7px 7px 0px;
+  margin: 1px;
+}
+
+.circle {
+  width: 20.36px;
+  height: 21px;
+  background-color: var(--circle-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.title {
+  margin-left: 1rem;
+}

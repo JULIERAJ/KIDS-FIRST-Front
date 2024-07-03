@@ -8,17 +8,16 @@ import {
 } from 'react-social-login-buttons';
 import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
-import { login, loginFacebook, loginSocial } from '../../api';
-import Header from '../../components/shared/Header';
-import FormEmailInput from '../../components/shared/ui/form/FormEmailInput';
-import FormPasswordInput from '../../components/shared/ui/form/FormPasswordInput';
+import { login, loginFacebook, loginSocial } from '@api';
+import Header from '@components/shared/Header';
+import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
+import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
+import facebookIcon from '@media/icons/facebook.png';
+import googleIcon from '@media/icons/google.png';
 
-import facebookIcon from '../../media/icons/facebook.png';
-import googleIcon from '../../media/icons/google.png';
-import { EMAIL_REG_EXP } from '../../utils/regexPatterns';
+import { EMAIL_REG_EXP } from '@utils/regexPatterns';
 
 import styles from './Sigin.module.css';
-
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

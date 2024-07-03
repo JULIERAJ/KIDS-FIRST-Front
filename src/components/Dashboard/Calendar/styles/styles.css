@@ -36,6 +36,7 @@ button.rbc-input::-moz-focus-inner {
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
+  background: #fcfcfc;
 }
 
 .rbc-calendar *,
@@ -103,9 +104,7 @@ button.rbc-input::-moz-focus-inner {
 
 /* Negar added following style */
 .rbc-time-view .rbc-header+.rbc-header {
-  border-left: 1px solid orange;
-
-
+  border-left: none;
 }
 
 .rbc-time-view .rbc-header {
@@ -535,13 +534,10 @@ button.rbc-input::-moz-focus-inner {
 
 /* Negar added this style for squares in weekly and daily views */
 .rbc-time-column .rbc-timeslot-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
-  /*border-bottom: 1px solid #ddd;*/
   min-height: 50px;
   min-width: 113px;
+  /* align-items: center; */
+  /* align-content: center; */
 }
 
 /* Negar: add border to all time slots without a label */

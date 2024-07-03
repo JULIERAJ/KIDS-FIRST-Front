@@ -16,18 +16,16 @@ import {
 } from 'react-social-login-buttons';
 import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
-import { loginFacebook, loginSocial } from '../../api';
-
-import MessageBar from '../../components/MessageBar';
-import FormEmailInput from '../../components/shared/ui/form/FormEmailInput';
+import { loginFacebook, loginSocial } from '@api';
+import MessageBar from '@components/MessageBar';
+import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import {
   FormFirstNameInput,
   FormLastNameInput,
-} from '../../components/shared/ui/form/FormNameInput';
-import FormPasswordInput from '../../components/shared/ui/form/FormPasswordInput';
-
-import facebookIcon from '../../media/icons/facebook.png';
-import googleIcon from '../../media/icons/google.png';
+} from '@components/shared/ui/form/FormNameInput';
+import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
+import facebookIcon from '@media/icons/facebook.png';
+import googleIcon from '@media/icons/google.png';
 
 import styles from './Register.module.css';
 
@@ -286,11 +284,7 @@ export const RegisterForm = (props) => {
 
   return (
     <>
-      <Form
-        className='py-4'
-        onSubmit={handleSubmit}
-        noValidate
-      >
+      <Form className='py-4' onSubmit={handleSubmit} noValidate>
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput
@@ -347,8 +341,7 @@ export const RegisterForm = (props) => {
           className={`primary-btn ${styles.customButton}`}
           type='submit'
           size='lg'
-          variant='light'
-        >
+          variant='light'>
           Sign up
         </Button>
         <div className={styles.orDivider}>
@@ -370,15 +363,13 @@ export const RegisterForm = (props) => {
                 );
                 /* eslint-disable no-console */
                 console.log(err);
-              }}
-            >
+              }}>
               <GoogleLoginButton
                 title='Google'
                 align={'center'}
                 icon={''}
                 size='45px'
-                className='tertiary-btn w-100'
-              >
+                className='tertiary-btn w-100'>
                 <img src={googleIcon} width='25' height='25' alt='' /> Google
               </GoogleLoginButton>
             </LoginSocialGoogle>
@@ -393,15 +384,13 @@ export const RegisterForm = (props) => {
                 // handleFacebookLoginFailure(error);
                 /* eslint-disable no-console */
                 console.log(error);
-              }}
-            >
+              }}>
               <FacebookLoginButton
                 title='Facebook'
                 align={'center'}
                 icon={''}
                 size='45px'
-                className='tertiary-btn w-100'
-              >
+                className='tertiary-btn w-100'>
                 <img src={facebookIcon} width='25' height='25' alt='' />{' '}
                 Facebook
               </FacebookLoginButton>
@@ -411,7 +400,9 @@ export const RegisterForm = (props) => {
         <Row className='justify-content-center'>
           <div className={styles.alreadyMember}>
             Already a member?
-            <NavLink className={styles.loginLink} to="/signin">Log in</NavLink>
+            <NavLink className={styles.loginLink} to='/signin'>
+              Log in
+            </NavLink>
           </div>
         </Row>
       </Form>
