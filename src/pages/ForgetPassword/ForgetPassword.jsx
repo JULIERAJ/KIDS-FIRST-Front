@@ -100,21 +100,20 @@ export default function ForgetPassword() {
             {success && sentEmail ? null : (
               <>
                 <p className={styles.text}>
-                  Enter your email address to receive a link to reset your
-                  password
+                Please enter your account email address and we will send instructions to reset your password.
                 </p>
                 <FormEmailInput
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   required
-                  label='Email Address'
+                  label='Email'
                 />
                 <Button
                   className={`primary-btn w-100 my-3 ${styles.customButton}`}
                   type='submit'
                   size='lg'
                   variant='light'>
-                  Continue
+                  Next
                 </Button>
               </>
             )}
