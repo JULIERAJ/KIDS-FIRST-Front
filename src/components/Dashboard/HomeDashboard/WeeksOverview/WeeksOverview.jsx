@@ -4,7 +4,7 @@ import DayCard from './DayCard';
 const WeeksOverview = () => {
   const days = [
     {
-      id: '1',
+      id: 1,
       day: 'Mon',
       date: 'Nov 02',
       events: [
