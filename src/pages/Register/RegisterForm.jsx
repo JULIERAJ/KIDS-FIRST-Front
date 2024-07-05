@@ -229,14 +229,13 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput
-              className={styles.firstNameInput}
               autoComplete='off'
               required
               onChange={handleFirstNameChange}
               defaultValue={firstName}
               isInvalid={!!firstNameErrors}
               errors={firstNameErrors}
-              labelClassName={styles.firstNameLabel}
+              labelClassName={styles.label}
             />
           </Col>
           <Col>
@@ -247,7 +246,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
               defaultValue={lastName}
               isInvalid={!!lastNameErrors}
               errors={lastNameErrors}
-              labelClassName={styles.LastNameLabel}
+              labelClassName={styles.label}
             />
           </Col>
         </Row>
@@ -258,7 +257,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
           defaultValue={email}
           isInvalid={!!emailError}
           errors={emailError}
-          labelClassName={styles.emailLabel}
+          labelClassName={styles.label}
         />
         <FormPasswordInput
           required
@@ -269,7 +268,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
           setShowPassword={setShowPassword}
           isInvalid={!!errorMessageWithInclude}
           errors={errorMessageWithInclude}
-          labelClassName={styles.PasswordLabel}
+          labelClassName={styles.label}
           successMessage={successMessage}
           onFocus={handleFocus}
           onBlur={handleBlur}

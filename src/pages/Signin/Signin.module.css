@@ -136,9 +136,7 @@
   margin-top: 20px;
 }
 
-.emailLabel,
-.PasswordLabel {
-  margin-top: 24px;
+.label {
   font-family: Roboto;
   font-weight: 600;
   font-size: 16px;

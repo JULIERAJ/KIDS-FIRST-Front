@@ -23,7 +23,7 @@ export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMesasage, setErrorMesasage] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
@@ -131,18 +131,18 @@ export default function Signin() {
                       defaultValue={email}
                       isInvalid={emailError}
                       errors={emailError}
-                      labelClassName={styles.emailLabel}
+                      labelClassName={styles.label}
                     />
 
                     <FormPasswordInput
                       required
-                      type={showPassword ? 'text' : 'password'} // Toggle password visibility
+                      type={showPassword ? 'text' : 'password'} 
                       value={password}
                       onChange={handlePasswordChange}
                       showPassword={showPassword}
                       setShowPassword={setShowPassword}
                       errors={errorMesasage}
-                      labelClassName={styles.PasswordLabel}
+                      labelClassName={styles.label}
                     />
                     <div className={styles.checkboxContainer}>
                       <div>

@@ -1,4 +1,7 @@
-/* General input styles */
+.formGroup {
+  min-height: 6.7rem;
+}
+
 .inputGroup {
   position: relative;
 }
@@ -20,6 +23,14 @@
   border-color: #A4DFE1 !important;
   box-shadow: 0px 2px 4px -1px rgba(74, 122, 124, 0.06), 0px 6px 10px -1px rgba(74, 122, 124, 0.1) !important;
   outline: none !important;
+}
+
+.inputFieldPassword {
+  height: 56px;
+}
+
+.inputFieldOther {
+  height: 47px;
 }
 
 .successInput {
@@ -54,7 +65,7 @@
 /* Icon styles */
 .icon {
   margin: 0 0.3rem 0 0;
-  font-size: 1.5rem;
+  font-size: 14px;
   vertical-align: middle;
 }
 

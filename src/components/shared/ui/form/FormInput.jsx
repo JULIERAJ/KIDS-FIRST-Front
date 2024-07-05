@@ -39,15 +39,15 @@ const FormInput = ({
   const isPassword = label === 'Password';
 
   return (
-    <Form.Group className="py-2">
+    <Form.Group className={styles.formGroup}>
       <Form.Label className={labelClassName}>{label}</Form.Label>
       <InputGroup className={styles.inputGroup}>
         <Form.Control
           ref={inputRef}
           {...props}
           type={isPassword && showPassword ? 'text' : type}
-          className={`${styles.inputField} ${errorMessage ?
-            styles.errorInput : successMessage ? styles.successInput : ''}`}
+          className={`${styles.inputField} ${isPassword ? styles.inputFieldPassword : styles.inputFieldOther} 
+          ${errorMessage ? styles.errorInput : successMessage ? styles.successInput : ''}`}
           value={value}
           onChange={handleInputChange}
           onFocus={onFocus}
