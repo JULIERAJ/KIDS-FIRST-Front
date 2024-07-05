@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
-
 import { useRef, useEffect } from 'react';
-
 import { Form, InputGroup } from 'react-bootstrap';
-
 import { BsExclamationCircle, BsCheckLg } from 'react-icons/bs';
-
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import styles from './FormInput.module.css';
@@ -23,6 +19,7 @@ const FormInput = ({
   onChange,
   onFocus,
   onBlur,
+  autoComplete,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -55,6 +52,8 @@ const FormInput = ({
           onChange={handleInputChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          isInvalid={!!errorMessage}
+          autoComplete={autoComplete}
         />
         {isPassword && value && (
           <div
@@ -99,6 +98,7 @@ FormInput.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   value: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 export default FormInput;
