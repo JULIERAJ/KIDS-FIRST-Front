@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { forgetPassword } from '@api';
@@ -7,6 +7,7 @@ import { forgetPassword } from '@api';
 import MessageBar from '@components/MessageBar';
 import FatherSonBlock from '@components/shared/FatherSonBlock';
 import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import TextLink from '@components/shared/ui/TextLink';
 
@@ -113,13 +114,13 @@ export default function ForgetPassword() {
                   required
                   label='Email Address'
                 />
-                <Button
-                  className={`primary-btn w-100 my-3 ${styles.customButton}`}
+                <CustomButton
+                  style={`primary-btn w-100 my-3 ${styles.customButton}`}
                   type='submit'
                   size='lg'
                   variant='light'>
                   Continue
-                </Button>
+                </CustomButton>
               </>
             )}
             <Link

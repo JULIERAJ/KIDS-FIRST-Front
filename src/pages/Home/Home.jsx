@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 // import { NavLink } from 'react-router-dom';
 
 import './Home.css';
@@ -20,9 +20,9 @@ export default function Home() {
           <p>
             that maintain harmony in your kid’s lives with the help of one click
           </p>
-          <Button className='home-signup-btn-2' href='/register'>
+          <CustomButton style='home-signup-btn-2' link='/register'>
             Sign up now
-          </Button>
+          </CustomButton>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import {
@@ -10,6 +10,7 @@ import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
 import { login, loginFacebook, loginSocial } from '@api';
 import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import facebookIcon from '@media/icons/facebook.png';
@@ -165,13 +166,13 @@ export default function Signin() {
                         </a>
                       </div>
                     </div>
-                    <Button
-                      className={`primary-btn w-100 my-3 ${styles.customButton}`}
+                    <CustomButton
+                      style={`primary-btn w-100 my-3 ${styles.customButton}`}
                       type='submit'
                       size='lg'
                       variant='light'>
                       Log In
-                    </Button>
+                    </CustomButton>
                     <div className={styles.orDivider}>
                       <span className={styles.dashLine}></span>
                       <span className={`${styles.orText}`}>Or</span>
