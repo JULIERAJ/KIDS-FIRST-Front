@@ -2,6 +2,9 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
+//TODO: Handle event handlers on button. See Activate.
+//TODO2: Unit test button on Activate page
+//TODO3: Compile standard CSS Modules here
 export const CustomButton = ({ type, style, link, size, variant, children }) => {
   return (
     <Button type={type} className={classNames(style)} href={link} size={size} variant={variant}>

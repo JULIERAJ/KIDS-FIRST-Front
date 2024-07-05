@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { activate } from '@api';
 import FatherSonBlock from '@components/shared/FatherSonBlock';
 import FeedbackBlock from '@components/shared/Feedback/FeedbackBlock';
 import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import TextLink from '@components/shared/ui/TextLink';
 
 import successImg from '@media/icons/pswd-changed.png';
@@ -73,14 +74,14 @@ const Activate = () => {
                 <p>To proceed, click next</p>
               </div>
               <div>
-                <Button
-                  className={`primary-btn w-100 my-3 ${styles.customButton}`}
+                <CustomButton
+                  style={`primary-btn w-100 my-3 ${styles.customButton}`}
                   type='submit'
                   size='lg'
                   variant='light'
                   onClick={handleClick}>
                   Log In
-                </Button>
+                </CustomButton>
               </div>
             </>
           )}

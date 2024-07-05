@@ -7,7 +7,7 @@
 //import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import {
@@ -18,6 +18,7 @@ import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
 import { loginFacebook, loginSocial } from '@api';
 import MessageBar from '@components/MessageBar';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import {
   FormFirstNameInput,
@@ -337,13 +338,13 @@ export const RegisterForm = (props) => {
 
         {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
-        <Button
-          className={`primary-btn ${styles.customButton}`}
+        <CustomButton
+          style={`primary-btn ${styles.customButton}`}
           type='submit'
           size='lg'
           variant='light'>
           Sign up
-        </Button>
+        </CustomButton>
         <div className={styles.orDivider}>
           <span className={styles.dashLine}></span>
           <span className={styles.orText}>Or</span>
