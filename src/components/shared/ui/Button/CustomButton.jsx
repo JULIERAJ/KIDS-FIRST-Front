@@ -2,10 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
-import './extraSmallButtons.css';
-import './smallButtons.css';
-import './mediumButtons.css';
-import './largeButtons.css';
+import './buttonStyles.css';
+import './buttonSizes.css';
 
 //TODO: Handle event handlers on button. See Activate.
 //TODO2: Unit test button on Activate page
