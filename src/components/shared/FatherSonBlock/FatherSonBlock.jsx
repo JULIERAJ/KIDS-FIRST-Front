@@ -5,9 +5,9 @@ import './styles.css';
 
 const FatherSonBlock = ({ children }) => (
   <Row>
-    <Col xs={12} md={6} className='col-left' />
+    {/* <Col xs={12} md={6} className='col-left' /> */}
 
-    <Col xs={12} md={6} className='col-right'>
+    <Col xs={12} className='col-right'>
       <div className='col-right-content'>{children}</div>
     </Col>
   </Row>

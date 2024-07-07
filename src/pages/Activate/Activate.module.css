@@ -16,9 +16,14 @@
   line-height: 21px;
 }
 
+.buttoncontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .customButton {
   margin-top: 24px;
-  width: 442px;
+  width: 288px;
   height: 56px;
   background-color: #eb7005;
   font-family: Roboto;

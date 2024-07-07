@@ -8,7 +8,9 @@ import FeedbackBlock from '@components/shared/Feedback/FeedbackBlock';
 import Header from '@components/shared/Header';
 import TextLink from '@components/shared/ui/TextLink';
 
-import successImg from '@media/icons/pswd-changed.png';
+//import successImg from '@media/icons/pswd-changed.png';
+
+import emailverified from '@media/icons/email-verified.png';
 
 import styles from './Activate.module.css';
 
@@ -59,7 +61,7 @@ const Activate = () => {
       />
       <Container className='content-layout py-4'>
         <FatherSonBlock>
-          <h1 className={styles.registerTitle}>Sign up Kids First</h1>
+          <h1 className={styles.registerTitle}>Email verified</h1>
 
           {/* Show loading message while fetching data */}
           {loading && <p>Loading...</p>}
@@ -67,19 +69,22 @@ const Activate = () => {
           {/* Show success message if email is activated */}
           {!loading && userData.emailIsActivated && (
             <>
-              <FeedbackBlock message={userData.message} image={successImg} />
+              <FeedbackBlock message={userData.message} image={emailverified} />
               <div className={styles.text}>
-                <p> Your email address has been verified</p>
-                <p>To proceed, click next</p>
+                {/* <p> Your email address has been verified</p> */}
+                <p>
+                  Please click &apos;Next&apos; to proceed to the login page
+                </p>
               </div>
-              <div>
+              <div className={styles.buttoncontainer}>
                 <Button
-                  className={`primary-btn w-100 my-3 ${styles.customButton}`}
+                  className={`primary-btn my-3 ${styles.customButton}`}
                   type='submit'
                   size='lg'
                   variant='light'
-                  onClick={handleClick}>
-                  Log In
+                  onClick={handleClick}
+                >
+                  Next
                 </Button>
               </div>
             </>
