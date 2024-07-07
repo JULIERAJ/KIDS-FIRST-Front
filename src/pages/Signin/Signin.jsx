@@ -167,7 +167,7 @@ export default function Signin() {
                       </div>
                     </div>
                     <CustomButton
-                      style={`primary-btn w-100 my-3 ${styles.customButton}`}
+                      styles={`primary-btn w-100 my-3 ${styles.customButton}`}
                       type='submit'
                       size='lg'
                       variant='light'>

@@ -14,90 +14,9 @@
     box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1),
       0px 1px 2px rgba(121, 75, 35, 0.06);
     border-radius: 8px;
+    border: 0px !important;
   }
-  
-  /*How best to standardize text and icons?*/
-  .primary__light .icon__left {
-    width: 22px;
-    height: 22px;
-  
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-  
-    /* icon */
-  
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-  
-    background: #ffffff;
-  }
-  
-  .primary__light .text {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 8px;
-    gap: 8px;
-  
-    width: 65px;
-    height: 24px;
-  
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-  
-    /* Label */
-  
-    width: 49px;
-    height: 24px;
-  
-    /* H 4/Desktop/Bold */
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 120%;
-    /* identical to box height, or 24px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #ffffff;
-  
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-  }
-  
-  .primary__light .icon__right {
-    width: 22px;
-    height: 22px;
-  
-    /* Inside auto layout */
-    flex: none;
-    order: 2;
-    flex-grow: 0;
-  
-    /* icon */
-  
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-  
-    background: #ffffff;
-  }
-  
+    
   .primary__light:hover {
     background: #db5c00;
     /* Orange Shadow/300 */
@@ -135,6 +54,7 @@
   
     border: 2px solid #db5c00;
     border-radius: 8px;
+    border: 0px !important;
   }
   
   .secondary__light:active {
@@ -168,6 +88,7 @@
     
     background: #a12312;
     border-radius: 8px;
+    border: 0px !important;
   }
   
   .danger__light:hover {
@@ -196,6 +117,7 @@
     padding: 0px;
     
     border-radius: 8px;
+    border: 0px !important;
   }
   
   .invisible__light:active {
@@ -229,6 +151,7 @@
   /* Orange Shadow/100 */
   box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1), 0px 1px 2px rgba(121, 75, 35, 0.06);
   border-radius: 8px;
+  border: 0px !important;
   }
   
   .primary__dark:active{
@@ -265,6 +188,7 @@
     
   border: 2px solid #E7883F;
   border-radius: 8px;
+  border: 0px !important;
   }
   
   .secondary__dark:active{

@@ -40,15 +40,15 @@ const Navigation = () => {
             />
           </Dropdown.Toggle>
           <Dropdown.Menu className={styles.navigation__lang_menu}>
-            <CustomButton type='button' style={styles.navigation__lang_option}>
+            <CustomButton type='button' styles={styles.navigation__lang_option}>
               FR
             </CustomButton>
           </Dropdown.Menu>
         </Dropdown>
-        <CustomButton style={styles.navigation__login_button}>
+        <CustomButton styles={styles.navigation__login_button}>
           <NavLink to='/signin'>Log in</NavLink>
         </CustomButton>
-        <CustomButton style={styles.navigation__signup_button}>
+        <CustomButton styles={styles.navigation__signup_button}>
           <NavLink to='/register'>Sign up</NavLink>
         </CustomButton>
       </Container>

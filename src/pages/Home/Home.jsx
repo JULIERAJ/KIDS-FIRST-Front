@@ -20,7 +20,7 @@ export default function Home() {
           <p>
             that maintain harmony in your kid’s lives with the help of one click
           </p>
-          <CustomButton style='home-signup-btn-2' link='/register'>
+          <CustomButton styles='home-signup-btn-2' link='/register'>
             Sign up now
           </CustomButton>
         </div>

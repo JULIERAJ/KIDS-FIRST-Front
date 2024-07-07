@@ -339,7 +339,7 @@ export const RegisterForm = (props) => {
         {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
         <CustomButton
-          style={`primary-btn ${styles.customButton}`}
+          styles={`primary-btn ${styles.customButton}`}
           type='submit'
           size='lg'
           variant='light'>

@@ -4,12 +4,13 @@ import { Button } from 'react-bootstrap';
 
 import './buttonStyles.css';
 import './buttonSizes.css';
+import './textStyles.css';
 
 //TODO: Handle event handlers on button. See Activate.
 //TODO2: Unit test button on Activate page
-export const CustomButton = ({ type, style, link, size, variant, children }) => {
+export const CustomButton = ({ type, styles, link, size, variant, children }) => {
   return (
-    <Button type={type} className={classNames(style)} href={link} size={size} variant={variant}>
+    <Button type={type} className={classNames(styles)} href={link} size={size} variant={variant}>
       {children}
     </Button>
   );
@@ -17,7 +18,7 @@ export const CustomButton = ({ type, style, link, size, variant, children }) => 
 
 CustomButton.propTypes = {
   type: PropTypes.string,
-  style: PropTypes.string,
+  styles: PropTypes.string,
   link: PropTypes.string,
   size: PropTypes.string,
   variant: PropTypes.string,

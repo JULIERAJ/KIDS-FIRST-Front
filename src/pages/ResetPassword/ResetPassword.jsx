@@ -119,7 +119,7 @@ export default function ResetPassword() {
                 required
               />
               <CustomButton
-                style={`primary-btn w-100 my-3 ${styles.customButton}`}
+                styles={`primary-btn w-100 my-3 ${styles.customButton}`}
                 type='submit'
                 size='lg'
                 variant='light'>
