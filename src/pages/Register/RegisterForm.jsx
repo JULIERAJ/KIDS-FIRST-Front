@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
+import {
+  FacebookLoginButton,
+  GoogleLoginButton,
+} from 'react-social-login-buttons';
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 
 import { loginFacebook, loginSocial } from '@api';
@@ -290,29 +294,57 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
         <Row className={styles.socialButton}>
           <Col xs={12} md={6}>
             <LoginSocialGoogle
-              client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
+              client_id={
+                process.env.REACT_APP_GOOGLE_CLIENT_ID || ''
+              }
               onResolve={loginfromGoogle}
               onReject={(err) => {
-                setErrMsgSocial('You are not able to login with Google. Please try again later');
-                // eslint-disable-next-line no-console
+                /* eslint-disable no-console */
                 console.log(err);
               }}>
-              <Button variant='light' size='lg' className='tertiary-btn w-100'>
-                <img src={googleIcon} width='25' height='25' alt='' /> Google
-              </Button>
+              <GoogleLoginButton
+                title='Google'
+                align={'center'}
+                icon={''}
+                size='45px'
+                className='tertiary-btn w-100'>
+                <img
+                  src={googleIcon}
+                  width='25'
+                  height='25'
+                  alt=''
+                />{' '}
+                  Google
+              </GoogleLoginButton>
             </LoginSocialGoogle>
           </Col>
           <Col xs={12} md={6}>
             <LoginSocialFacebook
               appId={process.env.APP_ID}
-              onResolve={handleFacebookLoginSuccess}
+              onResolve={(response) => {
+                handleFacebookLoginSuccess(response);
+                /* eslint-disable no-console */
+                console.log(response);
+              }}
               onReject={(error) => {
-                // eslint-disable-next-line no-console
+                // handleFacebookLoginFailure(error);
+                /* eslint-disable no-console */
                 console.log(error);
               }}>
-              <Button variant='light' size='lg' className='tertiary-btn w-100'>
-                <img src={facebookIcon} width='25' height='25' alt='' /> Facebook
-              </Button>
+              <FacebookLoginButton
+                title='Facebook'
+                align={'center'}
+                icon={''}
+                size='45px'
+                className='tertiary-btn w-100'>
+                <img
+                  src={facebookIcon}
+                  width='25'
+                  height='25'
+                  alt=''
+                />{' '}
+                  Facebook
+              </FacebookLoginButton>
             </LoginSocialFacebook>
           </Col>
         </Row>
