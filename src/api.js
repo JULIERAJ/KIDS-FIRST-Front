@@ -26,7 +26,7 @@ export const createMember = ({
   inviteeEmail,
   inviteeInviteLater,
   family,
-  principle,
+  user,
 }) =>
   axios.post(`${API_URL}member`, {
     firstName,
@@ -35,7 +35,7 @@ export const createMember = ({
     inviteeEmail,
     inviteeInviteLater,
     family,
-    principle,
+    user,
   });
 
 export const activate = (email, emailVerificationToken) =>
