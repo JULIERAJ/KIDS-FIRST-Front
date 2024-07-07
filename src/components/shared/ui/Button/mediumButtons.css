@@ -1,0 +1,61 @@
+/* =======================================
+  PRIMARY BUTTONS
+   ======================================= */
+.primary__light_m {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  width: 288px;
+  height: 48px;
+
+  background: #eb7005;
+  /* Orange Shadow/100 */
+  box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1),
+    0px 1px 2px rgba(121, 75, 35, 0.06);
+  border-radius: 8px;
+}
+
+.primary__light_m:hover {
+  background: #db5c00;
+  /* Orange Shadow/300 */
+  box-shadow: 0px 6px 10px -1px rgba(121, 75, 35, 0.1),
+    0px 2px 4px -1px rgba(121, 75, 35, 0.06);
+}
+
+.primary__light_m:active {
+  background: #db5c00;
+  box-shadow: inset 0px 2px 4px rgba(120, 38, 3, 0.4);
+}
+
+.primary__light_m:focus {
+  background: #db5c00;
+  border: 4px solid #962f03;
+}
+
+.primary__light_m:disabled {
+  background: #f6bd8f;
+  opacity: 0.8;
+}
+
+/* =======================================
+  SECONDARY BUTTONS
+   ======================================= */
+
+/* =======================================
+  DANGER BUTTONS
+   ======================================= */
+
+/* =======================================
+  INVISIBLE BUTTONS
+   ======================================= */
+
+/* =======================================
+  DARK PRIMARY BUTTONS
+   ======================================= */
+
+/* =======================================
+  DARK SECONDARY BUTTONS
+   ======================================= */
