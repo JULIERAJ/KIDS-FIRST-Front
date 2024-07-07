@@ -1,5 +1,5 @@
 .formGroup {
-  min-height: 6.7rem;
+  min-height: 7rem;
 }
 
 .inputGroup {
@@ -25,12 +25,8 @@
   outline: none !important;
 }
 
-.inputFieldPassword {
-  height: 56px;
-}
-
-.inputFieldOther {
-  height: 47px;
+.inputField {
+  height: 55px;
 }
 
 .successInput {

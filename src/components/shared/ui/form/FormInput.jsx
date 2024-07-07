@@ -46,7 +46,7 @@ const FormInput = ({
           ref={inputRef}
           {...props}
           type={isPassword && showPassword ? 'text' : type}
-          className={`${styles.inputField} ${isPassword ? styles.inputFieldPassword : styles.inputFieldOther} 
+          className={`${styles.inputField}
           ${errorMessage ? styles.errorInput : successMessage ? styles.successInput : ''}`}
           value={value}
           onChange={handleInputChange}
