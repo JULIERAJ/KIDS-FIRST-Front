@@ -25,23 +25,7 @@
   color: var(--fg-Primary, #081821);
 }
 
-.EmailInput {
-  margin-top: 16px;
-}
-
-.firstNameLabel,
-.LastNameLabel {
-  font-family: Roboto;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 15.36px;
-  letter-spacing: 2%;
-  color: #081821;
-}
-
-.emailLabel,
-.PasswordLabel {
-  margin-top: 24px;
+.label {
   font-family: Roboto;
   font-weight: 600;
   font-size: 16px;
