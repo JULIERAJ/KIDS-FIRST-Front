@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
-
 import { useRef, useEffect } from 'react';
-
 import { Form, InputGroup } from 'react-bootstrap';
-
 import { BsExclamationCircle, BsCheckLg } from 'react-icons/bs';
-
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import styles from './FormInput.module.css';
@@ -23,6 +19,7 @@ const FormInput = ({
   onChange,
   onFocus,
   onBlur,
+  autoComplete,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -42,19 +39,21 @@ const FormInput = ({
   const isPassword = label === 'Password';
 
   return (
-    <Form.Group className="py-2">
+    <Form.Group className={styles.formGroup}>
       <Form.Label className={labelClassName}>{label}</Form.Label>
       <InputGroup className={styles.inputGroup}>
         <Form.Control
           ref={inputRef}
           {...props}
           type={isPassword && showPassword ? 'text' : type}
-          className={`${styles.inputField} ${errorMessage ?
-            styles.errorInput : successMessage ? styles.successInput : ''}`}
+          className={`${styles.inputField}
+          ${errorMessage ? styles.errorInput : successMessage ? styles.successInput : ''}`}
           value={value}
           onChange={handleInputChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          isInvalid={!!errorMessage}
+          autoComplete={autoComplete}
         />
         {isPassword && value && (
           <div
@@ -99,6 +98,7 @@ FormInput.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   value: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 export default FormInput;
