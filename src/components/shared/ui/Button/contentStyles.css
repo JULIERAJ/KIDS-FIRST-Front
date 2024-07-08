@@ -1,0 +1,42 @@
+.icon_left {
+  margin: 0 0 !important;
+  width: 22px;
+  height: 22px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.icon_right {
+  margin: 0 0 !important;
+  width: 22px;
+  height: 22px;
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.text {
+  margin: 0 0 !important;
+  /* Auto layout */
+  padding: 0px 8px;
+  gap: 8px;
+
+  height: 24px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  /* H 4/Desktop/Bold */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  /* identical to box height, or 24px */
+  text-align: center;
+}

@@ -1,210 +1,304 @@
 /* =======================================
   PRIMARY BUTTONS
    ======================================= */
-   .primary__light { 
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    
-    background: #eb7005;
-    /* Orange Shadow/100 */
-    box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1),
-      0px 1px 2px rgba(121, 75, 35, 0.06);
-    border-radius: 8px;
-    border: 0px !important;
+.primary__light {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  background: #eb7005;
+  /* Orange Shadow/100 */
+  box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1),
+    0px 1px 2px rgba(121, 75, 35, 0.06);
+  border-radius: 8px;
+  border: 0px !important;
+
+  * {
+    color: #ffffff;
   }
-    
-  .primary__light:hover {
-    background: #db5c00;
-    /* Orange Shadow/300 */
-    box-shadow: 0px 6px 10px -1px rgba(121, 75, 35, 0.1),
-      0px 2px 4px -1px rgba(121, 75, 35, 0.06);
+}
+
+.primary__light:hover {
+  background: #db5c00;
+  /* Orange Shadow/300 */
+  box-shadow: 0px 6px 10px -1px rgba(121, 75, 35, 0.1),
+    0px 2px 4px -1px rgba(121, 75, 35, 0.06);
+}
+
+.primary__light:active {
+  background: #db5c00;
+  box-shadow: inset 0px 2px 4px rgba(120, 38, 3, 0.4);
+}
+
+.primary__light:focus {
+  background: #db5c00;
+  border: 4px solid #962f03;
+}
+
+.primary__light:disabled,
+.primary__light[disabled] {
+  background: #f6bd8f;
+  opacity: 0.8;
+
+  * {
+    color: #fdf1e6;
   }
-  
-  .primary__light:active {
-    background: #db5c00;
-    box-shadow: inset 0px 2px 4px rgba(120, 38, 3, 0.4);
-  }
-  
-  .primary__light:focus {
-    background: #db5c00;
-    border: 4px solid #962f03;
-  }
-  
-  .primary__light:disabled {
-    background: #f6bd8f;
-    opacity: 0.8;
-  }
-  
-  /* =======================================
+}
+
+/* =======================================
     SECONDARY BUTTONS
      ======================================= */
-  .secondary__light {
-    box-sizing: border-box;
-  
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-  
-    border: 2px solid #db5c00;
-    border-radius: 8px;
-    border: 0px !important;
+.secondary__light {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  background: none !important;
+  border: 2px solid #db5c00;
+  border-radius: 8px;
+
+  * {
+    color: #db5c00;
   }
-  
-  .secondary__light:active {
-    border: 3px solid #c24400;
+}
+
+.secondary__light:active,
+.secondary__light:hover {
+  border: 2px solid #c24400;
+
+  * {
+    color: #c24400;
   }
-  
-  .secondary__light:hover {
-    border: 2px solid #c24400;
+}
+
+.secondary__light:focus {
+  background: #fdf1e6 !important;
+  border: 4px solid #c24400;
+
+  * {
+    color: #c24400;
   }
-  
-  .secondary__light:focus {
-    background: #fdf1e6;
-    border: 4px solid #c24400;
+}
+
+.secondary__light:disabled,
+.secondary__light[disabled] {
+  opacity: 0.8;
+  border: 2px solid #f29d58;
+
+  * {
+    color: #9eafb7;
   }
-  
-  .secondary__light:disabled {
-    opacity: 0.8;
-    border: 2px solid #f29d58;
-  }
-  
-  /* =======================================
+}
+
+/* =======================================
     DANGER BUTTONS
      ======================================= */
-  .danger__light {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    
-    background: #a12312;
-    border-radius: 8px;
-    border: 0px !important;
+.danger__light {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  width: 128px;
+  height: 48px;
+
+  border: 2px solid #ec2f16;
+  background: none !important;
+  border-radius: 8px;
+
+  * {
+    color: #ec2f16;
   }
-  
-  .danger__light:hover {
-    background: #ec2f16;
+}
+
+.danger__light:active {
+  background: #a12312 !important;
+  border: none !important;
+
+  * {
+    color: #a12312;
   }
-  
-  .danger__light:focus {
-    background: #ffdcd7;
-    border: 4px solid #ec2f16;
+}
+
+.danger__light:hover {
+  background: #ec2f16 !important;
+  border: none;
+
+  * {
+    color: #fcfcfc;
   }
-  
-  .danger__light:disabled {
-    opacity: 0.8;
-    border: 2px solid #ff7b72;
+}
+
+.danger__light:focus {
+  background: #ffdcd7 !important;
+  border: 4px solid #ec2f16;
+
+  * {
+    color: #a12312;
   }
-  
-  /* =======================================
+}
+
+.danger__light:disabled,
+.danger__light[disabled] {
+  opacity: 0.8;
+  border: 2px solid #ff7b72 !important;
+
+  * {
+    color: #ff7b72;
+  }
+}
+
+/* =======================================
     INVISIBLE BUTTONS
      ======================================= */
-  .invisible__light {
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    
-    border-radius: 8px;
-    border: 0px !important;
+.invisible__light {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  background: none !important;
+  border-radius: 8px;
+  border: 0px !important;
+
+  * {
+    color: #db5c00;
   }
-  
-  .invisible__light:active {
-    /*Text changes only*/
+}
+
+.invisible__light:active > *,
+.invisible__light:hover > * {
+  color: #C24400
+}
+
+.invisible__light:focus {
+  border: 4px solid #c24400 !important;
+
+  * {
+    color: #C24400;
   }
-  
-  .invisible__light:hover {
-    /*Text changes only*/
+}
+
+.invisible__light:disabled,
+.invisible__light[disabled] {
+  opacity: 0.8;
+
+  * {
+    color: #9EAFB7;
   }
-  
-  .invisible__light:focus{
-    border: 4px solid #c24400;
-  }
-  
-  .invisible__light:disabled{
-    opacity: 0.8;
-  }
-  
-  /* =======================================
+}
+
+/* =======================================
     DARK PRIMARY BUTTONS
      ======================================= */
-  .primary__dark {
+.primary__dark {
   /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0px;
-    
-  background: #E1660E;
+
+  background: #e1660e;
   /* Orange Shadow/100 */
-  box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1), 0px 1px 2px rgba(121, 75, 35, 0.06);
+  box-shadow: 0px 1px 3px rgba(121, 75, 35, 0.1),
+    0px 1px 2px rgba(121, 75, 35, 0.06);
   border-radius: 8px;
   border: 0px !important;
+
+  * {
+    color: #FFFFFF;
   }
-  
-  .primary__dark:active{
-    background: #E1660E;
-    box-shadow: inset 0px 2px 4px rgba(120, 38, 3, 0.4);
+}
+
+.primary__dark:active {
+  background: #e1660e;
+  box-shadow: inset 0px 2px 4px rgba(120, 38, 3, 0.4);
+}
+
+.primary__dark:hover {
+  background: #e7883f;
+  box-shadow: 0px 6px 10px -1px rgba(121, 75, 35, 0.1),
+    0px 2px 4px -1px rgba(121, 75, 35, 0.06);
+}
+
+.primary__dark:focus {
+  background: #e1660e;
+  border: 4px solid #f9d3b2 !important;
+}
+
+.primary__dark:disabled,
+.primary__dark[disabled] {
+  background: #f6bc8c;
+
+  * {
+    color: #FDF1E6;
   }
-  
-  .primary__dark:hover{
-    background: #E7883F;
-    box-shadow: 0px 6px 10px -1px rgba(121, 75, 35, 0.1), 0px 2px 4px -1px rgba(121, 75, 35, 0.06);
-  }
-  
-  .primary__dark:focus{
-    background: #E1660E;
-    border: 4px solid #F9D3B2;
-  }
-  
-  .primary__dark:disabled{
-    background: #F6BC8C;
-  }
-  
-  /* =======================================
+}
+
+/* =======================================
     DARK SECONDARY BUTTONS
      ======================================= */
-  .secondary__dark{
-    box-sizing: border-box;
-  
+.secondary__dark {
+  box-sizing: border-box;
+
   /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0px;
-    
-  border: 2px solid #E7883F;
+
+  background: none !important;
+  border: 2px solid #e7883f;
   border-radius: 8px;
-  border: 0px !important;
+
+  * {
+    color: #ED9D5C;
   }
-  
-  .secondary__dark:active{
-    border: 3px solid #E1660E;
+}
+
+.secondary__dark:active {
+  border: 3px solid #e1660e !important;
+
+  * {
+    color: #EF8A37;
   }
-  
-  .secondary__dark:hover{
-    border: 2px solid #ED9D5C;
+}
+
+.secondary__dark:hover {
+  border: 2px solid #ed9d5c;
+
+  * {
+    color: #E7883F;
   }
-  
-  .secondary__dark:focus{
-    background: #FDF1E6;
-    border: 4px solid #B6420C;
+}
+
+.secondary__dark:focus {
+  background: #fdf1e6;
+  border: 4px solid #b6420c;
+
+  * {
+    color: #B6420C;
   }
-  
-  .secondary__dark:disabled{
-    opacity: 0.8;
-    border: 2px solid #F9D3B2;
+}
+
+.secondary__dark:disabled,
+.secondary__dark[disabled] {
+  opacity: 0.8;
+  border: 2px solid #f9d3b2;
+
+  * {
+    color: #9EAFB7;
   }
+}
