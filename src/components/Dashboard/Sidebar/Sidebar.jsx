@@ -20,7 +20,7 @@ const SidebarItemsCard = ({ title, icon, activeIcon, hoverIcon, path, isActive, 
 
   const handleClick = (e) => {
     e.preventDefault();
-    onClick(path);
+    onClick(title,path);
   };
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
