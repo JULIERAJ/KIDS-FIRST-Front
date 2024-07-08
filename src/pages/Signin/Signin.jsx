@@ -18,6 +18,7 @@ import googleIcon from '@media/icons/google.png';
 import { EMAIL_REG_EXP } from '@utils/regexPatterns';
 
 import styles from './Sigin.module.css';
+
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
