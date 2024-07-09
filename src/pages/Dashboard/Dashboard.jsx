@@ -10,13 +10,13 @@ import styles from './Dashboard.module.css';
 const Dashboard = () => {
   const [title, setTitle] = useState('Dashboard');
 
-  const handleTitleChange = (newTitle) => {
+  const onTitleChange = (newTitle) => {
     setTitle(newTitle);
   };
 
   return (
     <div className={styles.dashboard}>
-      <Sidebar setTitle={handleTitleChange} />
+      <Sidebar setTitle={onTitleChange} />
       <div className={styles.content}>
         <DashboardHeader title={title} />
         <Outlet />
