@@ -20,7 +20,8 @@ const Navigation = () => {
               key={i}
               as={NavLink}
               to={link.url}
-              className={styles.navigation__item}>
+              className={styles.navigation__item}
+            >
               {link.title}
             </Nav.Link>
           );
@@ -31,7 +32,8 @@ const Navigation = () => {
           <Dropdown.Toggle
             className={styles.navigation__lang_menu}
             id='langDropdown'
-            size='sm'>
+            size='sm'
+          >
             EN
             <img
               src={arrowDown}
@@ -40,7 +42,11 @@ const Navigation = () => {
             />
           </Dropdown.Toggle>
           <Dropdown.Menu className={styles.navigation__lang_menu}>
-            <CustomButton type='button' styles={styles.navigation__lang_option}>
+            <CustomButton
+              type='button'
+              styles={styles.navigation__lang_button}
+              textStyles={styles.navigation__lang_text}
+            >
               FR
             </CustomButton>
           </Dropdown.Menu>

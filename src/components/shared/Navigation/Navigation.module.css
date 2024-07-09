@@ -7,7 +7,8 @@
 @media screen and (max-width: 1244px) {
   .navigation {
     width: 50%;
-  }}
+  }
+}
 
 .navigation__item {
   width: 33%;
@@ -50,19 +51,22 @@
   padding-left: 2px;
 }
 
-.navigation__lang_option {
-  background: #F8F8EE !important;
+.navigation__lang_button {
+  background: #f8f8ee !important;
   border: solid 0.5px #000000 !important;
   border-radius: 3px;
-  width: 37px;
-  height: 19px;
   padding: 0.1rem !important;
+}
+
+.navigation__lang_text {
   text-align: left !important;
   font-size: 15px !important;
   font-style: medium;
   font-weight: 500 !important;
   color: #000000 !important;
   line-height: 14px !important;
+  width: 37px;
+  height: 19px;
 }
 
 .navigation__login_button,
@@ -75,7 +79,7 @@
 }
 
 .navigation__login_button {
-  background: #F7F5EC !important;
+  background: #f7f5ec !important;
 }
 
 .navigation__login_button a,

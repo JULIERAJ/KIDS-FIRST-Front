@@ -15,6 +15,7 @@ export const CustomButton = ({
   iconRight,
   iconLeftStyles,
   iconRightStyles,
+  textStyles,
   children,
   ...props
 }) => {
@@ -23,7 +24,7 @@ export const CustomButton = ({
       {iconLeft && (
         <img src={iconLeft} className={classNames('icon-left', iconLeftStyles)} />
       )}
-      <span className='text'>{children}</span>
+      <span className={classNames('text', textStyles)}>{children}</span>
       {iconRight && (
         <img src={iconRight} className={classNames('icon-right', iconRightStyles)} />
       )}
@@ -38,6 +39,7 @@ CustomButton.propTypes = {
   iconLeftStyles: PropTypes.string,
   iconRight: PropTypes.string,
   iconRightStyles: PropTypes.string,
+  textStyles: PropTypes.string,
   link: PropTypes.string,
   children: PropTypes.any,
 };
@@ -49,6 +51,7 @@ export const NavButton = ({
   iconRight,
   iconLeftStyles,
   iconRightStyles,
+  textStyles,
   children,
   ...props
 }) => {
@@ -58,7 +61,7 @@ export const NavButton = ({
         {iconLeft && (
           <img src={iconLeft} className={classNames('icon-left', iconLeftStyles)} />
         )}
-        <span className='text'>{children}</span>
+        <span className={classNames('text', textStyles)}>{children}</span>
         {iconRight && (
           <img src={iconRight} className={classNames('icon-right', iconRightStyles)} />
         )}
@@ -74,6 +77,7 @@ NavButton.propTypes = {
   iconLeftStyles: PropTypes.string,
   iconRight: PropTypes.string,
   iconRightStyles: PropTypes.string,
+  textStyles: PropTypes.string,
   link: PropTypes.string,
   children: PropTypes.any,
 };
