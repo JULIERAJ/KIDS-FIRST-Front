@@ -168,10 +168,8 @@ export default function Signin() {
                       </div>
                     </div>
                     <CustomButton
-                      styles={`primary-btn w-100 my-3 ${styles.customButton}`}
-                      type='submit'
-                      size='lg'
-                      variant='light'>
+                      styles={`primary-light ${styles.customButton}`}
+                      type='submit'>
                       Log In
                     </CustomButton>
                     <div className={styles.orDivider}>

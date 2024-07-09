@@ -283,10 +283,8 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
         {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
         <CustomButton
-          styles={`primary-btn ${styles.customButton}`}
-          type='submit'
-          size='lg'
-          variant='light'>
+          styles={`primary-light ${styles.customButton}`}
+          type='submit'>
           Sign up
         </CustomButton>
         <div className={styles.orDivider}>

@@ -8,8 +8,6 @@ import './buttonStyles.css';
 import './buttonSizes.css';
 import './contentStyles.css';
 
-//TODO: Handle event handlers on button. See Activate.
-//TODO2: Unit test button on Activate page
 export const CustomButton = ({
   styles,
   link,
@@ -23,11 +21,11 @@ export const CustomButton = ({
   return (
     <Button className={classNames(styles)} href={link} {...props}>
       {iconLeft && (
-        <img src={iconLeft} className={classNames('icon_left', iconLeftStyles)} />
+        <img src={iconLeft} className={classNames('icon-left', iconLeftStyles)} />
       )}
       <span className='text'>{children}</span>
       {iconRight && (
-        <img src={iconRight} className={classNames('icon_right', iconRightStyles)} />
+        <img src={iconRight} className={classNames('icon-right', iconRightStyles)} />
       )}
     </Button>
   );
@@ -58,11 +56,11 @@ export const NavButton = ({
     <NavLink to={link}>
       <Button className={classNames(styles)} {...props}>
         {iconLeft && (
-          <img src={iconLeft} className={classNames('icon_left', iconLeftStyles)} />
+          <img src={iconLeft} className={classNames('icon-left', iconLeftStyles)} />
         )}
         <span className='text'>{children}</span>
         {iconRight && (
-          <img src={iconRight} className={classNames('icon_right', iconRightStyles)} />
+          <img src={iconRight} className={classNames('icon-right', iconRightStyles)} />
         )}
       </Button>
     </NavLink>

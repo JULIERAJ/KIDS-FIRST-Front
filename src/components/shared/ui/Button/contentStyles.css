@@ -1,4 +1,4 @@
-.icon_left {
+.icon-left {
   margin: 0 0 !important;
   width: 22px;
   height: 22px;
@@ -8,7 +8,7 @@
   flex-grow: 0;
 }
 
-.icon_right {
+.icon-right {
   margin: 0 0 !important;
   width: 22px;
   height: 22px;
