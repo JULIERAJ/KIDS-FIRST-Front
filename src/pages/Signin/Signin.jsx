@@ -28,6 +28,9 @@ export default function Signin() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
   const handleLogin = (e) => {
     e.preventDefault();
     setErrorMesasage('');
@@ -136,11 +139,11 @@ export default function Signin() {
 
                     <FormPasswordInput
                       required
-                      type={showPassword ? 'text' : 'password'} 
+                      type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={handlePasswordChange}
                       showPassword={showPassword}
-                      setShowPassword={setShowPassword}
+                      togglePasswordVisibility={togglePasswordVisibility}
                       errors={errorMesasage}
                       labelClassName={styles.label}
                     />

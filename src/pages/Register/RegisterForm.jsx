@@ -49,7 +49,8 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   });
   const [firstNameErrors, setFirstNameErrors] = useState('');
   const [lastNameErrors, setLastNameErrors] = useState('');
-  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] = useState(false);
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
+    useState(false);
 
   const navigate = useNavigate();
 
@@ -58,6 +59,14 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       setEmailError(errorMessage);
     }
   }, [errorMessage]);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const hidePassword = () => {
+    setShowPassword(false);
+  };
 
   const handleFirstNameChange = (e) => {
     const value = e.target.value.trim();
@@ -137,8 +146,16 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const fields = [
-      { value: firstName.trim(), errorSetter: setFirstNameErrors, placeholder: 'First Name' },
-      { value: email.trim(), errorSetter: setEmailError, placeholder: 'user@mail.com' },
+      {
+        value: firstName.trim(),
+        errorSetter: setFirstNameErrors,
+        placeholder: 'First Name',
+      },
+      {
+        value: email.trim(),
+        errorSetter: setEmailError,
+        placeholder: 'user@mail.com',
+      },
     ];
     let hasEmptyField = false;
 
@@ -163,7 +180,12 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
     if (hasEmptyField) return;
 
-    if (firstNameErrors === '' && lastNameErrors === '' && emailError === '' && allPasswordErrorsChecked) {
+    if (
+      firstNameErrors === '' &&
+      lastNameErrors === '' &&
+      emailError === '' &&
+      allPasswordErrorsChecked
+    ) {
       onSubmitData(firstName, lastName, email, password);
     }
   };
@@ -179,7 +201,9 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       })
       .catch(() => {
         setSuccessSo(false);
-        setErrMsgSocial('Log-in unsuccessful. Please try again later, or sign-up.');
+        setErrMsgSocial(
+          'Log-in unsuccessful. Please try again later, or sign-up.'
+        );
       });
   };
 
@@ -193,12 +217,14 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       })
       .catch(() => {
         setSuccessSo(false);
-        setErrMsgSocial('Log-in unsuccessful. Please try again later, or sign-up.');
+        setErrMsgSocial(
+          'Log-in unsuccessful. Please try again later, or sign-up.'
+        );
       });
   };
 
   const errorMessagePassword = Object.entries(passwordErrors)
-  // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     .filter(([key, value]) => value)
     .map(([key]) => {
       switch (key) {
@@ -216,7 +242,10 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       }
     })
     .reduce((acc, message) => {
-      if (message === 'upper and lower case characters' && !acc.includes(message)) {
+      if (
+        message === 'upper and lower case characters' &&
+        !acc.includes(message)
+      ) {
         acc.push(message);
       } else {
         acc.push(message);
@@ -225,7 +254,9 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
     }, [])
     .join(', ');
 
-  const errorMessageWithInclude = errorMessagePassword ? `Include at least: ${errorMessagePassword}` : '';
+  const errorMessageWithInclude = errorMessagePassword
+    ? `Include at least: ${errorMessagePassword}`
+    : '';
 
   return (
     <>
@@ -269,7 +300,8 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
           value={password}
           onChange={handlePasswordChange}
           showPassword={showPassword}
-          setShowPassword={setShowPassword}
+          togglePasswordVisibility={togglePasswordVisibility}
+          hidePassword={hidePassword}
           isInvalid={!!errorMessageWithInclude}
           errors={errorMessageWithInclude}
           labelClassName={styles.label}
@@ -281,7 +313,11 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
         {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
-        <Button className={`primary-btn ${styles.customButton}`} type='submit' size='lg' variant='light'>
+        <Button
+          className={`primary-btn ${styles.customButton}`}
+          type='submit'
+          size='lg'
+          variant='light'>
           Sign up
         </Button>
 
@@ -294,9 +330,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
         <Row className={styles.socialButton}>
           <Col xs={12} md={6}>
             <LoginSocialGoogle
-              client_id={
-                process.env.REACT_APP_GOOGLE_CLIENT_ID || ''
-              }
+              client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
               onResolve={loginfromGoogle}
               onReject={(err) => {
                 /* eslint-disable no-console */
@@ -308,13 +342,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
                 icon={''}
                 size='45px'
                 className='tertiary-btn w-100'>
-                <img
-                  src={googleIcon}
-                  width='25'
-                  height='25'
-                  alt=''
-                />{' '}
-                  Google
+                <img src={googleIcon} width='25' height='25' alt='' /> Google
               </GoogleLoginButton>
             </LoginSocialGoogle>
           </Col>
@@ -337,13 +365,8 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
                 icon={''}
                 size='45px'
                 className='tertiary-btn w-100'>
-                <img
-                  src={facebookIcon}
-                  width='25'
-                  height='25'
-                  alt=''
-                />{' '}
-                  Facebook
+                <img src={facebookIcon} width='25' height='25' alt='' />{' '}
+                Facebook
               </FacebookLoginButton>
             </LoginSocialFacebook>
           </Col>
