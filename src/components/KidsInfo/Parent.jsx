@@ -27,7 +27,7 @@ const Parent = () => {
             autoFocus
             value={data.firstName}
             onChange={handleChange}
-          // isInvalid={isInvalidFirstName}
+            // isInvalid={isInvalidFirstName}
           />
           <Form.Label htmlFor='lastName'>Last name:</Form.Label>
           <Form.Control
@@ -41,7 +41,7 @@ const Parent = () => {
             aria-required='true'
             value={data.lastName}
             onChange={handleChange}
-          // isInvalid={isInvalidLastName}
+            // isInvalid={isInvalidLastName}
           />
 
           {/* {(isInvalidFirstName || isInvalidLastName) && (<Alert type='invalid'>

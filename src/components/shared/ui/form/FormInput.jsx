@@ -9,7 +9,8 @@ import styles from './FormInput.module.css';
 const FormInput = ({
   label,
   showPassword,
-  setShowPassword,
+  togglePasswordVisibility,
+  hidePassword,
   errorMessage,
   successMessage,
   showTextPassword,
@@ -58,7 +59,8 @@ const FormInput = ({
         {isPassword && value && (
           <div
             className={`${styles.formInputIcon} ${errorMessage ? styles.formInputIconError : ''}`}
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={togglePasswordVisibility}
+            onMouseLeave={hidePassword} 
             role="button"
             tabIndex={0}
           >
@@ -88,7 +90,8 @@ const FormInput = ({
 FormInput.propTypes = {
   label: PropTypes.node,
   showPassword: PropTypes.bool,
-  setShowPassword: PropTypes.func,
+  togglePasswordVisibility: PropTypes.func,
+  hidePassword: PropTypes.func,
   type: PropTypes.string,
   errorMessage: PropTypes.string,
   labelClassName: PropTypes.string,
