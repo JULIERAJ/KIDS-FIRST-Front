@@ -41,7 +41,12 @@ export default function Signin() {
     if (validateEmail) {
       login(email, password)
         .then((res) => {
-          const user = JSON.stringify(res.data);
+          const { token, ...userData } = res.data;
+          // Store the token in localStorage
+          localStorage.setItem('authToken', token);
+  
+          // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+          const user = JSON.stringify(userData);
           if (rememberMe) {
             localStorage.setItem('storedUser', user);
           } else {
