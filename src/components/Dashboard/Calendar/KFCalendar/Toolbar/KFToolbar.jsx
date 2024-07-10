@@ -13,7 +13,7 @@ import styles from './KFToolbar.module.css';
 
 const KFToolbar = ({
   activeView,
-  handleViewChange,
+  onViewChange,
   label,
   views,
   onNavigate,
@@ -22,7 +22,7 @@ const KFToolbar = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleViewButtonClick = (view) => {
-    handleViewChange(view);
+    onViewChange(view);
   };
 
   const { setFilteredEventsData } = useContext(EventContext);
@@ -184,7 +184,7 @@ const KFToolbar = ({
 // Prop types validation
 KFToolbar.propTypes = {
   activeView: PropTypes.string.isRequired,
-  handleViewChange: PropTypes.func,
+  onViewChange: PropTypes.func,
   label: PropTypes.string,
   views: PropTypes.array,
   onNavigate: PropTypes.func,

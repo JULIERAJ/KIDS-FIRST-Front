@@ -98,7 +98,7 @@ const KFCalendar = () => {
         }}
         components={components}
         defaultDate={defaultDate}
-        handleViewChange={handleViewChange}
+        onViewChange={handleViewChange}
         popup={true}
         eventPropGetter={(event, start, end, isSelected) =>
           eventStyleGetter(event, start, end, isSelected, filteredEventsData)
