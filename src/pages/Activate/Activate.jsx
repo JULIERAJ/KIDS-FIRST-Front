@@ -12,6 +12,8 @@ import TextLink from '@components/shared/ui/TextLink';
 
 import emailverified from '@media/icons/email-verified.png';
 
+import somethingwentwrong from '@media/icons/something-went-wrong.png';
+
 import styles from './Activate.module.css';
 
 const Activate = () => {
@@ -27,6 +29,10 @@ const Activate = () => {
   // Function to handle navigation to sign-in page
   const handleClick = () => {
     navigate('/signin');
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/register');
   };
 
   // Function to fetch user data and check for link expiration
@@ -61,7 +67,7 @@ const Activate = () => {
       />
       <Container className='content-layout py-4'>
         <FatherSonBlock>
-          <h1 className={styles.registerTitle}>Email verified</h1>
+          {/* <h1 className={styles.registerTitle}>Email verified</h1> */}
 
           {/* Show loading message while fetching data */}
           {loading && <p>Loading...</p>}
@@ -69,6 +75,7 @@ const Activate = () => {
           {/* Show success message if email is activated */}
           {!loading && userData.emailIsActivated && (
             <>
+              <h1 className={styles.registerTitle}>Email verified</h1>
               <FeedbackBlock message={userData.message} image={emailverified} />
               <div className={styles.text}>
                 {/* <p> Your email address has been verified</p> */}
@@ -89,15 +96,64 @@ const Activate = () => {
               </div>
             </>
           )}
+          {/* Show expiration message if the link is expired */}
           {!loading && !userData.emailIsActivated && expired && (
+            <>
+              <h1 className={styles.registerTitle}>Link Expired</h1>
+              <FeedbackBlock
+                message={
+                  <span className={styles.displaymessage}>
+                    This verification link is no longer valid
+                  </span>
+                }
+                // message='This verification link is no longer valid'
+                image={somethingwentwrong}
+              />
+              <div className={styles.text}>
+                {/* <p> Your email address has been verified</p> */}
+                <p className={styles.checkemail}>
+                  Please check{email} for the latest verification email to
+                  continue
+                </p>
+              </div>
+              <div className={` mt-4 ${styles.buttoncontainer}`}>
+                <a className={styles.customLink} onClick={handleRegisterClick}>
+                  Back to SignUp
+                </a>
+              </div>
+            </>
+          )}
+
+          {/* {!loading && !userData.emailIsActivated && expired && (
             <div>
               <p>The link was expired</p>
             </div>
-          )}
+          )} */}
           {!loading && !userData.emailIsActivated && !expired && (
-            <div>
-              <p>Something went wrong</p>
-            </div>
+            <>
+              <h1 className={styles.registerTitle}>Something went wrong!</h1>
+              {/* <h1 className={styles.registerTitle}>Something went wrong!</h1> */}
+              <FeedbackBlock
+                message={
+                  <span className={styles.displaymessage}>
+                    Verification was unsuccessful
+                  </span>
+                }
+                //message='Verification was unsuccessful'
+                image={somethingwentwrong}
+              />
+              <div className={styles.text}>
+                {/* <p> Your email address has been verified</p> */}
+                <p className={styles.signUpAgainMessage}>
+                  Please sign up again to receive a new link
+                </p>
+              </div>
+              <div className={` mt-4 ${styles.buttoncontainer}`}>
+                <a className={styles.customLink} onClick={handleRegisterClick}>
+                  Back to SignUp
+                </a>
+              </div>
+            </>
           )}
         </FatherSonBlock>
       </Container>

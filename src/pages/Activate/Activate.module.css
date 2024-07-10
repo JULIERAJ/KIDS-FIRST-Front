@@ -2,10 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .registerTitle {
-  font-weight: 500;
+ 
+/* 
+   width: 333px; */
+  height: 38px; 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
   font-size: 36px;
-  line-height: 42px;
+  line-height: 38.4px;
+  letter-spacing: -1%;
   text-align: center;
+  color: #1D1F20;
 }
 .text p {
   font-family: 'Roboto', sans-serif;
@@ -34,9 +41,58 @@
   color: #fcfcfc;
 }
 
+.customLink {
+  display: inline-block;
+  width: 131px;
+  height: 25px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25.2px;
+  color: #EB7005;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.customLink:hover {
+  text-decoration: underline;
+}
+
 .customButton:hover,
 .customButton:active,
 .customButton:focus-visible,
 .customButton:focus {
   color: #eb7005 !important;
+}
+
+.somethingWentWrongTitle {
+  width: 333px;
+  height: 38px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 38.4px;
+  letter-spacing: -1%;
+  text-align: center;
+  color: #1D1F20;
+}
+.displaymessage {
+  width: 328px;
+  height: 29px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.8px;
+  text-align: center;
+  color: #1D1F20;
+}
+.signUpAgainMessage ,.checkemail{
+  width: 496px;
+  height: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  text-align: center;
+  color: #1D1F20;
 }
