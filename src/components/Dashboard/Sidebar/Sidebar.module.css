@@ -57,7 +57,7 @@
 }
 
 .otherItemsContainer,
-.HelpLogoutContainer {
+.helpLogoutContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
