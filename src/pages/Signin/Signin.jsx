@@ -41,7 +41,12 @@ export default function Signin() {
     if (validateEmail) {
       login(email, password)
         .then((res) => {
-          const user = JSON.stringify(res.data);
+          const { token, ...userData } = res.data;
+          // Store the token in localStorage
+          localStorage.setItem('authToken', token);
+  
+          // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+          const user = JSON.stringify(userData);
           if (rememberMe) {
             localStorage.setItem('storedUser', user);
           } else {
@@ -85,8 +90,17 @@ export default function Signin() {
   const handleFacebookLoginSuccess = (response) => {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
-        const user = JSON.stringify(res.data);
-        localStorage.setItem('storedUser', user);
+        const { token, ...userData } = res.data;
+        // Store the token in localStorage
+        localStorage.setItem('authToken', token);
+
+        // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+        const user = JSON.stringify(userData);
+        if (rememberMe) {
+          localStorage.setItem('storedUser', user);
+        } else {
+          sessionStorage.setItem('storedUser', user);
+        }
         navigate('/dashboard');
       })
       .catch(() => {
@@ -99,9 +113,17 @@ export default function Signin() {
   const loginfromGoogle = (response) => {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
-        const user = JSON.stringify(res.data);
+        const { token, ...userData } = res.data;
+        // Store the token in localStorage
+        localStorage.setItem('authToken', token);
 
-        localStorage.setItem('storedUser', user);
+        // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+        const user = JSON.stringify(userData);
+        if (rememberMe) {
+          localStorage.setItem('storedUser', user);
+        } else {
+          sessionStorage.setItem('storedUser', user);
+        }
         navigate('/dashboard');
         // eslint-disable-next-line
         console.groupCollapsed(response.data);
