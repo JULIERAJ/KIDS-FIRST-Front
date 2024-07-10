@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 import { resetPassword, resetPasswordLink } from '@api';
@@ -8,6 +8,7 @@ import MessageBar from '@components/MessageBar';
 
 import FatherSonBlock from '@components/shared/FatherSonBlock';
 import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import TextLink from '@components/shared/ui/TextLink';
 import logoPswdChanged from '@media/icons/pswd-changed.png';
@@ -117,13 +118,13 @@ export default function ResetPassword() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
-              <Button
-                className={`primary-btn w-100 my-3 ${styles.customButton}`}
+              <CustomButton
+                styles={`primary-btn w-100 my-3 ${styles.customButton}`}
                 type='submit'
                 size='lg'
                 variant='light'>
                 Change Password
-              </Button>
+              </CustomButton>
             </Form>
           )}
         </FatherSonBlock>
