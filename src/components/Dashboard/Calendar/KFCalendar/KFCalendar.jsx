@@ -75,7 +75,7 @@ const KFCalendar = () => {
           <KFToolbar
             {...props}
             activeView={activeView}
-            setActiveView={setActiveView}
+            onViewChange={handleViewChange}
             handleCreateButtonClick={handleCreateButtonClick} // Pass the function as a prop
           />
         ),

@@ -13,7 +13,7 @@ import styles from './KFToolbar.module.css';
 
 const KFToolbar = ({
   activeView,
-  setActiveView,
+  onViewChange,
   onView,
   label,
   views,
@@ -23,7 +23,7 @@ const KFToolbar = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleViewButtonClick = (view) => {
-    setActiveView(view);
+    onViewChange(view);
     onView(view);
   };
 
@@ -126,7 +126,7 @@ const KFToolbar = ({
                     {/* Change button text based on view */}
                     {view === 'day'
                       ? 'Daily'
-                      : view === 'week' ? 'Weekly': 'Monthly'}
+                      : view === 'week' ? 'Weekly' : 'Monthly'}
                   </button>
                 ))}
               </div>
@@ -186,8 +186,8 @@ const KFToolbar = ({
 // Prop types validation
 KFToolbar.propTypes = {
   activeView: PropTypes.string.isRequired,
-  setActiveView: PropTypes.func.isRequired,
-  onView: PropTypes.func,
+  onView: PropTypes.func.isRequired,
+  onViewChange: PropTypes.func,
   label: PropTypes.string,
   views: PropTypes.array,
   onNavigate: PropTypes.func,
