@@ -159,5 +159,8 @@ input:focus::placeholder {
 }
 
 .socialButton {
-  margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    width: 100%;
 }
