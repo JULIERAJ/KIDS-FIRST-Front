@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Image, Navbar } from 'react-bootstrap';
 
-import logo from '@media/logo/kids_first_logo_beta.png';
+import logo from '@media/logo/logo.svg';
 
-const Header = ({ bg, widget, containerFlexOptions }) => {
+import styles from './Header.module.css';
+
+const Header = ({ widget }) => {
   return (
-    <Navbar bg={bg} className="py-1">
-      <Container className={containerFlexOptions}>
-        <Navbar.Brand href="/" className="py-0">
-          <img src={logo} width="80" height="80" alt="KIDS FIRST"/>
+    <Navbar className="py-1">
+      <Container className={styles['logo-container']}>
+        <Navbar.Brand href="/">
+          <Image src={logo} alt="KIDS FIRST"/>
         </Navbar.Brand>
 
         {widget}
@@ -18,9 +20,7 @@ const Header = ({ bg, widget, containerFlexOptions }) => {
 };
 
 Header.propTypes = {
-  bg: PropTypes.string,
   widget: PropTypes.element,
-  containerFlexOptions: PropTypes.string
 };
 
 export default Header;

@@ -15,8 +15,10 @@
 }
 
 .sidebarHeader {
-  margin-bottom: 32px;
-  padding: 24px 43px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20dvh;
 }
 
 .sidebarMenu {

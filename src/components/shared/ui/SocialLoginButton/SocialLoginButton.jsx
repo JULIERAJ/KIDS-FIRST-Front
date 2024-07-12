@@ -18,7 +18,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
           onReject={onFailure}
         >
           <div className={styles.button}>
-            <img src={googleIcon} alt='' /> 
+            <img src={googleIcon} alt='Google icon' /> 
               Google
           </div>
         </LoginSocialGoogle>
@@ -31,7 +31,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
           onReject={onFailure}
         >
           <div className={styles.button}>
-            <img src={facebookIcon} alt='' /> 
+            <img src={facebookIcon} alt='Facebook icon' /> 
               Facebook
           </div>
         </LoginSocialFacebook>

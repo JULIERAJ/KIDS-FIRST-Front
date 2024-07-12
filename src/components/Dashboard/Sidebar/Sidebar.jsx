@@ -4,7 +4,7 @@ import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '@api';
-import kidsFirstLogo from '@media/logo/LOGO-BYME.png';
+import kidsFirstLogo from '@media/logo/logo.svg';
 
 import styles from './Sidebar.module.css';
 import { SIDEBAR_DATA } from './sidebarData';
@@ -108,7 +108,7 @@ const Sidebar = ({ setTitle }) => {
     <Navbar expand="lg" className="bg-body-tertiary">
       <div className={`${styles.sidebar} no-gutter`}>
         <Container as="div" className={styles.sidebarHeader}>
-          <Image src={kidsFirstLogo} alt="mainLogo" />
+          <Image src={kidsFirstLogo} alt="KIDS FIRST logo displaying two elephants holding a shield with a heart" />
         </Container>
         <div className={`${styles.sidebarMenu}`}>
           {/* Render div for all other items */}
