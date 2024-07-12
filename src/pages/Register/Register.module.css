@@ -3,7 +3,7 @@
   /* if we apply this the screen will not be full size as full size in height in 100dvh  */
   /* height: 110dvh;  */
   height: 100dvh; 
-  background-color: #eff0f0;
+  background-color: var(--color-bg-page);
 }
 
 .page__window {
@@ -39,7 +39,7 @@
   letter-spacing: -0.01em;
   text-align: center;
   margin-bottom: 24px;
-  color: var(--fg-Primary, #081821);
+  color: var(--color-fg-primary);
 }
 
 .label {
@@ -75,7 +75,7 @@
 
 .dashLine {
   position: relative;
-  color: #454848;
+  color: var(--color-gray-dark);
 }
 
 .dashLine:before,
@@ -85,7 +85,7 @@
   top: 50%;
   width: 200px;
   height: 1px;
-  background-color: #454848;
+  background-color: var(--color-gray-dark);
 }
 
 .dashLine:before {
@@ -106,7 +106,7 @@
   font-size: 16px;
   line-height: 22.4px;
   text-align: center;
-  color: #454848;
+  color: var(--color-gray-dark);
 }
 
 .alreadyMember {
@@ -116,7 +116,7 @@
 
 .loginLink {
   cursor: pointer;
-  color: #f08324;
+  color: var(--color-main-orange);
   text-decoration: underline;
   font-size: 18px;
   width: 400;
@@ -125,34 +125,8 @@
 
 .loginLink:hover,
 .loginLink:active {
-  color: #f08324;
+  color: var(--color-main-orange);
   text-decoration: underline;
-}
-
-.passwordList {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.passwordList p {
-  margin-bottom: 0;
-  margin-right: 10px;
-  color: #da3633;
-  font-weight: 600;
-  font-size: 10px;
-  line-height: 14px;
-}
-
-.redText {
-  color: #da3633;
-  font-weight: 600;
-  font-size: 10px;
-  line-height: 14px;
-  font-family: Roboto;
-}
-.blackText {
-  color: black;
 }
 
 input:focus::placeholder {

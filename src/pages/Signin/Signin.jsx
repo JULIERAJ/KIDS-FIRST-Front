@@ -160,8 +160,8 @@ export default function Signin() {
                   errors={errorMesasage}
                   labelClassName={styles.label}
                 />
-                <div className={styles.checkboxContainer}>
-                  <div>
+                <div className={styles.container}>
+                  <div className={styles.checkboxContainer}>
                     <input
                       className={styles.checkboxInput}
                       type='checkbox'
@@ -175,11 +175,12 @@ export default function Signin() {
                     </label>
                   </div>
                   <div>
-                    <a
-                      className={`btn ${styles.forget__password}`}
-                      href='/forgot-password'>
+                    <NavLink
+                      className={styles.forgetPasswordLabel}
+                      to='/forgot-password'
+                    >
                           Forgot your password?
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
                 <CustomButton
