@@ -59,10 +59,6 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
     setShowPassword((prev) => !prev);
   };
 
-  const hidePassword = () => {
-    setShowPassword(false);
-  };
-
   const handleFirstNameChange = (e) => {
     const value = e.target.value.trim();
     let newErrors = '';
@@ -296,7 +292,6 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
           onChange={handlePasswordChange}
           showPassword={showPassword}
           togglePasswordVisibility={togglePasswordVisibility}
-          hidePassword={hidePassword}
           isInvalid={!!errorMessageWithInclude}
           errors={errorMessageWithInclude}
           labelClassName={styles.label}
