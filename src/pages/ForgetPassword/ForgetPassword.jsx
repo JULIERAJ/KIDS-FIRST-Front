@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Container, Form, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { forgetPassword } from '@api';
 
@@ -8,13 +8,10 @@ import MessageBar from '@components/MessageBar';
 import Header from '@components/shared/Header';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
-import TextLink from '@components/shared/ui/TextLink';
 
 import logoEmailSent from '@media/icons/email_sent.png';
 
 import styles from './ForgetPassword.module.css';
-
-const HeaderLink = <TextLink title="Not a member?" to="/register" linkTitle="Sign up" />;
 
 export default function ForgetPassword() {
   const emailDisplay = useRef('');
@@ -69,7 +66,7 @@ export default function ForgetPassword() {
 
   return (
     <Container className={styles.page}>
-      <Header widget={HeaderLink} />
+      <Header/>
       <Container className={styles.page__window}>
         <div>
           <Row>
@@ -124,9 +121,9 @@ export default function ForgetPassword() {
                       </CustomButton>
                     </>
                   )}
-                  <Link to="/signin" className={`btn checkbox mb-3 ${styles.forget__password}`}>
+                  <NavLink to="/signin" className={styles.forget__password}>
                     Back to Log in
-                  </Link>
+                  </NavLink>
                 </Form>
               </div>
             </Col>
