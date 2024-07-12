@@ -16,7 +16,7 @@ import styles from './Signin.module.css';
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMesasage, setErrorMesasage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -33,7 +33,7 @@ export default function Signin() {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-    setErrorMesasage('');
+    setErrorMessage('');
     // console.log('Email:', email);
     // console.log('Password:', password);
     // console.log('Remember Me:', rememberMe);
@@ -56,13 +56,13 @@ export default function Signin() {
         })
         .catch(({ response }) => {
           if (response.status === 404) {
-            setErrorMesasage(
+            setErrorMessage(
               'This account doesn\'t exist. Please enter a different email address or try "Sign Up".'
             );
           } else if (response.status === 401) {
-            setErrorMesasage('Invalid password or email address');
+            setErrorMessage('Invalid password or email address');
           } else {
-            setErrorMesasage(
+            setErrorMessage(
               'An unknown error occurred. Please try again later.'
             );
           }
@@ -104,7 +104,7 @@ export default function Signin() {
         navigate('/dashboard');
       })
       .catch(() => {
-        setErrorMesasage(
+        setErrorMessage(
           'Your email address or password is incorrect. Please try again, or click "Forgot your password"'
         );
       });
@@ -129,7 +129,7 @@ export default function Signin() {
         console.groupCollapsed(response.data);
       })
       .catch(() => {
-        setErrorMesasage(
+        setErrorMessage(
           'Log-in unsuccessful. Please try again later, or sign-up.'
         );
       });
@@ -164,7 +164,7 @@ export default function Signin() {
                   onChange={handlePasswordChange}
                   showPassword={showPassword}
                   togglePasswordVisibility={togglePasswordVisibility}
-                  errors={errorMesasage}
+                  errors={errorMessage}
                   labelClassName={styles.label}
                 />
                 <div className={styles.container}>
