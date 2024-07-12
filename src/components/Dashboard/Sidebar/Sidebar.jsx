@@ -4,7 +4,7 @@ import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '@api';
-import kidsFirstLogo from '@media/logo/logo.svg';
+import kidsFirstLogo from '@media/logo/LOGO-BYME.png';
 
 import styles from './Sidebar.module.css';
 import { SIDEBAR_DATA } from './sidebarData';

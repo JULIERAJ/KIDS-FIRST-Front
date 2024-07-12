@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Container, Image, Navbar } from 'react-bootstrap';
 
-import logo from '@media/logo/logo.svg';
+import logo from '@media/logo/LOGO-BYME.png';
 
 import styles from './Header.module.css';
 
