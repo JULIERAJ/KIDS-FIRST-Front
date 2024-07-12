@@ -57,7 +57,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    inputRef?.current?.focus();
+    inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
