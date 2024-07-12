@@ -40,32 +40,25 @@ const Register = () => {
 
   return (
     <>
-      <div className={styles.page}>
-        <div>
-          <Header />
-        </div>
+      <Container className={styles.page}>
+        <Header className={styles.header} />
         <Container className={styles.page__window}>
-          <div>
-            <Row>
-              <Col
-                className={`d-flex justify-content-center align-items-center ${styles.page__wrapper}`}>
-                <div>
-                  <h1 className={styles.page__title}>Welcome to Kids First</h1>
-                  {activeComponent ? (
-                    <RegisterForm
-                      onSubmitData={registerUserHandler}
-                      paramEmail={paramEmail}
-                      errorMessage={errorMessage}
-                    />
-                  ) : (
-                    <EmailVerify userData={userData} />
-                  )}
-                </div>
-              </Col>
-            </Row>
-          </div>
+          <Row>
+            <Col className={styles.page__wrapper}>
+              <h1 className={styles.page__title}>Welcome to Kids First</h1>
+              {activeComponent ? (
+                <RegisterForm
+                  onSubmitData={registerUserHandler}
+                  paramEmail={paramEmail}
+                  errorMessage={errorMessage}
+                />
+              ) : (
+                <EmailVerify userData={userData} />
+              )}
+            </Col>
+          </Row>
         </Container>
-      </div>
+      </Container>
     </>
   );
 };

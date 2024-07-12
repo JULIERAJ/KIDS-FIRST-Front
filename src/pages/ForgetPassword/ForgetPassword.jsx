@@ -118,7 +118,7 @@ export default function ForgetPassword() {
                         className={styles.input__email}
                       />
                       <CustomButton
-                        styles={`primary-btn w-100 my-3 ${styles.customButton}`}
+                        styles={`primary-light ${styles.customButton}`}
                         type="submit"
                         size="lg"
                         variant="light">

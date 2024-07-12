@@ -255,7 +255,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
   return (
     <>
-      <Form className='py-4' onSubmit={handleSubmit} noValidate>
+      <Form className={`py-4 ${styles.form}`} onSubmit={handleSubmit} noValidate>
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput

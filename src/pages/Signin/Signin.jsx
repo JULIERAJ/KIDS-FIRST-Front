@@ -131,103 +131,98 @@ export default function Signin() {
 
   return (
     <>
-      <div className={styles.page}>
-        <Header />
+      <Container className={styles.page}>
+        <Header className={styles.header} />
         <Container className={styles.page__window}>
-          <div>
-            <Row>
-              <Col
-                className={`d-flex justify-content-center align-items-center ${styles.page__wrapper}`}>
-                <div>
-                  <h2 className={styles.login__title}>
+          <Row>
+            <Col className={styles.page__wrapper}>
+              <h1 className={styles.login__title}>
                     Welcome back to Kids First{' '}
-                  </h2>
-                  <Form className='py-4' onSubmit={handleLogin} noValidate>
-                    <FormEmailInput
-                      autoComplete='off'
-                      required
-                      onChange={handleEmailChange}
-                      defaultValue={email}
-                      isInvalid={emailError}
-                      errors={emailError}
-                      labelClassName={styles.label}
-                    />
+              </h1>
+              <Form className={`py-4 ${styles.form}`} onSubmit={handleLogin} noValidate >
+                <FormEmailInput
+                  autoComplete='off'
+                  required
+                  onChange={handleEmailChange}
+                  defaultValue={email}
+                  isInvalid={emailError}
+                  errors={emailError}
+                  labelClassName={styles.label}
+                />
 
-                    <FormPasswordInput
-                      required
-                      type={showPassword ? 'text' : 'password'}
-                      value={password}
-                      onChange={handlePasswordChange}
-                      showPassword={showPassword}
-                      togglePasswordVisibility={togglePasswordVisibility}
-                      errors={errorMesasage}
-                      labelClassName={styles.label}
+                <FormPasswordInput
+                  required
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  showPassword={showPassword}
+                  togglePasswordVisibility={togglePasswordVisibility}
+                  errors={errorMesasage}
+                  labelClassName={styles.label}
+                />
+                <div className={styles.checkboxContainer}>
+                  <div>
+                    <input
+                      className={styles.checkboxInput}
+                      type='checkbox'
+                      value='remember-me'
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
                     />
-                    <div className={styles.checkboxContainer}>
-                      <div>
-                        <input
-                          className={styles.checkboxInput}
-                          type='checkbox'
-                          value='remember-me'
-                          checked={rememberMe}
-                          onChange={(e) => setRememberMe(e.target.checked)}
-                        />
-                        <label className={styles.checkboxLabel}>
-                          {' '}
+                    <label className={styles.checkboxLabel}>
+                      {' '}
                           Remember me
-                        </label>
-                      </div>
-                      <div>
-                        <a
-                          className={`btn ${styles.forget__password}`}
-                          href='/forgot-password'>
+                    </label>
+                  </div>
+                  <div>
+                    <a
+                      className={`btn ${styles.forget__password}`}
+                      href='/forgot-password'>
                           Forgot your password?
-                        </a>
-                      </div>
-                    </div>
-                    <CustomButton
-                      styles={`primary-light ${styles.customButton}`}
-                      type='submit'>
-                      Log In
-                    </CustomButton>
-                    <div className={styles.orDivider}>
-                      <span className={styles.dashLine}></span>
-                      <span className={`${styles.orText}`}>Or</span>
-                      <span className={styles.dashLine}></span>
-                    </div>
-                    <Row className={styles.socialButton}>
-                      <Col xs={12} md={6}>
-                        <SocialLoginButton
-                          provider='google'
-                          onSuccess={loginfromGoogle}
-                          /* eslint-disable no-console */
-                          onFailure={(err) => console.log(err)}
-                        />
-                      </Col>
-                      <Col xs={12} md={6}>
-                        <SocialLoginButton
-                          provider='facebook'
-                          onSuccess={handleFacebookLoginSuccess}
-                          /* eslint-disable no-console */
-                          onFailure={(error) => console.log(error)}
-                        />
-                      </Col>
-                    </Row>
-                    <Row className='justify-content-center'>
-                      <div className={styles.alreadyMember}>
-                        Not a member?
-                        <NavLink className={styles.registerLink} to='/register'>
-                          Sign up
-                        </NavLink>
-                      </div>
-                    </Row>
-                  </Form>
+                    </a>
+                  </div>
                 </div>
-              </Col>
-            </Row>
-          </div>
+                <CustomButton
+                  styles={`primary-light ${styles.customButton}`}
+                  type='submit'>
+                      Log In
+                </CustomButton>
+                <div className={styles.orDivider}>
+                  <span className={styles.dashLine}></span>
+                  <span className={`${styles.orText}`}>Or</span>
+                  <span className={styles.dashLine}></span>
+                </div>
+                <Row className={styles.socialButton}>
+                  <Col xs={12} md={6}>
+                    <SocialLoginButton
+                      provider='google'
+                      onSuccess={loginfromGoogle}
+                      /* eslint-disable no-console */
+                      onFailure={(err) => console.log(err)}
+                    />
+                  </Col>
+                  <Col xs={12} md={6}>
+                    <SocialLoginButton
+                      provider='facebook'
+                      onSuccess={handleFacebookLoginSuccess}
+                      /* eslint-disable no-console */
+                      onFailure={(error) => console.log(error)}
+                    />
+                  </Col>
+                </Row>
+                <Row className='justify-content-center'>
+                  <div className={styles.alreadyMember}>
+                        Not a member?
+                    <NavLink className={styles.registerLink} to='/register'>
+                          Sign up
+                    </NavLink>
+                  </div>
+                </Row>
+              </Form>
+            </Col>
+          </Row>
         </Container>
-      </div>
+      </Container>
     </>
   );
 }
