@@ -82,7 +82,7 @@
 .forgetPasswordLabel {
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-accent-orange);
   transition: color 0.3s ease;
 }
@@ -121,7 +121,7 @@
   padding-left: 8px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-text-icon-default);
   transition: color 0.3s ease;
 }
@@ -163,7 +163,7 @@
 
 .registerLink {
   font-family: Roboto, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 21px;
   color: var(--color-accent-orange);
   padding-left: 10px;
@@ -175,6 +175,7 @@
 }
 
 .alreadyMember {
+  font-size: 18px;
   text-align: center;
   margin-top: 20px;
 }

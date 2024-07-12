@@ -111,13 +111,12 @@
 
 .alreadyMember {
   text-align: center;
+  font-size: 18px;
   margin-top: 20px;
 }
 
 .loginLink {
-  cursor: pointer;
-  color: var(--color-main-orange);
-  text-decoration: underline;
+  color: var(--color-accent-orange);
   font-size: 18px;
   width: 400;
   padding-left: 5px;
@@ -125,8 +124,7 @@
 
 .loginLink:hover,
 .loginLink:active {
-  color: var(--color-main-orange);
-  text-decoration: underline;
+  color: var(--color-dark-orange);
 }
 
 input:focus::placeholder {
