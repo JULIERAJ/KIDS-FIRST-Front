@@ -68,10 +68,8 @@ export default function ForgetPassword() {
   };
 
   return (
-    <div className={styles.page}>
-      <div>
-        <Header widget={HeaderLink} />
-      </div>
+    <Container className={styles.page}>
+      <Header widget={HeaderLink} />
       <Container className={styles.page__window}>
         <div>
           <Row>
@@ -135,6 +133,6 @@ export default function ForgetPassword() {
           </Row>
         </div>
       </Container>
-    </div>
+    </Container>
   );
 }
