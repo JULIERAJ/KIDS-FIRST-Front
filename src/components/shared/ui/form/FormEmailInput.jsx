@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 
 import FormInput from './FormInput';
 
-const FormEmailInput = ({ defaultValue, onChange, ...props }) => {
+const FormEmailInput = React.forwardRef(function FormEmailInput(props, ref) {
+  const { defaultValue, onChange, ...rest } = props;
+
   const [email, setEmail] = useState(defaultValue || '');
   const [errors, setErrors] = useState('');
 
@@ -34,20 +36,21 @@ const FormEmailInput = ({ defaultValue, onChange, ...props }) => {
 
   return (
     <FormInput
-      id="email"
-      label="Email"
-      name="email"
-      placeholder="user@mail.com"
-      type="email"
-      autoComplete="email"
+      ref={ref}
+      id='email'
+      label='Email'
+      name='email'
+      placeholder='user@mail.com'
+      type='email'
+      autoComplete='email'
       value={email}
       isInvalid={!!errors}
       errorMessage={errors}
       onChange={handleEmailChange}
-      {...props}
+      {...rest}
     />
   );
-};
+});
 
 FormEmailInput.propTypes = {
   defaultValue: PropTypes.string,

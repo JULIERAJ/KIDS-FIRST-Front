@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
@@ -52,8 +52,15 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   const [lastNameErrors, setLastNameErrors] = useState('');
   const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
     useState(false);
+  const inputRef = useRef();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (errorMessage) {
@@ -268,6 +275,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
               isInvalid={!!firstNameErrors}
               errors={firstNameErrors}
               labelClassName={styles.label}
+              ref={inputRef}
             />
           </Col>
           <Col>
