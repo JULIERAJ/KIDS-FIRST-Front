@@ -10,7 +10,6 @@ const FormInput = ({
   label,
   showPassword,
   togglePasswordVisibility,
-  hidePassword,
   errorMessage,
   successMessage,
   showTextPassword,
@@ -60,7 +59,6 @@ const FormInput = ({
           <div
             className={`${styles.formInputIcon} ${errorMessage ? styles.formInputIconError : ''}`}
             onClick={togglePasswordVisibility}
-            onMouseLeave={hidePassword} 
             role="button"
             tabIndex={0}
           >
