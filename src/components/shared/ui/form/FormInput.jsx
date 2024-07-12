@@ -10,6 +10,7 @@ const FormInput = ({
   label,
   showPassword,
   togglePasswordVisibility,
+  hidePassword,
   errorMessage,
   successMessage,
   showTextPassword,
@@ -59,6 +60,7 @@ const FormInput = ({
           <div
             className={`${styles.formInputIcon} ${errorMessage ? styles.formInputIconError : ''}`}
             onClick={togglePasswordVisibility}
+            onMouseLeave={hidePassword} 
             role="button"
             tabIndex={0}
           >
@@ -89,6 +91,7 @@ FormInput.propTypes = {
   label: PropTypes.node,
   showPassword: PropTypes.bool,
   togglePasswordVisibility: PropTypes.func,
+  hidePassword: PropTypes.func,
   type: PropTypes.string,
   errorMessage: PropTypes.string,
   labelClassName: PropTypes.string,
