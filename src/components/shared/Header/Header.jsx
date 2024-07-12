@@ -10,7 +10,7 @@ const Header = ({ widget }) => {
     <Navbar className="py-1">
       <Container className={styles['logo-container']}>
         <Navbar.Brand href="/">
-          <Image src={logo} alt="KIDS FIRST"/>
+          <Image src={logo} className={styles.logo} alt="KIDS FIRST"/>
         </Navbar.Brand>
 
         {widget}
