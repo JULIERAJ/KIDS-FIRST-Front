@@ -116,7 +116,7 @@ const Sidebar = ({ onTitleChange }) => {
     <Navbar expand="lg" className="bg-body-tertiary">
       <div className={`${styles.sidebar} no-gutter`}>
         <Container as="div" className={styles.sidebarHeader}>
-          <Image src={kidsFirstLogo} alt="mainLogo" />
+          <Image src={kidsFirstLogo} alt="KIDS FIRST logo displaying two elephants holding a shield with a heart" />
         </Container>
         <div className={styles.sidebarMenu}>
           <div className={styles.otherItemsContainer}>

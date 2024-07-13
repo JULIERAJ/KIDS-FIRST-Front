@@ -2,11 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect, useRef } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from 'react-social-login-buttons';
-import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 
 import { loginFacebook, loginSocial } from '@api';
 import MessageBar from '@components/MessageBar';
@@ -17,8 +12,7 @@ import {
   FormLastNameInput,
 } from '@components/shared/ui/form/FormNameInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
-import facebookIcon from '@media/icons/facebook.png';
-import googleIcon from '@media/icons/google.png';
+import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
 import styles from './Register.module.css';
 
@@ -254,7 +248,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
   return (
     <>
-      <Form className='py-4' onSubmit={handleSubmit} noValidate>
+      <Form className={`py-4 ${styles.form}`} onSubmit={handleSubmit} noValidate>
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput
@@ -320,49 +314,22 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
         <Row className={styles.socialButton}>
           <Col xs={12} md={6}>
-            <LoginSocialGoogle
-              client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
-              onResolve={loginfromGoogle}
-              onReject={(err) => {
-                /* eslint-disable no-console */
-                console.log(err);
-              }}>
-              <GoogleLoginButton
-                title='Google'
-                align={'center'}
-                icon={''}
-                size='45px'
-                className='tertiary-btn w-100'>
-                <img src={googleIcon} width='25' height='25' alt='' /> Google
-              </GoogleLoginButton>
-            </LoginSocialGoogle>
+            <SocialLoginButton
+              provider='google'
+              onSuccess={loginfromGoogle}
+              /* eslint-disable no-console */
+              onFailure={(err) => console.log(err)}
+            />
           </Col>
           <Col xs={12} md={6}>
-            <LoginSocialFacebook
-              appId={process.env.APP_ID}
-              onResolve={(response) => {
-                handleFacebookLoginSuccess(response);
-                /* eslint-disable no-console */
-                console.log(response);
-              }}
-              onReject={(error) => {
-                // handleFacebookLoginFailure(error);
-                /* eslint-disable no-console */
-                console.log(error);
-              }}>
-              <FacebookLoginButton
-                title='Facebook'
-                align={'center'}
-                icon={''}
-                size='45px'
-                className='tertiary-btn w-100'>
-                <img src={facebookIcon} width='25' height='25' alt='' />{' '}
-                Facebook
-              </FacebookLoginButton>
-            </LoginSocialFacebook>
+            <SocialLoginButton
+              provider='facebook'
+              onSuccess={handleFacebookLoginSuccess}
+              /* eslint-disable no-console */
+              onFailure={(error) => console.log(error)}
+            />
           </Col>
         </Row>
-
         <Row className='justify-content-center'>
           <div className={styles.alreadyMember}>
             Already a member?{' '}

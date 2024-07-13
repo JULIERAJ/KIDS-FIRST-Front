@@ -7,7 +7,9 @@ import FormInput from './FormInput';
 import styles from './FormInput.module.css'; // Import the CSS module
 
 export const FormFirstNameInput = React.forwardRef(function FormFirstNameInput(
-  props, ref) {
+  props,
+  ref
+) {
   return (
     <FormInput
       id='firstname'
@@ -27,7 +29,6 @@ export const FormFirstNameInput = React.forwardRef(function FormFirstNameInput(
 FormFirstNameInput.propTypes = {
   defaultValue: PropTypes.string,
   errors: PropTypes.string,
-  ref: PropTypes.string,
 };
 
 export const FormLastNameInput = (props) => (

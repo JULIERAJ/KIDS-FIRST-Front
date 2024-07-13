@@ -14,6 +14,19 @@
   --main-orange: #F08324;
   --main-red: #F05153;
   --main-yellow: #F4DD61;
+
+  /* used in authentication flow */
+  --color-text-icon-default: #596B73;
+  --color-text-icon-accent: #3B494F;
+  --color-bg-light: #FCFCFC;
+  --color-border-default: #9EAFB7;
+  --color-fg-primary: #081821;
+  --color-blurred-orange: #F6BD8F;
+  --color-orange: #DB5C00;
+  --color-accent-orange: #EB7005;
+  --color-dark-orange: #C24400;
+  --color-gray-dark: #454848;
+  --color-bg-page: #EFF0F0;
 }
 
 * {
