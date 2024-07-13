@@ -9,7 +9,8 @@ then go to dashboard need to store user information in the session
 */
 export const login = (email, password) => axios.post(
   `${API_URL}login`, 
-  { email, password }
+  { email, password },
+  { withCredentials: true }
 );
 
 export const logout = () => axios.post(
@@ -21,13 +22,15 @@ export const logout = () => axios.post(
 export const loginFacebook = (accessToken, userID) =>
   axios.post(
     `${API_URL}loginFacebook`, 
-    { accessToken, userID }
+    { accessToken, userID },
+    { withCredentials: true }
   );
 
 export const loginSocial = (accessToken, userID) =>
   axios.post(
     `${API_URL}loginSocial`, 
-    { accessToken, userID }
+    { accessToken, userID },
+    { withCredentials: true }
   );
 
 export const register = (opts) => axios.post(
