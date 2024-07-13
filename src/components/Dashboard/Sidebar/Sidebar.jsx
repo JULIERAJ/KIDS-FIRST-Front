@@ -70,7 +70,7 @@ const Sidebar = ({ onTitleChange }) => {
   const [activeLink, setActiveLink] = useState(null);
   const navigate = useNavigate();
 
-  const handleClick = (path, title) => {
+  const handleClick = (title, path) => {
     if (title === 'Logout') {
       handleLogout();
     } else {
@@ -125,19 +125,19 @@ const Sidebar = ({ onTitleChange }) => {
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={handleTitleChange}
+                onClick={handleClick}
               />
             ))}
           </div>
 
           {/* Render div for "Help" and "Logout" items */}
-          <div className={styles.HelpLogoutContainer}>
+          <div className={styles.helpLogoutContainer}>
             {HelpLogoutItems.map((item, key) => (
               <SidebarItemsCard
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={handleTitleChange}
+                onClick={handleClick}
               />
             ))}
           </div>
