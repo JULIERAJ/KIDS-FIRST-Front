@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
@@ -52,8 +52,13 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   const [lastNameErrors, setLastNameErrors] = useState('');
   const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
     useState(false);
+  const inputRef = useRef();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     if (errorMessage) {
@@ -220,36 +225,28 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       });
   };
 
-  const errorMessagePassword = Object.entries(passwordErrors)
-    // eslint-disable-next-line no-unused-vars
-    .filter(([key, value]) => value)
-    .map(([key]) => {
-      switch (key) {
-      case 'uppercase':
-      case 'lowercase':
-        return 'upper and lower case characters';
-      case 'number':
-        return 'a number';
-      case 'special':
-        return 'a special character';
-      case 'length':
-        return '8 characters';
-      default:
-        return '';
-      }
-    })
-    .reduce((acc, message) => {
-      if (
-        message === 'upper and lower case characters' &&
-        !acc.includes(message)
-      ) {
-        acc.push(message);
-      } else {
-        acc.push(message);
-      }
-      return acc;
-    }, [])
-    .join(', ');
+  const errorMessagePassword = Array.from(
+    new Set(
+      Object.entries(passwordErrors)
+        // eslint-disable-next-line no-unused-vars
+        .filter(([_, value]) => value)
+        .map(([key]) => {
+          switch (key) {
+          case 'uppercase':
+          case 'lowercase':
+            return 'upper and lower case characters';
+          case 'number':
+            return 'a number';
+          case 'special':
+            return 'a special character';
+          case 'length':
+            return '8 characters';
+          default:
+            return '';
+          }
+        })
+    )
+  ).join(', ');
 
   const errorMessageWithInclude = errorMessagePassword
     ? `Include at least: ${errorMessagePassword}`
@@ -268,6 +265,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
               isInvalid={!!firstNameErrors}
               errors={firstNameErrors}
               labelClassName={styles.label}
+              ref={inputRef}
             />
           </Col>
           <Col>

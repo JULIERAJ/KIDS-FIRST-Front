@@ -1,32 +1,35 @@
 import PropTypes from 'prop-types';
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 import { BsExclamationCircle, BsCheckLg } from 'react-icons/bs';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import styles from './FormInput.module.css';
 
-const FormInput = ({
-  label,
-  showPassword,
-  togglePasswordVisibility,
-  errorMessage,
-  successMessage,
-  showTextPassword,
-  labelClassName,
-  type,
-  value,
-  onChange,
-  onFocus,
-  onBlur,
-  autoComplete,
-  ...props
-}) => {
+const FormInput = React.forwardRef(function FormInput(props, ref) {
+  const {
+    label,
+    showPassword,
+    togglePasswordVisibility,
+    errorMessage,
+    successMessage,
+    showTextPassword,
+    labelClassName,
+    type,
+    value,
+    onChange,
+    onFocus,
+    onBlur,
+    autoComplete,
+    ...rest
+  } = props;
+
   const inputRef = useRef(null);
 
+  const combinedRef = ref || inputRef;
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.value = value || '';
+    if (combinedRef.current) {
+      combinedRef.current.value = value || '';
     }
   }, [value]);
 
@@ -43,11 +46,17 @@ const FormInput = ({
       <Form.Label className={labelClassName}>{label}</Form.Label>
       <InputGroup className={styles.inputGroup}>
         <Form.Control
-          ref={inputRef}
-          {...props}
+          ref={combinedRef}
+          {...rest}
           type={isPassword && showPassword ? 'text' : type}
           className={`${styles.inputField}
-          ${errorMessage ? styles.errorInput : successMessage ? styles.successInput : ''}`}
+          ${
+    errorMessage
+      ? styles.errorInput
+      : successMessage
+        ? styles.successInput
+        : ''
+    }`}
           value={value}
           onChange={handleInputChange}
           onFocus={onFocus}
@@ -57,33 +66,41 @@ const FormInput = ({
         />
         {isPassword && value && (
           <div
-            className={`${styles.formInputIcon} ${errorMessage ? styles.formInputIconError : ''}`}
+            className={`${styles.formInputIcon} ${
+              errorMessage ? styles.formInputIconError : ''
+            }`}
             onClick={togglePasswordVisibility}
-            role="button"
-            tabIndex={0}
-          >
+            role='button'
+            tabIndex={0}>
             {showPassword ? <FaEye /> : <FaEyeSlash />}
           </div>
         )}
       </InputGroup>
       {successMessage && (
-        <Form.Control.Feedback className={`${styles.feedback} ${styles.successFeedback}`}>
+        <Form.Control.Feedback
+          className={`${styles.feedback} ${styles.successFeedback}`}>
           <BsCheckLg className={`${styles.icon} ${styles.successIcon}`} />
           {successMessage}
         </Form.Control.Feedback>
       )}
       {errorMessage && (
-        <Form.Control.Feedback type="invalid" className={`${styles.feedback} ${styles.errorFeedback}`}>
-          <BsExclamationCircle className={`${styles.icon} ${styles.errorIcon}`} />
+        <Form.Control.Feedback
+          type='invalid'
+          className={`${styles.feedback} ${styles.errorFeedback}`}>
+          <BsExclamationCircle
+            className={`${styles.icon} ${styles.errorIcon}`}
+          />
           {errorMessage}
         </Form.Control.Feedback>
       )}
       {showTextPassword && (
-        <Form.Text className={styles.passwordText}>{showTextPassword}</Form.Text>
+        <Form.Text className={styles.passwordText}>
+          {showTextPassword}
+        </Form.Text>
       )}
     </Form.Group>
   );
-};
+});
 
 FormInput.propTypes = {
   label: PropTypes.node,

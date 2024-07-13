@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -29,6 +29,12 @@ export default function Signin() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -45,7 +51,7 @@ export default function Signin() {
           const { token, ...userData } = res.data;
           // Store the token in localStorage
           localStorage.setItem('authToken', token);
-  
+
           // Store the remaining user data in sessionStorage or localStorage based on rememberMe
           const user = JSON.stringify(userData);
           if (rememberMe) {
@@ -151,6 +157,7 @@ export default function Signin() {
                   </h2>
                   <Form className='py-4' onSubmit={handleLogin} noValidate>
                     <FormEmailInput
+                      ref={inputRef}
                       autoComplete='off'
                       required
                       onChange={handleEmailChange}
