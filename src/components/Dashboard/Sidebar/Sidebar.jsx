@@ -29,7 +29,7 @@ const SidebarItemsCard = ({
 
   const handleClick = (e) => {
     e.preventDefault();
-    onClick(path);
+    onClick(title, path);
   };
 
   const handleKeyDown = (e) => {
@@ -40,34 +40,42 @@ const SidebarItemsCard = ({
   };
 
   return (
-    <>
-      <Nav.Item
-        className={`${styles.nav} ${isActive ? styles.active : ''}`}
-        id={window.location.pathname === path ? 'active' : ''}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={handleClick}
-        role="button"
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-      >
-        {isActive ? activeIcon : isHovered ? hoverIcon : icon}
-        <span className={`${styles.sidebarMenuItem}`}>{title}</span>
-      </Nav.Item>
-    </>
+    <Nav.Item
+      className={`${styles.nav} ${isActive ? styles.active : ''}`}
+      id={window.location.pathname === path ? 'active' : ''}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+    >
+      {isActive ? activeIcon : (isHovered ? hoverIcon : icon)}
+      <span className={styles.sidebarMenuItem}>{title}</span>
+    </Nav.Item>
   );
 };
 
-const Sidebar = ({ setTitle }) => {
+SidebarItemsCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  activeIcon: PropTypes.node.isRequired,
+  hoverIcon: PropTypes.node.isRequired,
+  path: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+const Sidebar = ({ onTitleChange }) => {
   const [activeLink, setActiveLink] = useState(null);
   const navigate = useNavigate();
 
-  const handleClick = (path, title) => {
+  const handleClick = (title, path) => {
     if (title === 'Logout') {
       handleLogout();
     } else {
       setActiveLink(path);
-      setTitle(title);
+      onTitleChange(title);
     }
   };
 
@@ -110,27 +118,26 @@ const Sidebar = ({ setTitle }) => {
         <Container as="div" className={styles.sidebarHeader}>
           <Image src={kidsFirstLogo} alt="mainLogo" />
         </Container>
-        <div className={`${styles.sidebarMenu}`}>
-          {/* Render div for all other items */}
+        <div className={styles.sidebarMenu}>
           <div className={styles.otherItemsContainer}>
             {otherItems.map((item, key) => (
               <SidebarItemsCard
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={() => handleClick(item.path, item.title)}
+                onClick={handleClick}
               />
             ))}
           </div>
 
           {/* Render div for "Help" and "Logout" items */}
-          <div className={styles.HelpLogoutContainer}>
+          <div className={styles.helpLogoutContainer}>
             {HelpLogoutItems.map((item, key) => (
               <SidebarItemsCard
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={() => handleClick(item.path, item.title)}
+                onClick={handleClick}
               />
             ))}
           </div>
@@ -152,7 +159,7 @@ SidebarItemsCard.propTypes = {
 };
 
 Sidebar.propTypes = {
-  setTitle: PropTypes.func,
+  onTitleChange: PropTypes.func,
 };
 
 export default Sidebar;
