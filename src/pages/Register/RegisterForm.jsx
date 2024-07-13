@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   FacebookLoginButton,
@@ -10,6 +10,7 @@ import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 
 import { loginFacebook, loginSocial } from '@api';
 import MessageBar from '@components/MessageBar';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import {
   FormFirstNameInput,
@@ -49,15 +50,25 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   });
   const [firstNameErrors, setFirstNameErrors] = useState('');
   const [lastNameErrors, setLastNameErrors] = useState('');
-  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] = useState(false);
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
+    useState(false);
+  const inputRef = useRef();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     if (errorMessage) {
       setEmailError(errorMessage);
     }
   }, [errorMessage]);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleFirstNameChange = (e) => {
     const value = e.target.value.trim();
@@ -137,8 +148,16 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const fields = [
-      { value: firstName.trim(), errorSetter: setFirstNameErrors, placeholder: 'First Name' },
-      { value: email.trim(), errorSetter: setEmailError, placeholder: 'user@mail.com' },
+      {
+        value: firstName.trim(),
+        errorSetter: setFirstNameErrors,
+        placeholder: 'First Name',
+      },
+      {
+        value: email.trim(),
+        errorSetter: setEmailError,
+        placeholder: 'user@mail.com',
+      },
     ];
     let hasEmptyField = false;
 
@@ -163,7 +182,12 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
     if (hasEmptyField) return;
 
-    if (firstNameErrors === '' && lastNameErrors === '' && emailError === '' && allPasswordErrorsChecked) {
+    if (
+      firstNameErrors === '' &&
+      lastNameErrors === '' &&
+      emailError === '' &&
+      allPasswordErrorsChecked
+    ) {
       onSubmitData(firstName, lastName, email, password);
     }
   };
@@ -179,7 +203,9 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       })
       .catch(() => {
         setSuccessSo(false);
-        setErrMsgSocial('Log-in unsuccessful. Please try again later, or sign-up.');
+        setErrMsgSocial(
+          'Log-in unsuccessful. Please try again later, or sign-up.'
+        );
       });
   };
 
@@ -193,39 +219,38 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       })
       .catch(() => {
         setSuccessSo(false);
-        setErrMsgSocial('Log-in unsuccessful. Please try again later, or sign-up.');
+        setErrMsgSocial(
+          'Log-in unsuccessful. Please try again later, or sign-up.'
+        );
       });
   };
 
-  const errorMessagePassword = Object.entries(passwordErrors)
-  // eslint-disable-next-line no-unused-vars
-    .filter(([key, value]) => value)
-    .map(([key]) => {
-      switch (key) {
-      case 'uppercase':
-      case 'lowercase':
-        return 'upper and lower case characters';
-      case 'number':
-        return 'a number';
-      case 'special':
-        return 'a special character';
-      case 'length':
-        return '8 characters';
-      default:
-        return '';
-      }
-    })
-    .reduce((acc, message) => {
-      if (message === 'upper and lower case characters' && !acc.includes(message)) {
-        acc.push(message);
-      } else {
-        acc.push(message);
-      }
-      return acc;
-    }, [])
-    .join(', ');
+  const errorMessagePassword = Array.from(
+    new Set(
+      Object.entries(passwordErrors)
+        // eslint-disable-next-line no-unused-vars
+        .filter(([_, value]) => value)
+        .map(([key]) => {
+          switch (key) {
+          case 'uppercase':
+          case 'lowercase':
+            return 'upper and lower case characters';
+          case 'number':
+            return 'a number';
+          case 'special':
+            return 'a special character';
+          case 'length':
+            return '8 characters';
+          default:
+            return '';
+          }
+        })
+    )
+  ).join(', ');
 
-  const errorMessageWithInclude = errorMessagePassword ? `Include at least: ${errorMessagePassword}` : '';
+  const errorMessageWithInclude = errorMessagePassword
+    ? `Include at least: ${errorMessagePassword}`
+    : '';
 
   return (
     <>
@@ -240,6 +265,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
               isInvalid={!!firstNameErrors}
               errors={firstNameErrors}
               labelClassName={styles.label}
+              ref={inputRef}
             />
           </Col>
           <Col>
@@ -269,7 +295,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
           value={password}
           onChange={handlePasswordChange}
           showPassword={showPassword}
-          setShowPassword={setShowPassword}
+          togglePasswordVisibility={togglePasswordVisibility}
           isInvalid={!!errorMessageWithInclude}
           errors={errorMessageWithInclude}
           labelClassName={styles.label}
@@ -281,10 +307,11 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
         {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
-        <Button className={`primary-btn ${styles.customButton}`} type='submit' size='lg' variant='light'>
+        <CustomButton
+          styles={`primary-light ${styles.customButton}`}
+          type='submit'>
           Sign up
-        </Button>
-
+        </CustomButton>
         <div className={styles.orDivider}>
           <span className={styles.dashLine}></span>
           <span className={styles.orText}>Or</span>
@@ -294,9 +321,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
         <Row className={styles.socialButton}>
           <Col xs={12} md={6}>
             <LoginSocialGoogle
-              client_id={
-                process.env.REACT_APP_GOOGLE_CLIENT_ID || ''
-              }
+              client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
               onResolve={loginfromGoogle}
               onReject={(err) => {
                 /* eslint-disable no-console */
@@ -308,13 +333,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
                 icon={''}
                 size='45px'
                 className='tertiary-btn w-100'>
-                <img
-                  src={googleIcon}
-                  width='25'
-                  height='25'
-                  alt=''
-                />{' '}
-                  Google
+                <img src={googleIcon} width='25' height='25' alt='' /> Google
               </GoogleLoginButton>
             </LoginSocialGoogle>
           </Col>
@@ -337,13 +356,8 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
                 icon={''}
                 size='45px'
                 className='tertiary-btn w-100'>
-                <img
-                  src={facebookIcon}
-                  width='25'
-                  height='25'
-                  alt=''
-                />{' '}
-                  Facebook
+                <img src={facebookIcon} width='25' height='25' alt='' />{' '}
+                Facebook
               </FacebookLoginButton>
             </LoginSocialFacebook>
           </Col>

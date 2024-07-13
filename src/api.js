@@ -9,6 +9,16 @@ then go to dashboard need to store user information in the session
 */
 export const login = (email, password) => axios.post(`${API_URL}login`, { email, password });
 
+export const logout = (token) => axios.post(
+  `${API_URL}logout`, 
+  { token },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
 export const loginFacebook = (accessToken, userID) =>
   axios.post(`${API_URL}loginFacebook`, { accessToken, userID });
 

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useState, useRef, useEffect } from 'react';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import {
@@ -10,6 +10,7 @@ import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
 import { login, loginFacebook, loginSocial } from '@api';
 import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import facebookIcon from '@media/icons/facebook.png';
@@ -28,6 +29,15 @@ export default function Signin() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
   const handleLogin = (e) => {
     e.preventDefault();
     setErrorMesasage('');
@@ -38,7 +48,12 @@ export default function Signin() {
     if (validateEmail) {
       login(email, password)
         .then((res) => {
-          const user = JSON.stringify(res.data);
+          const { token, ...userData } = res.data;
+          // Store the token in localStorage
+          localStorage.setItem('authToken', token);
+
+          // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+          const user = JSON.stringify(userData);
           if (rememberMe) {
             localStorage.setItem('storedUser', user);
           } else {
@@ -82,8 +97,17 @@ export default function Signin() {
   const handleFacebookLoginSuccess = (response) => {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
-        const user = JSON.stringify(res.data);
-        localStorage.setItem('storedUser', user);
+        const { token, ...userData } = res.data;
+        // Store the token in localStorage
+        localStorage.setItem('authToken', token);
+
+        // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+        const user = JSON.stringify(userData);
+        if (rememberMe) {
+          localStorage.setItem('storedUser', user);
+        } else {
+          sessionStorage.setItem('storedUser', user);
+        }
         navigate('/dashboard');
       })
       .catch(() => {
@@ -96,9 +120,17 @@ export default function Signin() {
   const loginfromGoogle = (response) => {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
-        const user = JSON.stringify(res.data);
+        const { token, ...userData } = res.data;
+        // Store the token in localStorage
+        localStorage.setItem('authToken', token);
 
-        localStorage.setItem('storedUser', user);
+        // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+        const user = JSON.stringify(userData);
+        if (rememberMe) {
+          localStorage.setItem('storedUser', user);
+        } else {
+          sessionStorage.setItem('storedUser', user);
+        }
         navigate('/dashboard');
         // eslint-disable-next-line
         console.groupCollapsed(response.data);
@@ -125,6 +157,7 @@ export default function Signin() {
                   </h2>
                   <Form className='py-4' onSubmit={handleLogin} noValidate>
                     <FormEmailInput
+                      ref={inputRef}
                       autoComplete='off'
                       required
                       onChange={handleEmailChange}
@@ -136,11 +169,11 @@ export default function Signin() {
 
                     <FormPasswordInput
                       required
-                      type={showPassword ? 'text' : 'password'} 
+                      type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={handlePasswordChange}
                       showPassword={showPassword}
-                      setShowPassword={setShowPassword}
+                      togglePasswordVisibility={togglePasswordVisibility}
                       errors={errorMesasage}
                       labelClassName={styles.label}
                     />
@@ -166,13 +199,11 @@ export default function Signin() {
                         </a>
                       </div>
                     </div>
-                    <Button
-                      className={`primary-btn w-100 my-3 ${styles.customButton}`}
-                      type='submit'
-                      size='lg'
-                      variant='light'>
+                    <CustomButton
+                      styles={`primary-light ${styles.customButton}`}
+                      type='submit'>
                       Log In
-                    </Button>
+                    </CustomButton>
                     <div className={styles.orDivider}>
                       <span className={styles.dashLine}></span>
                       <span className={`${styles.orText}`}>Or</span>

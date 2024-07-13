@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { FaChevronDown, FaPlusCircle } from 'react-icons/fa';
+
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 
 import styles from './EventModal.module.css';
 
@@ -295,13 +297,13 @@ const EventModal = ({ onClose }) => {
               style={{ width: '465px', height: '48px' }}
             />
           </Form.Group>
-          <Button
+          <CustomButton
             variant='primary'
             type='submit'
             className={styles.submitButton}
             style={{ color: '#7A7D7D' }}>
             Create Event
-          </Button>
+          </CustomButton>
         </Form>
       </Modal.Body>
     </Modal>

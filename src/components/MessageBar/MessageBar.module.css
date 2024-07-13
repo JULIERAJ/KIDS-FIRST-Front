@@ -1,0 +1,17 @@
+/* .message__bar {
+  font-size: 14px;
+  line-height: 22px;
+} */
+
+.message__bar-error {
+  background-color: var(--main-red);
+  font-size: 14px;
+  line-height: 22px;
+
+}
+
+.message__bar-success {
+  background-color: var(--main-green);
+  font-size: 14px;
+  line-height: 22px;
+}
