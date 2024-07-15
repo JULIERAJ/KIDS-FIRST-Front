@@ -188,7 +188,10 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
   const loginfromGoogle = (response) => {
     setErrMsgSocial('Log-in unsuccessful. Please try again later, or sign-up.');
-    loginSocial(response.data.access_token, response.data.email)
+    const accessToken = response.data.access_token;
+    const userID = response.data.email;
+    console.log('HEre', accessToken, userID);
+    loginSocial(accessToken, userID)
       .then((res) => {
         setSuccessSo(true);
         const user = JSON.stringify(res.data);
@@ -248,7 +251,10 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
   return (
     <>
-      <Form className={`py-4 ${styles.form}`} onSubmit={handleSubmit} noValidate>
+      <Form
+        className={`py-4 ${styles.form}`}
+        onSubmit={handleSubmit}
+        noValidate>
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput

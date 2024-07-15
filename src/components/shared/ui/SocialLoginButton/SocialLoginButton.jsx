@@ -16,6 +16,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
           client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
           onResolve={onSuccess}
           onReject={onFailure}
+          scope="email profile"
         >
           <div className={styles.button}>
             <img src={googleIcon} alt='Google icon' /> 
