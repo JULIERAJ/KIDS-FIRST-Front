@@ -81,7 +81,7 @@ export default function ForgetPassword() {
                       <div className={styles.success}>
                         <img className={styles.success__icon} src={logoEmailSent} alt="email-sent-icon" />
                         <h3 className={styles.success__title}>Check you email</h3>
-                        <br />
+
                         <span className={styles.success__text}>
                           A link to reset your password has been sent to{' '}
                           <strong>{emailDisplay.current}</strong>
