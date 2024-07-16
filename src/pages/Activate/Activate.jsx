@@ -115,30 +115,37 @@ const Activate = () => {
             {/* Show expiration message if the link is expired */}
             {!loading && !userData.emailIsActivated && expired && (
               <>
-                <h1 className={styles.registerTitle}>Link Expired</h1>
-                <FeedbackBlock
-                  message={
-                    <span className={styles.displaymessage}>
-                      This verification link is no longer valid
-                    </span>
-                  }
-                  // message='This verification link is no longer valid'
-                  image={emailverified}
-                />
-                <div className={styles.text}>
-                  {/* <p> Your email address has been verified</p> */}
-                  <p className={styles.checkemail}>
-                    Please check{email} for the latest verification email to
-                    continue
-                  </p>
-                </div>
-                <div className={` mt-4 ${styles.buttoncontainer}`}>
-                  <a
-                    className={styles.customLink}
-                    onClick={handleRegisterClick}
-                  >
-                    Back to SignUp
-                  </a>
+                <div className={styles.emailverified}>
+                  <div className={styles.emailverifiedpage}>
+                    <div className={styles.emailverifiedoutercontainer}>
+                      <div className={styles.emailverifiedinnercontainer}>
+                        <h1 className={styles.registerTitle}>Link Expired</h1>
+                        {/* <h1 className={styles.registerTitle}>Something went wrong!</h1> */}
+                        <FeedbackBlock
+                          message={
+                            <span className={styles.displaymessage}>
+                              This verification link is no longer valid
+                            </span>
+                          }
+                          //message='Verification was unsuccessful'
+                          image={emailverified}
+                        />
+                      </div>
+                      <div className={styles.nextMessage}>
+                        {/* <p> Your email address has been verified</p> */}
+                        Please check{email} for the latest verification email to
+                        continue
+                      </div>
+                    </div>
+                    <div className={` mt-4 ${styles.buttoncontainer}`}>
+                      <a
+                        className={styles.customLink}
+                        onClick={handleRegisterClick}
+                      >
+                        Back to SignUp
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </>
             )}
@@ -150,30 +157,38 @@ const Activate = () => {
           )} */}
             {!loading && !userData.emailIsActivated && !expired && (
               <>
-                <h1 className={styles.registerTitle}>Something went wrong!</h1>
-                {/* <h1 className={styles.registerTitle}>Something went wrong!</h1> */}
-                <FeedbackBlock
-                  message={
-                    <span className={styles.displaymessage}>
-                      Verification was unsuccessful
-                    </span>
-                  }
-                  //message='Verification was unsuccessful'
-                  image={emailverified}
-                />
-                <div className={styles.text}>
-                  {/* <p> Your email address has been verified</p> */}
-                  <p className={styles.signUpAgainMessage}>
-                    Please sign up again to receive a new link
-                  </p>
-                </div>
-                <div className={` mt-4 ${styles.buttoncontainer}`}>
-                  <a
-                    className={styles.customLink}
-                    onClick={handleRegisterClick}
-                  >
-                    Back to SignUp
-                  </a>
+                <div className={styles.emailverified}>
+                  <div className={styles.emailverifiedpage}>
+                    <div className={styles.emailverifiedoutercontainer}>
+                      <div className={styles.emailverifiedinnercontainer}>
+                        <h1 className={styles.registerTitle}>
+                          Something went wrong!
+                        </h1>
+                        {/* <h1 className={styles.registerTitle}>Something went wrong!</h1> */}
+                        <FeedbackBlock
+                          message={
+                            <span className={styles.displaymessage}>
+                              Verification was unsuccessful
+                            </span>
+                          }
+                          //message='Verification was unsuccessful'
+                          image={emailverified}
+                        />
+                      </div>
+                      <div className={styles.nextMessage}>
+                        {/* <p> Your email address has been verified</p> */}
+                        Please sign up again to receive a new link
+                      </div>
+                    </div>
+                    <div className={` mt-4 ${styles.buttoncontainer}`}>
+                      <a
+                        className={styles.customLink}
+                        onClick={handleRegisterClick}
+                      >
+                        Back to SignUp
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </>
             )}

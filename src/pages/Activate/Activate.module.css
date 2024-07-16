@@ -111,7 +111,7 @@ opacity: 0px;
   line-height: 25.2px;
   color: #EB7005;
   text-align: center;
-  text-decoration: none;
+  text-decoration: underline;
   cursor: pointer;
 }
 
