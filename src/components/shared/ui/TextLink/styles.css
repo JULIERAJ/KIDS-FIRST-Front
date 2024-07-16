@@ -12,5 +12,5 @@
 
 .text-link:hover {
   text-decoration: underline;
-  color: var(--main-orange);
+  color: var(--color-dark-orange);
 }

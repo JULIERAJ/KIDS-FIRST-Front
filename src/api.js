@@ -7,17 +7,42 @@ const API_URL = `http://localhost:${API_PORT}/api/`;
 if signed in successfully, go to the 'families' page to select family
 then go to dashboard need to store user information in the session
 */
-export const login = (email, password) => axios.post(`${API_URL}login`, { email, password });
+export const login = (email, password) => axios.post(
+  `${API_URL}login`, 
+  { email, password },
+  { withCredentials: true }
+);
+
+export const logout = () => axios.post(
+  `${API_URL}logout`, 
+  {},
+  { withCredentials: true }
+);
 
 export const loginFacebook = (accessToken, userID) =>
-  axios.post(`${API_URL}loginFacebook`, { accessToken, userID });
+  axios.post(
+    `${API_URL}loginFacebook`, 
+    { accessToken, userID },
+    { withCredentials: true }
+  );
 
 export const loginSocial = (accessToken, userID) =>
-  axios.post(`${API_URL}loginSocial`, { accessToken, userID });
+  axios.post(
+    `${API_URL}loginSocial`, 
+    { accessToken, userID },
+    { withCredentials: true }
+  );
 
-export const register = (opts) => axios.post(`${API_URL}register`, opts);
+export const register = (opts) => axios.post(
+  `${API_URL}register`, 
+  opts
+);
 
-export const createFamily = (opts) => axios.post(`${API_URL}family`, opts);
+export const createFamily = (opts) => axios.post(
+  `${API_URL}family`, 
+  opts,
+  { withCredentials: true }
+);
 
 export const createMember = ({
   firstName,
@@ -26,33 +51,53 @@ export const createMember = ({
   inviteeEmail,
   inviteeInviteLater,
   family,
-  principle,
+  user,
 }) =>
-  axios.post(`${API_URL}member`, {
-    firstName,
-    lastName,
-    kidsList,
-    inviteeEmail,
-    inviteeInviteLater,
-    family,
-    principle,
-  });
+  axios.post(
+    `${API_URL}member`, 
+    {
+      firstName,
+      lastName,
+      kidsList,
+      inviteeEmail,
+      inviteeInviteLater,
+      family,
+      user,
+    },
+    { withCredentials: true }
+  );
 
 export const activate = (email, emailVerificationToken) =>
-  axios.get(`${API_URL}activate/${email}/${emailVerificationToken}`);
+  axios.get(
+    `${API_URL}activate/${email}/${emailVerificationToken}`
+  );
 
 export const activateCoParent = (email, family, emailVerificationToken) =>
-  axios.get(`${API_URL}register/${email}/${family}/${emailVerificationToken}`);
+  axios.get(
+    `${API_URL}register/${email}/${family}/${emailVerificationToken}`
+  );
 
-export const forgetPassword = (email) => axios.post(`${API_URL}forgot-password`, { email });
+export const forgetPassword = (email) => axios.post(
+  `${API_URL}forgot-password`, 
+  { email }
+);
 
 export const resetPasswordLink = (email, resetPasswordToken) =>
-  axios.get(`${API_URL}reset-password/${email}/${resetPasswordToken}`);
+  axios.get(
+    `${API_URL}reset-password/${email}/${resetPasswordToken}`
+  );
 
 export const resetPassword = (email, password, resetPasswordToken) =>
-  axios.post(`${API_URL}reset-password/${email}/${resetPasswordToken}`, {
-    email,
-    password,
-    resetPasswordToken,
-  });
-export const resendEmailVerification = (email) => axios.post(`${API_URL}resend-email`, { email });
+  axios.post(
+    `${API_URL}reset-password/${email}/${resetPasswordToken}`, 
+    {
+      email,
+      password,
+      resetPasswordToken,
+    }
+  );
+
+export const resendEmailVerification = (email) => axios.post(
+  `${API_URL}resend-email`, 
+  { email }
+);

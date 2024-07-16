@@ -1,31 +1,18 @@
-/* eslint-disable indent */
-/*
-  This component represents a registration form. It allows users to sign up by providing their email,
-   password, and confirming the password.
-  It includes form fields for email, password, and password confirmation, along with validation checks for each field.
-*/
-//import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
-
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from 'react-social-login-buttons';
-import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
 
 import { loginFacebook, loginSocial } from '@api';
 import MessageBar from '@components/MessageBar';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import {
   FormFirstNameInput,
   FormLastNameInput,
 } from '@components/shared/ui/form/FormNameInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
-import facebookIcon from '@media/icons/facebook.png';
-import googleIcon from '@media/icons/google.png';
+import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
 import styles from './Register.module.css';
 
@@ -36,21 +23,16 @@ const regexSpecialChar = /[!@#$%^&*()_+=[\]{};':"\\|,.<>?-]/;
 const regexLength = /^.{8,40}$/;
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const RegisterForm = (props) => {
+const RegisterForm = ({ onSubmitData, errorMessage }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [errMsgSocial, setErrMsgSocial] = useState(''); //state for login from google and FB
+  const [showPassword, setShowPassword] = useState(false);
+  const [errMsgSocial, setErrMsgSocial] = useState('');
   const [successSo, setSuccessSo] = useState(true);
-  // eslint-disable-next-line no-unused-vars
-  const [errMsg, setErrMsg] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-
-  // eslint-disable-next-line no-unused-vars
-  const [isFocused, setIsFocused] = useState(false);
   const [initialFocus, setInitialFocus] = useState(false);
   const [showTextPassword, setShowTextPassword] = useState('');
   const [passwordErrors, setPasswordErrors] = useState({
@@ -60,20 +42,30 @@ export const RegisterForm = (props) => {
     special: false,
     length: false,
   });
-  const navigate = useNavigate();
-
-  // Effect hook to handle errors received from the backend
-  useEffect(() => {
-    if (props.errorMessage) {
-      setEmailError(props.errorMessage);
-    }
-  }, [props.errorMessage]);
-
   const [firstNameErrors, setFirstNameErrors] = useState('');
   const [lastNameErrors, setLastNameErrors] = useState('');
-  // Event handler for First name change
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
+    useState(false);
+  const inputRef = useRef();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (errorMessage) {
+      setEmailError(errorMessage);
+    }
+  }, [errorMessage]);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const handleFirstNameChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     let newErrors = '';
     if (!validateName(value)) {
       newErrors = 'Please use only letters';
@@ -85,14 +77,11 @@ export const RegisterForm = (props) => {
       setFirstName(value);
     }
   };
-  const validateName = (name) => {
-    const re = /^[a-zA-Z]*$/;
-    return re.test(name);
-  };
 
-  // Event handler for Last name change
+  const validateName = (name) => /^[a-zA-Z]*$/.test(name);
+
   const handleLastNameChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     let newErrors = '';
     if (!validateName(value)) {
       newErrors = 'Please use only letters';
@@ -102,43 +91,40 @@ export const RegisterForm = (props) => {
       setLastName(value);
     }
   };
-  // Event handler for email change
+
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    if (!validateEmail(email)) {
-      setEmailError('Please enter a valid email address.');
+    const emailValue = e.target.value.trim();
+    setEmail(emailValue);
+    if (emailValue === '') {
+      setEmailError('Please enter your email address.');
     } else {
-      setEmailError('');
+      if (!regexEmail.test(emailValue)) {
+        setEmailError('Please enter a valid email address.');
+      } else {
+        setEmailError('');
+      }
     }
   };
-  // Event handler for password change
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setShowTextPassword('');
   };
 
   const handleFocus = () => {
-    setIsFocused(true);
     if (!initialFocus && !allPasswordErrorsChecked) {
       setShowTextPassword(
-        'Include at least:' +
-          ' • 8 characters  • upper and lower case characters  • a number  • a special character'
+        'Include at least: • 8 characters • upper and lower case characters • a number • a special character'
       );
       setInitialFocus(true);
     }
   };
+
   const handleBlur = (e) => {
-    setIsFocused(false);
     setShowTextPassword('');
     validatePassword(e.target.value);
   };
 
-  // Function to validate email format
-  const validateEmail = (emailValue) => {
-    return regexEmail.test(emailValue);
-  };
-
-  // Function to validate password format
   const validatePassword = (passwordValue) => {
     const errors = {
       uppercase: !regexUpperCase.test(passwordValue),
@@ -148,17 +134,13 @@ export const RegisterForm = (props) => {
       length: !regexLength.test(passwordValue),
     };
     setPasswordErrors(errors);
-    // Check if all errors are resolved
     const allErrorsResolved = Object.values(errors).every((error) => !error);
     setAllPasswordErrorsChecked(allErrorsResolved);
-    // Set success message if all errors are resolved, otherwise clear it
     setSuccessMessage(allErrorsResolved ? 'Password accepted' : '');
   };
 
-  // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check if any of the required fields are empty or have placeholder values
     const fields = [
       {
         value: firstName.trim(),
@@ -175,41 +157,32 @@ export const RegisterForm = (props) => {
 
     fields.forEach(({ value, errorSetter, placeholder }) => {
       if (value === '' || value === placeholder) {
-        if (placeholder === 'First Name') {
-          errorSetter(`Please enter your ${placeholder.toLowerCase()}`);
-        } else {
-          errorSetter('Please enter a valid email address');
-        }
+        errorSetter(`Please enter your ${placeholder.toLowerCase()}`);
         hasEmptyField = true;
       }
     });
 
     if (!password.trim()) {
-      // Construct the complete error message for the password field
-      const errorMessagePassword =
-        'Include at least:' +
-        '• 8 characters • upper and lower case characters • a number • a special character';
-
-      // Set the error message for the empty password field
       setPasswordErrors({
         uppercase: true,
         lowercase: true,
         number: true,
         special: true,
-        length: errorMessagePassword,
+        length: true,
       });
       hasEmptyField = true;
       return;
     }
+
     if (hasEmptyField) return;
-    // Perform form submission if all validations pass
+
     if (
       firstNameErrors === '' &&
       lastNameErrors === '' &&
       emailError === '' &&
       allPasswordErrorsChecked
     ) {
-      props.onSubmitData(firstName, lastName, email, password);
+      onSubmitData(firstName, lastName, email, password);
     }
   };
 
@@ -246,56 +219,47 @@ export const RegisterForm = (props) => {
       });
   };
 
-  const errorMessagePassword = Object.entries(passwordErrors)
-    .filter((entry) => entry[1])
-    .map(([key]) => {
-      switch (key) {
-        case 'uppercase':
-        case 'lowercase':
-          return 'upper and lower case characters';
-        case 'number':
-          return 'a number';
-        case 'special':
-          return 'a special character';
-        case 'length':
-          return '8 characters';
-        default:
-          return '';
-      }
-    })
-    .reduce((acc, message) => {
-      if (message === 'upper and lower case characters') {
-        if (!acc.includes(message)) {
-          acc.push(message);
-        }
-      } else {
-        acc.push(message);
-      }
-      return acc;
-    }, [])
-    .join(', ');
+  const errorMessagePassword = Array.from(
+    new Set(
+      Object.entries(passwordErrors)
+        // eslint-disable-next-line no-unused-vars
+        .filter(([_, value]) => value)
+        .map(([key]) => {
+          switch (key) {
+          case 'uppercase':
+          case 'lowercase':
+            return 'upper and lower case characters';
+          case 'number':
+            return 'a number';
+          case 'special':
+            return 'a special character';
+          case 'length':
+            return '8 characters';
+          default:
+            return '';
+          }
+        })
+    )
+  ).join(', ');
 
   const errorMessageWithInclude = errorMessagePassword
     ? `Include at least: ${errorMessagePassword}`
     : '';
 
-  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
-    useState(false);
-
   return (
     <>
-      <Form className='py-4' onSubmit={handleSubmit} noValidate>
+      <Form className={`py-4 ${styles.form}`} onSubmit={handleSubmit} noValidate>
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput
-              className={styles.firstNameInput}
               autoComplete='off'
               required
               onChange={handleFirstNameChange}
               defaultValue={firstName}
-              isInvalid={firstNameErrors}
+              isInvalid={!!firstNameErrors}
               errors={firstNameErrors}
-              labelClassName={styles.firstNameLabel}
+              labelClassName={styles.label}
+              ref={inputRef}
             />
           </Col>
           <Col>
@@ -304,9 +268,9 @@ export const RegisterForm = (props) => {
               required
               onChange={handleLastNameChange}
               defaultValue={lastName}
-              isInvalid={lastNameErrors}
+              isInvalid={!!lastNameErrors}
               errors={lastNameErrors}
-              labelClassName={styles.LastNameLabel}
+              labelClassName={styles.label}
             />
           </Col>
         </Row>
@@ -315,20 +279,20 @@ export const RegisterForm = (props) => {
           required
           onChange={handleEmailChange}
           defaultValue={email}
-          isInvalid={emailError}
+          isInvalid={!!emailError}
           errors={emailError}
-          labelClassName={styles.emailLabel}
+          labelClassName={styles.label}
         />
         <FormPasswordInput
           required
-          type={showPassword ? 'text' : 'password'} // Toggle password visibility
+          type={showPassword ? 'text' : 'password'}
           value={password}
           onChange={handlePasswordChange}
           showPassword={showPassword}
-          setShowPassword={setShowPassword}
+          togglePasswordVisibility={togglePasswordVisibility}
           isInvalid={!!errorMessageWithInclude}
           errors={errorMessageWithInclude}
-          labelClassName={styles.PasswordLabel}
+          labelClassName={styles.label}
           successMessage={successMessage}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -337,69 +301,38 @@ export const RegisterForm = (props) => {
 
         {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
-        <Button
-          className={`primary-btn ${styles.customButton}`}
-          type='submit'
-          size='lg'
-          variant='light'>
+        <CustomButton
+          styles={`primary-light ${styles.customButton}`}
+          type='submit'>
           Sign up
-        </Button>
+        </CustomButton>
         <div className={styles.orDivider}>
           <span className={styles.dashLine}></span>
           <span className={styles.orText}>Or</span>
           <span className={styles.dashLine}></span>
         </div>
-        {/* <div className={styles.signUpText}>Or</div> */}
 
         <Row className={styles.socialButton}>
           <Col xs={12} md={6}>
-            <LoginSocialGoogle
-              client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}
-              onResolve={loginfromGoogle}
-              onReject={(err) => {
-                setErrMsg(
-                  `You are not able to login with Google.
-                  Please try again later`
-                );
-                /* eslint-disable no-console */
-                console.log(err);
-              }}>
-              <GoogleLoginButton
-                title='Google'
-                align={'center'}
-                icon={''}
-                size='45px'
-                className='tertiary-btn w-100'>
-                <img src={googleIcon} width='25' height='25' alt='' /> Google
-              </GoogleLoginButton>
-            </LoginSocialGoogle>
+            <SocialLoginButton
+              provider='google'
+              onSuccess={loginfromGoogle}
+              /* eslint-disable no-console */
+              onFailure={(err) => console.log(err)}
+            />
           </Col>
           <Col xs={12} md={6}>
-            <LoginSocialFacebook
-              appId={process.env.APP_ID}
-              onResolve={(response) => {
-                handleFacebookLoginSuccess(response);
-              }}
-              onReject={(error) => {
-                // handleFacebookLoginFailure(error);
-                /* eslint-disable no-console */
-                console.log(error);
-              }}>
-              <FacebookLoginButton
-                title='Facebook'
-                align={'center'}
-                icon={''}
-                size='45px'
-                className='tertiary-btn w-100'>
-                <img src={facebookIcon} width='25' height='25' alt='' />{' '}
-                Facebook
-              </FacebookLoginButton>
-            </LoginSocialFacebook>
+            <SocialLoginButton
+              provider='facebook'
+              onSuccess={handleFacebookLoginSuccess}
+              /* eslint-disable no-console */
+              onFailure={(error) => console.log(error)}
+            />
           </Col>
         </Row>
         <Row className='justify-content-center'>
           <div className={styles.alreadyMember}>
-            Already a member?
+            Already a member?{' '}
             <NavLink className={styles.loginLink} to='/signin'>
               Log in
             </NavLink>
@@ -410,9 +343,9 @@ export const RegisterForm = (props) => {
   );
 };
 
-export default RegisterForm;
 RegisterForm.propTypes = {
   onSubmitData: PropTypes.func,
-  email: PropTypes.string,
   errorMessage: PropTypes.string,
 };
+
+export default RegisterForm;
