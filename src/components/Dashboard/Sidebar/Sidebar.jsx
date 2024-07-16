@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext , useState } from 'react';
 import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '@api';
+import { AuthContext } from '@context/AuthContext';
 import kidsFirstLogo from '@media/logo/LOGO-BYME.png';
 
 import styles from './Sidebar.module.css';
@@ -69,7 +70,8 @@ SidebarItemsCard.propTypes = {
 const Sidebar = ({ onTitleChange }) => {
   const [activeLink, setActiveLink] = useState(null);
   const navigate = useNavigate();
-
+  const { logout: authContextLogout } = useContext(AuthContext);
+  
   const handleClick = (title, path) => {
     if (title === 'Logout') {
       handleLogout();
@@ -81,17 +83,14 @@ const Sidebar = ({ onTitleChange }) => {
 
   const handleLogout = async () => {
     try {
-      const authToken = localStorage.getItem('authToken');
-      if (!authToken) {
-        // Token not found in local storage, handle accordingly (possibly already logged out)
-        return navigate('/signin');
-      }
-
-      const response = await logout(authToken);
+       
+      const response = await logout();
 
       if (response.status === 200) {
-        // Clear local storage upon successful logout
-        localStorage.removeItem('authToken');
+
+        authContextLogout(); // This will update the isLoggedIn state to false
+        
+        // Clear session storage upon successful logout
         sessionStorage.removeItem('storedUser');
         navigate('/signin');
       } else {

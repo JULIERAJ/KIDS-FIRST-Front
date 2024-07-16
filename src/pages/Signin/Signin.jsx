@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useContext , useRef , useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
+import { AuthContext } from '@context/AuthContext';
 import { EMAIL_REG_EXP } from '@utils/regexPatterns';
 
 import styles from './Signin.module.css';
@@ -23,7 +24,7 @@ export default function Signin() {
   const navigate = useNavigate();
 
   const inputRef = useRef(null);
-
+  const { login: authContextLogin } = useContext(AuthContext);
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -41,13 +42,11 @@ export default function Signin() {
     if (validateEmail) {
       login(email, password)
         .then((res) => {
-          const { token, ...userData } = res.data;
-          // Store the token in localStorage
-          localStorage.setItem('authToken', token);
-
-          // Store the remaining user data in sessionStorage or localStorage based on rememberMe
+          const userData = res.data;
+          authContextLogin(); // This will update the isLoggedIn state to true
           const user = JSON.stringify(userData);
           if (rememberMe) {
+          // Update the strategy here based on the final implementation decision for the rememberMe functionality.
             localStorage.setItem('storedUser', user);
           } else {
             sessionStorage.setItem('storedUser', user);
@@ -90,13 +89,15 @@ export default function Signin() {
   const handleFacebookLoginSuccess = (response) => {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
-        const { token, ...userData } = res.data;
-        // Store the token in localStorage
-        localStorage.setItem('authToken', token);
+        const userData = res.data;
+
+        authContextLogin(); // This will update the isLoggedIn state to true
 
         // Store the remaining user data in sessionStorage or localStorage based on rememberMe
         const user = JSON.stringify(userData);
+
         if (rememberMe) {
+          // Update the strategy here based on the final implementation decision for the rememberMe functionality.
           localStorage.setItem('storedUser', user);
         } else {
           sessionStorage.setItem('storedUser', user);
@@ -113,13 +114,15 @@ export default function Signin() {
   const loginfromGoogle = (response) => {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
-        const { token, ...userData } = res.data;
-        // Store the token in localStorage
-        localStorage.setItem('authToken', token);
+        const userData = res.data;
+
+        authContextLogin(); // This will update the isLoggedIn state to true
 
         // Store the remaining user data in sessionStorage or localStorage based on rememberMe
         const user = JSON.stringify(userData);
+        
         if (rememberMe) {
+          // Update the strategy here based on the final implementation decision for the rememberMe functionality.
           localStorage.setItem('storedUser', user);
         } else {
           sessionStorage.setItem('storedUser', user);
