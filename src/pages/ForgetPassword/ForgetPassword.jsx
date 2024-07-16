@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Container, Form, Row, Col } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { forgetPassword } from '@api';
 
@@ -44,56 +44,49 @@ export default function ForgetPassword() {
     }
   };
 
-  const handleResendEmail = async () => {
-    setSuccess(false);
-    setSentEmail(false);
-    setErrMsg('');
-    try {
-      const res = await forgetPassword(email);
-      if (res.status === 200) {
-        setEmail('');
-        setSentEmail(true);
-        setSuccess(true);
-      } else {
-        setErrMsg(res.message);
-      }
-    } catch (err) {
-      //eslint-disable-next-line
-      console.error(err);
-      setErrMsg('An error occurred while resending the email. Please try again later.');
-    }
-  };
+  // const handleResendEmail = async () => {
+  //   setSuccess(false);
+  //   setSentEmail(false);
+  //   setErrMsg('');
+  //   try {
+  //     const res = await forgetPassword(email);
+  //     if (res.status === 200) {
+  //       setEmail('');
+  //       setSentEmail(true);
+  //       setSuccess(true);
+  //     } else {
+  //       setErrMsg(res.message);
+  //     }
+  //   } catch (err) {
+  //     //eslint-disable-next-line
+  //     console.error(err);
+  //     setErrMsg('An error occurred while resending the email. Please try again later.');
+  //   }
+  // };
 
   return (
     <Container className={styles.page}>
-      <Header/>
+      <Header />
       <Container className={styles.page__window}>
         <div>
           <Row>
-            <Col className="d-flex justify-content-center align-items-center">
+            <Col className="d-flex px-0 justify-content-center align-items-center">
               <div>
                 <Form
                   className={`content-layout ${styles.page__wrapper}`}
                   onSubmit={handleForgotPassword}>
-                  <h1 className={styles.page__title}>Forgot Password</h1>
+                  <h2 className={styles.page__title}>Forgot Password</h2>
                   {success && sentEmail ? (
                     <>
                       <div className={styles.success}>
-                        <img src={logoEmailSent} alt="email-sent-logo" />
-                        <span>Check you email</span>
+                        <img className={styles.success__icon} src={logoEmailSent} alt="email-sent-icon" />
+                        <h3 className={styles.success__title}>Check you email</h3>
                         <br />
-                        <span>
+                        <span className={styles.success__text}>
                           A link to reset your password has been sent to{' '}
                           <strong>{emailDisplay.current}</strong>
                         </span>
                       </div>
-
-                      <Link
-                        type="button"
-                        className={`btn checkbox mb-3 ${styles.resend__email}`}
-                        onClick={() => handleResendEmail()}>
-                        Resend Email
-                      </Link>
                     </>
                   ) : !success && errMsg ? (
                     <MessageBar variant="error">{errMsg}</MessageBar>
@@ -101,7 +94,7 @@ export default function ForgetPassword() {
 
                   {success && sentEmail ? null : (
                     <>
-                      <p className={styles.text}>
+                      <p className={styles.page__text}>
                         Please enter your account email address and we will send instructions to
                         reset your password.
                       </p>
@@ -113,7 +106,7 @@ export default function ForgetPassword() {
                         className={styles.input__email}
                       />
                       <CustomButton
-                        styles={`primary-light ${styles.customButton}`}
+                        styles={`primary-light ${styles.page__customButton}`}
                         type="submit"
                         size="lg"
                         variant="light">
@@ -121,7 +114,7 @@ export default function ForgetPassword() {
                       </CustomButton>
                     </>
                   )}
-                  <NavLink to="/signin" className={styles.forget__password}>
+                  <NavLink to="/signin" className={styles.page__link}>
                     Back to Log in
                   </NavLink>
                 </Form>
