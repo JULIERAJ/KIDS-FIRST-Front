@@ -67,34 +67,34 @@ export default function ForgetPassword() {
   return (
     <Container className={styles.page}>
       <Header />
-      <Container className={styles.page__window}>
+      <Container className={styles['page-window']}>
         <div>
           <Row>
             <Col className="d-flex px-0 justify-content-center align-items-center">
               <div>
                 <Form
-                  className={`content-layout ${styles.page__wrapper}`}
+                  className={`content-layout ${styles['page-wrapper']}`}
                   onSubmit={handleForgotPassword}>
-                  <h2 className={styles.page__title}>Forgot Password</h2>
+                  <></>
+                  <h2 className={styles['page-title']}>Forgot Password</h2>
                   {success && sentEmail ? (
-                    <>
-                      <div className={styles.success}>
-                        <img className={styles.success__icon} src={logoEmailSent} alt="email-sent-icon" />
-                        <h3 className={styles.success__title}>Check you email</h3>
+                    <section className={styles.success}>
+                      <img className={styles['success-icon']} src={logoEmailSent} alt="email-sent-icon" />
+                      <h3 className={styles['success-heading']}>Check you email</h3>
 
-                        <span className={styles.success__text}>
-                          A link to reset your password has been sent to{' '}
-                          <strong>{emailDisplay.current}</strong>
-                        </span>
-                      </div>
-                    </>
+                      <span className={styles['success-text']}>
+                        A link to reset your password has been sent to{' '}
+                        <strong>{emailDisplay.current}</strong>
+                      </span>
+                    </section>
+
                   ) : !success && errMsg ? (
                     <MessageBar variant="error">{errMsg}</MessageBar>
                   ) : null}
 
                   {success && sentEmail ? null : (
-                    <>
-                      <p className={styles.page__text}>
+                    <section className={styles.reset}>
+                      <p className={styles['reset-text']}>
                         Please enter your account email address and we will send instructions to
                         reset your password.
                       </p>
@@ -103,18 +103,18 @@ export default function ForgetPassword() {
                         value={email}
                         required
                         label="Email"
-                        className={styles.input__email}
+                        className={styles['reset-input']}
                       />
                       <CustomButton
-                        styles={`primary-light ${styles.page__customButton}`}
+                        styles={`primary-light ${styles['reset-custom-button']}`}
                         type="submit"
                         size="lg"
                         variant="light">
                         Next
                       </CustomButton>
-                    </>
+                    </section>
                   )}
-                  <NavLink to="/signin" className={styles.page__link}>
+                  <NavLink to="/signin" className={styles['page-link']}>
                     Back to Log in
                   </NavLink>
                 </Form>
