@@ -204,6 +204,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   };
 
   const handleFacebookLoginSuccess = (response) => {
+    console.log(response);
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
         setSuccessSo(true);
