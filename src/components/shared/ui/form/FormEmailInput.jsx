@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import { validateEmail } from '@utils/errorUtils';
+import { validateEmail } from '@utils/validationUtils';
 
 import FormInput from './FormInput';
 

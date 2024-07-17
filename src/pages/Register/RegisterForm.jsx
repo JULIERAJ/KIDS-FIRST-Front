@@ -13,24 +13,14 @@ import {
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
-import { handleCommonErrors } from '@utils/errorUtils'; 
+import { 
+  handleCommonErrors,
+  validateName,
+  validateEmail,
+  validatePassword
+} from '@utils/validationUtils'; 
 
 import styles from './Register.module.css';
-
-const regexUpperCase = /[A-Z]/;
-const regexLowerCase = /[a-z]/;
-const regexNumber = /\d/;
-const regexSpecialChar = /[!@#$%^&*()_+=[\]{};':"\\|,.<>?-]/;
-const regexLength = /^.{8,40}$/;
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const updateErrorMessage = (errorMessagePassword, setErrorMessage) => {
-  const errorMessageWithInclude = errorMessagePassword
-    ? `Include at least: ${errorMessagePassword}`
-    : '';
-
-  setErrorMessage(errorMessageWithInclude || errorMessagePassword);
-};
 
 const RegisterForm = ({ onSubmitData, errorMsg }) => {
   const [firstName, setFirstName] = useState('');
@@ -79,8 +69,6 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
     }
   };
 
-  const validateName = (name) => /^[a-zA-Z]*$/.test(name);
-
   const handleLastNameChange = (e) => {
     const value = e.target.value.trim();
     let newErrors = '';
@@ -99,7 +87,7 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
     if (emailValue === '') {
       setEmailError('Please enter your email address.');
     } else {
-      if (!regexEmail.test(emailValue)) {
+      if (!validateEmail(emailValue)) {
         setEmailError('Please enter a valid email address.');
       } else {
         setEmailError('');
@@ -111,7 +99,7 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
     setShowTextPassword('');
-    validatePassword(passwordValue);
+    validatePassword(passwordValue, setErrorMessage, setAllPasswordErrorsChecked, setSuccessMessage);
   };
 
   const handleFocus = () => {
@@ -125,45 +113,7 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
 
   const handleBlur = (e) => {
     setShowTextPassword('');
-    validatePassword(e.target.value);
-  };
-
-  const validatePassword = (passwordValue) => {
-    const errors = {
-      uppercase: !regexUpperCase.test(passwordValue),
-      lowercase: !regexLowerCase.test(passwordValue),
-      number: !regexNumber.test(passwordValue),
-      special: !regexSpecialChar.test(passwordValue),
-      length: !regexLength.test(passwordValue),
-    };
-    const allErrorsResolved = Object.values(errors).every((error) => !error);
-    setAllPasswordErrorsChecked(allErrorsResolved);
-    setSuccessMessage(allErrorsResolved ? 'Password accepted' : '');
-
-    const errorMessagePassword = Array.from(
-      new Set(
-        Object.entries(errors)
-          // eslint-disable-next-line no-unused-vars
-          .filter(([_, value]) => value)
-          .map(([key]) => {
-            switch (key) {
-            case 'uppercase':
-            case 'lowercase':
-              return 'upper and lower case characters';
-            case 'number':
-              return 'a number';
-            case 'special':
-              return 'a special character';
-            case 'length':
-              return '8 characters';
-            default:
-              return '';
-            }
-          })
-      )
-    ).join(', ');
-
-    updateErrorMessage(errorMessagePassword, setErrorMessage);
+    validatePassword(e.target.value, setErrorMessage, setAllPasswordErrorsChecked, setSuccessMessage);
   };
 
   const handleSubmit = (e) => {

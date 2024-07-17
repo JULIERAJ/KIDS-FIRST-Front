@@ -8,8 +8,7 @@ import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
-
-import { validateEmail, handleCommonErrors } from '@utils/errorUtils';
+import { validateEmail, handleCommonErrors } from '@utils/validationUtils';
 
 import styles from './Signin.module.css';
 
@@ -31,7 +30,7 @@ export default function Signin() {
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
-  
+
   const handleLogin = (e) => {
     e.preventDefault();
     setErrorMessage('');
