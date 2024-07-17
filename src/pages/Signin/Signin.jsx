@@ -43,7 +43,8 @@ export default function Signin() {
       login(email, password)
         .then((res) => {
           const userData = res.data;
-          authContextLogin(); // This will update the isLoggedIn state to true
+          authContextLogin(userData); // This will update the isLoggedIn state to true and set user name and initials
+          
           const user = JSON.stringify(userData);
           if (rememberMe) {
           // Update the strategy here based on the final implementation decision for the rememberMe functionality.
