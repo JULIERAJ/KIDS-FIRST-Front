@@ -9,7 +9,7 @@ import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
-import { EMAIL_REG_EXP } from '@utils/regexPatterns';
+import { validateEmail, handleCommonErrors } from '@utils/errorUtils';
 
 import styles from './Signin.module.css';
 
@@ -31,52 +31,45 @@ export default function Signin() {
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+  
   const handleLogin = (e) => {
     e.preventDefault();
     setErrorMessage('');
-    // console.log('Email:', email);
-    // console.log('Password:', password);
-    // console.log('Remember Me:', rememberMe);
-
-    if (validateEmail) {
-      login(email, password)
-        .then((res) => {
-          const { token, ...userData } = res.data;
-          // Store the token in localStorage
-          localStorage.setItem('authToken', token);
-
-          // Store the remaining user data in sessionStorage or localStorage based on rememberMe
-          const user = JSON.stringify(userData);
-          if (rememberMe) {
-            localStorage.setItem('storedUser', user);
-          } else {
-            sessionStorage.setItem('storedUser', user);
-          }
-          navigate('/dashboard');
-        })
-        .catch(({ response }) => {
-          if (response.status === 404) {
-            setErrorMessage(
-              'This account doesn\'t exist. Please enter a different email address or try "Sign Up".'
-            );
-          } else if (response.status === 401) {
-            setErrorMessage('Invalid password or email address');
-          } else {
-            setErrorMessage(
-              'An unknown error occurred. Please try again later.'
-            );
-          }
-        });
+    if (!email) {
+      setEmailError('Please enter a valid email address.');
     }
-  };
-  // Function to validate email format
-  const validateEmail = (emailValue) => {
-    return EMAIL_REG_EXP.test(emailValue);
+
+    if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email address.');
+    }
+
+    login(email, password)
+      .then((res) => {
+        const { token, ...userData } = res.data;
+        localStorage.setItem('authToken', token);
+        const user = JSON.stringify(userData);
+        if (rememberMe) {
+          localStorage.setItem('storedUser', user);
+        } else {
+          sessionStorage.setItem('storedUser', user);
+        }
+        setEmailError('');
+        navigate('/dashboard');
+      })
+      .catch(({ response }) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+        if (response.data.error.includes('email')) {
+          setEmailError('Please enter a valid email address.');
+        } else {
+          handleCommonErrors(response, setErrorMessage);
+        }
+      });
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    if (!validateEmail(email)) {
+    if (!validateEmail(e.target.value)) {
       setEmailError('Please enter a valid email address.');
     } else {
       setEmailError('');
@@ -91,10 +84,7 @@ export default function Signin() {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
         const { token, ...userData } = res.data;
-        // Store the token in localStorage
         localStorage.setItem('authToken', token);
-
-        // Store the remaining user data in sessionStorage or localStorage based on rememberMe
         const user = JSON.stringify(userData);
         if (rememberMe) {
           localStorage.setItem('storedUser', user);
@@ -103,21 +93,16 @@ export default function Signin() {
         }
         navigate('/dashboard');
       })
-      .catch(() => {
-        setErrorMessage(
-          'Your email address or password is incorrect. Please try again, or click "Forgot your password"'
-        );
+      .catch(({ response }) => {
+        handleCommonErrors(response, setErrorMessage);
       });
   };
 
-  const loginfromGoogle = (response) => {
+  const loginFromGoogle = (response) => {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
         const { token, ...userData } = res.data;
-        // Store the token in localStorage
         localStorage.setItem('authToken', token);
-
-        // Store the remaining user data in sessionStorage or localStorage based on rememberMe
         const user = JSON.stringify(userData);
         if (rememberMe) {
           localStorage.setItem('storedUser', user);
@@ -125,13 +110,9 @@ export default function Signin() {
           sessionStorage.setItem('storedUser', user);
         }
         navigate('/dashboard');
-        // eslint-disable-next-line
-        console.groupCollapsed(response.data);
       })
-      .catch(() => {
-        setErrorMessage(
-          'Log-in unsuccessful. Please try again later, or sign-up.'
-        );
+      .catch(({ response }) => {
+        handleCommonErrors(response, setErrorMessage);
       });
   };
 
@@ -143,20 +124,19 @@ export default function Signin() {
           <Row>
             <Col className={styles.page__wrapper}>
               <h1 className={styles.login__title}>
-                    Welcome back to Kids First{' '}
+                Welcome back to Kids First{' '}
               </h1>
-              <Form className={`py-4 ${styles.form}`} onSubmit={handleLogin} noValidate >
+              <Form className={`py-4 ${styles.form}`} onSubmit={handleLogin} noValidate>
                 <FormEmailInput
                   ref={inputRef}
                   autoComplete='off'
                   required
                   onChange={handleEmailChange}
                   defaultValue={email}
-                  isInvalid={emailError}
+                  isInvalid={!!emailError}
                   errors={emailError}
                   labelClassName={styles.label}
                 />
-
                 <FormPasswordInput
                   required
                   type={showPassword ? 'text' : 'password'}
@@ -178,7 +158,7 @@ export default function Signin() {
                     />
                     <label className={styles.checkboxLabel}>
                       {' '}
-                          Remember me
+                      Remember me
                     </label>
                   </div>
                   <div>
@@ -186,14 +166,14 @@ export default function Signin() {
                       className={styles.forgetPasswordLabel}
                       to='/forgot-password'
                     >
-                          Forgot your password?
+                      Forgot your password?
                     </NavLink>
                   </div>
                 </div>
                 <CustomButton
                   styles={`primary-light ${styles.customButton}`}
                   type='submit'>
-                      Log In
+                  Log In
                 </CustomButton>
                 <div className={styles.orDivider}>
                   <span className={styles.dashLine}></span>
@@ -204,8 +184,8 @@ export default function Signin() {
                   <Col xs={12} md={6}>
                     <SocialLoginButton
                       provider='google'
-                      onSuccess={loginfromGoogle}
-                      /* eslint-disable no-console */
+                      onSuccess={loginFromGoogle}
+                      // eslint-disable-next-line no-console
                       onFailure={(err) => console.log(err)}
                     />
                   </Col>
@@ -213,16 +193,16 @@ export default function Signin() {
                     <SocialLoginButton
                       provider='facebook'
                       onSuccess={handleFacebookLoginSuccess}
-                      /* eslint-disable no-console */
+                      // eslint-disable-next-line no-console
                       onFailure={(error) => console.log(error)}
                     />
                   </Col>
                 </Row>
                 <Row className='justify-content-center'>
                   <div className={styles.alreadyMember}>
-                        Not a member?
+                    Not a member?
                     <NavLink className={styles.registerLink} to='/register'>
-                          Sign up
+                      Sign up
                     </NavLink>
                   </div>
                 </Row>
