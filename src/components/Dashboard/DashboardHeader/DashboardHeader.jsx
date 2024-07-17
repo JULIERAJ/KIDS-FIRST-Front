@@ -4,8 +4,6 @@ import { Container } from 'react-bootstrap';
 import styles from './DashboardHeader.module.css';
 
 const DashboardHeader = ({ title , user }) => {
-  // eslint-disable-next-line no-console
-  console.log(user);
   const { firstName , lastName } = user;
   const initial = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   return (
