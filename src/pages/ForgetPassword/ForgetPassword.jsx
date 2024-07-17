@@ -44,26 +44,6 @@ export default function ForgetPassword() {
     }
   };
 
-  // const handleResendEmail = async () => {
-  //   setSuccess(false);
-  //   setSentEmail(false);
-  //   setErrMsg('');
-  //   try {
-  //     const res = await forgetPassword(email);
-  //     if (res.status === 200) {
-  //       setEmail('');
-  //       setSentEmail(true);
-  //       setSuccess(true);
-  //     } else {
-  //       setErrMsg(res.message);
-  //     }
-  //   } catch (err) {
-  //     //eslint-disable-next-line
-  //     console.error(err);
-  //     setErrMsg('An error occurred while resending the email. Please try again later.');
-  //   }
-  // };
-
   return (
     <Container className={styles.page}>
       <Header />
