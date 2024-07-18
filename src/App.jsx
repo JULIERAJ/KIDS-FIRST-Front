@@ -49,6 +49,7 @@ const App = () => (
               />
               <Route path='homedashboard' element={<HomeDashboard />} />
             </Route>
+            <Route path='/logout' />
         
           </Route>
         

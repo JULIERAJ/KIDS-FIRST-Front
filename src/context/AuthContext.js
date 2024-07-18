@@ -6,7 +6,8 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
@@ -19,20 +20,24 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(false);
       }
     };
-
-    checkAuthStatus();
+    
+    if (window.location.pathname.startsWith('/dashboard')) {
+      checkAuthStatus();
+    }
   }, []);
 
-  const login = () => {
+  const login = (userData) => {
     setIsLoggedIn(true);
+    setUser(userData);
   };
 
   const logout = () => {
     setIsLoggedIn(false);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout , user }}>
       {children}
     </AuthContext.Provider>
   );
