@@ -1,13 +1,22 @@
+import React from 'react';
+import {
+  Navigate,
+  Outlet
+} from 'react-router-dom';
 
-import React, { useContext } from 'react';
-import { Outlet , Navigate } from 'react-router-dom';
-
-import { AuthContext } from '../context/AuthContext';
+import Loader from '@components/shared/ui/Loader/Loader';
+import { useAuth } from '@context/AuthContext';
 
 const ProtectedRoute = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, loading } = useAuth();
 
-  return (isLoggedIn)? <Outlet /> : <Navigate to='./Signin'/>;
+  if (loading) {
+    return (
+      <Loader />
+    );
+  }
+
+  return isLoggedIn ? <Outlet /> : <Navigate to='/signin' />;
 };
 
 export default ProtectedRoute;
