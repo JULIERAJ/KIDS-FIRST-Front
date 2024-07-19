@@ -12,8 +12,14 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = sessionStorage.getItem('storedUser') || localStorage.getItem('storedUser');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsLoggedIn(true);
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+        setIsLoggedIn(true);
+      } catch (error) {
+        sessionStorage.removeItem('storedUser');
+        localStorage.removeItem('storedUser');
+      }
     }
     setLoading(false); 
   }, []); 
