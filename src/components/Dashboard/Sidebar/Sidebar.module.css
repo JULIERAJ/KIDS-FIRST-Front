@@ -61,7 +61,6 @@
   outline: none;
   border: 0.25rem solid #ef8a37;
   transition: all 0.3s ease;
-  font-weight: 700;
 }
 
 .nav:hover {
