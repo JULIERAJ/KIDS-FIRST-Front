@@ -17,7 +17,6 @@ import Signin from '@pages/Signin';
 import ProtectedRoute from '@utils/protectedRoute';
 
 const App = () => (
-  
   <AuthProvider>
     <BrowserRouter>
       <Routes>
@@ -37,7 +36,6 @@ const App = () => (
             element={<Activate />}
           />
           <Route element={<ProtectedRoute/>}>
-        
             <Route path='/dashboard/*' element={<Dashboard />}>
               <Route
                 path='calendarview'
@@ -48,9 +46,12 @@ const App = () => (
                 }
               />
               <Route path='homedashboard' element={<HomeDashboard />} />
+              {/* Need to add them when Sidebar component is refactored and uses path via router */}
+              {/* <Route path='kids' />
+              <Route path='messages' />
+              <Route path='logout' />
+              <Route path='help' /> */}
             </Route>
-            <Route path='/logout' />
-        
           </Route>
         
           <Route path='/forgot-password' element={<ForgetPassword />} />

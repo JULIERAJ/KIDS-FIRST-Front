@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useContext , useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '@api';
-import { AuthContext } from '@context/AuthContext';
+import { useAuth } from '@context/AuthContext';
 import kidsFirstLogo from '@media/logo/LOGO-BYME.png';
 
 import styles from './Sidebar.module.css';
@@ -70,7 +70,7 @@ SidebarItemsCard.propTypes = {
 const Sidebar = ({ onTitleChange }) => {
   const [activeLink, setActiveLink] = useState(null);
   const navigate = useNavigate();
-  const { logout: authContextLogout } = useContext(AuthContext);
+  const { logout: authContextLogout } = useAuth();
   
   const handleClick = (title, path) => {
     if (title === 'Logout') {
@@ -83,19 +83,12 @@ const Sidebar = ({ onTitleChange }) => {
 
   const handleLogout = async () => {
     try {
-       
       const response = await logout();
-
       if (response.status === 200) {
-
-        authContextLogout(); // This will update the isLoggedIn state to false
-        
-        // Clear session storage upon successful logout
-        sessionStorage.removeItem('storedUser');
+        authContextLogout(); 
         navigate('/signin');
       } else {
         console.error('Logout failed:', response.data.error);
-        // Handle error response (e.g., unauthorized logout attempt)
       }
     } catch (error) {
       console.error('Error during logout:', error.message);
