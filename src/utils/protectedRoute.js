@@ -8,7 +8,7 @@ import { useAuth } from '@context/AuthContext';
 
 const ProtectedRoute = () => {
   const { isLoggedIn, loading } = useAuth();
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
