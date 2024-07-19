@@ -73,12 +73,8 @@ const Activate = () => {
         />
         <Container className='content-layout py-4'>
           <FatherSonBlock>
-            {/* <h1 className={styles.registerTitle}>Email verified</h1> */}
-
-            {/* Show loading message while fetching data */}
             {loading && <p>Loading...</p>}
 
-            {/* Show success message if email is activated */}
             {!loading && userData.emailIsActivated && (
               <>
                 <div className={styles.emailverified}>
@@ -120,19 +116,17 @@ const Activate = () => {
                     <div className={styles.emailverifiedoutercontainer}>
                       <div className={styles.emailverifiedinnercontainer}>
                         <h1 className={styles.registerTitle}>Link Expired</h1>
-                        {/* <h1 className={styles.registerTitle}>Something went wrong!</h1> */}
+
                         <FeedbackBlock
                           message={
                             <span className={styles.displaymessage}>
                               This verification link is no longer valid
                             </span>
                           }
-                          //message='Verification was unsuccessful'
                           image={emailverified}
                         />
                       </div>
                       <div className={styles.nextMessage}>
-                        {/* <p> Your email address has been verified</p> */}
                         Please check{email} for the latest verification email to
                         continue
                       </div>
@@ -150,33 +144,26 @@ const Activate = () => {
               </>
             )}
 
-            {/* {!loading && !userData.emailIsActivated && expired && (
-            <div>
-              <p>The link was expired</p>
-            </div>
-          )} */}
             {!loading && !userData.emailIsActivated && !expired && (
               <>
-                <div className={styles.emailverified}>
+                <div className={styles['email-verified']}>
                   <div className={styles.emailverifiedpage}>
                     <div className={styles.emailverifiedoutercontainer}>
                       <div className={styles.emailverifiedinnercontainer}>
                         <h1 className={styles.registerTitle}>
                           Something went wrong!
                         </h1>
-                        {/* <h1 className={styles.registerTitle}>Something went wrong!</h1> */}
+
                         <FeedbackBlock
                           message={
                             <span className={styles.displaymessage}>
                               Verification was unsuccessful
                             </span>
                           }
-                          //message='Verification was unsuccessful'
                           image={emailverified}
                         />
                       </div>
                       <div className={styles.nextMessage}>
-                        {/* <p> Your email address has been verified</p> */}
                         Please sign up again to receive a new link
                       </div>
                     </div>
