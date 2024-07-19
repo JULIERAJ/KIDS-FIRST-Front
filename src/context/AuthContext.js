@@ -32,7 +32,10 @@ const AuthProvider = ({ children }) => {
   const login = (userData, rememberMe = false) => {
     setIsLoggedIn(true);
     setUser(userData);
-    Cookies.set('user', JSON.stringify(userData), { expires: rememberMe ? 30 : 1 });
+    const COOKIE_EXPIRATION_REMEMBER_ME = parseInt(process.env.REACT_APP_COOKIE_EXPIRATION_REMEMBER_ME, 10) || 30;
+    const COOKIE_EXPIRATION_DEFAULT = parseInt(process.env.REACT_APP_COOKIE_EXPIRATION_DEFAULT, 10) || 1;
+    const expires = rememberMe ? COOKIE_EXPIRATION_REMEMBER_ME : COOKIE_EXPIRATION_DEFAULT;
+    Cookies.set('user', JSON.stringify(userData), { expires });
     setError(null); 
   };
 
