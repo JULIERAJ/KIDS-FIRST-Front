@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef , useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
+import { useAuth } from '@context/AuthContext';
 import { validateEmail, handleCommonErrors } from '@utils/validationUtils';
 
 import styles from './Signin.module.css';
@@ -22,6 +23,7 @@ export default function Signin() {
   const navigate = useNavigate();
 
   const inputRef = useRef(null);
+  const { login: authContextLogin } = useAuth();
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -38,32 +40,27 @@ export default function Signin() {
       setEmailError('Please enter a valid email address.');
     }
 
-    if (!validateEmail(email)) {
-      setEmailError('Please enter a valid email address.');
+    if (validateEmail) {
+      login(email, password)
+        .then((res) => {
+          const userData = res.data;
+          authContextLogin(userData, rememberMe);
+          navigate('/dashboard');
+        })
+        .catch(({ response }) => {
+          if (response.status === 404) {
+            setErrorMessage(
+              'This account doesn\'t exist. Please enter a different email address or try "Sign Up".'
+            );
+          } else if (response.status === 401) {
+            setErrorMessage('Invalid password or email address');
+          } else {
+            setErrorMessage(
+              'An unknown error occurred. Please try again later.'
+            );
+          }
+        });
     }
-
-    login(email, password)
-      .then((res) => {
-        const { token, ...userData } = res.data;
-        localStorage.setItem('authToken', token);
-        const user = JSON.stringify(userData);
-        if (rememberMe) {
-          localStorage.setItem('storedUser', user);
-        } else {
-          sessionStorage.setItem('storedUser', user);
-        }
-        setEmailError('');
-        navigate('/dashboard');
-      })
-      .catch(({ response }) => {
-        // eslint-disable-next-line no-console
-        console.log(response);
-        if (response.data.error.includes('email')) {
-          setEmailError('Please enter a valid email address.');
-        } else {
-          handleCommonErrors(response, setErrorMessage);
-        }
-      });
   };
 
   const handleEmailChange = (e) => {
@@ -82,14 +79,8 @@ export default function Signin() {
   const handleFacebookLoginSuccess = (response) => {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
-        const { token, ...userData } = res.data;
-        localStorage.setItem('authToken', token);
-        const user = JSON.stringify(userData);
-        if (rememberMe) {
-          localStorage.setItem('storedUser', user);
-        } else {
-          sessionStorage.setItem('storedUser', user);
-        }
+        const userData = res.data;
+        authContextLogin(userData);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
@@ -100,14 +91,8 @@ export default function Signin() {
   const loginFromGoogle = (response) => {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
-        const { token, ...userData } = res.data;
-        localStorage.setItem('authToken', token);
-        const user = JSON.stringify(userData);
-        if (rememberMe) {
-          localStorage.setItem('storedUser', user);
-        } else {
-          sessionStorage.setItem('storedUser', user);
-        }
+        const userData = res.data;
+        authContextLogin(userData);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
