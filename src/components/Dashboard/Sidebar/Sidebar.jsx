@@ -52,7 +52,7 @@ const SidebarItemsCard = ({
       onKeyDown={handleKeyDown}
     >
       {isActive ? activeIcon : (isHovered ? hoverIcon : icon)}
-      <span className={styles.sidebarMenuItem}>{title}</span>
+      <span>{title}</span>
     </Nav.Item>
   );
 };
