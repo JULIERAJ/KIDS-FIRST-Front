@@ -4,7 +4,6 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { loginFacebook, loginSocial } from '@api';
-import MessageBar from '@components/MessageBar';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
 import {
@@ -14,38 +13,29 @@ import {
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
+import { 
+  handleCommonErrors,
+  validateName,
+  validateEmail,
+  validatePassword
+} from '@utils/validationUtils'; 
+
 import styles from './Register.module.css';
 
-const regexUpperCase = /[A-Z]/;
-const regexLowerCase = /[a-z]/;
-const regexNumber = /\d/;
-const regexSpecialChar = /[!@#$%^&*()_+=[\]{};':"\\|,.<>?-]/;
-const regexLength = /^.{8,40}$/;
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const RegisterForm = ({ onSubmitData, errorMessage }) => {
+const RegisterForm = ({ onSubmitData, errorMsg }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [errorMessage, setErrorMessage] = useState(errorMsg || '');
   const [showPassword, setShowPassword] = useState(false);
-  const [errMsgSocial, setErrMsgSocial] = useState('');
-  const [successSo, setSuccessSo] = useState(true);
   const [successMessage, setSuccessMessage] = useState('');
   const [initialFocus, setInitialFocus] = useState(false);
   const [showTextPassword, setShowTextPassword] = useState('');
-  const [passwordErrors, setPasswordErrors] = useState({
-    uppercase: false,
-    lowercase: false,
-    number: false,
-    special: false,
-    length: false,
-  });
   const [firstNameErrors, setFirstNameErrors] = useState('');
   const [lastNameErrors, setLastNameErrors] = useState('');
-  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
-    useState(false);
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] = useState(false);
   const inputRef = useRef();
 
   const navigate = useNavigate();
@@ -55,10 +45,11 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   }, []);
 
   useEffect(() => {
-    if (errorMessage) {
-      setEmailError(errorMessage);
+    if (errorMsg) {
+      setErrorMessage(errorMsg);
+      setSuccessMessage('');
     }
-  }, [errorMessage]);
+  }, [errorMsg, errorMessage]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -78,8 +69,6 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
     }
   };
 
-  const validateName = (name) => /^[a-zA-Z]*$/.test(name);
-
   const handleLastNameChange = (e) => {
     const value = e.target.value.trim();
     let newErrors = '';
@@ -98,7 +87,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
     if (emailValue === '') {
       setEmailError('Please enter your email address.');
     } else {
-      if (!regexEmail.test(emailValue)) {
+      if (!validateEmail(emailValue)) {
         setEmailError('Please enter a valid email address.');
       } else {
         setEmailError('');
@@ -107,8 +96,10 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
     setShowTextPassword('');
+    validatePassword(passwordValue, setErrorMessage, setAllPasswordErrorsChecked, setSuccessMessage);
   };
 
   const handleFocus = () => {
@@ -122,21 +113,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
   const handleBlur = (e) => {
     setShowTextPassword('');
-    validatePassword(e.target.value);
-  };
-
-  const validatePassword = (passwordValue) => {
-    const errors = {
-      uppercase: !regexUpperCase.test(passwordValue),
-      lowercase: !regexLowerCase.test(passwordValue),
-      number: !regexNumber.test(passwordValue),
-      special: !regexSpecialChar.test(passwordValue),
-      length: !regexLength.test(passwordValue),
-    };
-    setPasswordErrors(errors);
-    const allErrorsResolved = Object.values(errors).every((error) => !error);
-    setAllPasswordErrorsChecked(allErrorsResolved);
-    setSuccessMessage(allErrorsResolved ? 'Password accepted' : '');
+    validatePassword(e.target.value, setErrorMessage, setAllPasswordErrorsChecked, setSuccessMessage);
   };
 
   const handleSubmit = (e) => {
@@ -163,13 +140,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
     });
 
     if (!password.trim()) {
-      setPasswordErrors({
-        uppercase: true,
-        lowercase: true,
-        number: true,
-        special: true,
-        length: true,
-      });
+      setErrorMessage('Please enter your password.');
       hasEmptyField = true;
       return;
     }
@@ -182,69 +153,36 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
       emailError === '' &&
       allPasswordErrorsChecked
     ) {
-      onSubmitData(firstName, lastName, email, password);
+      onSubmitData(firstName, lastName, email, password)
+        .catch((response) => {
+          handleCommonErrors(response, setErrorMessage);
+        });
     }
   };
 
   const loginfromGoogle = (response) => {
-    setErrMsgSocial('Log-in unsuccessful. Please try again later, or sign-up.');
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
-        setSuccessSo(true);
         const user = JSON.stringify(res.data);
         localStorage.setItem('storedUser', user);
         navigate('/dashboard');
       })
-      .catch(() => {
-        setSuccessSo(false);
-        setErrMsgSocial(
-          'Log-in unsuccessful. Please try again later, or sign-up.'
-        );
+      .catch(({ response }) => {
+        setErrorMessage(response.data.error || 'Ops! Something went wrong. Please try again later');
       });
   };
 
   const handleFacebookLoginSuccess = (response) => {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
-        setSuccessSo(true);
         const user = JSON.stringify(res.data);
         localStorage.setItem('storedUser', user);
         navigate('/dashboard');
       })
-      .catch(() => {
-        setSuccessSo(false);
-        setErrMsgSocial(
-          'Log-in unsuccessful. Please try again later, or sign-up.'
-        );
+      .catch(({ response }) => {
+        setErrorMessage(response.data.error || 'Ops! Something went wrong. Please try again later');
       });
   };
-
-  const errorMessagePassword = Array.from(
-    new Set(
-      Object.entries(passwordErrors)
-        // eslint-disable-next-line no-unused-vars
-        .filter(([_, value]) => value)
-        .map(([key]) => {
-          switch (key) {
-          case 'uppercase':
-          case 'lowercase':
-            return 'upper and lower case characters';
-          case 'number':
-            return 'a number';
-          case 'special':
-            return 'a special character';
-          case 'length':
-            return '8 characters';
-          default:
-            return '';
-          }
-        })
-    )
-  ).join(', ');
-
-  const errorMessageWithInclude = errorMessagePassword
-    ? `Include at least: ${errorMessagePassword}`
-    : '';
 
   return (
     <>
@@ -290,16 +228,14 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
           onChange={handlePasswordChange}
           showPassword={showPassword}
           togglePasswordVisibility={togglePasswordVisibility}
-          isInvalid={!!errorMessageWithInclude}
-          errors={errorMessageWithInclude}
+          isInvalid={!!errorMessage}
+          errors={errorMessage}
           labelClassName={styles.label}
           successMessage={successMessage}
           onFocus={handleFocus}
           onBlur={handleBlur}
           showTextPassword={showTextPassword}
         />
-
-        {!successSo && <MessageBar variant='error'>{errMsgSocial}</MessageBar>}
 
         <CustomButton
           styles={`primary-light ${styles.customButton}`}
@@ -345,7 +281,7 @@ const RegisterForm = ({ onSubmitData, errorMessage }) => {
 
 RegisterForm.propTypes = {
   onSubmitData: PropTypes.func,
-  errorMessage: PropTypes.string,
+  errorMsg: PropTypes.string,
 };
 
 export default RegisterForm;
