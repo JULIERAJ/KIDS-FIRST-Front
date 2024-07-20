@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 import { resetPassword, resetPasswordLink } from '@api';
 
@@ -24,9 +24,10 @@ export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [defaultMessage, setDefaultMessage] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [sentEmail, setSentEmail] = useState(false);
+  const [defaultMessage, setDefaultMessage] = useState('');
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [sentEmail, setSentEmail] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     verifyEmail();
@@ -42,9 +43,9 @@ export default function ResetPassword() {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword((prev) => !prev);
+  // };
 
   const handleChangePassword = useCallback(
     async (e) => {
@@ -65,7 +66,8 @@ export default function ResetPassword() {
         );
         setUserValid(data);
         setSuccessMessage('Password accepted');
-        setSentEmail(true);
+        // setSentEmail(true);
+        navigate('/password-changed');
       } catch (err) {
         setErrorMessage(DEFAULT_MESSAGE);
       }
@@ -82,7 +84,7 @@ export default function ResetPassword() {
           passwords you have used
         </p>
 
-        {userValid && !sentEmail && (
+        {userValid && (
           <Form onSubmit={handleChangePassword} noValidate>
             <FormPasswordInput
               required
@@ -94,21 +96,27 @@ export default function ResetPassword() {
               errors={errorMessage}
               successMessage={successMessage}
               showTextPassword={defaultMessage}
-              onFocus={() => !errorMessage && !successMessage && setDefaultMessage(DEFAULT_MESSAGE)}
-              onBlur={() => setDefaultMessage(null)}
+              onFocus={() =>
+                !errorMessage &&
+                !successMessage &&
+                setDefaultMessage(DEFAULT_MESSAGE)
+              }
+              onBlur={() => setDefaultMessage('')}
               style={{ paddingBottom: '0px' }}
-              togglePasswordVisibility={togglePasswordVisibility}
-              type={showPassword}
             />
             <CustomButton
               styles='primary-light'
-              style={{ marginTop: '40px', width: '442px', height: '56px' }}
+              style={{ margin:'56px 0px 48px 0px', width: '442px', height: '56px' }}
               type='submit'
             >
               Change Password
             </CustomButton>
           </Form>
         )}
+
+        <NavLink className={styles.forgetPasswordLabel} to='/forgot-password'>
+          Forgot your password?
+        </NavLink>
       </Container>
     </div>
   );
