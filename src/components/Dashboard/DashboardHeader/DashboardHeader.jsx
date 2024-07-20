@@ -12,7 +12,7 @@ const DashboardHeader = ({ title , user }) => {
         <h2 className={`${styles.rightAlign}`}>{title}</h2>
       </div>
       <div className={styles.title}>
-        <h2 className={`${styles.leftAlign}`}>{firstName}</h2>
+        <h2 className={`${styles.leftAlign}`}>Hello {firstName}!</h2>
         <div className={styles.circleContainer}>
        
           <span className={styles.circleText}>{initial}</span>
