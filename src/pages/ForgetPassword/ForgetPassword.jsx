@@ -83,6 +83,7 @@ export default function ForgetPassword() {
                         value={email}
                         required
                         label="Email"
+                        labelClassName={styles['custom-label']}
                         className={styles['reset-input']}
                       />
                       <CustomButton
