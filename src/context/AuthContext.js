@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
     const expires = rememberMe ? COOKIE_EXPIRATION_REMEMBER_ME : COOKIE_EXPIRATION_DEFAULT;
     Cookies.set('user', JSON.stringify(userData), { expires });
     setError(null); 
+
   };
 
   const logout = () => {
@@ -53,4 +54,4 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export { useAuth, AuthProvider };
+export { AuthContext, useAuth, AuthProvider };
