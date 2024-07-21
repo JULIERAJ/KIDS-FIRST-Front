@@ -4,14 +4,10 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 import { resetPassword, resetPasswordLink } from '@api';
 
-// import MessageBar from '@components/MessageBar';
-
-//import FatherSonBlock from '@components/shared/FatherSonBlock';
-//import Header from '@components/shared/Header';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
-//import TextLink from '@components/shared/ui/TextLink';
-// import logoPswdChanged from '@media/icons/pswd-changed.png';
+
+import { validatePassword } from '@utils/validationUtils';
 
 import styles from './ResetPassword.module.css';
 
@@ -20,13 +16,15 @@ const DEFAULT_MESSAGE =
 
 export default function ResetPassword() {
   const { email, resetPasswordToken } = useParams();
-  const [userValid, setUserValid] = useState(null);
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [initialFocus, setInitialFocus] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
-  const [defaultMessage, setDefaultMessage] = useState('');
-  // const [showPassword, setShowPassword] = useState(false);
-  // const [sentEmail, setSentEmail] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showTextPaswsord, setShowTextPassword] = useState('');
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
+    useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,41 +33,72 @@ export default function ResetPassword() {
 
   const verifyEmail = async () => {
     try {
-      const { data } = await resetPasswordLink(email, resetPasswordToken);
-      setUserValid(data);
+      await resetPasswordLink(email, resetPasswordToken);
     } catch (err) {
       //eslint-disable-next-line no-console
       console.error(err);
+      // TODO: Proper error handling in case Token/Email verification fails
     }
   };
 
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword((prev) => !prev);
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
-  const handleChangePassword = useCallback(
+  const handlePasswordChange = (e) => {
+    const passwordValue = e.target.value;
+
+    setPassword(passwordValue);
+    setShowTextPassword('');
+
+    validatePassword(
+      passwordValue,
+      setErrorMessage,
+      setAllPasswordErrorsChecked,
+      setSuccessMessage
+    );
+  };
+
+  const handleFocus = () => {
+    if (!initialFocus && !allPasswordErrorsChecked) {
+      setShowTextPassword(DEFAULT_MESSAGE);
+      setInitialFocus(true);
+    }
+  };
+
+  const handleBlur = (e) => {
+    setShowTextPassword('');
+    validatePassword(
+      e.target.value,
+      setErrorMessage,
+      setAllPasswordErrorsChecked,
+      setSuccessMessage
+    );
+  };
+
+  const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
 
-      if (password === '') {
-        setErrorMessage(DEFAULT_MESSAGE);
+      if (!password.trim()) {
+        setErrorMessage('Please enter your password.');
         return;
       } else {
         setErrorMessage('');
       }
 
       try {
-        const { data } = await resetPassword(
-          email,
-          password,
-          resetPasswordToken
-        );
-        setUserValid(data);
+        await resetPassword(email, password, resetPasswordToken);
+
         setSuccessMessage('Password accepted');
-        // setSentEmail(true);
         navigate('/password-changed');
       } catch (err) {
-        setErrorMessage(DEFAULT_MESSAGE);
+        if (err.response.status === 400) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          console.error(err);
+          // TODO: Proper error handling in case of other types of failures
+        }
       }
     },
     [email, password, resetPasswordToken]
@@ -83,37 +112,36 @@ export default function ResetPassword() {
           Please create a new password, making sure it differs from any previous
           passwords you have used
         </p>
-
-        {userValid && (
-          <Form onSubmit={handleChangePassword} noValidate>
-            <FormPasswordInput
-              required
-              value={password}
-              label='New Password'
-              labelClassName={styles.label}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete='off'
-              errors={errorMessage}
-              successMessage={successMessage}
-              showTextPassword={defaultMessage}
-              onFocus={() =>
-                !errorMessage &&
-                !successMessage &&
-                setDefaultMessage(DEFAULT_MESSAGE)
-              }
-              onBlur={() => setDefaultMessage('')}
-              style={{ paddingBottom: '0px' }}
-            />
-            <CustomButton
-              styles='primary-light'
-              style={{ margin:'56px 0px 48px 0px', width: '442px', height: '56px' }}
-              type='submit'
-            >
-              Change Password
-            </CustomButton>
-          </Form>
-        )}
-
+        {/*TODO: Label is set to Password because togglePasswordVisibility dependency. */}
+        <Form onSubmit={handleSubmit} noValidate>
+          <FormPasswordInput
+            required
+            value={password}
+            label='New Password'
+            labelClassName={styles.label}
+            isInvalid={!!errorMessage}
+            errors={errorMessage}
+            successMessage={successMessage}
+            showTextPassword={showTextPaswsord}
+            showPassword={showPassword}
+            togglePasswordVisibility={togglePasswordVisibility}
+            onChange={handlePasswordChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            style={{ paddingBottom: '0' }}
+          />
+          <CustomButton
+            styles='primary-light'
+            style={{
+              margin: '3.5rem 0 3rem',
+              width: '27.625rem',
+              height: '3.5rem',
+            }}
+            type='submit'
+          >
+            Change Password
+          </CustomButton>
+        </Form>
         <NavLink className={styles.forgetPasswordLabel} to='/forgot-password'>
           Forgot your password?
         </NavLink>
