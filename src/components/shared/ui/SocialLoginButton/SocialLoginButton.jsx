@@ -19,7 +19,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
         >
           <div className={styles.button}>
             <img src={googleIcon} alt='Google icon' /> 
-            <span className={styles.text}>Google</span>
+            <span className={`${styles.text} ${styles['larger-spacing']}`}>Google</span>
           </div>
         </LoginSocialGoogle>
       );
@@ -32,7 +32,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
         >
           <div className={styles.button}>
             <img src={facebookIcon} alt='Facebook icon' /> 
-            <span className={styles.text}>Facebook</span>
+            <span className={`${styles.text} ${styles['smaller-spacing']}`}>Facebook</span>
           </div>
         </LoginSocialFacebook>
       );
