@@ -18,8 +18,10 @@
     border-color: #000000;
 }
 
-.button span {
+.text {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
+    line-height: 21px;
     letter-spacing: -0.02em;
 }
+
