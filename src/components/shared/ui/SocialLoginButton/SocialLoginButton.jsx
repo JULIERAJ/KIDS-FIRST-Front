@@ -19,7 +19,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
         >
           <div className={styles.button}>
             <img src={googleIcon} alt='Google icon' /> 
-              Google
+            <span>Google</span>
           </div>
         </LoginSocialGoogle>
       );
@@ -32,7 +32,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
         >
           <div className={styles.button}>
             <img src={facebookIcon} alt='Facebook icon' /> 
-              Facebook
+            <span>Facebook</span>
           </div>
         </LoginSocialFacebook>
       );
