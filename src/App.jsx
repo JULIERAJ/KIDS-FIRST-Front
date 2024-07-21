@@ -11,7 +11,6 @@ import Dashboard from '@pages/Dashboard';
 import FeaturesPage from '@pages/FeaturesPage';
 import ForgetPassword from '@pages/ForgetPassword';
 import Home from '@pages/Home';
-import PasswordChanged from '@pages/PasswordChanged';
 import Register from '@pages/Register';
 import ResetPassword from '@pages/ResetPassword';
 import Signin from '@pages/Signin';
@@ -60,7 +59,6 @@ const App = () => (
             path='/reset-password/:email/:resetPasswordToken'
             element={<ResetPassword />}
           />
-          <Route path='/password-changed' element={<PasswordChanged />} />
          
         </Route>
       </Routes>
