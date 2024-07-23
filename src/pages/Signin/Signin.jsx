@@ -1,4 +1,4 @@
-import { useState, useRef , useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -77,7 +77,11 @@ export default function Signin() {
   };
 
   const handleFacebookLoginSuccess = (response) => {
-    loginFacebook(response.data.accessToken, response.data.userID)
+    const test = window.FB.login(response.authResponse);
+    console.log('TEST', test);
+    const { accessToken, userID } = response.data;
+    console.log(accessToken, userID);
+    loginFacebook(accessToken, userID)
       .then((res) => {
         const userData = res.data;
         authContextLogin(userData);
@@ -110,7 +114,10 @@ export default function Signin() {
               <h1 className={styles.login__title}>
                 Welcome back to Kids First{' '}
               </h1>
-              <Form className={`py-4 ${styles.form}`} onSubmit={handleLogin} noValidate>
+              <Form
+                className={`py-4 ${styles.form}`}
+                onSubmit={handleLogin}
+                noValidate>
                 <FormEmailInput
                   ref={inputRef}
                   autoComplete='off'
@@ -140,16 +147,12 @@ export default function Signin() {
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
                     />
-                    <label className={styles.checkboxLabel}>
-                      {' '}
-                      Remember me
-                    </label>
+                    <label className={styles.checkboxLabel}> Remember me</label>
                   </div>
                   <div>
                     <NavLink
                       className={styles.forgetPasswordLabel}
-                      to='/forgot-password'
-                    >
+                      to='/forgot-password'>
                       Forgot your password?
                     </NavLink>
                   </div>

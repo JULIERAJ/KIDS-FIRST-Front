@@ -29,7 +29,7 @@ const SocialLoginButton = ({ provider, onSuccess, onFailure }) => {
           appId={process.env.REACT_APP_FACEBOOK_APP_ID || ''}
           onResolve={onSuccess}
           onReject={onFailure}
-          scope='email,public_profile'
+          scope='public_profile, email'
         >
           <div className={styles.button}>
             <img src={facebookIcon} alt='Facebook icon' /> 

@@ -13,12 +13,12 @@ import {
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
 
-import { 
+import {
   handleCommonErrors,
   validateName,
   validateEmail,
-  validatePassword
-} from '@utils/validationUtils'; 
+  validatePassword,
+} from '@utils/validationUtils';
 
 import styles from './Register.module.css';
 
@@ -35,7 +35,8 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
   const [showTextPassword, setShowTextPassword] = useState('');
   const [firstNameErrors, setFirstNameErrors] = useState('');
   const [lastNameErrors, setLastNameErrors] = useState('');
-  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] = useState(false);
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
+    useState(false);
   const inputRef = useRef();
 
   const navigate = useNavigate();
@@ -99,7 +100,12 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
     setShowTextPassword('');
-    validatePassword(passwordValue, setErrorMessage, setAllPasswordErrorsChecked, setSuccessMessage);
+    validatePassword(
+      passwordValue,
+      setErrorMessage,
+      setAllPasswordErrorsChecked,
+      setSuccessMessage
+    );
   };
 
   const handleFocus = () => {
@@ -113,7 +119,12 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
 
   const handleBlur = (e) => {
     setShowTextPassword('');
-    validatePassword(e.target.value, setErrorMessage, setAllPasswordErrorsChecked, setSuccessMessage);
+    validatePassword(
+      e.target.value,
+      setErrorMessage,
+      setAllPasswordErrorsChecked,
+      setSuccessMessage
+    );
   };
 
   const handleSubmit = (e) => {
@@ -153,10 +164,9 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
       emailError === '' &&
       allPasswordErrorsChecked
     ) {
-      onSubmitData(firstName, lastName, email, password)
-        .catch((response) => {
-          handleCommonErrors(response, setErrorMessage);
-        });
+      onSubmitData(firstName, lastName, email, password).catch((response) => {
+        handleCommonErrors(response, setErrorMessage);
+      });
     }
   };
 
@@ -168,26 +178,35 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
         navigate('/dashboard');
       })
       .catch(({ response }) => {
-        setErrorMessage(response.data.error || 'Ops! Something went wrong. Please try again later');
+        setErrorMessage(
+          response.data.error ||
+            'Ops! Something went wrong. Please try again later'
+        );
       });
   };
 
   const handleFacebookLoginSuccess = (response) => {
-    console.log(response);
-    loginFacebook(response.data.accessToken, response.data.userID)
+    const { accessToken, userID } = response.data;
+    loginFacebook(accessToken, userID)
       .then((res) => {
         const user = JSON.stringify(res.data);
         localStorage.setItem('storedUser', user);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
-        setErrorMessage(response.data.error || 'Ops! Something went wrong. Please try again later');
+        setErrorMessage(
+          response.data.error ||
+            'Ops! Something went wrong. Please try again later'
+        );
       });
   };
 
   return (
     <>
-      <Form className={`py-4 ${styles.form}`} onSubmit={handleSubmit} noValidate>
+      <Form
+        className={`py-4 ${styles.form}`}
+        onSubmit={handleSubmit}
+        noValidate>
         <Row className={styles.TextInputField}>
           <Col>
             <FormFirstNameInput
