@@ -37,7 +37,7 @@ export default function Signin() {
     e.preventDefault();
     setErrorMessage('');
     if (!email) {
-      setEmailError('Please enter a valid email address.');
+      setEmailError('Please enter a valid email address');
     }
 
     if (validateEmail) {
@@ -52,7 +52,10 @@ export default function Signin() {
             setErrorMessage(
               'This account doesn\'t exist. Please enter a different email address or try "Sign Up".'
             );
-          } else if (response.status === 401) {
+          } else if (response.status === 400) {
+            setErrorMessage('Please enter your password');
+          }
+          else if (response.status === 401) {
             setErrorMessage('Invalid password or email address');
           } else {
             setErrorMessage(
