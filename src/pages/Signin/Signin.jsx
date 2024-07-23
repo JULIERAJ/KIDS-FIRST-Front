@@ -54,9 +54,8 @@ export default function Signin() {
             );
           } else if (response.status === 400) {
             setErrorMessage('Please enter your password');
-          }
-          else if (response.status === 401) {
-            setErrorMessage('Invalid password or email address');
+          } else if (response.status === 401) {
+            setErrorMessage(response.data.error);
           } else {
             setErrorMessage(
               'An unknown error occurred. Please try again later.'

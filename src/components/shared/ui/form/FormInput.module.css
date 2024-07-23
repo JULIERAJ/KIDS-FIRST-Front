@@ -93,6 +93,9 @@
   margin-top: 0.5rem;
 }
 
+.errorMessage {
+  white-space: pre-line;
+}
 /* Password visibility icon styles */
 .formInputIcon {
   font-size: 1.5rem;
