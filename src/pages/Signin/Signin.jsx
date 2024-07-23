@@ -83,7 +83,7 @@ export default function Signin() {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
         const userData = res.data;
-        authContextLogin(userData);
+        authContextLogin(userData, true);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
@@ -95,7 +95,7 @@ export default function Signin() {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
         const userData = res.data;
-        authContextLogin(userData);
+        authContextLogin(userData, true);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
