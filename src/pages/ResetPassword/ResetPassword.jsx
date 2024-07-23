@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 import { resetPassword, resetPasswordLink } from '@api';
-
+import Header from '@components/shared/Header';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
-
-import logoPswdChanged from '@media/icons/pswd-changed.svg';
 
 import { validatePassword } from '@utils/validationUtils';
 
@@ -26,7 +24,7 @@ export default function ResetPassword() {
   const [showTextPaswsord, setShowTextPassword] = useState('');
   const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
     useState(false);
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     verifyEmail();
@@ -91,7 +89,7 @@ export default function ResetPassword() {
       try {
         await resetPassword(email, password, resetPasswordToken);
 
-        setSuccess(true);
+        navigate('/password-changed');
       } catch (err) {
         if (err.response.status === 400) {
           setErrorMessage(err.response.data.message);
@@ -105,72 +103,44 @@ export default function ResetPassword() {
   );
 
   return (
-    <div className={styles.wrapper}>
-      <Container className={styles.container}>
-        {success ? (
-          <>
-            <h1 className={styles.title}>Password Changed</h1>
-            <img
-              className={styles.loadingLogo}
-              src={logoPswdChanged}
-              alt='password-changed-successfully'
+    <Container className={styles.page}>
+      <Header />
+      <Container className={styles['page-window']}>
+        <Container className={`${styles['page-wrapper']}`}>
+          <h1 className={styles.title}>Set a New Password</h1>
+          <p className={styles.description}>
+            Please create a new password, making sure it differs from any
+            previous passwords you have used.
+          </p>
+          <Form onSubmit={handleSubmit} noValidate>
+            <FormPasswordInput
+              required
+              value={password}
+              label='New Password'
+              labelClassName={styles.label}
+              isInvalid={!!errorMessage}
+              errors={errorMessage}
+              successMessage={successMessage}
+              showTextPassword={showTextPaswsord}
+              showPassword={showPassword}
+              togglePasswordVisibility={togglePasswordVisibility}
+              onChange={handlePasswordChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              style={{ paddingBottom: '0' }}
             />
-            <h2 className={styles.subTitle}>Password has been updated!</h2>
-            <p className={styles.description}>
-              You can now log in with the new password.{' '}
-            </p>
-            <NavLink
-              className={styles.link}
-              to='/signin'
+            <CustomButton
+              styles={`primary-light ${styles['button-size']}`}
+              type='submit'
             >
-              Back To Log In
-            </NavLink>
-          </>
-        ) : (
-          <>
-            <h1 className={styles.title}>Set a New Password</h1>
-            <p className={styles.description}>
-              Please create a new password, making sure it differs from any
-              previous passwords you have used
-            </p>
-            <Form onSubmit={handleSubmit} noValidate>
-              <FormPasswordInput
-                required
-                value={password}
-                label='New Password'
-                labelClassName={styles.label}
-                isInvalid={!!errorMessage}
-                errors={errorMessage}
-                successMessage={successMessage}
-                showTextPassword={showTextPaswsord}
-                showPassword={showPassword}
-                togglePasswordVisibility={togglePasswordVisibility}
-                onChange={handlePasswordChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                style={{ paddingBottom: '0' }}
-              />
-              <CustomButton
-                styles='primary-light'
-                style={{
-                  margin: '3.5rem 0 3rem',
-                  width: '27.625rem',
-                  height: '3.5rem',
-                }}
-                type='submit'
-              >
-                Change Password
-              </CustomButton>
-            </Form>
-            <NavLink
-              className={styles.link}
-              to='/forgot-password'
-            >
-              Forgot your password?
-            </NavLink>
-          </>
-        )}
+              Next
+            </CustomButton>
+          </Form>
+          <NavLink className={styles.link} to='/signin'>
+            Back to Log In
+          </NavLink>
+        </Container>
       </Container>
-    </div>
+    </Container>
   );
 }
