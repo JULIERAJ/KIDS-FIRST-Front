@@ -41,7 +41,7 @@ export default function Signin() {
     }
 
     if (validateEmail) {
-      login(email, password)
+      login(email, password, rememberMe)
         .then((res) => {
           const userData = res.data;
           authContextLogin(userData, rememberMe);
