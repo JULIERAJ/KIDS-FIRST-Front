@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { logout } from '@api';
 import { useAuth } from '@context/AuthContext';
-import kidsFirstLogo from '@media/logo/LOGO-BYME.png';
+import kidsFirstLogo from '@media/logo/LOGO-BYME.svg';
 
 import styles from './Sidebar.module.css';
 import { SIDEBAR_DATA } from './sidebarData';
