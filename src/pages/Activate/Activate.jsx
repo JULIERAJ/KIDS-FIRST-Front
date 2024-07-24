@@ -5,9 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { activate } from '@api';
 import FatherSonBlock from '@components/shared/FatherSonBlock';
 import FeedbackBlock from '@components/shared/Feedback/FeedbackBlock';
-import Header from '@components/shared/Header';
+//import Header from '@components/shared/Header';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
-import TextLink from '@components/shared/ui/TextLink';
+//import TextLink from '@components/shared/ui/TextLink';
 
 //import successImg from '@media/icons/pswd-changed.png';
 
@@ -62,7 +62,7 @@ const Activate = () => {
   return (
     <>
       <div className={styles.page}>
-        <Header
+        {/*  <Header
           widget={
             <TextLink
               title='Already a member?'
@@ -70,7 +70,7 @@ const Activate = () => {
               linkTitle='Log in'
             />
           }
-        />
+        />*/}
         <Container className='content-layout py-4'>
           <FatherSonBlock>
             {loading && <p>Loading...</p>}
@@ -157,6 +157,7 @@ const Activate = () => {
                         <FeedbackBlock
                           message={
                             <span className={styles.displaymessage}>
+
                               Verification was unsuccessful
                             </span>
                           }
