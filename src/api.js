@@ -66,7 +66,7 @@ export const createMember = ({
     },
     { withCredentials: true }
   );
-
+  
 export const activate = (email, emailVerificationToken) =>
   axios.get(
     `${API_URL}activate/${email}/${emailVerificationToken}`

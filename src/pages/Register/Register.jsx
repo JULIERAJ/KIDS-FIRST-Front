@@ -13,17 +13,11 @@ import RegisterForm from './RegisterForm';
 const Register = () => {
   const params = useParams();
   let paramEmail = params.email;
-  /* eslint-disable no-unused-vars */
-  let paramEmailVerificationToken = params.emailVerificationToken;
-  /* eslint-disable no-unused-vars */
-  let paramFamily = params.family;
 
   const [userData, setUserData] = useState({});
   const [activeComponent, setActiveComponent] = useState(true);
-  /* eslint-disable no-unused-vars */
-  const [loading, setLoading] = useState(true);
-  //added password error message
-  const [errorMessage, setErrorMessage] = useState('');
+
+  const [errorMsg, setErrorMsg] = useState('');
 
   const registerUserHandler = async (firstName, lastName, email, password) => {
     try {
@@ -32,9 +26,7 @@ const Register = () => {
       localStorage.setItem('storedUser', data);
       setActiveComponent(false);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-      setErrorMessage(error.response.data.message);
+      setErrorMsg(error.response.data.message);
     }
   };
 
@@ -50,7 +42,7 @@ const Register = () => {
                 <RegisterForm
                   onSubmitData={registerUserHandler}
                   paramEmail={paramEmail}
-                  errorMessage={errorMessage}
+                  errorMsg={errorMsg}
                 />
               ) : (
                 <EmailVerify userData={userData} />

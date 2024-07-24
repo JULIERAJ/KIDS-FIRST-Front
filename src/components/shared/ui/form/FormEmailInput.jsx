@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
+import { validateEmail } from '@utils/validationUtils';
+
 import FormInput from './FormInput';
 
 const FormEmailInput = React.forwardRef(function FormEmailInput(props, ref) {
-  const { defaultValue, onChange, ...rest } = props;
+  const { defaultValue, onChange, errors: externalErrors, ...rest } = props;
 
   const [email, setEmail] = useState(defaultValue || '');
   const [errors, setErrors] = useState('');
-
-  const validateEmail = (email) => {
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regexEmail.test(email);
-  };
 
   useEffect(() => {
     if (defaultValue && !validateEmail(defaultValue)) {
@@ -21,6 +18,10 @@ const FormEmailInput = React.forwardRef(function FormEmailInput(props, ref) {
       setErrors('');
     }
   }, [defaultValue]);
+
+  useEffect(() => {
+    setErrors(externalErrors);
+  }, [externalErrors]);
 
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
@@ -55,6 +56,7 @@ const FormEmailInput = React.forwardRef(function FormEmailInput(props, ref) {
 FormEmailInput.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  errors: PropTypes.string,
 };
 
 export default FormEmailInput;
