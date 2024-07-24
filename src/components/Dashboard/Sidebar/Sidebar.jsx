@@ -4,6 +4,7 @@ import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '@api';
+import { useAuth } from '@context/AuthContext';
 import kidsFirstLogo from '@media/logo/LOGO-BYME.png';
 
 import styles from './Sidebar.module.css';
@@ -51,7 +52,7 @@ const SidebarItemsCard = ({
       onKeyDown={handleKeyDown}
     >
       {isActive ? activeIcon : (isHovered ? hoverIcon : icon)}
-      <span className={styles.sidebarMenuItem}>{title}</span>
+      <span>{title}</span>
     </Nav.Item>
   );
 };
@@ -69,7 +70,8 @@ SidebarItemsCard.propTypes = {
 const Sidebar = ({ onTitleChange }) => {
   const [activeLink, setActiveLink] = useState(null);
   const navigate = useNavigate();
-
+  const { logout: authContextLogout } = useAuth();
+  
   const handleClick = (title, path) => {
     if (title === 'Logout') {
       handleLogout();
@@ -81,22 +83,12 @@ const Sidebar = ({ onTitleChange }) => {
 
   const handleLogout = async () => {
     try {
-      const authToken = localStorage.getItem('authToken');
-      if (!authToken) {
-        // Token not found in local storage, handle accordingly (possibly already logged out)
-        return navigate('/signin');
-      }
-
-      const response = await logout(authToken);
-
+      const response = await logout();
       if (response.status === 200) {
-        // Clear local storage upon successful logout
-        localStorage.removeItem('authToken');
-        sessionStorage.removeItem('storedUser');
+        authContextLogout(); 
         navigate('/signin');
       } else {
         console.error('Logout failed:', response.data.error);
-        // Handle error response (e.g., unauthorized logout attempt)
       }
     } catch (error) {
       console.error('Error during logout:', error.message);

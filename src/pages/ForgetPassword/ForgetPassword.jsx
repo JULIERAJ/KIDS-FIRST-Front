@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Container, Form, Row, Col } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { forgetPassword } from '@api';
 
@@ -44,64 +44,37 @@ export default function ForgetPassword() {
     }
   };
 
-  const handleResendEmail = async () => {
-    setSuccess(false);
-    setSentEmail(false);
-    setErrMsg('');
-    try {
-      const res = await forgetPassword(email);
-      if (res.status === 200) {
-        setEmail('');
-        setSentEmail(true);
-        setSuccess(true);
-      } else {
-        setErrMsg(res.message);
-      }
-    } catch (err) {
-      //eslint-disable-next-line
-      console.error(err);
-      setErrMsg('An error occurred while resending the email. Please try again later.');
-    }
-  };
-
   return (
     <Container className={styles.page}>
-      <Header/>
-      <Container className={styles.page__window}>
+      <Header />
+      <Container className={styles['page-window']}>
         <div>
           <Row>
-            <Col className="d-flex justify-content-center align-items-center">
+            <Col className="d-flex px-0 justify-content-center align-items-center">
               <div>
                 <Form
-                  className={`content-layout ${styles.page__wrapper}`}
+                  className={`content-layout ${styles['page-wrapper']}`}
                   onSubmit={handleForgotPassword}>
-                  <h1 className={styles.page__title}>Forgot Password</h1>
+                  <></>
+                  <h2 className={styles['page-title']}>Forgot Password</h2>
                   {success && sentEmail ? (
-                    <>
-                      <div className={styles.success}>
-                        <img src={logoEmailSent} alt="email-sent-logo" />
-                        <span>Check you email</span>
-                        <br />
-                        <span>
-                          A link to reset your password has been sent to{' '}
-                          <strong>{emailDisplay.current}</strong>
-                        </span>
-                      </div>
+                    <section className={styles.success}>
+                      <img className={styles['success-icon']} src={logoEmailSent} alt="email-sent-icon" />
+                      <h3 className={styles['success-heading']}>Check you email</h3>
 
-                      <Link
-                        type="button"
-                        className={`btn checkbox mb-3 ${styles.resend__email}`}
-                        onClick={() => handleResendEmail()}>
-                        Resend Email
-                      </Link>
-                    </>
+                      <span className={styles['success-text']}>
+                        A link to reset your password has been sent to{' '}
+                        <strong>{emailDisplay.current}</strong>
+                      </span>
+                    </section>
+
                   ) : !success && errMsg ? (
                     <MessageBar variant="error">{errMsg}</MessageBar>
                   ) : null}
 
                   {success && sentEmail ? null : (
-                    <>
-                      <p className={styles.text}>
+                    <section className={styles.reset}>
+                      <p className={styles['reset-text']}>
                         Please enter your account email address and we will send instructions to
                         reset your password.
                       </p>
@@ -110,18 +83,19 @@ export default function ForgetPassword() {
                         value={email}
                         required
                         label="Email"
-                        className={styles.input__email}
+                        labelClassName={styles['custom-label']}
+                        className={styles['reset-input']}
                       />
                       <CustomButton
-                        styles={`primary-light ${styles.customButton}`}
+                        styles={`primary-light ${styles['reset-custom-button']}`}
                         type="submit"
                         size="lg"
                         variant="light">
                         Next
                       </CustomButton>
-                    </>
+                    </section>
                   )}
-                  <NavLink to="/signin" className={styles.forget__password}>
+                  <NavLink to="/signin" className={styles['page-link']}>
                     Back to Log in
                   </NavLink>
                 </Form>
