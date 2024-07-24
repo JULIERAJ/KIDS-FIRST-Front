@@ -124,26 +124,6 @@ export const SIDEBAR_DATA = [
   //   alt: 'settings',
   // },
   {
-    title: 'Help',
-    icon: <span className="material-symbols-rounded"
-      style={{ 'fontSize': '32px' }}>help</span>,
-    activeIcon: <span className="material-symbols-rounded"
-      style={{
-        'fontSize': '32px',
-        fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40',
-        color: '#DB5C00'
-      }}
-    >help</span>,
-    hoverIcon:
-      <span className="material-symbols-rounded"
-        style={{
-          'fontSize': '32px',
-          fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40'
-        }}>help</span>,
-    path: '/dashboard/help',
-    alt: 'help',
-  },
-  {
     title: 'Logout',
     icon: <span className="material-symbols-rounded"
       style={{ 'fontSize': '32px' }}>logout</span>,
@@ -162,5 +142,25 @@ export const SIDEBAR_DATA = [
         }}>logout</span>,
     path: '/dashboard/logout',
     alt: 'logout',
+  },
+  {
+    title: 'Help',
+    icon: <span className="material-symbols-rounded"
+      style={{ 'fontSize': '32px' }}>help</span>,
+    activeIcon: <span className="material-symbols-rounded"
+      style={{
+        'fontSize': '32px',
+        fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40',
+        color: '#DB5C00'
+      }}
+    >help</span>,
+    hoverIcon:
+      <span className="material-symbols-rounded"
+        style={{
+          'fontSize': '32px',
+          fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40'
+        }}>help</span>,
+    path: '/dashboard/help',
+    alt: 'help',
   }
 ];

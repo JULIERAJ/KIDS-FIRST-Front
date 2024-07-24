@@ -37,11 +37,11 @@ export default function Signin() {
     e.preventDefault();
     setErrorMessage('');
     if (!email) {
-      setEmailError('Please enter a valid email address.');
+      setEmailError('Please enter a valid email address');
     }
 
     if (validateEmail) {
-      login(email, password)
+      login(email, password, rememberMe)
         .then((res) => {
           const userData = res.data;
           authContextLogin(userData, rememberMe);
@@ -52,9 +52,10 @@ export default function Signin() {
             setErrorMessage(
               'This account doesn\'t exist. Please enter a different email address or try "Sign Up".'
             );
+          } else if (response.status === 400) {
+            setErrorMessage('Please enter your password');
           } else if (response.status === 401) {
             setErrorMessage(response.data.error);
-            
           } else {
             setErrorMessage(
               'An unknown error occurred. Please try again later.'
@@ -81,7 +82,7 @@ export default function Signin() {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
         const userData = res.data;
-        authContextLogin(userData);
+        authContextLogin(userData, true);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
@@ -93,7 +94,7 @@ export default function Signin() {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
         const userData = res.data;
-        authContextLogin(userData);
+        authContextLogin(userData, true);
         navigate('/dashboard');
       })
       .catch(({ response }) => {
