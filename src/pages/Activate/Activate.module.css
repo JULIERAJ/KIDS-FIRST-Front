@@ -1,13 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 .page {
-  width: 1440px;
+  max-width: 100%;
+  height: 100dvh;
+  background-color: var(--color-bg-page);
+ /* width: 1440px;
   height: 1024px;
   top: 324px;
   left: 17712px;
   gap: 0px;
   opacity: 0px;
-  background: #F0F2F2;
+  background: #F0F2F2;*/
+}
+.page-window {
+  width: 56.875rem;
+  max-width: 100%;
+  border-radius: 1rem;
+  padding: 0;
+  background-color: var(--main-white);
 }
 .emailverifiedpage{
   
@@ -28,7 +38,15 @@ background: #FFFFFF;
 border-radius: 16px 0px 0px 0px;*/
 
 }
-.emailverifiedoutercontainer{
+.page-wrapper {
+  width: 27.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  margin: 12rem auto;
+}
+/*.emailverifiedoutercontainer{
   width:468px;
 height: 365px;
 gap: 64px;
@@ -39,9 +57,9 @@ opacity: 0px;
 height: 279px;
 gap: 64px;
 opacity: 0px;
-/*margin-top:200px;*/
+/*margin-top:200px;
 
-}
+}*/
 
 .email-verified {
   width: 910px;
@@ -51,32 +69,35 @@ opacity: 0px;
   top: 92px;
   left: 265px;
   padding: 159.63px 221px 195.38px 221px;
-  border-radius: 16px 0px 0px 0px;
+  border-radius: 16px 16px 16px 16px;
   opacity: 1; 
   background: #FFFFFF; 
   text-align: center;
   }
 
+  .page-title {
+    font-weight: 700;
+    text-align: center;
+  }
 
-
-.registerTitle {
-  /* width: 193px; */
+  /*.registerTitle {
+ width: 193px; 
    height: 38px;
-  font-style: normal;
-   
+  font-style: normal;*/
+/*   
   font-family: 'Roboto';
- /* font-size: 32px;*/
+  font-size: 32px
   font-weight: 700;
   line-height: 120%;
   letter-spacing: -0.01em;
   align-items: center;
   text-align: center;
   color: #1D1F20;
- /* display: flex;
+ /* display: flex;;
   flex: none;
 order: 0;
-flex-grow: 0;*/
-}
+flex-grow: 0;
+}*/
 
 
 .text p {
