@@ -11,16 +11,18 @@ import Dashboard from '@pages/Dashboard';
 import FeaturesPage from '@pages/FeaturesPage';
 import ForgetPassword from '@pages/ForgetPassword';
 import Home from '@pages/Home';
+import PasswordChanged from '@pages/PasswordChanged';
 import Register from '@pages/Register';
 import ResetPassword from '@pages/ResetPassword';
 import Signin from '@pages/Signin';
 import ProtectedRoute from '@utils/protectedRoute';
+import PublicRoute from '@utils/publicRoute';
 
 const App = () => (
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route>
+        <Route element={<PublicRoute />}>
           <Route path='/' element={<LandingLayout />}>
             <Route index element={<Home />} />
             <Route path='/features' element={<FeaturesPage />} />
@@ -35,30 +37,34 @@ const App = () => (
             path='/activate/:email/:emailVerificationToken'
             element={<Activate />}
           />
-          <Route element={<ProtectedRoute/>}>
-            <Route path='/dashboard/*' element={<Dashboard />}>
-              <Route
-                path='calendarview'
-                element={
-                  <EventProvider>
-                    <KFCalendar />
-                  </EventProvider>
-                }
-              />
-              <Route path='homedashboard' element={<HomeDashboard />} />
-              {/* Need to add them when Sidebar component is refactored and uses path via router */}
-              {/* <Route path='kids' />
-              <Route path='messages' />
-              <Route path='logout' />
-              <Route path='help' /> */}
-            </Route>
-          </Route>
-        
           <Route path='/forgot-password' element={<ForgetPassword />} />
           <Route
             path='/reset-password/:email/:resetPasswordToken'
             element={<ResetPassword />}
           />
+          <Route
+            path='/reset-password/:email/:resetPasswordToken'
+            element={<ResetPassword />}
+          />
+          <Route path='/password-changed' element={<PasswordChanged />} />
+        </Route>
+        <Route element={<ProtectedRoute/>}>
+          <Route path='/dashboard/*' element={<Dashboard />}>
+            <Route
+              path='calendarview'
+              element={
+                <EventProvider>
+                  <KFCalendar />
+                </EventProvider>
+              }
+            />
+            <Route path='homedashboard' element={<HomeDashboard />} />
+            {/* Need to add them when Sidebar component is refactored and uses path via router */}
+            {/* <Route path='kids' />
+              <Route path='messages' />
+              <Route path='logout' />
+              <Route path='help' /> */}
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

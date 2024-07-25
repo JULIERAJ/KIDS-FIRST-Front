@@ -39,7 +39,7 @@ const FormInput = React.forwardRef(function FormInput(props, ref) {
     }
   };
 
-  const isPassword = label === 'Password';
+  const isPassword = label === 'Password' || label === 'New Password';
 
   return (
     <Form.Group className={styles.formGroup}>
@@ -90,7 +90,7 @@ const FormInput = React.forwardRef(function FormInput(props, ref) {
           <BsExclamationCircle
             className={`${styles.icon} ${styles.errorIcon}`}
           />
-          {errorMessage}
+          <span className={styles.errorMessage}>{errorMessage}</span>
         </Form.Control.Feedback>
       )}
       {showTextPassword && (
