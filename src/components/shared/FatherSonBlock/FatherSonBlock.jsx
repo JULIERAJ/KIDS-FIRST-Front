@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
-//import { Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 import './styles.css';
 
 const FatherSonBlock = ({ children }) => (
-  <div>
-    <div>{children}</div>
-  </div>
+  <Row>
+    <Col xs={12} md={6} className='col-left' />
+
+    <Col xs={12} md={6} className='col-right'>
+      <div className='col-right-content'>{children}</div>
+    </Col>
+  </Row>
 );
 
 FatherSonBlock.propTypes = {

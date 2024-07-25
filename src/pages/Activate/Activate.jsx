@@ -18,7 +18,6 @@ const Activate = () => {
     const fetchData = async () => {
       try {
         const { data } = await activate(email, emailVerificationToken);
-        console.log(data);
         setUserData(data);
         setLoading(false);
       } catch (error) {
