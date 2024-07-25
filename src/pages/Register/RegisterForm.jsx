@@ -46,10 +46,16 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
 
   useEffect(() => {
     if (errorMsg) {
-      setErrorMessage(errorMsg);
+      if (errorMsg.includes('email')) {
+        setEmailError(errorMsg);
+        setErrorMessage('');
+      } else {
+        setEmailError('');
+        setErrorMessage(errorMsg);
+      }
       setSuccessMessage('');
     }
-  }, [errorMsg, errorMessage]);
+  }, [errorMsg]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -73,7 +79,7 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
     const value = e.target.value.trim();
     let newErrors = '';
     if (!validateName(value)) {
-      newErrors = 'Please use only letters';
+      newErrors = 'Descriptive Text';
     }
     setLastNameErrors(newErrors);
     if (!newErrors) {
@@ -122,25 +128,27 @@ const RegisterForm = ({ onSubmitData, errorMsg }) => {
       {
         value: firstName.trim(),
         errorSetter: setFirstNameErrors,
-        placeholder: 'First Name',
+        placeholder: 'your first name',
       },
       {
         value: email.trim(),
         errorSetter: setEmailError,
-        placeholder: 'user@mail.com',
+        placeholder: 'a valid email address',
       },
     ];
     let hasEmptyField = false;
 
     fields.forEach(({ value, errorSetter, placeholder }) => {
       if (value === '' || value === placeholder) {
-        errorSetter(`Please enter your ${placeholder.toLowerCase()}`);
+        errorSetter(`Please enter ${placeholder.toLowerCase()}`);
         hasEmptyField = true;
       }
     });
 
     if (!password.trim()) {
-      setErrorMessage('Please enter your password.');
+      setErrorMessage(
+        'Include at least: • 8 characters • upper and lower case characters • a number • a special character'
+      );
       hasEmptyField = true;
       return;
     }

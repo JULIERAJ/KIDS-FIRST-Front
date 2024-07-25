@@ -39,7 +39,7 @@ const FormInput = React.forwardRef(function FormInput(props, ref) {
     }
   };
 
-  const isPassword = label === 'Password' || 'New Password';
+  const isPassword = label === 'Password' || label === 'New Password';
 
   return (
     <Form.Group className={styles.formGroup}>
