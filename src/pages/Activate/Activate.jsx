@@ -39,9 +39,9 @@ const Activate = () => {
     return (
       <NotificationPage
         title="Loading..."
-        image={null}
+        image={emailImage}
         altText=""
-        message="Please wait while we verify your email"
+        message="Something went wrong"
         description=""
         linkText="Back to Home"
         linkTo="/"
