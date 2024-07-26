@@ -37,4 +37,4 @@ jobs:
         run: npm run lint:fix
 
       - name: Run Husky
-        run: npm run husky
+        run: npm run prepare
