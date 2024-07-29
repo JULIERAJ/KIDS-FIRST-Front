@@ -79,7 +79,8 @@ const Activate = () => {
                   type='submit'
                   size='lg'
                   variant='light'
-                  onClick={handleClick}>
+                  onClick={handleClick}
+                >
                   Log In
                 </CustomButton>
               </div>

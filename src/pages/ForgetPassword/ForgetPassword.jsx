@@ -50,52 +50,59 @@ export default function ForgetPassword() {
       <Container className={styles['page-window']}>
         <div>
           <Row>
-            <Col className="d-flex px-0 justify-content-center align-items-center">
+            <Col className='d-flex px-0 justify-content-center align-items-center'>
               <div>
                 <Form
                   className={`content-layout ${styles['page-wrapper']}`}
-                  onSubmit={handleForgotPassword}>
+                  onSubmit={handleForgotPassword}
+                >
                   <></>
                   <h2 className={styles['page-title']}>Forgot Password</h2>
                   {success && sentEmail ? (
                     <section className={styles.success}>
-                      <img className={styles['success-icon']} src={logoEmailSent} alt="email-sent-icon" />
-                      <h3 className={styles['success-heading']}>Check you email</h3>
+                      <img
+                        className={styles['success-icon']}
+                        src={logoEmailSent}
+                        alt='email-sent-icon'
+                      />
+                      <h3 className={styles['success-heading']}>
+                        Check you email
+                      </h3>
 
                       <span className={styles['success-text']}>
                         A link to reset your password has been sent to{' '}
                         <strong>{emailDisplay.current}</strong>
                       </span>
                     </section>
-
                   ) : !success && errMsg ? (
-                    <MessageBar variant="error">{errMsg}</MessageBar>
+                    <MessageBar variant='error'>{errMsg}</MessageBar>
                   ) : null}
 
                   {success && sentEmail ? null : (
                     <section className={styles.reset}>
                       <p className={styles['reset-text']}>
-                        Please enter your account email address and we will send instructions to
-                        reset your password.
+                        Please enter your account email address and we will send
+                        instructions to reset your password.
                       </p>
                       <FormEmailInput
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         required
-                        label="Email"
+                        label='Email'
                         labelClassName={styles['custom-label']}
                         className={styles['reset-input']}
                       />
                       <CustomButton
                         styles={`primary-light ${styles['reset-custom-button']}`}
-                        type="submit"
-                        size="lg"
-                        variant="light">
+                        type='submit'
+                        size='lg'
+                        variant='light'
+                      >
                         Next
                       </CustomButton>
                     </section>
                   )}
-                  <NavLink to="/signin" className={styles['page-link']}>
+                  <NavLink to='/signin' className={styles['page-link']}>
                     Back to Log in
                   </NavLink>
                 </Form>
