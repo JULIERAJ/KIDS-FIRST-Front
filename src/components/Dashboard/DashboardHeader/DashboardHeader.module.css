@@ -25,7 +25,9 @@
 .title {
   display: flex;
   align-items: center;
-  width: 218px;
+  justify-content: right;
+  right: auto;
+  width: 290px;
   height: 60px;
   gap: 16px;
 }
@@ -35,8 +37,9 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 28.8px;
-  text-align: center;
-  width: fit-content;
+  text-align: left;
+  max-width: 100;
+  width:auto;
   height: 29px;
   top: -1px;
   left: 1.86px;
