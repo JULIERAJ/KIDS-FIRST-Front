@@ -8,7 +8,7 @@
 
 .page-window {
   width: 56.875rem;
-  height: 52.5rem;
+  /* height: 52.5rem; */
   border-radius: 1rem;
   padding: 0;
   background-color: var(--main-white);
@@ -17,11 +17,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 8.375rem;
+  padding-bottom: 10.563rem;
 }
 
 .page-wrapper {
-  width: 29.25rem;
-  height: 28.063rem;
+  width: 29.375rem;
+  /* height: 33.563rem; */
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -30,15 +32,19 @@
 
 .title {
   font-weight: 700;
-  font-size: 2rem;
   line-height: 2.4rem;
   text-align: center;
+}
+.loading-logo {
+  width: 100px;
+  height: 100px;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem 0px 3rem;
 }
 
 .subtitle {
   font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 1.8rem;
   margin: 0px;
   text-align: center;
 }
@@ -46,16 +52,14 @@
 .description {
   text-align: center;
   font-size: 1.125rem;
-  margin: 3rem 0 2.5rem;
+  margin: 4rem 0 1.35rem;
   text-align: center;
 }
-
-.loadingLogo {
-  width: 100px;
-  height: 100px;
-  flex-direction: column;
-  align-items: center;
-  margin: 64px 0px 48px;
+.text {
+  text-align: center;
+  font-size: 1.125rem;
+  margin: 0rem 0 4rem;
+  text-align: center;
 }
 
 .link {
@@ -68,20 +72,21 @@
   color: var(--color-dark-orange);
 }
 
-.custom-button-container {
+/* .custom-button-container {
   height: 56px;
   width: 288px;
-}
+} */
 
 .custom-button {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   display: inline-block;
   width: 100%;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   font-size: 1.25rem; /*20px*/
   line-height: 120%;
   letter-spacing: 0rem;
-  font-weight: 700;
+  font-weight: 500;
+  color: var(--color-dark-orange);
 }
 
 @media (max-width: 768px) {
