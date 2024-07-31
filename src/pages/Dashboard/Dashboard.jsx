@@ -4,8 +4,8 @@ import { Outlet } from 'react-router-dom';
 import DashboardHeader from '@components/Dashboard/DashboardHeader/DashboardHeader';
 import Sidebar from '@components/Dashboard/Sidebar/Sidebar';
 
-import CustomButton from '@components/shared/ui/Button/CustomButton';
-import addIcon from '@components/shared/ui/Icon/add.svg';
+// import CustomButton from '@components/shared/ui/Button/CustomButton';
+// import addIcon from '@components/shared/ui/Icon/add.svg';
 
 import { useAuth } from '@context/AuthContext';
 
@@ -24,7 +24,7 @@ const Dashboard = () => {
       <div className={styles.content}>
         <DashboardHeader title={title} user={user} />
         <Outlet />
-        <div className={styles.pagewindow}>
+        {/* <div className={styles.pagewindow}>
           <h1 className={styles.title}>
             Create your kid’s profile and add all the necessary information by
             clicking Add Your Kid button.
@@ -39,7 +39,7 @@ const Dashboard = () => {
           >
             Add your kid
           </CustomButton>
-        </div>
+        </div> */}
       </div>
     </div>
   );
