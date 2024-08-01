@@ -51,6 +51,7 @@
     "globals": "^15.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
     "prop-types": "^15.8.1",
     "react-app-rewired": "^2.2.1"
   },
