@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import AddFirstKid from '@components/Dashboard/AddFirstKid/AddFirstKid';
-
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
-
+import AddFirstKid from '@components/Dashboard/Kids/AddFirstKid/AddFirstKid';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';

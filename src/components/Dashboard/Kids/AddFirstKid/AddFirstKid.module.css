@@ -10,15 +10,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: Hug (374px)px;
+  height:Hug(374px)px ;
   width: Fixed (664px)px;
 }
 
 .text {
   width: 662px;
   height: 22px;
-  gap: 0px;
-  opacity: 0px;
   font-family: var(--fontfamily);
   font-size:large;
   font-weight: 400;

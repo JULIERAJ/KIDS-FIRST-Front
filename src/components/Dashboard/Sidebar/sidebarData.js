@@ -101,7 +101,7 @@ export const SIDEBAR_DATA = [
           'fontSize': '32px',
           fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40'
         }}>face</span>,
-    path: '/dashboard/AddFirstkid',
+    path: '/dashboard/AddFirstKid',
     alt: 'kids',
   },
   // {

@@ -2,9 +2,9 @@ import { Container, Row } from 'react-bootstrap';
 
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 
-import plus from '@media/icons/plus.png';
+import plus from '@media/icons/plus.svg';
 
-import kidplaying from '../../../media/KidPlaying.png';
+import kidplaying from './../../../../media/KidPlaying.svg';
 
 import styles from './AddFirstKid.module.css';
 
