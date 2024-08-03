@@ -1,13 +1,20 @@
-.left-column {
-  width: 37.56rem;
-  height: 353px;
-  padding: 10px 10px 10px 0;
+.frame {
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  align-items: center;    /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 100vh;          /* Full viewport height */
+  text-align: center;     /* Center text inside the elements */
+  padding: 20px;
 }
 
-.event-boxes {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
+.picture {
+  max-width: 100%;        /* Ensure the image scales correctly */
+  height: auto;           /* Maintain aspect ratio */
+  margin-bottom: 20px;    /* Space between the image and the text */
 }
+
+.text {
+  margin-bottom: 20px;    /* Space between the text and the button */
+}
+
