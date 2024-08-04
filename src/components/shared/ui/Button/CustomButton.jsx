@@ -47,4 +47,3 @@ CustomButton.propTypes = {
   link: PropTypes.string,
   children: PropTypes.any,
 };
-export default CustomButton;

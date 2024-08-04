@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
 
-import CustomButton from '@components/shared/ui/Button/CustomButton';
-
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import addIcon from '@components/shared/ui/Icon/add.svg';
 
 import styles from './HomeDashboard.module.css';
@@ -33,7 +32,7 @@ const HomeDashboard = () => {
           </Row>
         </Container>
       ) : (
-        <div className={styles.pagewindow}>
+        <div className={styles['page-window']}>
           <h1 className={styles.title}>
             Create your kid’s profile and add all the necessary information by
             clicking Add Your Kid button.
