@@ -47,7 +47,7 @@ const HomeDashboard = () => {
           <CustomButton
             styles={`${styles['custom-button']} secondary-light`}
             iconRight={addIcon}
-            iconRightStyles='icon-right-style'
+            // iconRightStyles='icon-right-style'
             textStyles='text-style'
             onClick={handleButtonClick}
             // onClick={() => setShowPart(true)}
