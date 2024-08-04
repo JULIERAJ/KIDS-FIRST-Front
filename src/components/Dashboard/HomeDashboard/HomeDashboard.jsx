@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
+
+import { useNavigate } from 'react-router-dom';
 
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import addIcon from '@components/shared/ui/Icon/add.svg';
@@ -10,11 +12,16 @@ import PendingEvents from './PendingEvents';
 import WeeksOverview from './WeeksOverview';
 
 const HomeDashboard = () => {
-  const [showPart, setShowPart] = useState(false);
+  const navigate = useNavigate();
+  const childExists = false;
+
+  const handleButtonClick = () => {
+    navigate('/dashboard/kids');
+  };
 
   return (
     <>
-      {showPart ? (
+      {childExists ? (
         <Container fluid>
           <Row>
             {/* Weeks Overview */}
@@ -42,7 +49,8 @@ const HomeDashboard = () => {
             iconRight={addIcon}
             iconRightStyles='icon-right-style'
             textStyles='text-style'
-            onClick={() => setShowPart(true)}
+            onClick={handleButtonClick}
+            // onClick={() => setShowPart(true)}
           >
             Add your kid
           </CustomButton>
