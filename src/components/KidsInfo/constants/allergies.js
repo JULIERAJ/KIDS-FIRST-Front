@@ -1,0 +1,18 @@
+export const ALLERGIES_VALUE = [
+  'Select Items',
+  'Bees',
+  'Crustaceans and Molluscs',
+  'Dust',
+  'Eggs',
+  'Fish',
+  'Gluten',
+  'Lactose',
+  'Mustard',
+  'Peanuts',
+  'Pets',
+  'Pollen',
+  'Sesame seeds',
+  'Soy',
+  'Sulfates',
+  'Tree Nuts',
+];

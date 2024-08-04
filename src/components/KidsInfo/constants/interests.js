@@ -1,0 +1,18 @@
+export const INTEREST_VALUE = [
+  'Select Items',
+  'Animals',
+  'Arts and Crafts',
+  'Basketball',
+  'Board Games',
+  'Cooking',
+  'Dancing',
+  'Drawing',
+  'Ice Hockey',
+  'Music',
+  'Pets',
+  'Reading',
+  'Singing',
+  'Soccer',
+  'Swimming',
+  'Video games',
+];

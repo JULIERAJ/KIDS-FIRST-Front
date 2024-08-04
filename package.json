@@ -23,6 +23,7 @@
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "firebase": "^10.12.2",
+    "formik": "^2.4.6",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
@@ -36,7 +37,8 @@
     "react-scripts": "^5.0.1",
     "react-social-login-buttons": "^4.1.0",
     "reactjs-social-login": "^2.6.3",
-    "web-vitals": "^4.2.0"
+    "web-vitals": "^4.2.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

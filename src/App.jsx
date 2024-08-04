@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
+import KidForm from '@components/KidsInfo/KidForm';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';
@@ -14,7 +15,7 @@ import Home from '@pages/Home';
 import PasswordChanged from '@pages/PasswordChanged';
 import Register from '@pages/Register';
 import ResetPassword from '@pages/ResetPassword';
-import Signin from '@pages/Signin';
+// import Signin from '@pages/Signin';
 import ProtectedRoute from '@utils/protectedRoute';
 import PublicRoute from '@utils/publicRoute';
 
@@ -27,7 +28,7 @@ const App = () => (
             <Route index element={<Home />} />
             <Route path='/features' element={<FeaturesPage />} />
           </Route>
-          <Route path='/signin' element={<Signin />} />
+          <Route path='/signin' element={<KidForm />} />
           <Route path='/register' element={<Register />} />
           <Route
             path='/register/:email/:family/:emailVerificationToken'
@@ -48,7 +49,7 @@ const App = () => (
           />
           <Route path='/password-changed' element={<PasswordChanged />} />
         </Route>
-        <Route element={<ProtectedRoute/>}>
+        <Route element={<ProtectedRoute />}>
           <Route path='/dashboard/*' element={<Dashboard />}>
             <Route
               path='calendarview'
