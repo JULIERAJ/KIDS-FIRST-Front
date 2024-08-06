@@ -1,4 +1,5 @@
 .page {
+  font-family: Roboto, sans-serif;
   max-width: 100%;
   height: 110dvh;
   background-color: var(--color-bg-page);
@@ -12,6 +13,7 @@
   border-radius: 1rem;
   padding: 0;
   background-color: var(--main-white);
+  color: var(--color-fg-light);
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -52,40 +54,31 @@
 .description {
   text-align: center;
   font-size: 1.125rem;
-  margin: 4rem 0 1.35rem;
+  line-height: 1.35rem;
+  margin: 4rem 0 1.475rem 0;
   text-align: center;
+  letter-spacing: -0.009rem;
 }
 .text {
   text-align: center;
   font-size: 1.125rem;
-  margin: 0rem 0 4rem;
+  line-height: 1.35rem;
+  margin: 0 0 4rem 0;
   text-align: center;
 }
 
-.link {
+.nav-button {
   display: block;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.575rem;
   text-align: center;
   color: var(--color-orange);
+  background: transparent;
+  border: none;
 }
-
-.link:hover {
-  color: var(--color-dark-orange);
-}
-
-/* .custom-button-container {
-  height: 56px;
-  width: 288px;
-} */
-
-.custom-button {
-  /* margin-top: 1rem; */
-  display: inline-block;
-  width: 100%;
-  /* padding: 1rem 0; */
-  font-size: 1.25rem; /*20px*/
-  line-height: 120%;
-  letter-spacing: 0rem;
-  font-weight: 500;
+.nav-button:hover {
+  background-color: transparent;
   color: var(--color-dark-orange);
 }
 

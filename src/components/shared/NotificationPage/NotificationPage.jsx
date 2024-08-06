@@ -6,7 +6,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 
 import Header from '@components/shared/Header';
 
-import { CustomButton } from '../ui/Button/CustomButton';
+import { NavButton } from '../ui/Button/NavButton';
 
 import styles from './NotificationPage.module.css';
 
@@ -21,13 +21,14 @@ export default function NotificationPage({ title,
   isButton,
   isLoading,
   emailResent,
+  isActive,
   handleResendEmail }) {
 
   const navigate = useNavigate();
 
   const handleClick = (event) => {
     event.preventDefault();
-    if (!isLoading && !emailResent) {
+    if (!isLoading && !emailResent && isActive) {
       handleResendEmail(event);
       navigate(linkTo);
     }
@@ -45,17 +46,16 @@ export default function NotificationPage({ title,
           <p className={styles.text}>{text}</p>
           {isButton ? (
             !emailResent ? (
-              <div className={styles['custom-button-container']}>
-                <CustomButton
-                  className={`primary-light ${styles['custom-button']}`}
-                  size="med"
-                  variant="light"
+              <div className={styles['button-container']}>
+                <NavButton
+                  className={`${styles['nav-button']}`}
                   onClick={handleClick}
-                  disabled={isLoading}
+                  disabled={isLoading || !isActive}
                 >
+
                   {isLoading ? 'Resending...' : linkText}
 
-                </CustomButton>
+                </NavButton>
               </div>
             ) : (<p>Email already resent</p>)
           ) : (
@@ -81,5 +81,6 @@ NotificationPage.propTypes = {
   isButton: PropTypes.bool,
   isLoading: PropTypes.bool,
   emailResent: PropTypes.bool,
+  isActive: PropTypes.bool,
   handleResendEmail: PropTypes.func,
 };
