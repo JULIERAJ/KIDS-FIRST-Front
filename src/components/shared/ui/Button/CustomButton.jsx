@@ -20,11 +20,17 @@ export const CustomButton = ({
   return (
     <Button className={classNames(styles)} href={link} {...props}>
       {iconLeft && (
-        <img src={iconLeft} className={classNames('icon-left', iconLeftStyles)} />
+        <img
+          src={iconLeft}
+          className={classNames('icon-left', iconLeftStyles)}
+        />
       )}
       <span className={classNames('text', textStyles)}>{children}</span>
       {iconRight && (
-        <img src={iconRight} className={classNames('icon-right', iconRightStyles)} />
+        <img
+          src={iconRight}
+          className={classNames('icon-right', iconRightStyles)}
+        />
       )}
     </Button>
   );
