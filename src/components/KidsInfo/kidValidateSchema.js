@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 const currentYear = new Date().getFullYear();
 
-const KidValidateSchema = Yup.object.shape({
+export const kidValidateSchema = Yup.object().shape({
   ProfilePicture: Yup.mixed().test(
     'file formant',
     'Unsupported Format',
@@ -42,5 +42,3 @@ const KidValidateSchema = Yup.object.shape({
     'The field accepts a maximum of 200 characters'
   ),
 });
-
-export default KidValidateSchema;

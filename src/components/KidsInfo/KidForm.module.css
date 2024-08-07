@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .kid-edit-avatar {
@@ -14,4 +15,3 @@
   padding: 10px;
   cursor: pointer;
 }
-
