@@ -16,7 +16,7 @@ const Sidebar = ({ onTitleChange }) => {
   const navigate = useNavigate();
   const { logout: authContextLogout } = useAuth();
   
-  const handleClick = (title, path) => {
+  const onClick = (title, path) => {
     if (title === 'Logout') {
       handleLogout();
     } else {
@@ -61,7 +61,7 @@ const Sidebar = ({ onTitleChange }) => {
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={handleClick}
+                onClick={onClick}
               />
             ))}
           </div>
@@ -73,7 +73,7 @@ const Sidebar = ({ onTitleChange }) => {
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={handleClick}
+                onClick={onClick}
               />
             ))}
           </div>
