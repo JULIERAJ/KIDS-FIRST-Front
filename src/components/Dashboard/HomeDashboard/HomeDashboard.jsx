@@ -16,7 +16,7 @@ const HomeDashboard = () => {
   const childExists = false;
 
   const handleButtonClick = () => {
-    navigate('/dashboard/kids');
+    navigate('dashboard/kids');
   };
 
   return (
@@ -39,7 +39,7 @@ const HomeDashboard = () => {
           </Row>
         </Container>
       ) : (
-        <div className={styles['page-window']}>
+        <Container fluid className={styles['page-window']}>
           <h1 className={styles.title}>
             Create your kid’s profile and add all the necessary information by
             clicking Add Your Kid button.
@@ -52,7 +52,7 @@ const HomeDashboard = () => {
           >
             Add your kid
           </CustomButton>
-        </div>
+        </Container>
       )}
     </>
   );
