@@ -13,7 +13,7 @@ export const kidValidateSchema = Yup.object().shape({
     .min(2, 'The field accepts a minimum of 2 characters')
     .max(40, 'The field accepts a maximum of 40 characters')
     .matches(
-      /^[a-zA-Z\s]+$/,
+      /^[a-zA-Z\s-]+$/,
       'The field accepts letters and only special characters [-] and white space [ ]'
     )
     .required('Full Name is required'),
