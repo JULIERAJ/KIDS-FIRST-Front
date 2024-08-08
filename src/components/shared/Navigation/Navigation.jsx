@@ -1,10 +1,10 @@
 import React from 'react';
-import { Dropdown, Container, Nav } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import { navigationLink } from '@data/features.data';
+// import { navigationLink } from '@data/features.data';
 
-import arrowDown from '@media/features/arrow_down.svg';
+// import arrowDown from '@media/features/arrow_down.svg';
 
 import { CustomButton } from '../ui/Button/CustomButton';
 
@@ -13,22 +13,8 @@ import styles from './Navigation.module.css';
 const Navigation = () => {
   return (
     <>
-      <Nav className={styles.navigation}>
-        {navigationLink.map((link, i) => {
-          return (
-            <Nav.Link
-              key={i}
-              as={NavLink}
-              to={link.url}
-              className={styles.navigation__item}
-            >
-              {link.title}
-            </Nav.Link>
-          );
-        })}
-      </Nav>
       <Container className={styles.navigation__wrapper}>
-        <Dropdown>
+        {/* <Dropdown>
           <Dropdown.Toggle
             className={styles.navigation__lang_menu}
             id='langDropdown'
@@ -50,7 +36,7 @@ const Navigation = () => {
               FR
             </CustomButton>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown> */}
         <CustomButton styles={styles.navigation__login_button}>
           <NavLink to='/signin'>Log in</NavLink>
         </CustomButton>

@@ -1,0 +1,34 @@
+.value {
+  padding: 50px 50px 13px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+
+  box-shadow: inset 0 4px 4px 0 #f7f5ec;
+	background: linear-gradient(to bottom, #f7f5ec, 40%, #fff);
+	background-color: #f7f5ec;
+
+	text-align: center;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 40px;
+	border-radius: 10px;
+}
+
+.value-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.value-text {
+  font-size: 20px;
+  line-height: 2;
+  font-weight: 400;
+}
+
+.value-img {
+	margin-top: auto;
+}
