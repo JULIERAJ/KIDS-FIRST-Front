@@ -9,7 +9,7 @@ export const kidValidateSchema = Yup.object().shape({
     'Unsupported Format',
     (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
   ),
-  fullName: Yup.string()
+  name: Yup.string()
     .min(2, 'The field accepts a minimum of 2 characters')
     .max(40, 'The field accepts a maximum of 40 characters')
     .matches(
@@ -17,7 +17,7 @@ export const kidValidateSchema = Yup.object().shape({
       'The field accepts letters and only special characters [-] and white space [ ]'
     )
     .required('Full Name is required'),
-  dateOfBirth: Yup.string()
+  dateOfBirthday: Yup.string()
     .matches(
       /^(0[1-9]|1[0-2])[/](0[1-9]|[12][0-9]|3[01])[/](19|20)\d{2}$/,
       'The format of the birthday is month, day, and year, i.e., [MM/DD/YYYY]'

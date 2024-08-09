@@ -2,22 +2,43 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { Col, Form, Row, Image } from 'react-bootstrap';
 
+import { createKid } from '@api';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import edit from '@media/icons/icon.png';
 
+import AttributesSelect from './AttributesSelect';
 import { ALLERGIES_VALUE } from './constants/allergies';
 import { FEARS_VALUE } from './constants/fears';
 import { INTEREST_VALUE } from './constants/interests';
 import kid from './kid.png';
 import styles from './KidForm.module.css';
 import { kidValidateSchema } from './kidValidateSchema';
+
 const KidForm = () => {
-  // const [loading, setLoading] = useState(false);
   const [countSymbol, setCountSymbol] = useState('');
 
+  async function formAction(values) {
+    try {
+      const response = await createKid(values);
+      console.log('Kid created:', response.data);
+    } catch (error) {
+      // Improved error logging
+      console.error('Error occurred:', error.message);
+      if (error.response) {
+        console.error(
+          'Server responded with:',
+          error.response.status,
+          error.response.data
+        );
+      } else {
+        console.error('No response from server');
+      }
+    }
+  }
   const formik = useFormik({
     initialValues: {
-      fullName: '',
+      childColor: 'purple', // hardcoded
+      name: '',
       dateOfBirthday: '',
       allergies: [],
       interests: [],
@@ -25,11 +46,12 @@ const KidForm = () => {
       other: '',
     },
     validationSchema: kidValidateSchema,
-    onSubmit: (value, { resetForm }) => {
-      console.log(value);
-      // setLoading(true);
+    onSubmit: (values, { resetForm }) => {
+      console.log('Collected form values:', values);
+
+      formAction(values);
+
       setTimeout(() => {
-        // setLoading(false);
         resetForm();
       }, 1000 * 2);
     },
@@ -55,13 +77,13 @@ const KidForm = () => {
             type='text'
             placeholder='Full Name'
             className='p-3'
-            name='fullName'
-            value={formik.values.fullName}
+            name='name'
+            value={formik.values.name}
             onChange={formik.handleChange}
-            isInvalid={!!formik.errors.fullName}
+            isInvalid={!!formik.errors.name}
           />
           <Form.Control.Feedback type='invalid'>
-            {formik.errors.fullName}
+            {formik.errors.name}
           </Form.Control.Feedback>
         </Col>
         <Col xs={4}>
@@ -86,65 +108,44 @@ const KidForm = () => {
           <h4>More Information</h4>
           <p>Add items in the fields below to keep each other in the loop.</p>
           <Form.Group>
-            <Form.Label>Allergies</Form.Label>
-            <Form.Select
-              className='p-3 text-muted'
-              name='allergies'
+            <AttributesSelect
+              label='Allergies'
+              options={ALLERGIES_VALUE}
               value={formik.values.allergies}
-              onChange={formik.handleChange}
-              defaultValue={ALLERGIES_VALUE[0]}
-              isInvalid={!!formik.errors.allergies}>
-              {ALLERGIES_VALUE.map((allergy, index) => (
-                <option key={index} value={allergy}>
-                  {allergy}
-                </option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type='invalid'>
-              {formik.errors.allergies}
-            </Form.Control.Feedback>
-            <Form.Label>Interest</Form.Label>
-            <Form.Select
-              className='p-3 text-muted'
-              name='interests'
-              value={formik.values.interests}
-              onChange={formik.handleChange}
-              defaultValue={INTEREST_VALUE[0]}
-              isInvalid={!!formik.errors.interests}>
-              {INTEREST_VALUE.map((interest, index) => (
-                <option key={index} value={interest}>
-                  {interest}
-                </option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type='invalid'>
-              {formik.errors.interests}
-            </Form.Control.Feedback>
-            <Form.Label>Fears</Form.Label>
-            <Form.Select
-              className='p-3 text-muted'
-              name='fears'
+              setFieldValue={formik.setFieldValue}
+              name='allergies'
+              error={formik.errors.allergies}
+            />
+
+            <AttributesSelect
+              label='Fears'
+              options={FEARS_VALUE}
               value={formik.values.fears}
-              onChange={formik.handleChange}
-              defaultValue={FEARS_VALUE[0]}>
-              {FEARS_VALUE.map((fear, index) => (
-                <option key={index} value={fear}>
-                  {fear}
-                </option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type='invalid'>
-              {formik.errors.fears}
-            </Form.Control.Feedback>
+              setFieldValue={formik.setFieldValue}
+              name='fears'
+              error={formik.errors.fears}
+            />
+
+            <AttributesSelect
+              label='Interests'
+              options={INTEREST_VALUE}
+              value={formik.values.interests}
+              setFieldValue={formik.setFieldValue}
+              name='interests'
+              error={formik.errors.interests}
+            />
 
             <Form.Label>Other</Form.Label>
-
             <Form.Control
               as='textarea'
               rows={3}
               className='p-3'
-              value={countSymbol}
-              onChange={handleCountSymbol}
+              value={formik.values.other}
+              name='other'
+              onChange={(e) => {
+                formik.handleChange(e);
+                handleCountSymbol(e);
+              }}
               placeholder='Here you can write additional information...'
             />
             <div className='d-flex justify-content-end'>
