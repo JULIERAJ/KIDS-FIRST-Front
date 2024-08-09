@@ -232,14 +232,7 @@ body.home {
 }
 
 .left-blurbs p {
-	/* width:492px;
-  height:150px;
-  font-size: 20px;
-  line-height: 35px;
-  font-weight: 400;
-  text-align: left; */
-	margin: 0 0 0 20%;
-	/* padding:50px 0 72px 0px; */
+   margin: 0 0 0 20%;
 	color: #000;
 }
 
@@ -300,18 +293,13 @@ body.home {
 }
 
 .site-section {
-	/* margin: 30px 5% 0 5%;
-	font-family: Roboto, sans-serif; */
-
 	padding-top: 100px;
 	padding-bottom: 126px;
 }
 
 .site-sections {
-	/* margin: 40px auto 0 auto; */
 	display: flex;
 	justify-content: left;
-	/* padding: 40px 5%; */
 	font-family: Roboto, sans-serif;
 	color: #f2f0e7;
 }
