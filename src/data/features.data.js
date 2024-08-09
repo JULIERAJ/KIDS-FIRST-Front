@@ -1,17 +1,18 @@
 export const cardMainFeature = [
   {
-    imageUrl: require('../media/homePage/feature_interactive_calendar.png'),
-    title: 'Calendar',
-    content: `The calendar was built as an interface that allows users to easily to add events, 
-    view events from both parents 
-      and be able to communicate on any 
-      conflicts for events. The calendar was successfully designed to 
-      be a simple interface where users can easily distinguish how to 
-      create events, update events and delete them too.`,
+    imageUrl: require('../media/homePage/feature_dashboard.png'),
+    title: 'Dashboard',
+    content: `The dashboard summarizes any changes in status from the other app features.
+    The dashboard presents the user with any live changes from the different app features:
+    snapshot of upcoming calendar events;
+    notice of any new calendar events added;
+    notice of any calendar event change requests;
+    notice of any new messages;
+    family space invitation status`,
     color: '#F7F5EC',
   },
   {
-    imageUrl: require('../media/homePage/feature_child_info.png'),
+    imageUrl: require('../media/homePage/feature_kids_info.png'),
     title: 'Child Info',
     content: `The child info repository is a feature that contains important information for all of the children. 
       There are people the parents need to contact 
