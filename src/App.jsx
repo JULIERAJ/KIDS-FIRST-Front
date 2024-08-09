@@ -63,8 +63,7 @@ const App = () => (
             <Route path='messages' element={<MessageBar />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='kids' />
-              <Route path='logout' element={<HomeDashboard />} />
-              <Route path='help' element={<HomeDashboard />} /> */}
+              <Route path='help' /> */}
           </Route>
         </Route>
       </Routes>
