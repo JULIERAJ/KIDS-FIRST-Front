@@ -121,7 +121,7 @@ body.home {
             WIDE BANNER SECTIONS
    ====================================== */
 .banner-section#first-banner {
-	background: #f8f8ee url('../../media/homePage/mother_daughter_hug.png')
+	background: #F7F5EC url('../../media/homePage/mother_daughter_hug.png')
 		no-repeat right bottom;
 	min-height: 730px;
 	width: 100%;
@@ -413,6 +413,7 @@ body.home {
 	font-size: 22px;
 	line-height: 250%;
 	color: #000;
+	text-wrap:   balance;
 }
 
 .banner-sect__text p + p {

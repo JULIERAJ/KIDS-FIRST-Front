@@ -126,7 +126,7 @@ export default function Home() {
 							<div className="banner-sect__text">
 								<p>
 									We take a different approach to reducing
-									conflicts: To accommodate parents&apos;
+									conflicts: To&nbsp;accommodate parents&apos;
 									needs with a simple and clever app design
 									that limits the need for calls or text
 									messaging.
