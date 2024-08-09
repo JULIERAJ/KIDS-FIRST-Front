@@ -3,11 +3,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as Album } from '@media/icons/album.svg';
-import { ReactComponent as Calendar } from '@media/icons/calendar-new.svg';
+import { ReactComponent as Calendar } from '@media/icons/calendar.svg';
 import { ReactComponent as Chat } from '@media/icons/chat.svg';
 import { ReactComponent as Face } from '@media/icons/face.svg';
 import { ReactComponent as Help } from '@media/icons/help.svg';
-import { ReactComponent as Home } from '@media/icons/home-new.svg';
+import { ReactComponent as Home } from '@media/icons/home.svg';
 import { ReactComponent as Logout } from '@media/icons/logout.svg';
 
 import styles from './Sidebar.module.css';
