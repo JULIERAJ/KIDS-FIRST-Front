@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
+import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';
@@ -59,11 +60,11 @@ const App = () => (
               }
             />
             <Route path='homedashboard' element={<HomeDashboard />} />
+            <Route path='messages' element={<MessageBar />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='kids' />
-              <Route path='messages' />
-              <Route path='logout' />
-              <Route path='help' /> */}
+              <Route path='logout' element={<HomeDashboard />} />
+              <Route path='help' element={<HomeDashboard />} /> */}
           </Route>
         </Route>
       </Routes>
