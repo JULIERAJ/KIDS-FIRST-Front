@@ -39,7 +39,6 @@ export const SIDEBAR_DATA = [
   {
     title: 'Logout',
     iconPath: 'logout',
-    path: '/dashboard/logout',
     alt: 'logout',
   },
   {
