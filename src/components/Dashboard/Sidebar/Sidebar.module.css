@@ -59,6 +59,16 @@
   border-right: 0.25rem solid #eb7005;
   color: #db5c00;
   font-weight: 700;
+  fill: #db5c00;
+}
+
+.icon {
+  fill: var(--color-fg-light);
+  font-size: 32px;
+}
+
+.icon.active {
+  fill: #db5c00;
 }
 
 .nav:focus-visible {
@@ -70,10 +80,6 @@
 .nav:hover {
   background-color: #fdf1e6;
   font-weight: 700;
-}
-
-.icon {
-  font-size: 32px;
 }
 
 .icon:active {

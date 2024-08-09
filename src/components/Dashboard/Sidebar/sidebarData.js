@@ -2,31 +2,31 @@
 export const SIDEBAR_DATA = [
   {
     title: 'Home',
-    icon: 'home',
+    iconPath: 'home',
     path: '/dashboard/homedashboard',
     alt: 'home',
   },
   {
     title: 'Calendar',
-    icon: 'calendar_month',
+    iconPath: 'calendar',
     path: '/dashboard/calendarview',
     alt: 'calendar',
   },
   {
     title: 'Messages',
-    icon: 'chat',
+    iconPath: 'chat',
     path: '/dashboard/messages',
     alt: 'messages',
   },
   {
     title: 'Album',
-    icon: 'photo_library',
+    iconPath: 'album',
     path: '/dashboard/album',
     alt: 'album',
   },
   {
     title: 'Kid\'s Info',
-    icon: 'face',
+    iconPath: 'face',
     path: '/dashboard/kids',
     alt: 'kids',
   },
@@ -38,13 +38,13 @@ export const SIDEBAR_DATA = [
   // },
   {
     title: 'Logout',
-    icon: 'logout',
+    iconPath: 'logout',
     path: '/dashboard/logout',
     alt: 'logout',
   },
   {
     title: 'Help',
-    icon: 'help',
+    iconPath: 'help',
     path: '/dashboard/help',
     alt: 'help',
   }
