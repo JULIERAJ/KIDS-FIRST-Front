@@ -1,6 +1,8 @@
 import { Form } from 'react-bootstrap';
 import Select, { components } from 'react-select';
 
+import styles from './KidForm.module.css';
+
 // eslint-disable-next-line react/prop-types
 const CheckboxOptions = ({ children, ...props }) => {
   return (
@@ -37,8 +39,9 @@ const AttributesSelect = ({
 
   return (
     <>
-      <Form.Label>{label}</Form.Label>
+      <Form.Label className={styles['kid-form-label']}>{label}</Form.Label>
       <Select
+        className={styles['kid-form-input']}
         placeholder='Select items'
         isMulti
         options={options}
@@ -48,6 +51,16 @@ const AttributesSelect = ({
         components={{ Option: CheckboxOptions }}
         closeMenuOnSelect={false}
         hideSelectedOptions={false}
+        styles={{
+          indicatorSeparator: (base) => ({
+            ...base,
+            display: 'none',
+          }),
+          valueContainer: (base) => ({
+            ...base,
+            padding: '10px',
+          }),
+        }}
       />
       {error && (
         <Form.Control.Feedback type='invalid'>{error}</Form.Control.Feedback>

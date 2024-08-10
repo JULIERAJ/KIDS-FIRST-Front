@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
 }
 
 .kid-edit-avatar {
@@ -14,4 +14,14 @@
   border-radius: 50%;
   padding: 10px;
   cursor: pointer;
+}
+
+
+.kid-form-input {
+  padding-bottom: 16px;
+}
+
+.kid-form-label {
+  font-weight: 500;
+  line-height: 19.2px;
 }

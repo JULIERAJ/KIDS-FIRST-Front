@@ -62,7 +62,7 @@ const KidForm = () => {
   };
   return (
     <Form onSubmit={formik.handleSubmit} className='mt-4'>
-      <Row>
+      <Row className='flex align-items-center'>
         <Col xs={3} className={styles['kid-avatar-container']}>
           <Image src={kid} width={158} height={158} roundedCircle />
           <Image
@@ -71,7 +71,7 @@ const KidForm = () => {
             className={styles['kid-edit-avatar']}
           />
         </Col>
-        <Col xs={5}>
+        <Col xs={4}>
           <Form.Label>Kid&apos;s Name</Form.Label>
           <Form.Control
             type='text'
@@ -86,7 +86,7 @@ const KidForm = () => {
             {formik.errors.name}
           </Form.Control.Feedback>
         </Col>
-        <Col xs={4}>
+        <Col xs={3}>
           <Form.Label>Birth Date</Form.Label>
           <Form.Control
             type='text'
@@ -104,7 +104,7 @@ const KidForm = () => {
       </Row>
       <Row>
         <Col xs={3}></Col>
-        <Col xs={9}>
+        <Col xs={7}>
           <h4>More Information</h4>
           <p>Add items in the fields below to keep each other in the loop.</p>
           <Form.Group>
@@ -135,7 +135,7 @@ const KidForm = () => {
               error={formik.errors.interests}
             />
 
-            <Form.Label>Other</Form.Label>
+            <Form.Label className={styles['kid-form-label']}>Other</Form.Label>
             <Form.Control
               as='textarea'
               rows={3}
