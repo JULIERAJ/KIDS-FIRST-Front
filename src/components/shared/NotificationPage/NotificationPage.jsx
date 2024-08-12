@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Header from '@components/shared/Header';
 
@@ -24,13 +24,10 @@ export default function NotificationPage({ title,
   isActive,
   handleResendEmail }) {
 
-  const navigate = useNavigate();
-
   const handleClick = (event) => {
     event.preventDefault();
     if (!isLoading && !emailResent && isActive) {
       handleResendEmail(event);
-      navigate(linkTo);
     }
   };
 
@@ -57,7 +54,7 @@ export default function NotificationPage({ title,
 
                 </NavButton>
               </div>
-            ) : (<p>Email already resent</p>)
+            ) : (<p className={styles['resend-status']}>Email already resent</p>)
           ) : (
             <NavLink className={styles.link} to={linkTo}>
               {linkText}
