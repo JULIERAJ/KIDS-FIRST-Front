@@ -1,0 +1,35 @@
+.page {
+  font-family: Roboto, sans-serif;
+  max-width: 100%;
+  height: 110dvh;
+  background-color: var(--color-bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-window {
+  width: 56.875rem;
+  height: 110dvh;
+  border-radius: 1rem;
+  padding: 0;
+  background-color: var(--main-white);
+  color: var(--color-fg-light);
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8.375rem;
+  padding-bottom: 10.563rem;
+  text-align: center;
+}
+
+.page-wrapper {
+  .page-wrapper {
+    width: 29.375rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
