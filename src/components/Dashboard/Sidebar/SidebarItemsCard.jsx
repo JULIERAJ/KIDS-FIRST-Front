@@ -1,62 +1,79 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { Nav } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+import { ReactComponent as Album } from '@media/icons/album.svg';
+import { ReactComponent as Calendar } from '@media/icons/calendar.svg';
+import { ReactComponent as Chat } from '@media/icons/chat.svg';
+import { ReactComponent as Face } from '@media/icons/face.svg';
+import { ReactComponent as Help } from '@media/icons/help.svg';
+import { ReactComponent as Home } from '@media/icons/home.svg';
+import { ReactComponent as Logout } from '@media/icons/logout.svg';
 
 import styles from './Sidebar.module.css';
 
-const SidebarItemsCard = ({
-  title,
-  icon,
-  activeIcon,
-  hoverIcon,
-  path,
-  isActive,
-  onClick,
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isActive) {
-      navigate(path);
+const SidebarItemsCard = ({ title, iconPath, path, onClick, isActive }) => {
+  const iconChooser = () => {
+    switch (iconPath) {
+    case 'album':
+      return (
+        <Album
+          className={`${styles.icon} ${isActive ? styles.active : ''}`}
+        />
+      );
+    case 'calendar':
+      return (
+        <Calendar
+          className={`${styles.icon} ${isActive ? styles.active : ''}`}
+        />
+      );
+    case 'chat':
+      return (
+        <Chat className={`${styles.icon} ${isActive ? styles.active : ''}`} />
+      );
+    case 'face':
+      return (
+        <Face className={`${styles.icon} ${isActive ? styles.active : ''}`} />
+      );
+    case 'help':
+      return <Help className={`${styles.icon} ${isActive ? styles.active : ''}`} />;
+    case 'home':
+      return <Home className={`${styles.icon} ${isActive ? styles.active : ''}`} />;
+    case 'logout':
+      return (
+        <Logout
+          className={`${styles.icon} ${isActive ? styles.active : ''}`}
+        />
+      );
     }
-  }, [isActive, path, navigate]);
+  };
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     onClick(title, path);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleClick(e);
+      handleClick();
     }
   };
 
   return (
-    <Nav.Item
+    <NavLink
+      to={path}
       className={`${styles.nav} ${isActive ? styles.active : ''}`}
-      id={window.location.pathname === path ? 'active' : ''}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
-      role="button"
-      tabIndex={0}
       onKeyDown={handleKeyDown}
-    >
-      {isActive ? activeIcon : isHovered ? hoverIcon : icon}
-      <span className={styles.sidebarMenuItem}>{title}</span>
-    </Nav.Item>
+    > 
+      {iconChooser()}
+      <span>{title}</span>
+    </NavLink>
   );
 };
 
 SidebarItemsCard.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.node.isRequired,
-  activeIcon: PropTypes.node.isRequired,
-  hoverIcon: PropTypes.node.isRequired,
+  iconPath: PropTypes.node.isRequired,
   path: PropTypes.string,
   alt: PropTypes.string,
   onClick: PropTypes.func,

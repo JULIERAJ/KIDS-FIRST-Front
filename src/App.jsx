@@ -4,6 +4,7 @@ import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 import KidForm from '@components/KidsInfo/KidForm';
+import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';
@@ -60,11 +61,10 @@ const App = () => (
               }
             />
             <Route path='homedashboard' element={<HomeDashboard />} />
+            <Route path='messages' element={<MessageBar />} />
             <Route path='kids' element={<KidForm />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='kids' />
-              <Route path='messages' />
-              <Route path='logout' />
               <Route path='help' /> */}
           </Route>
         </Route>
