@@ -1,20 +1,27 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { resendEmailVerification } from '@api';
 
+import MessageModal from '@components/shared/Modal/MessageModal';
 import NotificationPage from '@components/shared/NotificationPage';
 
 import envelopeImg from '@media/icons/email-image.svg';
 
-import EventModal from '../../components/Dashboard/Calendar/KFCalendar/EventModal/EventModal';
-
 const EmailVerify = ({ userData }) => {
+
+  const navigate = useNavigate();
+
   const email = userData.email;
   const [isLoading, setIsLoading] = useState(false);
   const [emailResent, setEmailResent] = useState(false);
+
   const [message, setMessage] = useState('Verify your email');
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isActive, setIsActive] = useState(false);
 
   const openModal = () => {
@@ -25,8 +32,10 @@ const EmailVerify = ({ userData }) => {
     setIsModalOpen(false);
   };
 
-  const MAX_TIME = 10;//2 min
+  const MAX_TIME = 2 * 60;//2 min
   const time = useRef(MAX_TIME);
+
+  // Delay in resending verification link second time(2 minutes)
 
   useEffect(() => {
 
@@ -50,25 +59,20 @@ const EmailVerify = ({ userData }) => {
 
     try {
       const response = await resendEmailVerification(email);
+
       if (response.status === 200) {
+
         openModal();
+        setMessage('Email resent successfully');
+
         setEmailResent(true);
-        // popup
-
-        // setMessage('Email resent successfully');
-        // setEmailResent(true); // Update the state to indicate that email has been resent
       } else {
-        // navigate to error page
-
-        setMessage('Error resending email. Please try again later.');
-        // console.error('Error resending email. Response:', response);
+        navigate('/error');
 
       }
     } catch (error) {
-      // navigate to error page
+      navigate('/error');
 
-      // setMessage('Error resending email. Please try again later.');
-      // console.error('Error resending email:', error);
     } finally {
       setIsLoading(false);
     }
@@ -87,31 +91,12 @@ const EmailVerify = ({ userData }) => {
         isLoading={isLoading}
         emailResent={emailResent}
         handleResendEmail={handleResendEmail}
-        isActive={isActive}>
+        isActive={isActive} />
 
-      </NotificationPage>
-      {isModalOpen && <EventModal onClose={closeModal} />}
+      {isModalOpen && (
+        <MessageModal onClose={closeModal} text={`Verification link has been successfully resent to ${email}`} />
+      )}
     </>
-    // <>
-    //   <FeedbackBlock message={message} image={envelopeImg}/>
-    //   <div className={styles.verifyText}>
-    //     <p>A verification email has been sent to {email}.</p>
-    //     <p>Please verify your email address to log in to KIDS FIRST.</p>
-
-  //   </div>
-  //   <div className={styles.resendEmailLink}>
-  //     {/* Disable the link and show loading indicator if isLoading is true or email has already been resent*/}
-  //     {!emailResent && (
-  //     /* eslint-disable-next-line */
-  //       <a href='' onClick={handleResendEmail} disabled={isLoading}>
-  //         {isLoading ? 'Resending...' : 'Resend Email'}
-  //       </a>
-  //     )}
-  //     {emailResent && (
-  //       <p>Email already resent</p>
-  //     )}
-  //   </div>
-  // </>
   );
 };
 
