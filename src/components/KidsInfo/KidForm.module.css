@@ -1,8 +1,12 @@
+/* ======================================
+          KID FORM
+   ====================================== */
+
+
 .kid-avatar-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .kid-edit-avatar {
@@ -24,4 +28,40 @@
 .kid-form-label {
   font-weight: 500;
   line-height: 19.2px;
+}
+
+/* ======================================
+          CHECKBOX & CHECKMARK
+   ====================================== */
+
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 8px;
+}
+
+.checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(246, 188, 140, 1);
+  border-radius: 4px;
+  background-color: #fff;
+  position: relative;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
 }
