@@ -27,6 +27,7 @@ export default function ForgetPassword() {
     e.preventDefault();
     setSuccess(false);
     setErrMsg('');
+
     try {
       const res = await forgetPassword(email);
       if (res.status === 200) {
@@ -68,7 +69,7 @@ export default function ForgetPassword() {
               </section>
             )}
             {!success && !sentEmail && (
-              <Form onSubmit={handleForgotPassword} novalidate>
+              <Form onSubmit={handleForgotPassword} noValidate>
                 <section className={styles.reset}>
                   <p className={styles['reset-text']}>
                     Please enter your account email address and we will send
