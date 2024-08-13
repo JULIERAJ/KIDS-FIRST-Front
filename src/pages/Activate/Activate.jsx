@@ -60,7 +60,7 @@ const Activate = () => {
         description="Please click 'Next' to proceed to the login page."
         linkText="Next"
         linkTo="/signin"
-        isButton={true}
+        isButton={false}
       />
     );
   }
@@ -75,6 +75,7 @@ const Activate = () => {
         description={`Please check ${email} for the latest verification email to continue.`}
         linkText="Back to Sign up"
         linkTo="/register"
+        isButton={false}
       />
     );
   }
