@@ -21,7 +21,6 @@ const Activate = () => {
         if (data.emailIsActivated) {
           setVerificationSuccessful(true);
         }
-        setLoading(false);
       } catch (error) {
         console.log({ error });
         if (error?.response?.status === 400) {
