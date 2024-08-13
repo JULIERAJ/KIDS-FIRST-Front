@@ -58,25 +58,6 @@ export default function NotificationPage({ title,
               {linkText}
             </NavLink>
           )}
-          {/* {isButton ? (
-            !emailResent ? (
-              <div className={styles['button-container']}>
-                <NavButton
-                  className={`${styles['nav-button']}`}
-                  onClick={handleClick}
-                  disabled={isLoading || !isActive || emailResent}
-                >
-
-                  {isLoading ? 'Resending...' : linkText}
-
-                </NavButton>
-              </div>
-            ) : (<p className={styles['resend-status']}>Email already resent</p>)
-          ) : (
-            <NavLink className={styles.link} to={linkTo}>
-              {linkText}
-            </NavLink>
-          )} */}
         </Container>
       </Container>
     </Container>
