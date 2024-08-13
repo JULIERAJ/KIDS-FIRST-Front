@@ -26,11 +26,14 @@ const Activate = () => {
         console.log({ error });
         if (error?.response?.status === 400) {
           setLinkExpired(true);
+        } else {
+          setLinkInvalid(true);
         }
-        setLinkInvalid(true);
+      } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, [email, emailVerificationToken]);
 
