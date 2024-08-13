@@ -1,0 +1,25 @@
+.feature {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+
+	height: 430px;
+	padding: 80px 50px 60px;
+
+	border-radius: 15px;
+	background: linear-gradient(to top, #f7f5ec, 40%, #fff);
+	background-color: #f7f5ec;
+}
+
+.feature-title {
+	text-align: center;
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 1.25;
+}
+
+.feature-img {
+
+}

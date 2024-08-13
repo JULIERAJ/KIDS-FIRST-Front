@@ -50,6 +50,8 @@
   align-items: center;
   cursor: pointer;
   display: flex;
+  color: var(--color-fg-light);
+  text-decoration: none;
 }
 
 .nav:active,
@@ -57,6 +59,16 @@
   border-right: 0.25rem solid #eb7005;
   color: #db5c00;
   font-weight: 700;
+  fill: #db5c00;
+}
+
+.icon {
+  fill: var(--color-fg-light);
+  font-size: 32px;
+}
+
+.icon.active {
+  fill: #db5c00;
 }
 
 .nav:focus-visible {
@@ -69,6 +81,17 @@
   background-color: #fdf1e6;
   font-weight: 700;
 }
+
+.icon:active {
+  font-variation-settings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40';
+  color: #DB5C00 !important;
+}
+
+.icon:hover {
+  font-variation-settings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 40';
+}
+
+
 
 @media (max-width: 768px) {
   .sidebar {
