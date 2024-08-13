@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef, useEffect } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import { resendEmailVerification } from '@api';
 
 import MessageModal from '@components/shared/Modal/MessageModal';
@@ -11,8 +9,6 @@ import NotificationPage from '@components/shared/NotificationPage';
 import envelopeImg from '@media/icons/email-image.svg';
 
 const EmailVerify = ({ userData }) => {
-
-  const navigate = useNavigate();
 
   const email = userData.email;
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +19,8 @@ const EmailVerify = ({ userData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isActive, setIsActive] = useState(false);
+
+  const [error, setError] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -66,36 +64,57 @@ const EmailVerify = ({ userData }) => {
         setMessage('Email resent successfully');
 
         setEmailResent(true);
-      } else {
-        navigate('/error');
+      }
+      else {
+
+        setError(true);
 
       }
     } catch (error) {
-      navigate('/error');
+
+      setError(true);
 
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <>
-      <NotificationPage title='Sign up Kids First'
-        image={envelopeImg}
-        altText="Envelope icon"
-        message={message}
-        description={`An email with a verification link was sent to ${email}. Please verify your email address.`}
-        text="If you haven't received the email within 2 minutes, you can resend the verification link one more time."
-        linkText="Resend verification link"
-        linkTo="#"
-        isButton={true}
-        isLoading={isLoading}
-        emailResent={emailResent}
-        handleResendEmail={handleResendEmail}
-        isActive={isActive} />
+      {error ? (
+        <NotificationPage
+          title="Loading..."
+          image={envelopeImg}
+          altText=""
+          message="Something went wrong"
+          description=""
+          linkText="Back to Home"
+          isButton={false}
+          linkTo="/"
+        />
+      ) : (
+        <>
+          <NotificationPage title='Sign up Kids First'
+            image={envelopeImg}
+            altText="Envelope icon"
+            message={message}
+            description={`An email with a verification link was sent to ${email}. Please verify your email address.`}
+            text="If you haven't received the email within 2 minutes, 
+            you can resend the verification link one more time."
+            linkText="Resend verification link"
+            linkTo="#"
+            isButton={true}
+            isLoading={isLoading}
+            emailResent={emailResent}
+            handleResendEmail={handleResendEmail}
+            isActive={isActive} />
 
-      {isModalOpen && (
-        <MessageModal onClose={closeModal} text={`Verification link has been successfully resent to ${email}`} />
-      )}
+          {isModalOpen && (
+            <MessageModal onClose={closeModal} text={`Verification link has been successfully resent to ${email}`} />
+          )}
+        </>
+      )
+      }
     </>
   );
 };
