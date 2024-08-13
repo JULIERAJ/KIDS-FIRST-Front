@@ -40,7 +40,7 @@ export const CustomButton = ({
 CustomButton.propTypes = {
   type: PropTypes.string,
   styles: PropTypes.string,
-  size: PropTypes.oneOf[('xsml', 'sml', 'med', 'lg')],
+  size: PropTypes.oneOf(['xsml', 'sml', 'med', 'lg']),
   iconLeft: PropTypes.string,
   iconLeftStyles: PropTypes.string,
   iconRight: PropTypes.string,
