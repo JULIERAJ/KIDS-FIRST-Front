@@ -10,17 +10,19 @@ import styles from './AddFirstKid.module.css';
 
 const AddFirstKid = () => {
   return (
-    <Container fluid className={styles['frame']}>
+    <Container fluid className={styles['page-window']}>
+    
       <Row className={styles['picture']}><img src={kidplaying} alt='picture' /></Row>
 
       <Row className={styles['text']}>
         <p >Click the button below to create your kid’s shareable profile.</p>
       </Row>
+      
       <CustomButton
-        styles={`secondary-light ${styles['reset-custom-button']}`}
+        styles={`${styles['add-kid-button']} secondary-dark`}
         type="submit" iconRight={plus}>
 
-                Add Kid Profile
+        Add Kid Profile
       </CustomButton>
 
     </Container>

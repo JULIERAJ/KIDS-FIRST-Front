@@ -1,33 +1,33 @@
 .picture {
   width: 451px;
   height: 304px;
-  margin-top: 8%;
 }
 
-.frame {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height:Hug(374px)px ;
-  width: Fixed (664px)px;
+.page-window
+{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 894px;
+background: #FCFCFC;
+border-radius: 16px;
 }
 
 .text {
   width: 662px;
   height: 22px;
   font-family: var(--fontfamily);
-  font-size:large;
+  font-size:x-large ;
   font-weight: 400;
   line-height: 21.6px;
   text-align: center;
-  background: var(--fg-light-text-default-primary);
   margin-top: 2%;
   margin-bottom: 5%;
 }
 
-.reset-custom-button {
+.add-kid-button {
   box-sizing: border-box;
   background-color: #ffffff;
   width: 288px;
@@ -35,4 +35,22 @@
   color: var(--main-orange);
   border: 2px solid #DB5C00;
   border-radius: 8px;
+  transition: box-shadow 0.3s ease;
 }
+
+/* Button hover style */
+.add-kid-button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+  
+}
+.add-kid-button:hover img {
+  filter:saturate(60%);
+}
+
+
+
+
+
+
+
+

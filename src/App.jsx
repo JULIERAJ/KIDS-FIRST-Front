@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
-import AddFirstKid from '@components/Dashboard/Kids/AddFirstKid/AddFirstKid';
+import Kids from '@components/Dashboard/Kids/AddFirstKid/AddFirstKid';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';
@@ -59,7 +59,7 @@ const App = () => (
                 </EventProvider>
               }
             />
-            <Route path='AddFirstKid' element={<AddFirstKid />} />
+            <Route path='kids' element={<Kids />} />
             <Route path='homedashboard' element={<HomeDashboard />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='kids' />
