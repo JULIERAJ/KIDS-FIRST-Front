@@ -42,12 +42,29 @@ export default function NotificationPage({ title,
           <p className={styles.description}>{description}</p>
           <p className={styles.text}>{text}</p>
           {isButton ? (
+            <div className={styles['button-container']}>
+              <NavButton
+                className={`${styles['nav-button']}`}
+                onClick={handleClick}
+                disabled={isLoading || !isActive || emailResent}
+              >
+
+                {isLoading ? 'Resending...' : linkText}
+
+              </NavButton>
+            </div>
+          ) : (
+            <NavLink className={styles.link} to={linkTo}>
+              {linkText}
+            </NavLink>
+          )}
+          {/* {isButton ? (
             !emailResent ? (
               <div className={styles['button-container']}>
                 <NavButton
                   className={`${styles['nav-button']}`}
                   onClick={handleClick}
-                  disabled={isLoading || !isActive}
+                  disabled={isLoading || !isActive || emailResent}
                 >
 
                   {isLoading ? 'Resending...' : linkText}
@@ -59,7 +76,7 @@ export default function NotificationPage({ title,
             <NavLink className={styles.link} to={linkTo}>
               {linkText}
             </NavLink>
-          )}
+          )} */}
         </Container>
       </Container>
     </Container>
@@ -72,7 +89,7 @@ NotificationPage.propTypes = {
   altText: PropTypes.string,
   message: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   linkText: PropTypes.string.isRequired,
   linkTo: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
