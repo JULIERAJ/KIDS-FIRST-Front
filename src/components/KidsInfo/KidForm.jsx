@@ -158,18 +158,16 @@ const KidForm = () => {
       </Row>
       <div className='d-flex justify-content-end mt-3'>
         <CustomButton
-          className={`primary-light ${styles['custom-button']}`}
-          size='med'
+          styles='secondary-light'
+          size='xsml'
           type='button'
-          variant='light'
           onClick={() => formik.resetForm()}>
           Cancel
         </CustomButton>
         <CustomButton
           type='submit'
-          className={`primary-light ${styles['custom-button']}`}
-          size='med'
-          variant='light'>
+          styles='primary-light'
+          size='xsml'>
           Save
         </CustomButton>
       </div>
