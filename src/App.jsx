@@ -8,7 +8,6 @@ import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';
 import Activate from '@pages/Activate/Activate';
 import Dashboard from '@pages/Dashboard';
-import ErrorPage from '@pages/ErrorPage';
 import FeaturesPage from '@pages/FeaturesPage';
 import ForgetPassword from '@pages/ForgetPassword';
 import Home from '@pages/Home';
@@ -48,7 +47,7 @@ const App = () => (
             element={<ResetPassword />}
           />
           <Route path='/password-changed' element={<PasswordChanged />} />
-          <Route path='/error' element={<ErrorPage />} />
+
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path='/dashboard/*' element={<Dashboard />}>
