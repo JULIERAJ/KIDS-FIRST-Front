@@ -1,5 +1,5 @@
 .page {
-  max-width: 100%;
+  max-width: 100% !important;
   height: 110dvh;
   background-color: var(--color-bg-page);
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 .page-window {
-  width: 56.875rem;
+  width: 56.875rem !important;
   height: 52.5rem;
   border-radius: 1rem;
   padding: 0;
@@ -20,7 +20,7 @@
 }
 
 .page-wrapper {
-  width: 29.25rem;
+  width: 29.25rem !important;
   height: 28.063rem;
   padding: 0;
   display: flex;
