@@ -7,8 +7,7 @@ import NotificationPage from '@components/shared/NotificationPage';
 import emailImage from '@media/icons/email-image.svg';
 
 const Activate = () => {
-  const params = useParams();
-  let { email, emailVerificationToken } = params;
+  const { email, emailVerificationToken } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [linkExpired, setLinkExpired] = useState(false);
@@ -24,9 +23,8 @@ const Activate = () => {
         }
         setLoading(false);
       } catch (error) {
-        //console.log('Error:', error.response.data.message);
-        //console.log('Error:', error.response.status);
-        if (error.response.status === 400) {
+        console.log({ error });
+        if (error?.response?.status === 400) {
           setLinkExpired(true);
         }
         setLinkInvalid(true);
@@ -39,13 +37,13 @@ const Activate = () => {
   if (loading) {
     return (
       <NotificationPage
-        title="Loading..."
+        title='Loading...'
         image={emailImage}
-        altText=""
-        message="Something went wrong"
-        description=""
-        linkText="Back to Home"
-        linkTo="/"
+        altText=''
+        message='Something went wrong'
+        description=''
+        linkText='Back to Home'
+        linkTo='/'
       />
     );
   }
@@ -53,13 +51,13 @@ const Activate = () => {
   if (verificationSuccessful) {
     return (
       <NotificationPage
-        title="Email verified"
+        title='Email verified'
         image={emailImage}
-        altText="email-verified-icon"
-        message="Thank you for verifying your email address!"
+        altText='email-verified-icon'
+        message='Thank you for verifying your email address!'
         description="Please click 'Next' to proceed to the login page."
-        linkText="Next"
-        linkTo="/signin"
+        linkText='Next'
+        linkTo='/signin'
         isButton={false}
       />
     );
@@ -68,13 +66,13 @@ const Activate = () => {
   if (linkExpired) {
     return (
       <NotificationPage
-        title="Link Expired"
+        title='Link Expired'
         image={emailImage}
-        altText="link-expired-icon"
-        message="This verification link is no longer valid"
+        altText='link-expired-icon'
+        message='This verification link is no longer valid'
         description={`Please check ${email} for the latest verification email to continue.`}
-        linkText="Back to Sign up"
-        linkTo="/register"
+        linkText='Back to Sign up'
+        linkTo='/register'
         isButton={false}
       />
     );
@@ -83,13 +81,13 @@ const Activate = () => {
   if (linkInvalid) {
     return (
       <NotificationPage
-        title="Something went wrong!"
+        title='Something went wrong!'
         image={emailImage}
-        altText="something-went-wrong-icon"
-        message="Verification was unsuccessful"
-        description="Please sign up again to receive a new link."
-        linkText="Back to Sign up"
-        linkTo="/register"
+        altText='something-went-wrong-icon'
+        message='Verification was unsuccessful'
+        description='Please sign up again to receive a new link.'
+        linkText='Back to Sign up'
+        linkTo='/register'
       />
     );
   }

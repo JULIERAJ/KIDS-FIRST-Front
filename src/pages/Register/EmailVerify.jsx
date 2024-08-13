@@ -30,7 +30,7 @@ const EmailVerify = ({ userData }) => {
     setIsModalOpen(false);
   };
 
-  const MAX_TIME = 2 * 60;//2 min
+  const MAX_TIME = 1 * 5;//1 min
   const time = useRef(MAX_TIME);
 
   // Delay in resending verification link second time(2 minutes)
