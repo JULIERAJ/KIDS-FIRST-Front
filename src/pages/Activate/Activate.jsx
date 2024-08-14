@@ -22,7 +22,7 @@ const Activate = () => {
           setVerificationSuccessful(true);
         }
       } catch (error) {
-        console.log({ error });
+        // console.log({error});
         if (error?.response?.status === 400) {
           setLinkExpired(true);
         } else {
@@ -46,6 +46,7 @@ const Activate = () => {
         description=''
         linkText='Back to Home'
         linkTo='/'
+        isButton={false}
       />
     );
   }
@@ -90,6 +91,7 @@ const Activate = () => {
         description='Please sign up again to receive a new link.'
         linkText='Back to Sign up'
         linkTo='/register'
+        isButton={false}
       />
     );
   }
