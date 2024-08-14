@@ -156,15 +156,15 @@ const KidForm = () => {
           </Form.Group>
         </Col>
       </Row>
-      <div className='d-flex justify-content-end mt-5'>
+      <div className='d-flex justify-content-end mt-5 mx-5'>
         <CustomButton
-          styles='secondary-light m-3'
+          styles='secondary-light m-2'
           size='xsml'
           type='button'
           onClick={() => formik.resetForm()}>
           Cancel
         </CustomButton>
-        <CustomButton type='submit' styles='primary-light m-3' size='xsml'>
+        <CustomButton type='submit' styles='primary-light m-2' size='xsml'>
           Save
         </CustomButton>
       </div>
