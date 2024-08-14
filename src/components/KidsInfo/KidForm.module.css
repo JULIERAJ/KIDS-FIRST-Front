@@ -5,6 +5,7 @@
 
 .kid-avatar-container {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
 }
@@ -12,7 +13,7 @@
 .kid-edit-avatar {
   position: relative;
   top: 50px;
-  right: 50px;
+  left: 160px;
   border: 4px white solid;
   background: rgba(207, 182, 239, 1);
   border-radius: 50%;
@@ -35,12 +36,12 @@
    ====================================== */
 
 
-   .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin: 16px 0 16px 9px; 
-    padding: 0; 
-  }
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 16px 0 16px 9px;
+  padding: 0;
+}
 
 .checkbox-wrapper {
   display: flex;
