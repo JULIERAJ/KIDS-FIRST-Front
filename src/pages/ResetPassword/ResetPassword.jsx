@@ -4,9 +4,11 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 import { resetPassword, resetPasswordLink } from '@api';
 import Header from '@components/shared/Header';
+import NotificationPage from '@components/shared/NotificationPage';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 
+import emailImage from '@media/icons/email-image.svg';
 import { validatePassword } from '@utils/validationUtils';
 
 import styles from './ResetPassword.module.css';
@@ -22,6 +24,7 @@ export default function ResetPassword() {
   const [successMessage, setSuccessMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showTextPaswsord, setShowTextPassword] = useState('');
+  const [linkExpired, setLinkExpired] = useState(false);
   const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
     useState(false);
   const navigate = useNavigate();
@@ -36,7 +39,7 @@ export default function ResetPassword() {
     } catch (err) {
       //eslint-disable-next-line no-console
       console.error(err);
-      // TODO: Proper error handling in case Token/Email verification fails
+      setLinkExpired(true);
     }
   };
 
@@ -95,14 +98,24 @@ export default function ResetPassword() {
           setErrorMessage(err.response.data.message);
         } else {
           console.error(err);
-          // TODO: Proper error handling in case of other types of failures
+          setLinkExpired(true);
         }
       }
     },
     [email, password, resetPasswordToken]
   );
 
-  return (
+  return linkExpired ? (
+    <NotificationPage
+      title='Link Expired'
+      image={emailImage}
+      altText='link-expired-icon'
+      message='This password reset link is no longer valid'
+      description='Please request a new password reset link to continue.'
+      linkText='Back to Forgot Password'
+      linkTo='/forgot-password'
+    />
+  ) : (
     <Container className={styles.page}>
       <Header />
       <Container className={styles['page-window']}>

@@ -48,8 +48,9 @@ const App = () => (
             element={<ResetPassword />}
           />
           <Route path='/password-changed' element={<PasswordChanged />} />
+
         </Route>
-        <Route element={<ProtectedRoute/>}>
+        <Route element={<ProtectedRoute />}>
           <Route path='/dashboard/*' element={<Dashboard />}>
             <Route
               path='calendarview'
