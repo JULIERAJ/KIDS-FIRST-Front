@@ -62,7 +62,7 @@ const KidForm = () => {
   };
   return (
     <Form onSubmit={formik.handleSubmit} className='mt-4'>
-      <Row className='flex align-items-center'>
+      <Row className='flex align-items-center mb-5'>
         <Col xs={3} className={styles['kid-avatar-container']}>
           <Image src={kid} width={158} height={158} roundedCircle />
           <Image
@@ -105,7 +105,7 @@ const KidForm = () => {
       <Row>
         <Col xs={3}></Col>
         <Col xs={7}>
-          <h4>More Information</h4>
+          <h4 className='mb-2'>More Information</h4>
           <p>Add items in the fields below to keep each other in the loop.</p>
           <Form.Group>
             <AttributesSelect
@@ -156,18 +156,15 @@ const KidForm = () => {
           </Form.Group>
         </Col>
       </Row>
-      <div className='d-flex justify-content-end mt-3'>
+      <div className='d-flex justify-content-end mt-5'>
         <CustomButton
-          styles='secondary-light'
+          styles='secondary-light m-3'
           size='xsml'
           type='button'
           onClick={() => formik.resetForm()}>
           Cancel
         </CustomButton>
-        <CustomButton
-          type='submit'
-          styles='primary-light'
-          size='xsml'>
+        <CustomButton type='submit' styles='primary-light m-3' size='xsml'>
           Save
         </CustomButton>
       </div>

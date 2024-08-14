@@ -77,7 +77,8 @@ const AttributesSelect = ({
           }),
           valueContainer: (base) => ({
             ...base,
-            padding: '6px',
+            marginBottom: value.length !== 0 ? '12px' : 0,
+            paddingLeft: '0px',
           }),
           control: (base) => ({
             ...base,
@@ -92,21 +93,24 @@ const AttributesSelect = ({
             padding: '0.5px',
             borderRadius: '4px',
             marginRight: '12px',
-            marginBottom: '12px',
+            marginTop: '12px',
           }),
           multiValueRemove: (base) => ({
             ...base,
             color: '#000',
           }),
-          option: (base, state) => {
-            return {
-              ...base,
-              backgroundColor: state.isSelected
-                ? 'transparent'
-                : base.backgroundColor,
-              color: state.isSelected ? 'inherit' : base.color,
-            };
-          },
+
+          option: (base, state) => ({
+            ...base,
+            backgroundColor: state.isSelected
+              ? 'transparent'
+              : base.backgroundColor,
+            color: state.isSelected ? 'inherit' : base.color,
+            ':active': {
+              ...base[':active'],
+              backgroundColor: 'transparent',
+            },
+          }),
         }}
       />
       {error && (

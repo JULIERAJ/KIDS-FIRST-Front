@@ -35,10 +35,12 @@
    ====================================== */
 
 
-.checkbox-container {
-  display: flex;
-  align-items: center;
-}
+   .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 16px 0 16px 9px; 
+    padding: 0; 
+  }
 
 .checkbox-wrapper {
   display: flex;
@@ -49,8 +51,8 @@
 
 .checkbox {
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: 2px solid rgba(246, 188, 140, 1);
   border-radius: 4px;
   background-color: #fff;
@@ -61,7 +63,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   pointer-events: none;
 }
