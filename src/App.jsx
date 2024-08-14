@@ -48,8 +48,9 @@ const App = () => (
             element={<ResetPassword />}
           />
           <Route path='/password-changed' element={<PasswordChanged />} />
+
         </Route>
-        <Route element={<ProtectedRoute/>}>
+        <Route element={<ProtectedRoute />}>
           <Route path='/dashboard/*' element={<Dashboard />}>
             <Route
               path='calendarview'
@@ -59,6 +60,7 @@ const App = () => (
                 </EventProvider>
               }
             />
+
             <Route path='homedashboard' element={<HomeDashboard />} />
             <Route path='messages' element={<MessageBar />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
