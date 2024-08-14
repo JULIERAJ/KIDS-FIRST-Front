@@ -1,6 +1,6 @@
 .page {
   font-family: Roboto, sans-serif;
-  max-width: 100%;
+  max-width: 100% !important;
   height: 110dvh;
   background-color: var(--color-bg-page);
   display: flex;
@@ -8,8 +8,8 @@
 }
 
 .page-window {
-  width: 56.875rem;
-  /* height: 52.5rem; */
+  width: 56.875rem !important;
+  height: 52.5rem;
   border-radius: 1rem;
   padding: 0;
   background-color: var(--main-white);
@@ -24,8 +24,8 @@
 }
 
 .page-wrapper {
-  width: 29.375rem;
-  /* height: 33.563rem; */
+  width: 29.25rem !important;
+  height: 28.063rem;
   padding: 0;
   display: flex;
   flex-direction: column;

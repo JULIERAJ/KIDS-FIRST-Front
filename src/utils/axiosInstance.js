@@ -1,6 +1,5 @@
 // axiosInstance.js
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const API_PORT = process.env.REACT_APP_API_PORT;
 const API_URL = `http://localhost:${API_PORT}/api/v1/`;
@@ -22,10 +21,8 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   response => response,
   error => {
-    const navigate = useNavigate();
     if (error.response && error.response.status === 401) {
-      // Handle Unauthorized Access - Redirect to login page
-      navigate('/signin');
+      error.unauthorized = true;
     }
     return Promise.reject(error);
   }
