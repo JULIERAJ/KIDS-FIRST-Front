@@ -116,6 +116,14 @@ const KidForm = () => {
               name='allergies'
               error={formik.errors.allergies}
             />
+            <AttributesSelect
+              label='Interests'
+              options={INTEREST_VALUE}
+              value={formik.values.interests}
+              setFieldValue={formik.setFieldValue}
+              name='interests'
+              error={formik.errors.interests}
+            />
 
             <AttributesSelect
               label='Fears'
@@ -124,15 +132,6 @@ const KidForm = () => {
               setFieldValue={formik.setFieldValue}
               name='fears'
               error={formik.errors.fears}
-            />
-
-            <AttributesSelect
-              label='Interests'
-              options={INTEREST_VALUE}
-              value={formik.values.interests}
-              setFieldValue={formik.setFieldValue}
-              name='interests'
-              error={formik.errors.interests}
             />
 
             <Form.Label className={styles['kid-form-label']}>Other</Form.Label>
