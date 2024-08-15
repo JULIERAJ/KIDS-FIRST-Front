@@ -32,25 +32,27 @@ const Register = () => {
 
   return (
     <>
-      <Container className={styles.page}>
-        <Header className={styles.header} />
-        <Container className={styles.page__window}>
-          <Row>
-            <Col className={styles.page__wrapper}>
-              <h1 className={styles.page__title}>Welcome to Kids First</h1>
-              {activeComponent ? (
+      {activeComponent ? (
+        <Container className={styles.page}>
+          <Header className={styles.header} />
+          <Container className={styles.page__window}>
+            <Row>
+              <Col className={styles.page__wrapper}>
+                <h1 className={styles.page__title}>Welcome to Kids First</h1>
+
                 <RegisterForm
                   onSubmitData={registerUserHandler}
                   paramEmail={paramEmail}
                   errorMsg={errorMsg}
                 />
-              ) : (
-                <EmailVerify userData={userData} />
-              )}
-            </Col>
-          </Row>
+              </Col>
+            </Row>
+          </Container>
         </Container>
-      </Container>
+      ) : (
+        <EmailVerify userData={userData} />
+      )}
+
     </>
   );
 };
