@@ -1,3 +1,9 @@
+.main-container {
+  border-radius: 10px;
+  background-color: #fdfdfd;
+  min-height: 80vh;
+  padding: 24px 16px; 
+}
 /* ======================================
           KID FORM
    ====================================== */
@@ -27,7 +33,8 @@
 }
 
 
-.kid-form-label, .kid-details-row {
+.kid-form-label,
+.kid-details-row {
   display: flex;
   align-items: center;
   font-weight: 500;
