@@ -11,16 +11,16 @@ export const kidValidateSchema = Yup.object().shape({
   ),
   name: Yup.string()
     .min(2, 'The field accepts a minimum of 2 characters')
-    .max(40, 'The field accepts a maximum of 40 characters')
+    .max(40, 'Reached maximum characters')
     .matches(
       /^[a-zA-Z\s-]+$/,
       'The field accepts letters and only special characters [-] and white space [ ]'
     )
-    .required('Full Name is required'),
+    .required('The child must have a name'),
   dateOfBirthday: Yup.string()
     .matches(
       /^(0[1-9]|1[0-2])[/](0[1-9]|[12][0-9]|3[01])[/](19|20)\d{2}$/,
-      'The format of the birthday is month, day, and year, i.e., [MM/DD/YYYY]'
+      'The date must be in MM/DD/YYYY format'
     )
     .required('Date Of Birth Required')
     .test('in-past', 'The date must be in the past', (value) => {
@@ -37,8 +37,10 @@ export const kidValidateSchema = Yup.object().shape({
         return inputDate >= 1930 && inputDate <= currentYear;
       }
     ),
-  others: Yup.string().max(
-    250,
-    'The field accepts a maximum of 200 characters'
-  ),
+  other: Yup.string()
+    .max(200, 'Reached maximum characters')
+    .matches(
+      /^[a-zA-Z0-9\s.,'-]+$/,
+      'The field accepts only English letters, numbers, and special characters [.],[,],[\'],[-]'
+    ),
 });

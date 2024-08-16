@@ -3,14 +3,14 @@
    ====================================== */
 
 
-.kid-avatar-container {
+.avatar-container {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
 }
 
-.kid-edit-avatar {
+.edit-avatar-overlay {
   position: relative;
   top: 50px;
   left: 160px;
@@ -26,7 +26,8 @@
   padding-bottom: 16px;
 }
 
-.kid-form-label {
+
+.kid-form-label, .kid-details-row {
   font-weight: 500;
   line-height: 19.2px;
 }

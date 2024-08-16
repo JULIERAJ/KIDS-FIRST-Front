@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+
 import { useState } from 'react';
 import { Col, Form, Row, Image } from 'react-bootstrap';
 
@@ -62,13 +63,14 @@ const KidForm = () => {
   };
   return (
     <Form onSubmit={formik.handleSubmit} className='mt-4'>
-      <Row className='flex align-items-center mb-5'>
-        <Col xs={3} className={styles['kid-avatar-container']}>
+      <Row
+        className={`${styles['kid-details-row']} flex align-items-center mb-5`}>
+        <Col xs={3} className={styles['avatar-container']}>
           <Image src={kid} width={158} height={158} roundedCircle />
           <Image
             src={edit}
             alt='edit kid avatar'
-            className={styles['kid-edit-avatar']}
+            className={styles['edit-avatar-overlay']}
           />
         </Col>
         <Col xs={4}>
@@ -76,13 +78,15 @@ const KidForm = () => {
           <Form.Control
             type='text'
             placeholder='Full Name'
-            className='p-3'
             name='name'
             value={formik.values.name}
             onChange={formik.handleChange}
             isInvalid={!!formik.errors.name}
+            style={{ height: '3.5em' }}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback
+            type='invalid'
+            style={{ display: 'block', minHeight: '1.5em' }}>
             {formik.errors.name}
           </Form.Control.Feedback>
         </Col>
@@ -91,13 +95,15 @@ const KidForm = () => {
           <Form.Control
             type='text'
             placeholder='MM/DD/YY'
-            className='p-3'
             name='dateOfBirthday'
             value={formik.values.dateOfBirthday}
             onChange={formik.handleChange}
             isInvalid={!!formik.errors.dateOfBirthday}
+            style={{ height: '3.5em' }}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback
+            type='invalid'
+            style={{ display: 'block', minHeight: '1.5em' }}>
             {formik.errors.dateOfBirthday}
           </Form.Control.Feedback>
         </Col>
@@ -124,7 +130,6 @@ const KidForm = () => {
               name='interests'
               error={formik.errors.interests}
             />
-
             <AttributesSelect
               label='Fears'
               options={FEARS_VALUE}
@@ -133,7 +138,6 @@ const KidForm = () => {
               name='fears'
               error={formik.errors.fears}
             />
-
             <Form.Label className={styles['kid-form-label']}>Other</Form.Label>
             <Form.Control
               as='textarea'
@@ -146,8 +150,14 @@ const KidForm = () => {
                 handleCountSymbol(e);
               }}
               placeholder='Here you can write additional information...'
+              isInvalid={!!formik.errors.other}
             />
-            <div className='d-flex justify-content-end'>
+            <div className='d-flex py-1'>
+              <Form.Control.Feedback
+                type='invalid'
+                style={{ display: 'block', minHeight: '1.5em' }}>
+                {formik.errors.other}
+              </Form.Control.Feedback>
               <Form.Text className='text-muted'>
                 {countSymbol.length}/200
               </Form.Text>
