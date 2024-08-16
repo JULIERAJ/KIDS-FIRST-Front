@@ -49,6 +49,7 @@ const App = () => (
             element={<ResetPassword />}
           />
           <Route path='/password-changed' element={<PasswordChanged />} />
+
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path='/dashboard/*' element={<Dashboard />}>
@@ -60,6 +61,7 @@ const App = () => (
                 </EventProvider>
               }
             />
+
             <Route path='homedashboard' element={<HomeDashboard />} />
             <Route path='messages' element={<MessageBar />} />
             <Route path='kids' element={<KidForm />} />
