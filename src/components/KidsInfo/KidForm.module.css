@@ -28,6 +28,8 @@
 
 
 .kid-form-label, .kid-details-row {
+  display: flex;
+  align-items: center;
   font-weight: 500;
   line-height: 19.2px;
 }

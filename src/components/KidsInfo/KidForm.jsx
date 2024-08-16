@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 
 import { useState } from 'react';
-import { Col, Form, Row, Image } from 'react-bootstrap';
+import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
 import { createKid } from '@api';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
@@ -62,122 +62,125 @@ const KidForm = () => {
     setCountSymbol(event.target.value);
   };
   return (
-    <Form onSubmit={formik.handleSubmit} className='mt-4'>
-      <Row
-        className={`${styles['kid-details-row']} flex align-items-center mb-5`}>
-        <Col xs={3} className={styles['avatar-container']}>
-          <Image src={kid} width={158} height={158} roundedCircle />
-          <Image
-            src={edit}
-            alt='edit kid avatar'
-            className={styles['edit-avatar-overlay']}
-          />
-        </Col>
-        <Col xs={4}>
-          <Form.Label>Kid&apos;s Name</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Full Name'
-            name='name'
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            isInvalid={!!formik.errors.name}
-            style={{ height: '3.5em' }}
-          />
-          <Form.Control.Feedback
-            type='invalid'
-            style={{ display: 'block', minHeight: '1.5em' }}>
-            {formik.errors.name}
-          </Form.Control.Feedback>
-        </Col>
-        <Col xs={3}>
-          <Form.Label>Birth Date</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='MM/DD/YY'
-            name='dateOfBirthday'
-            value={formik.values.dateOfBirthday}
-            onChange={formik.handleChange}
-            isInvalid={!!formik.errors.dateOfBirthday}
-            style={{ height: '3.5em' }}
-          />
-          <Form.Control.Feedback
-            type='invalid'
-            style={{ display: 'block', minHeight: '1.5em' }}>
-            {formik.errors.dateOfBirthday}
-          </Form.Control.Feedback>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}></Col>
-        <Col xs={7}>
-          <h4 className='mb-2'>More Information</h4>
-          <p>Add items in the fields below to keep each other in the loop.</p>
-          <Form.Group>
-            <AttributesSelect
-              label='Allergies'
-              options={ALLERGIES_VALUE}
-              value={formik.values.allergies}
-              setFieldValue={formik.setFieldValue}
-              name='allergies'
-              error={formik.errors.allergies}
+    <Container fluid>
+      <Form onSubmit={formik.handleSubmit}>
+        <Row className={styles['kid-details-row']}>
+          <Col xs={3} className={styles['avatar-container']}>
+            <Image src={kid} width={158} height={158} roundedCircle />
+            <Image
+              src={edit}
+              alt='edit kid avatar'
+              className={styles['edit-avatar-overlay']}
             />
-            <AttributesSelect
-              label='Interests'
-              options={INTEREST_VALUE}
-              value={formik.values.interests}
-              setFieldValue={formik.setFieldValue}
-              name='interests'
-              error={formik.errors.interests}
-            />
-            <AttributesSelect
-              label='Fears'
-              options={FEARS_VALUE}
-              value={formik.values.fears}
-              setFieldValue={formik.setFieldValue}
-              name='fears'
-              error={formik.errors.fears}
-            />
-            <Form.Label className={styles['kid-form-label']}>Other</Form.Label>
+          </Col>
+          <Col xs={4}>
+            <Form.Label>Kid&apos;s Name</Form.Label>
             <Form.Control
-              as='textarea'
-              rows={3}
-              className='p-3'
-              value={formik.values.other}
-              name='other'
-              onChange={(e) => {
-                formik.handleChange(e);
-                handleCountSymbol(e);
-              }}
-              placeholder='Here you can write additional information...'
-              isInvalid={!!formik.errors.other}
+              type='text'
+              placeholder='Full Name'
+              name='name'
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              isInvalid={!!formik.errors.name}
+              style={{ height: '3.5em' }}
             />
-            <div className='d-flex py-1'>
-              <Form.Control.Feedback
-                type='invalid'
-                style={{ display: 'block', minHeight: '1.5em' }}>
-                {formik.errors.other}
-              </Form.Control.Feedback>
-              <Form.Text className='text-muted'>
-                {countSymbol.length}/200
-              </Form.Text>
-            </div>
-          </Form.Group>
-        </Col>
-      </Row>
-      <div className='d-flex justify-content-end mt-5 mx-5'>
-        <CustomButton
-          styles='secondary-light m-2'
-          size='xsml'
-          type='button'
-          onClick={() => formik.resetForm()}>
-          Cancel
-        </CustomButton>
-        <CustomButton type='submit' styles='primary-light m-2' size='xsml'>
-          Save
-        </CustomButton>
-      </div>
-    </Form>
+            <Form.Control.Feedback
+              type='invalid'
+              style={{ display: 'block', minHeight: '1.5em' }}>
+              {formik.errors.name}
+            </Form.Control.Feedback>
+          </Col>
+          <Col xs={3}>
+            <Form.Label>Birth Date</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='MM/DD/YY'
+              name='dateOfBirthday'
+              value={formik.values.dateOfBirthday}
+              onChange={formik.handleChange}
+              isInvalid={!!formik.errors.dateOfBirthday}
+              style={{ height: '3.5em' }}
+            />
+            <Form.Control.Feedback
+              type='invalid'
+              style={{ display: 'block', minHeight: '1.5em' }}>
+              {formik.errors.dateOfBirthday}
+            </Form.Control.Feedback>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={3}></Col>
+          <Col xs={7}>
+            <h4 className='mb-2'>More Information</h4>
+            <p>Add items in the fields below to keep each other in the loop.</p>
+            <Form.Group>
+              <AttributesSelect
+                label='Allergies'
+                options={ALLERGIES_VALUE}
+                value={formik.values.allergies}
+                setFieldValue={formik.setFieldValue}
+                name='allergies'
+                error={formik.errors.allergies}
+              />
+              <AttributesSelect
+                label='Interests'
+                options={INTEREST_VALUE}
+                value={formik.values.interests}
+                setFieldValue={formik.setFieldValue}
+                name='interests'
+                error={formik.errors.interests}
+              />
+              <AttributesSelect
+                label='Fears'
+                options={FEARS_VALUE}
+                value={formik.values.fears}
+                setFieldValue={formik.setFieldValue}
+                name='fears'
+                error={formik.errors.fears}
+              />
+              <Form.Label className={styles['kid-form-label']}>
+                Other
+              </Form.Label>
+              <Form.Control
+                as='textarea'
+                rows={3}
+                className='p-3'
+                value={formik.values.other}
+                name='other'
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  handleCountSymbol(e);
+                }}
+                placeholder='Here you can write additional information...'
+                isInvalid={!!formik.errors.other}
+              />
+              <div className='d-flex py-1'>
+                <Form.Control.Feedback
+                  type='invalid'
+                  style={{ display: 'block', minHeight: '1.5em' }}>
+                  {formik.errors.other}
+                </Form.Control.Feedback>
+                <Form.Text className='text-muted'>
+                  {countSymbol.length}/200
+                </Form.Text>
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
+        <div className='d-flex justify-content-end mt-4 mx-5'>
+          <CustomButton
+            styles='secondary-light mx-2'
+            size='xsml'
+            type='button'
+            onClick={() => formik.resetForm()}>
+            Cancel
+          </CustomButton>
+          <CustomButton type='submit' styles='primary-light mx-2' size='xsml'>
+            Save
+          </CustomButton>
+        </div>
+      </Form>
+    </Container>
   );
 };
 
