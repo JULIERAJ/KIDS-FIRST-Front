@@ -10,11 +10,11 @@ export const kidValidateSchema = Yup.object().shape({
     (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
   ),
   name: Yup.string()
-    .min(2, 'The field accepts a minimum of 2 characters')
+    .min(2, 'Accepts a minimum of 2 characters')
     .max(40, 'Reached maximum characters')
     .matches(
       /^[a-zA-Z\s-]+$/,
-      'The field accepts letters and only special characters [-] and white space [ ]'
+      'Accepts letters and special characters [-] and white space [ ]'
     )
     .required('The child must have a name'),
   dateOfBirthday: Yup.string()
@@ -41,6 +41,6 @@ export const kidValidateSchema = Yup.object().shape({
     .max(200, 'Reached maximum characters')
     .matches(
       /^[a-zA-Z0-9\s.,'-]+$/,
-      'The field accepts only English letters, numbers, and special characters [.],[,],[\'],[-]'
+      'Accepts only English letters, numbers, and special characters [.],[,],[\'],[-]'
     ),
 });
