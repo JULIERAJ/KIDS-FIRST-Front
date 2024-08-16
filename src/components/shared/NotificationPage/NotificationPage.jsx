@@ -4,15 +4,14 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-
 import Header from '@components/shared/Header';
 
 import { NavButton } from '../ui/Button/NavButton';
 
 import styles from './NotificationPage.module.css';
 
-
-export default function NotificationPage({ title,
+export default function NotificationPage({
+  title,
   image,
   altText,
   message,
@@ -24,8 +23,8 @@ export default function NotificationPage({ title,
   isLoading,
   emailResent,
   isActive,
-  handleResendEmail }) {
-
+  handleResendEmail,
+}) {
   const handleClick = (event) => {
     event.preventDefault();
     if (!isLoading && !emailResent && isActive) {
@@ -33,14 +32,15 @@ export default function NotificationPage({ title,
     }
   };
 
-
   return (
     <Container className={styles.page}>
       <Header />
       <Container className={styles['page-window']}>
         <Container className={styles['page-wrapper']}>
           <h2 className={styles.title}>{title}</h2>
-          {image && <img className={styles['loading-logo']} src={image} alt={altText} />}
+          {image && (
+            <img className={styles['loading-logo']} src={image} alt={altText} />
+          )}
           <h3 className={styles.subtitle}>{message}</h3>
           <p className={styles.description}>{description}</p>
           <p className={styles.text}>{text}</p>
@@ -49,11 +49,8 @@ export default function NotificationPage({ title,
               <NavButton
                 className={`${styles['nav-button']}`}
                 onClick={handleClick}
-                disabled={isLoading || !isActive || emailResent}
-              >
-
+                disabled={isLoading || !isActive || emailResent}>
                 {isLoading ? 'Resending...' : linkText}
-
               </NavButton>
             </div>
           ) : (
