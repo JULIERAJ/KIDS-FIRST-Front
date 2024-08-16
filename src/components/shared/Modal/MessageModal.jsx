@@ -1,32 +1,36 @@
 import PropTypes from 'prop-types';
 
+import { Container } from 'react-bootstrap';
+
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 
-import icon from '../../../media/icons/close.svg';
-import iconRight from '../../../media/icons/doneOrange.svg';
+import icon from '@media/icons/close.svg';
+import iconRight from '@media/icons/doneOrange.svg';
 
-import styles from './MessageModal.module.css';
+import styles from './Modal.module.css';
 
-const MessageModal = ({ text, onClose }) => {
+const MessageModal = ({ message, onClose }) => {
   return (
-    <div
+    <Container
       className={styles['modal-overlay']}>
-      <div
+      <Container
         className={styles['modal-container']}>
-        <div className={styles['modal-content']}>
-          <p className={styles['modal-text']}>{text}</p>
-          <CustomButton className={`secondary-light ${styles['modal-button']}`}
+        <Container className={styles['modal-content']}>
+          <p className={styles['modal-message']}>{message}</p>
+        </Container >
+        <Container className={styles['modal-buttons']}>
+          <CustomButton className={`secondary-light ${styles['modal-button']} ${styles['modal-message-button']}`}
             onClick={onClose}
             iconRight={iconRight}>Done</CustomButton>
-          <button className={styles['modal-close-button']} onClick={onClose}><img src={icon} /> </button>
-        </div >
-      </div>
-    </div>
+        </Container>
+        <button className={styles['modal-close-button']} onClick={onClose}><img src={icon} /> </button>
+      </Container>
+    </Container>
   );
 };
 
 MessageModal.propTypes = {
-  text: PropTypes.string,
+  message: PropTypes.string,
   onClose: PropTypes.func,
 };
 
