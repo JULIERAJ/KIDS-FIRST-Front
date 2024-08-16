@@ -1,6 +1,6 @@
 .main-container {
   border-radius: 10px;
-  background-color: #fdfdfd;
+  background-color: rgba(252, 252, 252, 1);
   min-height: 80vh;
   padding: 24px 16px; 
 }
