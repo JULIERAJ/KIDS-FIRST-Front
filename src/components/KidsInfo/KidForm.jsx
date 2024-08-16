@@ -5,7 +5,7 @@ import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
 import { createKid } from '@api';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
-import edit from '@media/icons/icon.png';
+import edit from '@media/icons/edit.svg';
 
 import AttributesSelect from './AttributesSelect';
 import { ALLERGIES_VALUE } from './constants/allergies';

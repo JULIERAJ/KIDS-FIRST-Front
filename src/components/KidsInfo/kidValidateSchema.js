@@ -4,7 +4,7 @@ const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 const currentYear = new Date().getFullYear();
 
 export const kidValidateSchema = Yup.object().shape({
-  ProfilePicture: Yup.mixed().test(
+  profilePicture: Yup.mixed().test(
     'file formant',
     'Unsupported Format',
     (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
