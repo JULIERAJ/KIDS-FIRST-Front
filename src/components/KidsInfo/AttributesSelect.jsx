@@ -81,7 +81,6 @@ const AttributesSelect = ({
           }),
           control: (base) => ({
             ...base,
-            border: '1px solid #rgba(252, 252, 252, 1)',
             borderRadius: '8px',
             padding: '8px 8px 8px 12px',
           }),
