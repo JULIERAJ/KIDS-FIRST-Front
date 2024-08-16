@@ -62,7 +62,7 @@ const KidForm = () => {
     setCountSymbol(event.target.value);
   };
   return (
-    <Container fluid className={styles['main-container']}>
+    <Container fluid className={styles['main-kid-container']}>
       <Form onSubmit={formik.handleSubmit}>
         <Row className={styles['kid-details-row']}>
           <Col xs={3} className={styles['avatar-container']}>

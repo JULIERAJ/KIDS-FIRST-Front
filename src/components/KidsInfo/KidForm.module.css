@@ -1,13 +1,13 @@
-.main-container {
+.main-kid-container {
   border-radius: 10px;
   background-color: rgba(252, 252, 252, 1);
   min-height: 80vh;
-  padding: 24px 16px; 
+  padding: 24px 16px;
 }
+
 /* ======================================
           KID FORM
    ====================================== */
-
 
 .avatar-container {
   display: flex;
@@ -27,11 +27,9 @@
   cursor: pointer;
 }
 
-
 .kid-form-input {
   padding-bottom: 16px;
 }
-
 
 .kid-form-label,
 .kid-details-row {
@@ -44,7 +42,6 @@
 /* ======================================
           CHECKBOX & CHECKMARK
    ====================================== */
-
 
 .checkbox-container {
   display: flex;
