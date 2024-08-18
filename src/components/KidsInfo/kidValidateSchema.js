@@ -37,7 +37,7 @@ export const kidValidateSchema = Yup.object().shape({
         return inputDate >= 1930 && inputDate <= currentYear;
       }
     ),
-  other: Yup.string()
+  otherNotes: Yup.string()
     .max(200, 'Reached maximum characters')
     .matches(
       /^[a-zA-Z0-9\s.,'-]+$/,

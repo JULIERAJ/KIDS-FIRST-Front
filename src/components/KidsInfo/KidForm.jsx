@@ -44,7 +44,7 @@ const KidForm = () => {
       allergies: [],
       interests: [],
       fears: [],
-      other: '',
+      otherNotes: '',
     },
     validationSchema: kidValidateSchema,
     onSubmit: (values, { resetForm }) => {
@@ -52,9 +52,7 @@ const KidForm = () => {
 
       formAction(values);
 
-      setTimeout(() => {
-        resetForm();
-      }, 1000 * 2);
+      resetForm();
     },
   });
 
@@ -145,20 +143,20 @@ const KidForm = () => {
                 as='textarea'
                 rows={3}
                 className='p-3'
-                value={formik.values.other}
-                name='other'
+                value={formik.values.otherNotes}
+                name='otherNotes'
                 onChange={(e) => {
                   formik.handleChange(e);
                   handleCountSymbol(e);
                 }}
                 placeholder='Here you can write additional information...'
-                isInvalid={!!formik.errors.other}
+                isInvalid={!!formik.errors.otherNotes}
               />
               <div className='d-flex py-1'>
                 <Form.Control.Feedback
                   type='invalid'
                   style={{ display: 'block', minHeight: '1.5em' }}>
-                  {formik.errors.other}
+                  {formik.errors.otherNotes}
                 </Form.Control.Feedback>
                 <Form.Text className='text-muted'>
                   {countSymbol.length}/200

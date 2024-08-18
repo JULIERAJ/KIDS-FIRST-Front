@@ -97,7 +97,6 @@ const AttributesSelect = ({
             ...base,
             color: '#000',
           }),
-
           option: (base, state) => ({
             ...base,
             backgroundColor: state.isSelected
