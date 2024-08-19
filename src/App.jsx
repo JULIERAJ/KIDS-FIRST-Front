@@ -64,7 +64,6 @@ const App = () => (
                 </EventProvider>
               }
             />
-
             <Route path='kids' element={<Kids />} />
             <Route path='homedashboard' element={<HomeDashboard />} />
             <Route path='messages' element={<MessageBar />} />
