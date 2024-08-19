@@ -4,16 +4,16 @@ export const INTEREST_VALUE = [
     label: 'Animals',
   },
   {
-    value: 'Arts and Crafts',
-    label: 'Arts and Crafts',
+    value: 'Arts and crafts',
+    label: 'Arts and crafts',
   },
   {
     value: 'Basketball',
     label: 'Basketball',
   },
   {
-    value: 'Board Games',
-    label: 'Board Games',
+    value: 'Board games',
+    label: 'Board games',
   },
   {
     value: 'Cooking',
@@ -28,8 +28,8 @@ export const INTEREST_VALUE = [
     label: 'Drawing',
   },
   {
-    value: 'Ice Hockey',
-    label: 'Ice Hockey',
+    value: 'Ice hockey',
+    label: 'Ice hockey',
   },
   {
     value: 'Music',
