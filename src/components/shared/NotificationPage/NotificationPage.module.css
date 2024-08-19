@@ -1,5 +1,6 @@
 .page {
-  max-width: 100%;
+  font-family: Roboto, sans-serif;
+  max-width: 100% !important;
   height: 110dvh;
   background-color: var(--color-bg-page);
   display: flex;
@@ -7,20 +8,23 @@
 }
 
 .page-window {
-  width: 56.875rem;
+  width: 56.875rem !important;
   height: 52.5rem;
   border-radius: 1rem;
   padding: 0;
   background-color: var(--main-white);
+  color: var(--color-fg-light);
   align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 8.375rem;
+  padding-bottom: 10.563rem;
 }
 
 .page-wrapper {
-  width: 29.25rem;
+  width: 29.25rem !important;
   height: 28.063rem;
   padding: 0;
   display: flex;
@@ -30,57 +34,63 @@
 
 .title {
   font-weight: 700;
-  font-size: 2rem;
   line-height: 2.4rem;
   text-align: center;
+}
+.loading-logo {
+  width: 6.25rem;
+  height: 6.25rem;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem 0rem 3rem;
 }
 
 .subtitle {
   font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 1.8rem;
-  margin: 0px;
+  margin: 0;
   text-align: center;
 }
 
 .description {
-  text-align: center;
   font-size: 1.125rem;
-  margin: 3rem 0 2.5rem;
+  line-height: 1.35rem;
+  margin: 4rem 0 1.475rem 0;
+  text-align: center;
+  letter-spacing: -0.009rem;
+}
+.text {
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  margin: 0 0 4rem 0;
   text-align: center;
 }
 
-.loadingLogo {
-  width: 100px;
-  height: 100px;
-  flex-direction: column;
-  align-items: center;
-  margin: 64px 0px 48px;
-}
-
-.link {
+.nav-button {
   display: block;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.575rem;
   text-align: center;
   color: var(--color-orange);
+  background: transparent;
+  border: none;
 }
-
-.link:hover {
+.nav-button:hover {
+  background-color: transparent;
   color: var(--color-dark-orange);
 }
 
-.custom-button-container {
-  height: 56px;
-  width: 288px;
+.nav-button:disabled {
+  background-color: transparent;
+  color: var(--color-dark-orange);
+  cursor: not-allowed;
+  opacity: 0.2;
 }
 
-.custom-button {
-  margin-top: 1rem;
-  display: inline-block;
-  width: 100%;
-  padding: 1rem 0;
-  font-size: 1.25rem; /*20px*/
-  line-height: 120%;
-  letter-spacing: 0rem;
+.resend-status {
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  text-align: center;
   font-weight: 700;
 }
 

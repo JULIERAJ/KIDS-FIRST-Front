@@ -2,7 +2,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
+
 import Kids from '@components/Dashboard/Kids/AddFirstKid/AddFirstKid';
+
+import KidForm from '@components/KidsInfo/KidForm';
+
 import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
@@ -48,8 +52,9 @@ const App = () => (
             element={<ResetPassword />}
           />
           <Route path='/password-changed' element={<PasswordChanged />} />
+
         </Route>
-        <Route element={<ProtectedRoute/>}>
+        <Route element={<ProtectedRoute />}>
           <Route path='/dashboard/*' element={<Dashboard />}>
             <Route
               path='calendarview'
@@ -59,9 +64,11 @@ const App = () => (
                 </EventProvider>
               }
             />
+
             <Route path='kids' element={<Kids />} />
             <Route path='homedashboard' element={<HomeDashboard />} />
             <Route path='messages' element={<MessageBar />} />
+            <Route path='kids' element={<KidForm />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='kids' />
               <Route path='help' /> */}
