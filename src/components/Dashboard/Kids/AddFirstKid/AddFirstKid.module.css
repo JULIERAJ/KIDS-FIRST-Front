@@ -8,10 +8,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 894px;
   background: #FCFCFC;
   border-radius: 16px;
+  flex: 1;
+  box-sizing: inherit;
+  height: calc(100vh - 11rem);
+
 }
 
 .text {
@@ -47,3 +49,25 @@
 .add-kid-button:hover img {
   filter: saturate(60%);
 }
+
+/*.frame-kids-info {
+   Auto layout 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 80px;
+
+  width: 1200px;
+  height: 894px;
+
+  background: #FCFCFC;
+  border-radius: 16px;
+
+  /* Inside auto layout */
+  /*flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 1;
+}*/
