@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Container, Form } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
-import { forgetPassword } from '../../api';
-import FatherSonBlock from '../../components/FatherSonBlock';
-import FormEmailInput from '../../components/form/FormEmailInput';
-import Header from '../../components/Header/Header';
-import MessageBar from '../../components/MessageBar';
-import TextLink from '../../components/TextLink';
-import logoEmailSent from '../../media/icons/email_sent.png';
+import { object, string } from 'yup';
+
+import { forgetPassword } from '@api';
+
+import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
+import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
+
+import logoEmailSent from '@media/icons/email_sent.png';
 
 import styles from './ForgetPassword.module.css';
-
-const HeaderLink = <TextLink title='Not a member?' to='/register' linkTitle='Sign up' />;
 
 export default function ForgetPassword() {
   const emailDisplay = useRef('');
@@ -21,34 +21,27 @@ export default function ForgetPassword() {
   const [success, setSuccess] = useState(false);
   const [sentEmail, setSentEmail] = useState(false);
 
+  let formSchema = object({
+    email: string().email(),
+  });
+
   useEffect(() => {
     emailDisplay.current = email;
+    formSchema
+      .validate({ email })
+      .then(() => setErrMsg(''))
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+        setErrMsg('Please enter a valid email address');
+      });
   }, [email]);
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     setSuccess(false);
     setErrMsg('');
-    try {
-      const res = await forgetPassword(email);
-      if (res.status === 200) {
-        setEmail('');
-        setSentEmail(true);
-        setSuccess(true);
-      } else {
-        setErrMsg(res.message);
-      }
-    } catch (err) {
-      //eslint-disable-next-line
-      console.error(err);
-      setErrMsg('There was an error with the request, please try again later.');
-    }
-  };
 
-  const handleResendEmail = async () => {
-    setSuccess(false);
-    setSentEmail(false);
-    setErrMsg('');
     try {
       const res = await forgetPassword(email);
       if (res.status === 200) {
@@ -61,71 +54,63 @@ export default function ForgetPassword() {
     } catch (err) {
       //eslint-disable-next-line
       console.error(err);
-      setErrMsg(
-        'An error occurred while resending the email. Please try again later.',
-      );
+      setErrMsg('This email is not registered with us');
     }
   };
 
   return (
-    <>
-      <Header widget={HeaderLink} />
-      <Container className='content-layout--psw py-4'>
-        <FatherSonBlock>
-          <Form className='content-layout py-4' onSubmit={handleForgotPassword}>
-            <h1 className={styles.title}>Forgot Password</h1>
-            {success && sentEmail ? (
-              <>
-                <div className={styles.success}>
-                  <img src={logoEmailSent} alt='email-sent-logo' />
-                  <span>Check you email</span>
-                  <br />
-                  <span>
-                    A link to reset your password has been sent to{' '}
-                    <strong>{emailDisplay.current}</strong>
-                  </span>
-                </div>
-
-                <Link
-                  type='button'
-                  className={`btn checkbox mb-3 ${styles['resend-email']}`}
-                  onClick={() => handleResendEmail()}>
-                  Resend Email
-                </Link>
-              </>
-            ) : !success && errMsg ? (
-              <MessageBar variant='error'>{errMsg}</MessageBar>
-            ) : null}
-
-            {success && sentEmail ? null : (
-              <>
-                <p className={styles.text}>
-                  Enter your email address to receive a link to reset your
-                  password
-                </p>
-                <FormEmailInput
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  required
-                  label='Email Address'
+    <Container className={styles.page}>
+      <Header />
+      <Container className={styles['page-window']}>
+        <Container className={`${styles['page-wrapper']}`}>
+          <div>
+            <h2 className={styles['page-title']}>Forgot Password</h2>
+            {success && sentEmail && (
+              <section className={styles.success}>
+                <img
+                  className={styles['success-icon']}
+                  src={logoEmailSent}
+                  alt='email-sent-icon'
                 />
-                <Button
-                  className={`primary-btn w-100 my-3 ${styles.customButton}`}
-                  type='submit'
-                  size='lg'
-                  variant='light'>
-                  Continue
-                </Button>
-              </>
+                <h3 className={styles['success-heading']}>Check you email</h3>
+
+                <span className={styles['success-text']}>
+                  A link to reset your password has been sent to{' '}
+                  <strong>{emailDisplay.current}</strong>
+                </span>
+              </section>
             )}
-            <Link
-              to='/signin'
-              className={`btn checkbox mb-3 ${styles['forget-password']}`}>
-              Back to Log In
-            </Link>
-          </Form>
-        </FatherSonBlock>
+            {!success && !sentEmail && (
+              <Form onSubmit={handleForgotPassword} noValidate>
+                <section className={styles.reset}>
+                  <p className={styles['reset-text']}>
+                    Please enter your account email address and we will send
+                    instructions to reset your password.
+                  </p>
+                  <FormEmailInput
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                    label='Email'
+                    labelClassName={styles['custom-label']}
+                    className={styles['reset-input']}
+                    errorMessage={errMsg}
+                  />
+                  <CustomButton
+                    styles={`primary-light ${styles['reset-custom-button']}`}
+                    type='submit'
+                  >
+                    Next
+                  </CustomButton>
+                </section>
+              </Form>
+            )}
+            <NavLink to='/signin' className={styles['page-link']}>
+              Back to Log in
+            </NavLink>
+          </div>
+        </Container>
       </Container>
-    </>
+    </Container>
   );
 }

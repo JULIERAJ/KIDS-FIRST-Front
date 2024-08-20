@@ -1,0 +1,13 @@
+.left-column {
+  width: 37.56rem;
+  height: 353px;
+  padding: 10px 10px 10px 0;
+}
+
+.event-boxes {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}

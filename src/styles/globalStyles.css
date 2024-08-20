@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+:root {
+  --main-black: #000000;
+  --main-white: #ffffff;
+  --main-grey: #999999;
+  --main-sand: #f7f5ec;
+  --main-mistral: #878fab;
+  --main-cyan: #01adb4;
+  --main-blue: #64cac7;
+  --main-lightBlue: #bfebec;
+  --main-green: #5ba056;
+  --main-orange: #f08324;
+  --main-red: #f05153;
+  --main-yellow: #f4dd61;
+
+  /* used in authentication flow */
+  --color-text-icon-default: #596b73;
+  --color-text-icon-accent: #3b494f;
+  --color-bg-light: #fcfcfc;
+  --color-border-default: #9eafb7;
+  --color-fg-primary: #081821;
+  --color-blurred-orange: #f6bd8f;
+  --color-orange: #db5c00;
+  --color-accent-orange: #eb7005;
+  --color-dark-orange: #c24400;
+  --color-gray-dark: #454848;
+  --color-bg-page: #eff0f0;
+  --color-fg-light: #1d1f20;
+
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0rem;
+  color: var(--color-fg-light);
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-synthesis: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+.content-layout {
+  max-width: 80rem;
+  margin: auto;
+}
+
+/* =======================================
+                BACKGROUND
+   ======================================= */
+
+.bg-sand {
+  background-color: var(--main-sand);
+}
+
+.bg-orange {
+  background-color: var(--main-orange);
+}
+
+/* =======================================
+                  BUTTONS
+   ======================================= */
+
+.primary-btn {
+  color: var(--main-black);
+  background-color: var(--main-orange);
+  border: 0.188rem solid var(--main-orange) !important;
+  border-radius: 0.438rem;
+  font-weight: 500;
+}
+
+.primary-btn:active,
+.primary-btn:hover,
+.primary-btn:focus {
+  background-color: var(--main-white) !important;
+  color: var(--main-black);
+}
+
+.primary-btn:disabled {
+  color: var(--main-black);
+  background-color: var(--main-orange);
+  opacity: 0.7;
+}
+
+.secondary-btn {
+  background-color: var(--main-sand);
+  color: var(--main-black);
+  border: 0.188rem solid var(--main-orange) !important;
+}
+
+.secondary-btn:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+  border: 0.188rem solid var(--main-orange);
+}
+
+.secondary-btn:disabled {
+  color: var(--main-black);
+  background-color: var(--main-white);
+  opacity: 0.7;
+}
+
+.tertiary-btn {
+  font-size: 0.875rem;
+  line-height: 1.313rem;
+  background-color: var(--main-white) !important;
+  color: var(--main-black) !important;
+}
+
+/* Hide icons until fonts are loaded */
+.fonts-loading .material-symbols-rounded {
+  visibility: hidden;
+}
+
+/* Headers Each header has different font-weight 900(black), 700(bold), 500(medium)*/
+
+h1 {
+  font-size: 2.5rem; /*40px*/
+  line-height: 120%;
+  letter-spacing: -0.05rem; /*2% from 40px = 0.8px=0.05rem*/
+  color: var(--color-fg-light);
+  padding: 0;
+  margin: 0;
+}
+h2 {
+  font-size: 2rem; /*32px*/
+  line-height: 120%;
+  letter-spacing: -0.02rem; /*1% from 32px = 0.32px=0.02rem*/
+  color: var(--color-fg-light);
+  padding: 0;
+  margin: 0;
+}
+h3 {
+  font-size: 1.5rem; /*24px*/
+  line-height: 120%;
+  letter-spacing: 0rem;
+  color: var(--color-fg-light);
+  padding: 0;
+  margin: 0;
+}
+h4 {
+  font-size: 1.25rem; /*20px*/
+  line-height: 120%;
+  letter-spacing: 0rem;
+  color: var(--color-fg-light);
+  padding: 0;
+  margin: 0;
+}
+h5 {
+  font-size: 1rem; /*16px*/
+  line-height: 140%;
+  letter-spacing: 0rem;
+  color: var(--color-fg-light);
+  padding: 0;
+  margin: 0;
+}
+
+/* Links */
+a {
+  font-size: 1.125rem; /*18px*/
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0rem;
+  color: var(--color-accent-orange);
+}

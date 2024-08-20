@@ -1,0 +1,119 @@
+.navigation {
+	margin-left: 0.56rem;
+	width: 40%;
+	justify-content: flex-start;
+}
+
+@media screen and (max-width: 1244px) {
+	.navigation {
+		width: 50%;
+	}
+}
+
+.navigation__item {
+	width: 33%;
+	padding: 0;
+	font-size: 1.125rem;
+	line-height: 1.25rem;
+	font-weight: 500;
+	color: #000000;
+}
+
+.navigation__item:hover {
+	font-weight: 700;
+	color: #000000;
+}
+
+/* =======================================
+  LANGUAGE, LOGIN/SIGNUP MENU & BUTTONS
+   ======================================= */
+.navigation__wrapper {
+	padding: 19px;
+	margin-top: 3px;
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12px;
+}
+
+.navigation__lang_menu {
+	background: transparent !important;
+	border: none !important;
+	width: 37px;
+	padding: 0 2px !important;
+	font-size: 15px !important;
+	line-height: 14px;
+	font-weight: 500 !important;
+	color: #000000 !important;
+}
+
+.navigation__lang_arrow {
+	padding-left: 2px;
+}
+
+.navigation__lang_button {
+	background: #f8f8ee !important;
+	border: solid 0.5px #000000 !important;
+	border-radius: 3px;
+	padding: 0.1rem !important;
+}
+
+.navigation__lang_text {
+	text-align: left !important;
+	font-size: 15px !important;
+	font-style: medium;
+	font-weight: 500 !important;
+	color: #000000 !important;
+	line-height: 14px !important;
+	width: 37px;
+	height: 19px;
+}
+
+.navigation__login_button,
+.navigation__signup_button {
+	width: 128px;
+	height: 42px;
+	box-sizing: border-box;
+	border: solid 2px #f08324 !important;
+	border-radius: 7px !important;
+
+	color: #f08324;
+	text-decoration: none;
+}
+
+.navigation__signup_button {
+  color: #fff;
+}
+
+.navigation__login_button {
+	background: #f7f5ec !important;
+}
+
+.navigation__login_button a,
+.navigation__signup_button a {
+	/* font-family: Roboto, sans-serif;
+
+  color: #000000;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500 !important; */
+	text-decoration: none;
+}
+
+.navigation__signup_button a {
+  color: #fff;
+}
+
+.navigation__signup_button:hover a {
+  color: #f08324;
+}
+
+.navigation__signup_button {
+	background: #f08324 !important;
+}
+
+.navigation__login_button:hover,
+.navigation__signup_button:hover {
+	background: #fff !important;
+}

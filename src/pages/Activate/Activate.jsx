@@ -1,103 +1,101 @@
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { activate } from '../../api';
-import FatherSonBlock from '../../components/FatherSonBlock';
-import FeedbackBlock from '../../components/Feedback/FeedbackBlock';
-import Header from '../../components/Header';
-import TextLink from '../../components/TextLink';
-import SuccessImg from '../../media/icons/pswd-changed.png';
+import { activate } from '@api';
 
-import styles from './Activate.module.css';
+import NotificationPage from '@components/shared/NotificationPage';
+import emailImage from '@media/icons/email-image.svg';
 
 const Activate = () => {
-  const params = useParams();
-  const navigate = useNavigate();
-  let { email, emailVerificationToken } = params;
+  const { email, emailVerificationToken } = useParams();
 
-  // States to manage user data, loading status, and link expiration
-  const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [expired, setExpired] = useState(false);
+  const [linkExpired, setLinkExpired] = useState(false);
+  const [linkInvalid, setLinkInvalid] = useState(false);
+  const [verificationSuccessful, setVerificationSuccessful] = useState(false);
 
-  // Function to handle navigation to sign-in page
-  const handleClick = () => {
-    navigate('/signin');
-  };
-
-  // Function to fetch user data and check for link expiration
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await activate(email, emailVerificationToken);
-        setUserData(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error:', error);
-        // Check if the link has expired
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.message === 'jwt expired'
-        ) {
-          setExpired(true);
+        if (data.emailIsActivated) {
+          setVerificationSuccessful(true);
         }
+      } catch (error) {
+        // console.log({error});
+        if (error?.response?.status === 400) {
+          setLinkExpired(true);
+        } else {
+          setLinkInvalid(true);
+        }
+      } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, [email, emailVerificationToken]);
 
-  return (
-    <>
-      <Header
-        widget={
-          <TextLink title='Already a member?' to='/signin' linkTitle='Log in' />
-        }
+  if (loading) {
+    return (
+      <NotificationPage
+        title='Loading...'
+        image={emailImage}
+        altText=''
+        message='Something went wrong'
+        description=''
+        linkText='Back to Home'
+        linkTo='/'
+        isButton={false}
       />
-      <Container className='content-layout py-4'>
-        <FatherSonBlock>
-          <h1 className={styles.registerTitle}>Sign up Kids First</h1>
+    );
+  }
 
-          {/* Show loading message while fetching data */}
-          {loading && <p>Loading...</p>}
+  if (verificationSuccessful) {
+    return (
+      <NotificationPage
+        title='Email verified'
+        image={emailImage}
+        altText='email-verified-icon'
+        message='Thank you for verifying your email address!'
+        description="Please click 'Next' to proceed to the login page."
+        linkText='Next'
+        linkTo='/signin'
+        isButton={false}
+      />
+    );
+  }
 
-          {/* Show success message if email is activated */}
-          {!loading && userData.emailIsActivated && (
-            <>
-              <FeedbackBlock message={userData.message} image={SuccessImg} />
-              <div className={styles.text}>
-                <p> Your email address has been verified</p>
-                <p>To proceed, click next</p>
-              </div>
-              <div>
-                <Button
-                  className={`primary-btn w-100 my-3 ${styles.customButton}`}
-                  type='submit'
-                  size='lg'
-                  variant='light'
-                  onClick={handleClick}>
-                  Log In
-                </Button>
-              </div>
-            </>
-          )}
-          {!loading && !userData.emailIsActivated && expired && (
-            <div>
-              <p>The link was expired</p>
-            </div>
-          )}
-          {!loading && !userData.emailIsActivated && !expired && (
-            <div>
-              <p>Something went wrong</p>
-            </div>
-          )}
-        </FatherSonBlock>
-      </Container>
-    </>
-  );
+  if (linkExpired) {
+    return (
+      <NotificationPage
+        title='Link Expired'
+        image={emailImage}
+        altText='link-expired-icon'
+        message='This verification link is no longer valid'
+        description={`Please check ${email} for the latest verification email to continue.`}
+        linkText='Back to Sign up'
+        linkTo='/register'
+        isButton={false}
+      />
+    );
+  }
+
+  if (linkInvalid) {
+    return (
+      <NotificationPage
+        title='Something went wrong!'
+        image={emailImage}
+        altText='something-went-wrong-icon'
+        message='Verification was unsuccessful'
+        description='Please sign up again to receive a new link.'
+        linkText='Back to Sign up'
+        linkTo='/register'
+        isButton={false}
+      />
+    );
+  }
+  return null;
 };
 
 export default Activate;

@@ -1,9 +1,9 @@
-import React from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
-import CardFeature from '../../components/CardFeature';
-import { cardMainFeature, cardExtraFeature } from '../../data/features.data';
-import parentChild from '../../media/features/mother_son_flying.png';
+import CardFeature from '@components/CardFeature';
+
+import { cardExtraFeature, cardMainFeature } from '@data/features.data';
+import parentChild from '@media/features/mother_son_flying.png';
 
 import styles from './FeaturesPage.module.css';
 
@@ -23,8 +23,8 @@ const FeaturesPage = () => {
           <Image
             fluid
             className={styles.banner__image}
-            alt="Woman
-           with child"
+            alt='Woman
+           with child'
             src={parentChild}
           />
         </Col>

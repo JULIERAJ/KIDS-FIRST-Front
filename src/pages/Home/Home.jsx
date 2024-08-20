@@ -1,115 +1,153 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
-// import { NavLink } from 'react-router-dom';
-
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import './Home.css';
 
-import feature_2 from '../../media/homePage/feature_child_info.png';
-import feature_1 from '../../media/homePage/feature_interactive_calendar.png';
-import feature_3 from '../../media/homePage/feature_law_popups.png';
-import value_2 from '../../media/homePage/value_co-parenting.png';
-import value_1 from '../../media/homePage/value_kid_harmony.png';
-import value_3 from '../../media/homePage/value_learning.png';
-import video from '../../media/homePage/video_placeholder.png';
+import feature_1 from '@media/homePage/feature_dashboard.png';
+import feature_4 from '@media/homePage/feature_kids_info.png';
+import feature_3 from '@media/homePage/feature_photo_album.png';
+import feature_2 from '@media/homePage/feature_shared_calendar.png';
+
+import feature_5 from '@media/homePage/mediated_messaging.svg';
+
+import mockup from '@media/homePage/mock-up.png';
+
+import value_2 from '@media/homePage/value_co-parenting.png';
+import value_1 from '@media/homePage/value_kid_harmony.png';
+import value_3 from '@media/homePage/value_learning.png';
+
+import Feature from './components/Feature/Feature';
+import Value from './components/Value/Value';
 
 export default function Home() {
-  return ( 
+  return (
     <>
-      <div className="banner-section" id="first-banner" >
+      <div className="banner-section" id="first-banner">
         <div className="left-blurb">
-          <h1>A CO-PARENTING APP SOLUTION</h1>
-          <p>that maintain harmony in your kid’s lives with the help of one click</p>
-          <Button className="home-signup-btn-2" href="/register">
-            Sign up now
-          </Button>
+          <h1 className="banner-title">
+						BRIDGING CO-PARENTS AND PRIORITIZING KIDS
+          </h1>
+
+          <div className="banner-text-wrapper">
+            <p>
+							Our co-parenting app that helps you maintain harmony
+							in your kids&apos; lives.
+            </p>
+          </div>
+
+          <div className="banner-btn-wrapper">
+            <CustomButton
+              styles="home-signup-btn-2"
+              link="/register"
+            >
+							Sign up now
+            </CustomButton>
+          </div>
         </div>
       </div>
-      
-      <section className="site-section" >
-        <h1 className="value">KIDS FIRST VALUES</h1>
-        <div className="features-prev">
-          <div className="feature-1">
-            <p>
-              Help children have more harmony in their upbringing by reducing
-              conflicts that arise when divorced parents schedule who has the
-              kids.
-            </p>
-            <img src={value_1} alt=""></img>
-          </div>
-          <div className="feature-1">
-            <p>
-              Provide a fair and simple co-parenting solution that has less
-              chance for conflict and more time and focus on the children&#39;s
-              well-being.
-            </p>
-            <img src={value_2} alt=""></img>
-          </div>
-          <div className="feature-1">
-            <p>
-              Allow parents to grow and improve their parenting by making
-              helpful information on child health and Ontario law more
-              accessible.
-            </p>
-            <img src={value_3} alt=""></img>
+
+      <section className="site-section">
+        <div className="container">
+          <h1 className="section-title">KIDS FIRST VALUES</h1>
+
+          <div className="values-wrapper">
+            <Value
+              title="Minimizing Conflicts"
+              text="Fostering a harmonious childhood by reducing scheduling conflicts
+							between divorced parents"
+              img={value_1}
+            />
+
+            <Value
+              title="Better Child Upbringing"
+              text="Facilitating peaceful communication and coordination between parents"
+              img={value_2}
+            />
+
+            <Value
+              title="Enhancing Accountability"
+              text="Improving the transparency in communication between
+							parents and holding them accountable "
+              img={value_3}
+            />
           </div>
         </div>
       </section>
-      <section className="banner-section" id="middle-banner-homepage">
-        <div className="right-blurb">
-          <h1>KIDS HAPPINESS IS OUR PRIORTY</h1>
-          <p>
-            KIDS FIRST aspires to help families with simpler custody scheduling
-            by providing an interactive shared calendar solution that reduces
-            misunderstandings and conflict.
-         
-          </p>
+
+      <section
+        className="middle-banner-homepage"
+        id="middle-banner-homepage"
+      >
+        <div className="container">
+          <div className="middle-banner-homepage-content">
+            <h1 className="middle-banner-homepage-title">
+							KIDS HAPPINESS IS OUR PRIORITY
+            </h1>
+            <div className="middle-banner-homepage-text">
+              <p>
+								KIDS FIRST aspires to help families with simpler
+								custody scheduling by providing an interactive
+								shared calendar solution that reduces
+								misunderstandings and conflicts.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
+
       <section className="site-section" id="features-prev">
-        <h1 className="value">KIDS FIRST FEATURES</h1>
-        <div className="features-prev-1">
-          <div className="feature-2">   
-            <p>Interactive Calendar</p>
-            <img src={feature_1} alt=""></img>
-          </div>
-          <div className="feature-2">
-            <p>Child Info</p>
-            <img src={feature_2} alt=""></img> 
-          </div>
+        <div className="container">
+          <div className="section-title">KIDS FIRST FEATURES</div>
 
-          <div className="feature-2">
-            <p>Law Pop-Ups</p>
+          <div className="features-wrapper">
+            <Feature
+              classModifier="feature--wide"
+              title="Dashboard"
+              img={feature_1}
+            />
+            <Feature
+              classModifier="feature--wide"
+              title="Shared Calendar"
+              img={feature_2}
+            />
 
-            <img src={feature_3} alt=""></img>
+            <Feature title="Photo Album" img={feature_3} />
+            <Feature title="Kid's Info" img={feature_4} />
+            <Feature title="Mediated Messaging" img={feature_5} />
           </div>
         </div>
-        <span className="more-link">
-          {/* eslint-disable-next-line */}
-          <a href="#" alt="">
-            More Features
-          </a>
-        </span>
       </section>
-      <section className="site-sections">
-        <h1>WHY KIDS FIRST</h1>
-        <div className="features-3 video">
-          <div className="left-blurbs">
-            <p>KIDSFIRST Takes A Different Approach To Reduce Conflicts Revolving;</p>
-            <br />
-            <p>We Understand Who The Users Are, A Diverse Group Of Co-Partners</p>
-            <p>With Different Backgrounds And Needs.</p>
-            <br />
-            <p>Our Solutions Can Accommodate Parents’ Needs With A Simple And</p>
-            <p>Particular App Design And A Clever Tool For Peaceful Communication.</p> 
+
+      <section className="banner-sect">
+        <div className="container">
+          <div className="banner-sect__row">
+            <div>
+              <h2 className="banner-sect__title">
+								WHY KIDS FIRST
+              </h2>
+              <div className="banner-sect__text">
+                <p>
+									We take a different approach to reducing
+									conflicts: To&nbsp;accommodate parents&apos;
+									needs with a simple and clever app design
+									that limits the need for calls or text
+									messaging.
+                </p>
+                <CustomButton
+                  styles="home-signup-btn-2"
+                  link="/register"
+                >
+									Sign up now
+                </CustomButton>
+              </div>
+            </div>
+            <div>
+              <img src={mockup} alt="" />
+            </div>
           </div>
-          <div className="video-section">
-            <img src={video} alt=""></img>
-            {/* <img className="img-logo" src={logo} alt="" />			 */}
-          </div>
-         
         </div>
       </section>
-      {/* <footer>
+
+      {/*
+      <footer>
         <a href="#">Terms of use</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Contact us</a>

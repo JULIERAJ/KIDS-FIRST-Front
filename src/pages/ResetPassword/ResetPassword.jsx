@@ -1,133 +1,159 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { useCallback, useEffect, useState } from 'react';
+import { Container, Form } from 'react-bootstrap';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
-import { useParams, Link } from 'react-router-dom';
+import { resetPassword, resetPasswordLink } from '@api';
+import Header from '@components/shared/Header';
+import NotificationPage from '@components/shared/NotificationPage';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
+import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
 
-import { resetPasswordLink, resetPassword } from '../../api';
-// import { resetPasswordLink } from '../../api';
-
-import FatherSonBlock from '../../components/FatherSonBlock';
-import FormPasswordInput from '../../components/form/FormPasswordInput';
-import Header from '../../components/Header/Header';
-import MessageBar from '../../components/MessageBar';
-import TextLink from '../../components/TextLink';
-import logoPswdChanged from '../../media/icons/pswd-changed.png';
+import emailImage from '@media/icons/email-image.svg';
+import { validatePassword } from '@utils/validationUtils';
 
 import styles from './ResetPassword.module.css';
 
-const DEFAULT_ERROR_MESSAGE = 'You are using symbols in your passwords or your passwords do not match.';
+const DEFAULT_MESSAGE =
+  'Include at least: • 8 characters  • upper and lower case characters  • a number  • a special character';
 
 export default function ResetPassword() {
   const { email, resetPasswordToken } = useParams();
-  const [userValid, setUserValid] = useState(null);
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [sentEmail, setSentEmail] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [initialFocus, setInitialFocus] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showTextPaswsord, setShowTextPassword] = useState('');
+  const [linkExpired, setLinkExpired] = useState(false);
+  const [allPasswordErrorsChecked, setAllPasswordErrorsChecked] =
+    useState(false);
+  const navigate = useNavigate();
 
-  const checkValid = useCallback(async () => {
+  useEffect(() => {
+    verifyEmail();
+  }, [email, resetPasswordToken]);
+
+  const verifyEmail = async () => {
     try {
-      const { data } = await resetPasswordLink(email, resetPasswordToken);
-      setUserValid(data);
+      await resetPasswordLink(email, resetPasswordToken);
     } catch (err) {
       //eslint-disable-next-line no-console
       console.error(err);
+      setLinkExpired(true);
     }
-  }, [email, resetPasswordToken]);
-  useEffect(() => {
-    checkValid();
-  }, [checkValid, email, resetPasswordToken]);
+  };
 
-  const handleChangePassword = useCallback(
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const handlePasswordChange = (e) => {
+    const passwordValue = e.target.value;
+
+    setPassword(passwordValue);
+    setShowTextPassword('');
+
+    validatePassword(
+      passwordValue,
+      setErrorMessage,
+      setAllPasswordErrorsChecked,
+      setSuccessMessage
+    );
+  };
+
+  const handleFocus = () => {
+    if (!initialFocus && !allPasswordErrorsChecked) {
+      setShowTextPassword(DEFAULT_MESSAGE);
+      setInitialFocus(true);
+    }
+  };
+
+  const handleBlur = (e) => {
+    setShowTextPassword('');
+    validatePassword(
+      e.target.value,
+      setErrorMessage,
+      setAllPasswordErrorsChecked,
+      setSuccessMessage
+    );
+  };
+
+  const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      setErrorMessage('');
-      if (password === '' || confirmPassword === '') {
-        setErrorMessage('Please fill out both password fields.');
+
+      if (!password.trim()) {
+        setErrorMessage('Please enter your password.');
         return;
+      } else {
+        setErrorMessage('');
       }
-      if (password !== confirmPassword) {
-        setErrorMessage(DEFAULT_ERROR_MESSAGE);
-        return;
-      }
+
       try {
-        const { data } = await resetPassword(
-          email,
-          password,
-          resetPasswordToken,
-        );
-        setUserValid(data);
-        setSuccess(true);
-        setSentEmail(true);
+        await resetPassword(email, password, resetPasswordToken);
+
+        navigate('/password-changed');
       } catch (err) {
-        setErrorMessage(DEFAULT_ERROR_MESSAGE);
+        if (err.response.status === 400) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          console.error(err);
+          setLinkExpired(true);
+        }
       }
     },
-    [email, password, confirmPassword, resetPasswordToken],
+    [email, password, resetPasswordToken]
   );
 
-  return (
-    <>
-      <Header
-        widget={
-          <TextLink title='Already a member?' to='/signin' linkTitle='Log in' />
-        }
-      />
-      <Container className='content-layout py-4'>
-        <FatherSonBlock>
-          <h1 className={styles.title}>Change Password</h1>
-          {!success && errorMessage && (
-            <MessageBar variant='error'>{errorMessage}</MessageBar>
-          )}
-          {success && sentEmail && (
-            <>
-              <div className={styles['success-password']}>
-                <img
-                  className={styles.loadingLogo}
-                  src={logoPswdChanged}
-                  alt='password-changed-successfully'
-                />
-                <span>Password has been changed!</span> <br />
-                <span>
-                  Your password has been changed successfully.
-                  <br /> Please login with the new password.
-                </span>
-                <br />
-                <Link to='/signin' className={`btn ${styles['back-login']}`}>
-                  Back to Log In
-                </Link>
-              </div>
-            </>
-          )}
-
-          {userValid && !sentEmail && (
-            <Form className='py-4' onSubmit={handleChangePassword} noValidate>
-              <FormPasswordInput
-                required
-                value={password}
-                label='New Password'
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <FormPasswordInput
-                id='confirmPassword'
-                label='Password Confirmation'
-                name='confirmPassword'
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              <Button
-                className={`primary-btn w-100 my-3 ${styles.customButton}`}
-                type='submit'
-                size='lg'
-                variant='light'>
-                Change Password
-              </Button>
-            </Form>
-          )}
-        </FatherSonBlock>
+  return linkExpired ? (
+    <NotificationPage
+      title='Link Expired'
+      image={emailImage}
+      altText='link-expired-icon'
+      message='This password reset link is no longer valid'
+      description='Please request a new password reset link to continue.'
+      linkText='Back to Forgot Password'
+      linkTo='/forgot-password'
+    />
+  ) : (
+    <Container className={styles.page}>
+      <Header />
+      <Container className={styles['page-window']}>
+        <Container className={`${styles['page-wrapper']}`}>
+          <h1 className={styles.title}>Set a New Password</h1>
+          <p className={styles.description}>
+            Please create a new password, making sure it differs from any
+            previous passwords you have used.
+          </p>
+          <Form onSubmit={handleSubmit} noValidate>
+            <FormPasswordInput
+              required
+              value={password}
+              label='New Password'
+              labelClassName={styles.label}
+              isInvalid={!!errorMessage}
+              errors={errorMessage}
+              successMessage={successMessage}
+              showTextPassword={showTextPaswsord}
+              showPassword={showPassword}
+              togglePasswordVisibility={togglePasswordVisibility}
+              onChange={handlePasswordChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              style={{ paddingBottom: '0' }}
+            />
+            <CustomButton
+              styles={`primary-light ${styles['button-size']}`}
+              type='submit'
+            >
+              Next
+            </CustomButton>
+          </Form>
+          <NavLink className={styles.link} to='/signin'>
+            Back to Log In
+          </NavLink>
+        </Container>
       </Container>
-    </>
+    </Container>
   );
 }

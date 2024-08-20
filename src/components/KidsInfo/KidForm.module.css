@@ -1,0 +1,77 @@
+.main-kid-container {
+  border-radius: 10px;
+  background-color: rgba(252, 252, 252, 1);
+  min-height: 80vh;
+  padding: 24px 16px;
+}
+
+/* ======================================
+          KID FORM
+   ====================================== */
+
+.avatar-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-avatar-overlay {
+  position: relative;
+  top: 50px;
+  left: 160px;
+  border: 4px rgba(252, 252, 252, 1) solid;
+  background: rgba(207, 182, 239, 1);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.kid-form-input {
+  padding-bottom: 16px;
+}
+
+.kid-form-label,
+.kid-details-row {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 19.2px;
+}
+
+/* ======================================
+          CHECKBOX & CHECKMARK
+   ====================================== */
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 16px 0 16px 9px;
+  padding: 0;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 8px;
+}
+
+.checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(246, 188, 140, 1);
+  border-radius: 4px;
+  background-color: rgba(252, 252, 252, 1);
+  position: relative;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}

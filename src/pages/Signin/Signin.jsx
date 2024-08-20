@@ -1,74 +1,73 @@
-import { useState } from 'react';
-import { Container, Form, Button, Col, Row } from 'react-bootstrap';
+import { useState, useRef , useEffect } from 'react';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from 'react-social-login-buttons';
-import { LoginSocialFacebook, LoginSocialGoogle } from 'reactjs-social-login';
+import { login, loginFacebook, loginSocial } from '@api';
+import Header from '@components/shared/Header';
+import { CustomButton } from '@components/shared/ui/Button/CustomButton';
+import FormEmailInput from '@components/shared/ui/form/FormEmailInput';
+import FormPasswordInput from '@components/shared/ui/form/FormPasswordInput';
+import SocialLoginButton from '@components/shared/ui/SocialLoginButton/SocialLoginButton';
+import { useAuth } from '@context/AuthContext';
+import { validateEmail, handleCommonErrors } from '@utils/validationUtils';
 
-import { login, loginFacebook, loginSocial } from '../../api';
-import FormEmailInput from '../../components/form/FormEmailInput';
-import FormPasswordInput from '../../components/form/FormPasswordInput';
-import Header from '../../components/Header';
-// import TextLink from '../../components/TextLink';
-import facebookIcon from '../../media/icons/facebook.png';
-import googleIcon from '../../media/icons/google.png';
-import { EMAIL_REG_EXP } from '../../utils/index';
-
-import styles from './Sigin.module.css';
+import styles from './Signin.module.css';
 
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMesasage, setErrorMesasage] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
+  const inputRef = useRef(null);
+  const { login: authContextLogin } = useAuth();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
-    setErrorMesasage('');
-    // console.log('Email:', email);
-    // console.log('Password:', password);
-    // console.log('Remember Me:', rememberMe);
+    setErrorMessage('');
+    if (!email) {
+      setEmailError('Please enter a valid email address');
+    }
 
     if (validateEmail) {
-      login(email, password)
+      login(email, password, rememberMe)
         .then((res) => {
-          const user = JSON.stringify(res.data);
-          if (rememberMe) {
-            localStorage.setItem('storedUser', user);
-          } else {
-            sessionStorage.setItem('storedUser', user);
-          }
+          const userData = res.data;
+          authContextLogin(userData, rememberMe);
           navigate('/dashboard');
         })
         .catch(({ response }) => {
           if (response.status === 404) {
-            setErrorMesasage(
+            setErrorMessage(
               'This account doesn\'t exist. Please enter a different email address or try "Sign Up".'
             );
+          } else if (response.status === 400) {
+            setErrorMessage('Please enter your password');
           } else if (response.status === 401) {
-            setErrorMesasage('Invalid password or email address');
+            setErrorMessage(response.data.error);
           } else {
-            setErrorMesasage(
+            setErrorMessage(
               'An unknown error occurred. Please try again later.'
             );
           }
         });
     }
   };
-  // Function to validate email format
-  const validateEmail = (emailValue) => {
-    return EMAIL_REG_EXP.test(emailValue);
-  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    if (!validateEmail(email)) {
+    if (!validateEmail(e.target.value)) {
       setEmailError('Please enter a valid email address.');
     } else {
       setEmailError('');
@@ -82,175 +81,122 @@ export default function Signin() {
   const handleFacebookLoginSuccess = (response) => {
     loginFacebook(response.data.accessToken, response.data.userID)
       .then((res) => {
-        const user = JSON.stringify(res.data);
-        localStorage.setItem('storedUser', user);
+        const userData = res.data;
+        authContextLogin(userData, true);
         navigate('/dashboard');
       })
-      .catch(() => {
-        setErrorMesasage(
-          'Your email address or password is incorrect. Please try again, or click "Forgot your password"'
-        );
+      .catch(({ response }) => {
+        handleCommonErrors(response, setErrorMessage);
       });
   };
 
-  const loginfromGoogle = (response) => {
+  const loginFromGoogle = (response) => {
     loginSocial(response.data.access_token, response.data.email)
       .then((res) => {
-        const user = JSON.stringify(res.data);
-
-        localStorage.setItem('storedUser', user);
+        const userData = res.data;
+        authContextLogin(userData, true);
         navigate('/dashboard');
-        // eslint-disable-next-line
-        console.groupCollapsed(response.data);
       })
-      .catch(() => {
-        setErrorMesasage(
-          'Log-in unsuccessful. Please try again later, or sign-up.'
-        );
+      .catch(({ response }) => {
+        handleCommonErrors(response, setErrorMessage);
       });
   };
 
   return (
     <>
-      <div className={styles.page}>
-        <Header />
+      <Container className={styles.page}>
+        <Header className={styles.header} />
         <Container className={styles.page__window}>
-          <div>
-            <Row>
-              <Col
-                className={`d-flex justify-content-center align-items-center ${styles.page__wrapper}`}>
-                <div>
-                  <h2 className={styles.login__title}>
-                    Welcome back to Kids First{' '}
-                  </h2>
-                  <Form className='py-4' onSubmit={handleLogin} noValidate>
-                    <FormEmailInput
-                      autoComplete='off'
-                      required
-                      onChange={handleEmailChange}
-                      defaultValue={email}
-                      isInvalid={emailError}
-                      errors={emailError}
-                      labelClassName={styles.emailLabel}
+          <Row>
+            <Col className={styles.page__wrapper}>
+              <h1 className={styles.login__title}>
+                Welcome back to Kids First{' '}
+              </h1>
+              <Form className={`py-4 ${styles.form}`} onSubmit={handleLogin} noValidate>
+                <FormEmailInput
+                  ref={inputRef}
+                  autoComplete='off'
+                  required
+                  onChange={handleEmailChange}
+                  defaultValue={email}
+                  isInvalid={!!emailError}
+                  errors={emailError}
+                  labelClassName={styles.label}
+                />
+                <FormPasswordInput
+                  required
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  showPassword={showPassword}
+                  togglePasswordVisibility={togglePasswordVisibility}
+                  errors={errorMessage}
+                  labelClassName={styles.label}
+                />
+                <div className={styles.container}>
+                  <div className={styles.checkboxContainer}>
+                    <input
+                      className={styles.checkboxInput}
+                      type='checkbox'
+                      value='remember-me'
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
                     />
-
-                    <FormPasswordInput
-                      required
-                      type={showPassword ? 'text' : 'password'} // Toggle password visibility
-                      value={password}
-                      onChange={handlePasswordChange}
-                      showPassword={showPassword}
-                      setShowPassword={setShowPassword}
-                      errors={errorMesasage}
-                      labelClassName={styles.PasswordLabel}
-                    />
-                    <div className={styles.checkboxContainer}>
-                      <div>
-                        <input
-                          className={styles.checkboxInput}
-                          type='checkbox'
-                          value='remember-me'
-                          checked={rememberMe}
-                          onChange={(e) => setRememberMe(e.target.checked)}
-                        />
-                        <label className={styles.checkboxLabel}>
-                          {' '}
-                          Remember me
-                        </label>
-                      </div>
-                      <div>
-                        <a
-                          className={`btn ${styles.forget__password}`}
-                          href='/forgot-password'>
-                          Forgot your password?
-                        </a>
-                      </div>
-                    </div>
-                    <Button
-                      className={`primary-btn w-100 my-3 ${styles.customButton}`}
-                      type='submit'
-                      size='lg'
-                      variant='light'>
-                      Log In
-                    </Button>
-                    <div className={styles.orDivider}>
-                      <span className={styles.dashLine}></span>
-                      <span className={`${styles.orText}`}>Or</span>
-                      <span className={styles.dashLine}></span>
-                    </div>
-
-                    <Row className={styles.socialButton}>
-                      <Col xs={12} md={6}>
-                        <LoginSocialGoogle
-                          client_id={
-                            process.env.REACT_APP_GOOGLE_CLIENT_ID || ''
-                          }
-                          onResolve={loginfromGoogle}
-                          onReject={(err) => {
-                            /* eslint-disable no-console */
-                            console.log(err);
-                          }}>
-                          <GoogleLoginButton
-                            title='Google'
-                            align={'center'}
-                            icon={''}
-                            size='45px'
-                            className='tertiary-btn w-100'>
-                            <img
-                              src={googleIcon}
-                              width='25'
-                              height='25'
-                              alt=''
-                            />{' '}
-                            Google
-                          </GoogleLoginButton>
-                        </LoginSocialGoogle>
-                      </Col>
-                      <Col xs={12} md={6}>
-                        <LoginSocialFacebook
-                          appId={process.env.APP_ID}
-                          onResolve={(response) => {
-                            handleFacebookLoginSuccess(response);
-                            /* eslint-disable no-console */
-                            console.log(response);
-                          }}
-                          onReject={(error) => {
-                            // handleFacebookLoginFailure(error);
-                            /* eslint-disable no-console */
-                            console.log(error);
-                          }}>
-                          <FacebookLoginButton
-                            title='Facebook'
-                            align={'center'}
-                            icon={''}
-                            size='45px'
-                            className='tertiary-btn w-100'>
-                            <img
-                              src={facebookIcon}
-                              width='25'
-                              height='25'
-                              alt=''
-                            />{' '}
-                            Facebook
-                          </FacebookLoginButton>
-                        </LoginSocialFacebook>
-                      </Col>
-                    </Row>
-                    <Row className='justify-content-center'>
-                      <div className={styles.alreadyMember}>
-                        Not a member?
-                        <NavLink className={styles.registerLink} to='/register'>
-                          Sign up
-                        </NavLink>
-                      </div>
-                    </Row>
-                  </Form>
+                    <label className={styles.checkboxLabel}>
+                      {' '}
+                      Remember me
+                    </label>
+                  </div>
+                  <div>
+                    <NavLink
+                      className={styles.forgetPasswordLabel}
+                      to='/forgot-password'
+                    >
+                      Forgot your password?
+                    </NavLink>
+                  </div>
                 </div>
-              </Col>
-            </Row>
-          </div>
+                <CustomButton
+                  styles={`primary-light ${styles.customButton}`}
+                  type='submit'>
+                  Log In
+                </CustomButton>
+                <div className={styles.orDivider}>
+                  <span className={styles.dashLine}></span>
+                  <span className={`${styles.orText}`}>Or</span>
+                  <span className={styles.dashLine}></span>
+                </div>
+                <Row className={styles.socialButton}>
+                  <Col xs={12} md={6}>
+                    <SocialLoginButton
+                      provider='google'
+                      onSuccess={loginFromGoogle}
+                      // eslint-disable-next-line no-console
+                      onFailure={(err) => console.log(err)}
+                    />
+                  </Col>
+                  <Col xs={12} md={6}>
+                    <SocialLoginButton
+                      provider='facebook'
+                      onSuccess={handleFacebookLoginSuccess}
+                      // eslint-disable-next-line no-console
+                      onFailure={(error) => console.log(error)}
+                    />
+                  </Col>
+                </Row>
+                <Row className='justify-content-center'>
+                  <div className={styles.alreadyMember}>
+                    Not a member?
+                    <NavLink className={styles.registerLink} to='/register'>
+                      Sign up
+                    </NavLink>
+                  </div>
+                </Row>
+              </Form>
+            </Col>
+          </Row>
         </Container>
-      </div>
+      </Container>
     </>
   );
 }

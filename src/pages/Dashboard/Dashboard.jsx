@@ -1,20 +1,25 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import DashboardHeader from '../../components/DashboardHeader/DashboardHeader';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import DashboardHeader from '@components/Dashboard/DashboardHeader/DashboardHeader';
+import Sidebar from '@components/Dashboard/Sidebar/Sidebar';
+
+import { useAuth } from '@context/AuthContext';
 
 import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
   const [title, setTitle] = useState('Dashboard');
+  const { user } = useAuth();
+  const handleTitleChange = (newTitle) => {
+    setTitle(newTitle);
+  };
 
   return (
     <div className={styles.dashboard}>
-      <Sidebar setTitle={setTitle} />
+      <Sidebar onTitleChange={handleTitleChange} />
       <div className={styles.content}>
-        <DashboardHeader title={title} />
+        <DashboardHeader title={title} user={user} />
         <Outlet />
       </div>
     </div>

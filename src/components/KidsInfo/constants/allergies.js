@@ -1,0 +1,20 @@
+export const ALLERGIES_VALUE = [
+  {
+    value: 'Bees',
+    label: 'Bees',
+  },
+  { value: 'Crustaceans and Molluscs', label: 'Crustaceans and Molluscs' },
+  { value: 'Dust', label: 'Dust' },
+  { value: 'Eggs', label: 'Eggs' },
+  { value: 'Fish', label: 'Fish' },
+  { value: 'Gluten', label: 'Gluten' },
+  { value: 'Lactose', label: 'Lactose' },
+  { value: 'Mustard', label: 'Mustard' },
+  { value: 'Peanuts', label: 'Peanuts' },
+  { value: 'Pets', label: 'Pets' },
+  { value: 'Pollen', label: 'Pollen' },
+  { value: 'Sesame seeds', label: 'Sesame seeds' },
+  { value: 'Soy', label: 'Soy' },
+  { value: 'Sulfates', label: 'Sulfates' },
+  { value: 'Tree Nuts', label: 'Tree Nuts' },
+];

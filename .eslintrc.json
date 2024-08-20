@@ -36,8 +36,20 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx"]
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@config", "./src/config"],
+          ["@context", "./src/context"],
+          ["@data", "./src/data"],
+          ["@hooks", "./src/hooks"],
+          ["@media", "./src/media"],
+          ["@pages", "./src/pages"],
+          ["@styles", "./src/styles"],
+          ["@utils", "./src/utils"],
+          ["@api", "./src/api.js"]
+        ],
+        "extensions": [".js", ".jsx", ".json"]
       }
     },
     "react": {
@@ -49,7 +61,8 @@
     "arrow-spacing": "error",
     "eol-last": ["error", "always"],
     "indent": ["error", 2],
-    "linebreak-style": 0,
+    "linebreak-style": ["error", "unix"],
+
     "max-len": ["error", { "code": 120, "ignoreUrls": true }],
     "no-multi-spaces": "error",
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
