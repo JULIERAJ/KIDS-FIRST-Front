@@ -31,6 +31,7 @@ export default function ForgetPassword() {
       .validate({ email })
       .then(() => setErrMsg(''))
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.log(err);
         setErrMsg('Please enter a valid email address');
       });
