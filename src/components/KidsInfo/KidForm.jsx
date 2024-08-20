@@ -21,6 +21,7 @@ const KidForm = () => {
   async function formAction(values) {
     try {
       const response = await createKid(values);
+      // eslint-disable-next-line no-console
       console.log('Kid created:', response.data);
     } catch (error) {
       // Improved error logging
@@ -48,6 +49,7 @@ const KidForm = () => {
     },
     validationSchema: kidValidateSchema,
     onSubmit: (values, { resetForm }) => {
+      // eslint-disable-next-line no-console
       console.log('Collected form values:', values);
 
       formAction(values);
