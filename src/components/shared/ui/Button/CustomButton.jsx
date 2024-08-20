@@ -26,6 +26,7 @@ import './contentStyles.css';
 
 export const CustomButton = ({
   styles,
+  size,
   link,
   iconLeft,
   iconRight,
@@ -36,13 +37,19 @@ export const CustomButton = ({
   ...props
 }) => {
   return (
-    <Button className={classNames(styles)} href={link} {...props}>
+    <Button className={classNames(styles, size)} href={link} {...props}>
       {iconLeft && (
-        <img src={iconLeft} className={classNames('icon-left', iconLeftStyles)} />
+        <img
+          src={iconLeft}
+          className={classNames('icon-left', iconLeftStyles)}
+        />
       )}
       <span className={classNames('text', textStyles)}>{children}</span>
       {iconRight && (
-        <img src={iconRight} className={classNames('icon-right', iconRightStyles)} />
+        <img
+          src={iconRight}
+          className={classNames('icon-right', iconRightStyles)}
+        />
       )}
     </Button>
   );
@@ -51,6 +58,7 @@ export const CustomButton = ({
 CustomButton.propTypes = {
   type: PropTypes.string,
   styles: PropTypes.string,
+  size: PropTypes.oneOf(['xsml', 'sml', 'med', 'lg']),
   iconLeft: PropTypes.string,
   iconLeftStyles: PropTypes.string,
   iconRight: PropTypes.string,
