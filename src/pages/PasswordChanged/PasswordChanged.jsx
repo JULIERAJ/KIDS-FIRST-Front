@@ -11,6 +11,7 @@ export default function PasswordChanged() {
       description="You can now log in with the new password."
       linkText="Back To Log In"
       linkTo="/signin"
+      isButton={false}
     />
   );
 }

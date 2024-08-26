@@ -7,8 +7,7 @@ import NotificationPage from '@components/shared/NotificationPage';
 import emailImage from '@media/icons/email-image.svg';
 
 const Activate = () => {
-  const params = useParams();
-  let { email, emailVerificationToken } = params;
+  const { email, emailVerificationToken } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [linkExpired, setLinkExpired] = useState(false);
@@ -22,17 +21,18 @@ const Activate = () => {
         if (data.emailIsActivated) {
           setVerificationSuccessful(true);
         }
-        setLoading(false);
       } catch (error) {
-        //console.log('Error:', error.response.data.message);
-        //console.log('Error:', error.response.status);
-        if (error.response.status === 400) {
+        // console.log({error});
+        if (error?.response?.status === 400) {
           setLinkExpired(true);
+        } else {
+          setLinkInvalid(true);
         }
-        setLinkInvalid(true);
+      } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, [email, emailVerificationToken]);
 

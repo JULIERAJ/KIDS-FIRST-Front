@@ -16,7 +16,7 @@ const HomeDashboard = () => {
   const childExists = false;
 
   const handleButtonClick = () => {
-    navigate('dashboard/kids');
+    navigate('/dashboard/kids');
   };
 
   return (
@@ -44,6 +44,7 @@ const HomeDashboard = () => {
             Create your kid’s profile and add all the necessary information by
             clicking Add Your Kid button.
           </h1>
+
           <CustomButton
             styles={`${styles['custom-button']} secondary-light`}
             iconRight={addIcon}
