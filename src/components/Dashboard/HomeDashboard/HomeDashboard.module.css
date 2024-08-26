@@ -46,7 +46,8 @@
     margin-top: 2rem; 
    
   }
-  @media (max-width: 768px) {
+
+ @media (max-width: 768px) {
     .dashboard {
       padding: 24px 12px;
     }
