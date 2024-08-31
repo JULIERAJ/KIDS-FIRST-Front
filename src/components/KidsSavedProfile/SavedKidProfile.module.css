@@ -1,0 +1,157 @@
+.kid-profile-card {
+  margin: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: Fill (1, 120px) px;
+  height: Hug (118px) px;
+  padding: 24px 40px 24px 40px;
+  gap: 0px;
+  opacity: 0px;
+  background-color: var(--Cal-Colors-Cal-purple-transparent, #c29eef33);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.kid-details {
+  display: flex;
+  align-items: center;
+  width: Fill (780px) px;
+  height: Hug (70px) px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.kid-profile-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 16px;
+}
+
+.kid-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kid-profile-name {
+  margin-top: 1rem;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.13px;
+  color: #1d1f20;
+}
+
+.kid-dob {
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeXS);
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: left;
+  color: #1d1f20;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: Hug (260px) px;
+  height: Hug (56px) px;
+  gap: 4px;
+  opacity: 0px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  width: Fixed (128px) px;
+  height: Fixed (56px) px;
+  border-radius: 8px 0px 0px 0px;
+}
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.action-text {
+  font-weight: 700;
+  width: Hug (69px) px;
+  height: Hug (24px) px;
+  padding: 0px 8px 0px 8px;
+  gap: 8px;
+  line-height: 24px;
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeL);
+}
+
+.info-list {
+  list-style: none;
+  width: Fill (1, 120px) px;
+  height: Fixed (328px) px;
+  padding: 24px 40px 24px 40px;
+  gap: 0px;
+  opacity: 0px;
+  background-color: var(--Cal-Colors-Cal-purple-transparent, #c29eef33);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-top: 0.2rem;
+}
+
+.add-kid-label {
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeS);
+  font-weight: 600;
+  line-height: 22.4px;
+  text-align: left;
+  color: #1d1f20;
+}
+
+.add-kid-value {
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeS);
+  font-weight: 400;
+  line-height: 22.4px;
+  text-align: left;
+  color: #1d1f20;
+}
+
+.add-kid-button-col {
+  direction: rtl;
+  padding: 0;
+}
+
+.add-kid-button {
+  box-sizing: border-box;
+  background-color: #ffffff;
+  width: 288px;
+  height: 56px;
+  background-color: #db5c00;
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeL);
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  direction: ltr;
+
+  /* margin-left: 62.7rem; */
+  margin-top: 2rem;
+  border: 2px solid #db5c00;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Button hover style */
+.add-kid-button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.add-kid-button:hover img {
+  filter: saturate(60%);
+}
