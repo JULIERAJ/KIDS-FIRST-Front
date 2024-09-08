@@ -1,7 +1,5 @@
 .icon-left {
   margin: 0 0 !important;
-  width: 22px;
-  height: 22px;
 
   flex: none;
   order: 0;
@@ -10,8 +8,6 @@
 
 .icon-right {
   margin: 0 0 !important;
-  width: 22px;
-  height: 22px;
 
   flex: none;
   order: 2;
