@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
-
 import { useNavigate } from 'react-router-dom';
 
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
@@ -13,6 +12,7 @@ import WeeksOverview from './WeeksOverview';
 
 const HomeDashboard = () => {
   const navigate = useNavigate();
+
   const childExists = false;
 
   const handleButtonClick = () => {
