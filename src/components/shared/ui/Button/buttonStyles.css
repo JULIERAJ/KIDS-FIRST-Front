@@ -18,6 +18,7 @@
 
   * {
     color: #ffffff;
+    fill: #ffffff;
   }
 }
 
@@ -48,6 +49,7 @@
 
   * {
     color: #fdf1e6;
+    fill: #fdf1e6;
   }
 }
 
@@ -69,6 +71,7 @@
 
   * {
     color: #db5c00;
+    fill: #db5c00;
   }
 }
 
@@ -78,6 +81,7 @@
 
   * {
     color: #c24400;
+    fill: #c24400;
   }
 }
 
@@ -87,6 +91,7 @@
 
   * {
     color: #c24400;
+    fill: #c24400;
   }
 }
 
@@ -97,6 +102,7 @@
 
   * {
     color: #9eafb7;
+    fill: #9eafb7;
   }
 }
 
@@ -121,6 +127,7 @@
 
   * {
     color: #ec2f16;
+    fill: #ec2f16;
   }
 }
 
@@ -130,6 +137,7 @@
 
   * {
     color: #a12312;
+    fill: #a12312;
   }
 }
 
@@ -139,6 +147,7 @@
 
   * {
     color: #fcfcfc;
+    fill: #fcfcfc;
   }
 }
 
@@ -148,6 +157,7 @@
 
   * {
     color: #a12312;
+    fill: #a12312;
   }
 }
 
@@ -158,6 +168,7 @@
 
   * {
     color: #ff7b72;
+    fill: #ff7b72;
   }
 }
 
@@ -179,12 +190,14 @@
 
   * {
     color: #db5c00;
+    fill: #db5c00;
   }
 }
 
 .invisible-light:active > *,
 .invisible-light:hover > * {
-  color: #C24400
+  color: #C24400;
+  fill: #C24400;
 }
 
 .invisible-light:focus {
@@ -192,6 +205,7 @@
 
   * {
     color: #C24400;
+    fill: #C24400;
   }
 }
 
@@ -201,6 +215,7 @@
 
   * {
     color: #9EAFB7;
+    fill: #9EAFB7;
   }
 }
 
@@ -224,6 +239,7 @@
 
   * {
     color: #FFFFFF;
+    fill: #FFFFFF;
   }
 }
 
@@ -250,6 +266,7 @@
 
   * {
     color: #FDF1E6;
+    fill: #FDF1E6;
   }
 }
 
@@ -273,6 +290,7 @@
 
   * {
     color: #ED9D5C;
+    fill: #ED9D5C;
   }
 }
 
@@ -281,6 +299,7 @@
 
   * {
     color: #EF8A37;
+    fill: #EF8A37;
   }
 }
 
@@ -289,6 +308,7 @@
 
   * {
     color: #E7883F;
+    fill: #E7883F;
   }
 }
 
@@ -298,6 +318,7 @@
 
   * {
     color: #B6420C;
+    fill: #B6420C;
   }
 }
 
@@ -308,5 +329,6 @@
 
   * {
     color: #9EAFB7;
+    fill: #9EAFB7;
   }
 }
