@@ -1,19 +1,19 @@
 .xsml {
-  width: 128px;
-  height: 48px;
+  width: 8rem;
+  height: 3.5rem; 
 }
 
 .sml {
-  width: 184px;
-  height: 48px;
+  width: 11.5rem;
+  height: 3.5rem;
 }
 
 .med {
-  width: 288px;
-  height: 48px;
+  width: 18rem;
+  height: 3.5rem;
 }
 
 .lg {
-  width: 392px;
-  height: 48px;
+  width: 24.5rem;
+  height: 3.5rem;
 }

@@ -7,26 +7,45 @@ import icon from '@media/icons/close.svg';
 
 import modalStyles from './Modal.module.css';
 
-const ProfileModal = ({ children, onClose, title, subtitle, rightButtonText, leftButtonText, isLeftButton }) => {
-
+const ProfileModal = ({
+  children,
+  onClose,
+  title,
+  subtitle,
+  rightButtonText,
+  onRightButtonClick,
+  leftButtonText,
+  onLeftButtonClick,
+  isLeftButton,
+}) => {
   return (
     <Container className={modalStyles['modal-overlay']}>
       <Container className={modalStyles['modal-container']}>
-        <button className={modalStyles['modal-close-button']} onClick={onClose}><img src={icon} /></button>
+        <button className={modalStyles['modal-close-button']} onClick={onClose}>
+          <img src={icon} />
+        </button>
         <h5 className={modalStyles['modal-title']}>{title}</h5>
         <p className={modalStyles['modal-subtitle']}>{subtitle}</p>
-        <Container className={modalStyles['modal-content']}>{children}</Container>
+        <Container className={modalStyles['modal-content']}>
+          {children}
+        </Container>
         <Container className={modalStyles['modal-buttons']}>
-          {isLeftButton && <CustomButton className={`secondary-light xsml ${modalStyles['modal-button']}`}
-            onClick={onClose}
-          >{leftButtonText}</CustomButton>}
-          <CustomButton className={`primary-light xsml ${modalStyles['modal-button']}`}
-            onClick={onClose}
-          >{rightButtonText}
+          {isLeftButton && (
+            <CustomButton
+              className={'secondary-light xsml'}
+              onClick={onLeftButtonClick}
+            >
+              {leftButtonText}
+            </CustomButton>
+          )}
+          <CustomButton
+            className={'primary-light xsml'}
+            onClick={onRightButtonClick}
+          >
+            {rightButtonText}
           </CustomButton>
         </Container>
       </Container>
-
     </Container>
   );
 };
@@ -37,7 +56,9 @@ ProfileModal.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   rightButtonText: PropTypes.string,
+  onRightButtonClick: PropTypes.func.isRequired,
   leftButtonText: PropTypes.string,
+  onLeftButtonClick: PropTypes.func.isRequired,
   isLeftButton: PropTypes.bool,
 };
 

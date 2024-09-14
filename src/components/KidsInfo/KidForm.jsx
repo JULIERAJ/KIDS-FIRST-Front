@@ -18,8 +18,16 @@ import styles from './KidForm.module.css';
 import { kidValidateSchema } from './kidValidateSchema';
 
 const KidForm = () => {
+  const colors = [
+    { name: 'yellow', hex: '#FFE08C' },
+    { name: 'pink', hex: '#FDA4A6' },
+    { name: 'purple', hex: '#CFB6EF' },
+    { name: 'blue', hex: '#A4D1F1' },
+    { name: 'teal', hex: '#ADE4DA' },
+  ];
   const [countSymbol, setCountSymbol] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [color, setColor] = useState(colors[2]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -50,7 +58,7 @@ const KidForm = () => {
   }
   const formik = useFormik({
     initialValues: {
-      childColor: 'purple', // hardcoded
+      childColor: color.name,
       name: '',
       dateOfBirthday: '',
       allergies: [],
@@ -74,7 +82,13 @@ const KidForm = () => {
   };
   return (
     <>
-      <ModalKid isModalOpen={isModalOpen} closeModal={closeModal} />
+      <ModalKid
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        colors={colors}
+        color={color}
+        setColor={setColor}
+      />
       <Container fluid className={styles['main-kid-container']}>
         <Form onSubmit={formik.handleSubmit}>
           <Row className={styles['kid-details-row']}>
@@ -84,6 +98,7 @@ const KidForm = () => {
                 type='button'
                 onClick={openModal}
                 className={styles['edit-avatar-overlay']}
+                style={{ backgroundColor: color.hex }}
               >
                 <Image src={edit} alt='edit kid avatar' />
               </button>

@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types';
 
-import React from 'react';
+import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 
-import styles from '@components/shared/Modal/Modal.module.css';
 import ProfileModal from '@components/shared/Modal/ProfileModal';
 
-const ModalKid = ({ isModalOpen, closeModal }) => {
-  const colors = ['#FFE08C', '#FDA4A6', '#CFB6EF', '#A4D1F1', '#ADE4DA'];
+import done from '@media/icons/done.svg';
+
+import styles from './ModalKid.module.css';
+
+const ModalKid = ({ isModalOpen, closeModal, colors, color, setColor }) => {
+  const [tempColor, setTempColor] = useState(color);
+  const handleColorSave = (e) => {
+    e.preventDefault();
+
+    setColor(tempColor);
+    closeModal();
+  };
 
   return (
     <>
@@ -15,25 +24,34 @@ const ModalKid = ({ isModalOpen, closeModal }) => {
         <ProfileModal
           onClose={closeModal}
           isLeftButton={false}
-          leftButtonText=''
           title='Profile picture'
           subtitle='Select a color for your child by clicking a circle below'
           rightButtonText='Save'
+          onRightButtonClick={handleColorSave}
         >
           <Container className={styles['modal-circles-container']}>
             <Container className={styles['circles-left']}>
-              <div className={styles['big-circle']}>
-                <span className={styles['tiny-circle']}></span>
+              <div
+                className={styles['big-circle']}
+                style={{ backgroundColor: tempColor.hex }}
+              >
+                <span
+                  className={styles['tiny-circle']}
+                  style={{ backgroundColor: tempColor.hex }}
+                ></span>
               </div>
             </Container>
 
             <Container className={styles['circles-right']}>
-              {colors.map((color, index) => (
-                <div
-                  key={index}
+              {colors.map((color) => (
+                <button
+                  key={`${color.name}-button`}
                   className={styles['small-circle']}
-                  style={{ backgroundColor: color }}
-                ></div>
+                  style={{ backgroundColor: color.hex }}
+                  onClick={() => setTempColor(color)}
+                >
+                  {tempColor.name === color.name && <img src={done} />}
+                </button>
               ))}
             </Container>
           </Container>
@@ -44,8 +62,11 @@ const ModalKid = ({ isModalOpen, closeModal }) => {
 };
 
 ModalKid.propTypes = {
-  isModalOpen: PropTypes.func.boolean,
+  isModalOpen: PropTypes.boolean,
   closeModal: PropTypes.func.isRequired,
+  colors: PropTypes.obj,
+  color: PropTypes.int,
+  setColor: PropTypes.func.isRequired,
 };
 
 export default ModalKid;
