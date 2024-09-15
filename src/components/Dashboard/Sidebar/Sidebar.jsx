@@ -1,46 +1,23 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Container, Image, Navbar } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
-import { logout } from '@api';
-import { useAuth } from '@context/AuthContext';
 import kidsFirstLogo from '@media/logo/LOGO-BYME.svg';
 
+import LogoutButton from './LogoutButton'; // Import the new LogoutButton component
 import styles from './Sidebar.module.css';
 import { SIDEBAR_DATA } from './sidebarData';
 import SidebarItemsCard from './SidebarItemsCard';
 
 const Sidebar = ({ onTitleChange }) => {
   const [activeLink, setActiveLink] = useState(null);
-  const navigate = useNavigate();
-  const { logout: authContextLogout } = useAuth();
-  
+
   const handleClick = (title, path) => {
-    if (title === 'Logout') {
-      handleLogout();
-    } else {
-      setActiveLink(path);
-      onTitleChange(title);
-    }
+    setActiveLink(path);
+    onTitleChange(title);
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await logout();
-      if (response.status === 200) {
-        authContextLogout(); 
-        navigate('/signin');
-      } else {
-        console.error('Logout failed:', response.data.error);
-      }
-    } catch (error) {
-      console.error('Error during logout:', error.message);
-      // Handle network or other errors
-    }
-  };
-
-  // Separate sidebar items into two arrays: one for "Help" and "Logout", and the other for all others
+  // Separate sidebar items into two arrays: one for "Help" and one for others
   const HelpLogoutItems = SIDEBAR_DATA.filter(
     (item) => item.title === 'Help' || item.title === 'Logout'
   );
@@ -66,15 +43,18 @@ const Sidebar = ({ onTitleChange }) => {
             ))}
           </div>
 
-          {/* Render div for "Help" and "Logout" items */}
           <div className={styles.helpLogoutContainer}>
             {HelpLogoutItems.map((item, key) => (
-              <SidebarItemsCard
-                key={key}
-                {...item}
-                isActive={item.path === activeLink}
-                onClick={handleClick}
-              />
+              item.title === 'Logout' ? (
+                <LogoutButton key={key} />
+              ) : (
+                <SidebarItemsCard
+                  key={key}
+                  {...item}
+                  isActive={item.path === activeLink}
+                  onClick={handleClick}
+                />
+              )
             ))}
           </div>
         </div>
