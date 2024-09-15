@@ -20,10 +20,10 @@ import { kidValidateSchema } from './kidValidateSchema';
 const KidForm = () => {
   const colors = [
     { name: 'yellow', hex: '#FFE08C' },
-    { name: 'pink', hex: '#FDA4A6' },
+    { name: 'red', hex: '#FDA4A6' },
     { name: 'purple', hex: '#CFB6EF' },
     { name: 'blue', hex: '#A4D1F1' },
-    { name: 'teal', hex: '#ADE4DA' },
+    { name: 'green', hex: '#ADE4DA' },
   ];
   const [countSymbol, setCountSymbol] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -80,6 +80,9 @@ const KidForm = () => {
   const handleCountSymbol = (event) => {
     setCountSymbol(event.target.value);
   };
+  const customHandleChange = (fieldName, value) => {
+    formik.handleChange({ target: { name: fieldName, value: value } });
+  };
   return (
     <>
       <ModalKid
@@ -88,6 +91,7 @@ const KidForm = () => {
         colors={colors}
         color={color}
         setColor={setColor}
+        customHandleChange={customHandleChange}
       />
       <Container fluid className={styles['main-kid-container']}>
         <Form onSubmit={formik.handleSubmit}>

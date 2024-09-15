@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 
 import ProfileModal from '@components/shared/Modal/ProfileModal';
@@ -9,12 +9,20 @@ import done from '@media/icons/done.svg';
 
 import styles from './ModalKid.module.css';
 
-const ModalKid = ({ isModalOpen, closeModal, colors, color, setColor }) => {
-  const [tempColor, setTempColor] = useState(color);
+const ModalKid = ({ isModalOpen, closeModal, colors, color, setColor, customHandleChange }) => {
+  const [tempColor, setTempColor] = useState();
+
+  useEffect(() => {
+    if(isModalOpen === false) {
+      setTempColor(color);
+    }
+  }, [isModalOpen]);
+
   const handleColorSave = (e) => {
     e.preventDefault();
 
     setColor(tempColor);
+    customHandleChange('childColor', tempColor.name);
     closeModal();
   };
 
@@ -45,6 +53,7 @@ const ModalKid = ({ isModalOpen, closeModal, colors, color, setColor }) => {
             <Container className={styles['circles-right']}>
               {colors.map((color) => (
                 <button
+                  type='button'
                   key={`${color.name}-button`}
                   className={styles['small-circle']}
                   style={{ backgroundColor: color.hex }}
@@ -62,11 +71,12 @@ const ModalKid = ({ isModalOpen, closeModal, colors, color, setColor }) => {
 };
 
 ModalKid.propTypes = {
-  isModalOpen: PropTypes.boolean,
+  isModalOpen: PropTypes.bool,
   closeModal: PropTypes.func.isRequired,
-  colors: PropTypes.obj,
-  color: PropTypes.int,
+  colors: PropTypes.array,
+  color: PropTypes.object,
   setColor: PropTypes.func.isRequired,
+  customHandleChange: PropTypes.func.isRequired,
 };
 
 export default ModalKid;

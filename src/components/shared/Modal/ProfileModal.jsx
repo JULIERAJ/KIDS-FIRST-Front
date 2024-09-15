@@ -58,7 +58,7 @@ ProfileModal.propTypes = {
   rightButtonText: PropTypes.string,
   onRightButtonClick: PropTypes.func.isRequired,
   leftButtonText: PropTypes.string,
-  onLeftButtonClick: PropTypes.func.isRequired,
+  onLeftButtonClick: PropTypes.func,
   isLeftButton: PropTypes.bool,
 };
 
