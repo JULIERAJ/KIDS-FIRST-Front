@@ -6,11 +6,15 @@ Below is an example of usage:
 
         <CustomButton
           styles={`med primary-light ${styles.customButton}`}
-          iconLeft='@media/icons/home.svg'
-          iconRight='@media/icons/home.svg'
+          iconLeft={<IconLeft />} 
+          iconRight={<IconRight />}
           type='submit'>
           Text for button
         </CustomButton>
+
+Note that the Icons are intended for SVGs. As such, please import your SVG as follows:
+
+import { ReactComponent as IconRight} from '@media/icons/home.svg';
 
 The styles prop accepts the predefined styles based on the classNames described in buttonStyles.css and buttonSizes.css.
 You can also add icons using the iconLeft or iconRight props to add icons to either side of the button Text.
@@ -38,19 +42,11 @@ export const CustomButton = ({
 }) => {
   return (
     <Button className={classNames(styles, size)} href={link} {...props}>
-      {iconLeft && (
-        <img
-          src={iconLeft}
-          className={classNames('icon-left', iconLeftStyles)}
-        />
-      )}
+      <div className={classNames('icon-left', iconLeftStyles)}>{iconLeft}</div>
       <span className={classNames('text', textStyles)}>{children}</span>
-      {iconRight && (
-        <img
-          src={iconRight}
-          className={classNames('icon-right', iconRightStyles)}
-        />
-      )}
+      <div className={classNames('icon-right', iconRightStyles)}>
+        {iconRight}
+      </div>
     </Button>
   );
 };
@@ -59,9 +55,9 @@ CustomButton.propTypes = {
   type: PropTypes.string,
   styles: PropTypes.string,
   size: PropTypes.oneOf(['xsml', 'sml', 'med', 'lg']),
-  iconLeft: PropTypes.string,
+  iconLeft: PropTypes.object,
   iconLeftStyles: PropTypes.string,
-  iconRight: PropTypes.string,
+  iconRight: PropTypes.object,
   iconRightStyles: PropTypes.string,
   textStyles: PropTypes.string,
   link: PropTypes.string,

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
+import { object, string } from 'yup';
+
 import { forgetPassword } from '@api';
 
 import Header from '@components/shared/Header';
@@ -19,8 +21,20 @@ export default function ForgetPassword() {
   const [success, setSuccess] = useState(false);
   const [sentEmail, setSentEmail] = useState(false);
 
+  let formSchema = object({
+    email: string().email(),
+  });
+
   useEffect(() => {
     emailDisplay.current = email;
+    formSchema
+      .validate({ email })
+      .then(() => setErrMsg(''))
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+        setErrMsg('Please enter a valid email address');
+      });
   }, [email]);
 
   const handleForgotPassword = async (e) => {
@@ -40,9 +54,7 @@ export default function ForgetPassword() {
     } catch (err) {
       //eslint-disable-next-line
       console.error(err);
-      if (err.response.status === 404) {
-        setErrMsg('This email is not registered with us.');
-      }
+      setErrMsg('This email is not registered with us');
     }
   };
 
@@ -53,7 +65,7 @@ export default function ForgetPassword() {
         <Container className={`${styles['page-wrapper']}`}>
           <div>
             <h2 className={styles['page-title']}>Forgot Password</h2>
-            { (success && sentEmail) && (
+            {success && sentEmail && (
               <section className={styles.success}>
                 <img
                   className={styles['success-icon']}

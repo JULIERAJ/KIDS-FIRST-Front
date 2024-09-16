@@ -10,6 +10,7 @@ export const kidValidateSchema = Yup.object().shape({
     (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
   ),
   name: Yup.string()
+    .trim()
     .min(2, 'Accepts a minimum of 2 characters')
     .max(40, 'Reached maximum characters')
     .matches(
@@ -38,9 +39,10 @@ export const kidValidateSchema = Yup.object().shape({
       }
     ),
   otherNotes: Yup.string()
+    .trim()
     .max(200, 'Reached maximum characters')
     .matches(
-      /^[a-zA-Z0-9\s.,'-]+$/,
+      /^[a-zA-Z0-9\s.,'-]*$/,
       'Accepts only English letters, numbers, and special characters [.],[,],[\'],[-]'
     ),
 });
