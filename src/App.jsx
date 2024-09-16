@@ -30,7 +30,6 @@ const App = () => (
             <Route index element={<Home />} />
             <Route path='/features' element={<FeaturesPage />} />
           </Route>
-          <Route path= '/savedkidprofile/:id' element={<SavedKidProfile />} />
 
           <Route path='/signin' element={<Signin />} />
           <Route path='/register' element={<Register />} />
@@ -72,6 +71,7 @@ const App = () => (
             {/* <Route path='kids' />
               <Route path='help' /> */}
           </Route>
+          <Route path= '/savedkidprofile/:id' element={<SavedKidProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>
