@@ -3,7 +3,7 @@ import { Col, Row, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
-import addIcon from '@media/icons/plus.svg';
+import { ReactComponent as AddIcon } from '@media/icons/plus.svg';
 
 import styles from './HomeDashboard.module.css';
 import MessageNotification from './MessageNotification';
@@ -47,7 +47,7 @@ const HomeDashboard = () => {
 
           <CustomButton
             styles={`${styles['custom-button']} secondary-light`}
-            iconRight={addIcon}
+            iconRight={<AddIcon />}
             textStyles='text-style'
             onClick={handleButtonClick}
           >
