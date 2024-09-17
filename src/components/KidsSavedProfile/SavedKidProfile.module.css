@@ -1,0 +1,136 @@
+.kid-profile-card {
+  margin: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 780px;
+  height: 70px;
+  width: 1120px;
+  height: 118px;
+  padding: 24px 40px;
+  gap: 0px;
+  opacity: 0px;
+  background-color: #c29eef33;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.kid-details {
+  display: flex;
+  align-items: center;
+  width: 780px;
+  height: 70px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.kid-profile-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 16px;
+}
+
+.kid-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kid-profile-name {
+  margin-top: 1rem;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.13px;
+  color: #1d1f20;
+}
+
+.kid-dob {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: left;
+  color: #1d1f20;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 260px;
+  height: 56px;
+  gap: 4px;
+  opacity: 0px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  width: 128px;
+  height: 56px;
+  border-radius: 8px 0px 0px 0px;
+}
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.action-text {
+  font-weight: 700;
+  min-width: 69px;
+  width: auto;
+  height: 24px;
+  padding: 0px 8px;
+  gap: 8px;
+  line-height: 24px;
+  font-size: 24px;
+}
+
+.info-list {
+  width: 1120px;
+  height: 210px;
+  padding: 24px 40px;
+  gap: 0px;
+  background-color: var(--Cal-Colors-Cal-purple-transparent, #c29eef33);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-top: 0.2rem;
+}
+
+.add-kid-label {
+  font-weight: 600;
+  line-height: 22.4px;
+  text-align: left;
+  color: #1d1f20;
+}
+
+.add-kid-value {
+  font-weight: 400;
+  line-height: 22.4px;
+  text-align: left;
+  color: #1d1f20;
+}
+
+.add-kid-container {
+ width: 1120px;
+}
+
+.add-kid-button {
+  margin-top: 2rem;
+  margin-left: auto; 
+}
+
+/* Button hover style */
+.add-kid-button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.add-kid-button:hover img {
+  filter: saturate(60%);
+}
