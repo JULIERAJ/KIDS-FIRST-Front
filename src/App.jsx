@@ -4,6 +4,7 @@ import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 import KidForm from '@components/KidsInfo/KidForm';
+import SavedKidProfile from '@components/KidsSavedProfile/SavedKidProfile';
 import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
@@ -29,6 +30,7 @@ const App = () => (
             <Route index element={<Home />} />
             <Route path='/features' element={<FeaturesPage />} />
           </Route>
+
           <Route path='/signin' element={<Signin />} />
           <Route path='/register' element={<Register />} />
           <Route
@@ -69,6 +71,7 @@ const App = () => (
             {/* <Route path='kids' />
               <Route path='help' /> */}
           </Route>
+          <Route path= '/savedkidprofile/:id' element={<SavedKidProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

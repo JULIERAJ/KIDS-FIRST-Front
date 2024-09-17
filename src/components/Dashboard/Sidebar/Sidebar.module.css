@@ -32,8 +32,7 @@
   margin-top: 40px;
 }
 
-.otherItemsContainer,
-.helpLogoutContainer {
+.otherItemsContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -111,4 +110,28 @@
     flex-direction: row;
     overflow-x: auto;
   }
+}
+
+/*for logout button */
+.logoutButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 1.5rem 1.5rem 1.5rem 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.logoutButton .icon {
+  margin-right: 10px;
+  fill: var(--color-fg-light);
+}
+
+.logoutButton:hover {
+  background-color: #fdf1e6;
+  fill: #db5c00;
+  font-weight: 700;
 }
