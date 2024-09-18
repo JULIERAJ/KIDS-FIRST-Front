@@ -33,7 +33,7 @@
   line-height: 140%;
   letter-spacing: 0rem;
   color: var(--color-fg-light);
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif !important;
   font-style: normal;
   font-synthesis: none;
 }
