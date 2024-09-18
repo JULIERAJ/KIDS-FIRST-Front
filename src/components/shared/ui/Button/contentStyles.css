@@ -17,10 +17,10 @@
 .text {
   margin: 0 0 !important;
   /* Auto layout */
-  padding: 0px 8px;
-  gap: 8px;
+  padding: 0 0.563rem;
+  gap: 0.563rem;
 
-  height: 24px;
+  height: 1.5rem;
 
   /* Inside auto layout */
   flex: none;
@@ -31,7 +31,7 @@
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 120%;
   /* identical to box height, or 24px */
   text-align: center;
