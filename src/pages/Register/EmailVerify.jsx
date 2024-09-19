@@ -110,7 +110,7 @@ const EmailVerify = ({ userData }) => {
             isActive={isActive} />
 
           {isModalOpen && (
-            <MessageModal onClose={closeModal} text={`Verification link has been successfully resent to ${email}`} />
+            <MessageModal onClose={closeModal} message={`Verification link has been successfully resent to ${email}`} />
           )}
         </>
       )
