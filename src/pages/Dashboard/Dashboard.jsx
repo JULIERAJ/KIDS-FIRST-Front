@@ -4,9 +4,6 @@ import { Outlet } from 'react-router-dom';
 import DashboardHeader from '@components/Dashboard/DashboardHeader/DashboardHeader';
 import Sidebar from '@components/Dashboard/Sidebar/Sidebar';
 
-// import CustomButton from '@components/shared/ui/Button/CustomButton';
-// import addIcon from '@components/shared/ui/Icon/add.svg';
-
 import { useAuth } from '@context/AuthContext';
 
 import styles from './Dashboard.module.css';
