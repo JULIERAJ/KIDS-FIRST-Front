@@ -14,9 +14,11 @@
 .title {
   width: 1200px;
   height: 27px;
+  font-family: 'Roboto';
+  font-style: normal;
   font-size: 1rem;
   font-weight: 700;
-  line-height: 1.2rem;
+  line-height: 1.19rem;
   text-align: center;
 }
 
