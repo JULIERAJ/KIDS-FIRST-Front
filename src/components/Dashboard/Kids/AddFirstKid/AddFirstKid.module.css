@@ -1,0 +1,32 @@
+.page-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FCFCFC;
+  border-radius: 16px;
+  flex: 1;
+  box-sizing: inherit;
+  height: calc(100vh - 11rem);
+}
+
+.picture {
+  width: 28.188rem;
+  height: 19rem;
+  margin-bottom: 3rem;
+}
+
+.text {
+  width: 41.375rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.35rem;
+  text-align: center;
+  margin-bottom: 5rem;
+  font-family: Roboto;
+}
+
+.add-kid-button {
+  width: 17.75rem;
+  height: 3.5rem;
+}
