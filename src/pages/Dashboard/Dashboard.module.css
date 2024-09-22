@@ -14,11 +14,9 @@
 .title {
   width: 1200px;
   height: 27px;
-  gap: 0px;
-  opacity: 0px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 19.2px;
+  line-height: 1.2rem;
   text-align: center;
 }
 

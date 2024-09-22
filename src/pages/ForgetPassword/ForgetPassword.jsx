@@ -54,7 +54,7 @@ export default function ForgetPassword() {
     } catch (err) {
       //eslint-disable-next-line
       console.error(err);
-      setErrMsg('There was an error with the request, please try again later.');
+      setErrMsg('This email is not registered with us');
     }
   };
 
