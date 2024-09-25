@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import KidForm from '@components/KidsInfo/KidForm';
+import KidForm from '@components/Dashboard/Kids/KidsInfo/KidForm';
 
 import AddFirstKid from './AddFirstKid';
 
