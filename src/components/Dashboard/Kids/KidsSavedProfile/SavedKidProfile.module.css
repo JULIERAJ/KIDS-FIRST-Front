@@ -1,5 +1,7 @@
-.kid-profile-card {
-  margin: 2rem;
+.kids-profiles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .profile-header {
@@ -118,19 +120,13 @@
 }
 
 .add-kid-container {
- width: 1120px;
-}
-
-.add-kid-button {
-  margin-top: 2rem;
-  margin-left: auto; 
+ width: 100%;
+ display: flex;
+ justify-content: flex-end;
+ padding-top: 40px;
 }
 
 /* Button hover style */
 .add-kid-button:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.add-kid-button:hover img {
-  filter: saturate(60%);
 }
