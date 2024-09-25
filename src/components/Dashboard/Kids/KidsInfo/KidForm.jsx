@@ -18,7 +18,7 @@ import styles from './KidForm.module.css';
 
 import { kidValidateSchema } from './kidValidateSchema';
 
-const KidForm = ({ openKidForm, setFetchKids }) => {
+const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const colors = [
     { name: 'yellow', hex: '#FFE08C' },
     { name: 'red', hex: '#FDA4A6' },
@@ -41,6 +41,7 @@ const KidForm = ({ openKidForm, setFetchKids }) => {
   async function formAction(values) {
     try {
       const response = await createKid(values);
+      setFetchKidsCount(fetchKidsCount + 1);
       // eslint-disable-next-line no-console
       console.log('Kid created:', response.data);
     } catch (error) {
@@ -59,7 +60,7 @@ const KidForm = ({ openKidForm, setFetchKids }) => {
   }
   const formik = useFormik({
     initialValues: {
-      childColor: color,
+      childColor: color.name,
       name: '',
       dateOfBirthday: '',
       allergies: [],
@@ -75,6 +76,7 @@ const KidForm = ({ openKidForm, setFetchKids }) => {
       formAction(values);
 
       resetForm();
+      openKidForm(false);
     },
   });
 
@@ -223,10 +225,6 @@ const KidForm = ({ openKidForm, setFetchKids }) => {
               type='submit'
               styles='primary-light mx-2'
               size='xsml'
-              onSubmit={() => {
-                openKidForm(false);
-                setFetchKids((fetchKids) => fetchKids++);
-              }}
             >
               Save
             </CustomButton>
@@ -239,7 +237,8 @@ const KidForm = ({ openKidForm, setFetchKids }) => {
 
 KidForm.propTypes = {
   openKidForm: PropTypes.func,
-  setFetchKids: PropTypes.func,
+  setFetchKidsCount: PropTypes.func,
+  fetchKidsCount: PropTypes.number
 };
 
 export default KidForm;

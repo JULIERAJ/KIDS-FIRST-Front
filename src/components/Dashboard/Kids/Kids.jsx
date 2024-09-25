@@ -14,7 +14,7 @@ import savedKidStyles from './KidsSavedProfile/SavedKidProfile.module.css';
 
 const Kids = () => {
   const [kidForm, openKidForm] = useState(false);
-  const [fetchKids, setFetchKids] = useState(0);
+  const [fetchKidsCount, setFetchKidsCount] = useState(0);
   const [kidsProfiles, setKidsProfiles] = useState();
   const colors = {
     yellow: '#FFE08C',
@@ -25,32 +25,33 @@ const Kids = () => {
   };
 
   useEffect(() => {
-    const getKidsProfiles = async () => {
-      try {
-        const response = await getAllKids();
-        // eslint-disable-next-line no-console
-        console.log('Kids fetched:', response.data);
-        setKidsProfiles(response.data.kids);
-      } catch (error) {
-        // Improved error logging
-        console.error('Error occurred:', error.message);
-        if (error.response) {
-          console.error(
-            'Server responded with:',
-            error.response.status,
-            error.response.data
-          );
-        } else {
-          console.error('No response from server');
-        }
-      }
-    };
     getKidsProfiles();
-  }, [fetchKids]);
+  }, [fetchKidsCount]);
+
+  const getKidsProfiles = async () => {
+    try {
+      const response = await getAllKids();
+      // eslint-disable-next-line no-console
+      console.log('Kids fetched:', response.data);
+      setKidsProfiles(response.data.kids);
+    } catch (error) {
+      // Improved error logging
+      console.error('Error occurred:', error.message);
+      if (error.response) {
+        console.error(
+          'Server responded with:',
+          error.response.status,
+          error.response.data
+        );
+      } else {
+        console.error('No response from server');
+      }
+    }
+  };
 
   return (
     <Container fluid className={styles['main-kid-container']}>
-      {kidsProfiles && !kidForm ? (
+      {kidsProfiles && kidsProfiles.length > 0 && !kidForm ? (
         <Container className={savedKidStyles['kids-profiles-container']}>
           {kidsProfiles.map((kidProfile) => (
             <SavedKidProfile
@@ -73,8 +74,8 @@ const Kids = () => {
       ) : kidForm ? (
         <KidForm
           openKidForm={openKidForm}
-          setFetchKids={setFetchKids}
-          colors={colors}
+          setFetchKidsCount={setFetchKidsCount}
+          fetchKidsCount={fetchKidsCount}
         />
       ) : (
         <AddFirstKid openKidForm={openKidForm} />

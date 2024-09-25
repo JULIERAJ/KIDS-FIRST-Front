@@ -34,7 +34,7 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
           <div className={styles['kid-info']}>
             <h2 className={styles['kid-profile-name']}>{kidProfile.name}</h2>
             <p className={styles['kid-dob']}>
-              {kidProfile.dob} ({kidProfile.age})
+              {kidProfile.dateOfBirthday} ({kidProfile.age} Years Old)
             </p>
           </div>
         </Col>
@@ -76,11 +76,10 @@ SavedKidProfile.propTypes = {
     fears: PropTypes.arrayOf(PropTypes.string),
     otherDetails: PropTypes.string,
   },
-  colors: PropTypes.arrayOf(
-    { name: PropTypes.string, 
-      hex: PropTypes.string, 
-    },
-  )
+  colors: {
+    name: PropTypes.string,
+    hex: PropTypes.string,
+  },
 };
 
 export default SavedKidProfile;
