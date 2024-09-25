@@ -15,7 +15,7 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
     { label: 'Allergies', value: kidProfile.allergies.join(', ') },
     { label: 'Interests', value: kidProfile.interests.join(', ') },
     { label: 'Fears', value: kidProfile.fears.join(', ') },
-    { label: 'Other', value: kidProfile.otherDetails },
+    { label: 'Other', value: kidProfile.otherNotes },
   ];
 
   return (
