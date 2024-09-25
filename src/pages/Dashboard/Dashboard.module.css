@@ -1,4 +1,4 @@
-.dashboard{
+.dashboard {
   display: flex;
   background-color: #F2F5F5;
   min-height: 100vh;
@@ -6,10 +6,20 @@
   padding: 24px 12px 24px calc(168px + 24px);
 }
 
-
 .content {
   width: 100%;
   background-color: #F2F5F5;
+}
+
+.title {
+  width: 1200px;
+  height: 27px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.19rem;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

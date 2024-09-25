@@ -1,6 +1,5 @@
 .icon-left {
   margin: 0 0 !important;
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -8,7 +7,6 @@
 
 .icon-right {
   margin: 0 0 !important;
-
   flex: none;
   order: 2;
   flex-grow: 0;
@@ -19,14 +17,11 @@
   /* Auto layout */
   padding: 0 0.563rem;
   gap: 0.563rem;
-
   height: 1.5rem;
-
   /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
-
   /* H 4/Desktop/Bold */
   font-family: "Roboto";
   font-style: normal;

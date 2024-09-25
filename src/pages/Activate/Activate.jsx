@@ -46,7 +46,6 @@ const Activate = () => {
         description=''
         linkText='Back to Home'
         linkTo='/'
-        isButton={false}
       />
     );
   }
@@ -61,7 +60,7 @@ const Activate = () => {
         description="Please click 'Next' to proceed to the login page."
         linkText='Next'
         linkTo='/signin'
-        isButton={false}
+        isButton={true}
       />
     );
   }
@@ -76,7 +75,6 @@ const Activate = () => {
         description={`Please check ${email} for the latest verification email to continue.`}
         linkText='Back to Sign up'
         linkTo='/register'
-        isButton={false}
       />
     );
   }
@@ -91,7 +89,6 @@ const Activate = () => {
         description='Please sign up again to receive a new link.'
         linkText='Back to Sign up'
         linkTo='/register'
-        isButton={false}
       />
     );
   }
