@@ -36,3 +36,5 @@ export const resendEmailVerification = (email) =>
   axiosInstance.post('resend-email', { email });
 
 export const createKid = (data) => axiosInstance.post('kids', data);
+
+export const getAllKids = () => axiosInstance.get('kids');

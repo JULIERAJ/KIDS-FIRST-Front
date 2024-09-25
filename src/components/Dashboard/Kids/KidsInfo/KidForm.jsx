@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import PropTypes from 'prop-types';
 
 import { useState } from 'react';
 import { Col, Form, Row, Image, Container } from 'react-bootstrap';
@@ -17,7 +18,7 @@ import styles from './KidForm.module.css';
 
 import { kidValidateSchema } from './kidValidateSchema';
 
-const KidForm = () => {
+const KidForm = ({ openKidForm, setFetchKids }) => {
   const colors = [
     { name: 'yellow', hex: '#FFE08C' },
     { name: 'red', hex: '#FDA4A6' },
@@ -58,7 +59,7 @@ const KidForm = () => {
   }
   const formik = useFormik({
     initialValues: {
-      childColor: color.name,
+      childColor: color,
       name: '',
       dateOfBirthday: '',
       allergies: [],
@@ -93,7 +94,7 @@ const KidForm = () => {
         setColor={setColor}
         customHandleChange={customHandleChange}
       />
-      <Container fluid className={styles['main-kid-container']}>
+      <Container fluid>
         <Form onSubmit={formik.handleSubmit}>
           <Row className={styles['kid-details-row']}>
             <Col xs={3} className={styles['avatar-container']}>
@@ -211,11 +212,22 @@ const KidForm = () => {
               styles='secondary-light mx-2'
               size='xsml'
               type='button'
-              onClick={() => formik.resetForm()}
+              onClick={() => {
+                formik.resetForm();
+                openKidForm(false);
+              }}
             >
               Cancel
             </CustomButton>
-            <CustomButton type='submit' styles='primary-light mx-2' size='xsml'>
+            <CustomButton
+              type='submit'
+              styles='primary-light mx-2'
+              size='xsml'
+              onSubmit={() => {
+                openKidForm(false);
+                setFetchKids((fetchKids) => fetchKids++);
+              }}
+            >
               Save
             </CustomButton>
           </div>
@@ -223,6 +235,11 @@ const KidForm = () => {
       </Container>
     </>
   );
+};
+
+KidForm.propTypes = {
+  openKidForm: PropTypes.func,
+  setFetchKids: PropTypes.func,
 };
 
 export default KidForm;
