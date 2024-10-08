@@ -1,0 +1,63 @@
+
+/* Custom modal dimensions */
+.custom-modal .modal-dialog {
+  width: 503px !important;
+  height: 235px !important;
+}
+
+.custom-modal .modal-content {
+  height: 235px !important;
+  padding-top: 64px !important;
+  gap: 40px !important;
+  border-radius: var(--RadiusL) !important;
+  opacity: 1 !important;
+}
+
+/* Modal Body */
+.modalBody {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.75px;
+  text-align: center; 
+  padding: 20px;
+}
+
+/* Cancel button styles */
+.cancelButton {
+  width: 120px;
+  height: 48px;
+  border: 2px solid #EB7005;
+  background-color: transparent;
+  color: #EB7005;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: #EB7005;
+  color: #FCFCFC;
+}
+
+/* Delete button styles */
+.deleteButton {
+  width: 120px;
+  height: 48px;
+  background-color: #EB7005;
+  color: #FCFCFC;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #FCFCFC;
+  color: #EB7005;
+  border: 2px solid #EB7005;
+}
+
+/* Button Container */
+.buttonContainer {
+  display: flex;
+  gap: 16px; 
+  justify-content: center;
+}
+

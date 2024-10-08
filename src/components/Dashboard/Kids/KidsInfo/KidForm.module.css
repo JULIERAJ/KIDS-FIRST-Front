@@ -68,3 +68,69 @@
   height: 20px;
   pointer-events: none;
 }
+
+ /*Modal*/
+
+.modal.custom-modal .modal-content {
+  height: 100% !important;
+}
+
+.custom-modal {
+  width: 600px !important;
+  height: 160px !important;
+}
+
+.cancel-button {
+  border: 2px solid #EB7005 !important;
+  background-color: transparent !important;
+  color: #EB7005 !important;
+}
+
+
+/*Modal Body*/
+.modalBody {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.75px;
+  text-align: center; 
+  padding: 20px; 
+}
+
+/*---button- Modal----*/
+
+.buttonContainer {
+  display: flex;
+  gap: 16px; 
+}
+
+.cancelButton {
+  width: 120px;
+  height: 48px;
+  border: 2px solid #EB7005;
+  background-color: transparent;
+  color: #EB7005;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 10px; 
+}
+
+.cancelButton:hover {
+  background-color: #EB7005;
+  color: #FCFCFC;
+}
+
+.deleteButton {
+  width: 120px;
+  height: 48px;
+  background-color: #EB7005;
+  color: #FCFCFC;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #FCFCFC;
+  color: #EB7005;
+}
+
+

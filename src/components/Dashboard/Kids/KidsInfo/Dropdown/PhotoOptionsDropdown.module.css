@@ -1,0 +1,33 @@
+/* General Dropdown Styling */
+.dropdown {
+  background-color: #fff;
+}
+
+.edit-avatar-overlay {
+  position: relative;
+}
+
+/* Positioning of the dropdown */
+.dropdownMenu {
+  position: absolute;
+  top: 100%; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 1000; 
+  margin-left: -50px; 
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownItem {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+/* Active state for dropdown items */
+.dropdownItem.active,
+.dropdownItem:active,
+.dropdownItem:hover {
+  background-color: #ffd666 !important; /* Active background color */
+  color: white !important; /* Optional: Change text color */
+}
