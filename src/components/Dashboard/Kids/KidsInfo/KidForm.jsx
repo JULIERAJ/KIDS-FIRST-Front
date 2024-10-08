@@ -1,21 +1,22 @@
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Col, Form, Row, Image, Container, Modal } from 'react-bootstrap';
+import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
 import { createKid } from '@api';
 import ModalKid from '@components/Dashboard/Kids/ModalKid/ModalKid';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
+
 import edit from '@media/icons/edit.svg';
 
 import AttributesSelect from './AttributesSelect';
+import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
 import { ALLERGIES_VALUE } from './constants/allergies';
 import { FEARS_VALUE } from './constants/fears';
 import { INTEREST_VALUE } from './constants/interests';
 import PhotoOptionsDropdown from './Dropdown/PhotoOptionsDropdown';
 import kidPlaceholder from './kid.png';
 import styles from './KidForm.module.css';
-
 import { kidValidateSchema } from './kidValidateSchema';
 
 const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
@@ -31,7 +32,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const [color, setColor] = useState(colors[2]);
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false); 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -46,8 +47,8 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setUploadedPhoto(reader.result); 
-        //console.log('Image uploaded successfully: ', reader.result); 
+        setUploadedPhoto(reader.result);
+        formik.setFieldValue('imageProfileURL', reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -55,37 +56,46 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
 
   const handleDropdownSelect = (eventKey) => {
     if (eventKey === 'upload') {
-      document.getElementById('photoInput').click(); 
+      document.getElementById('imageProfileURL').click();
+   
     } else if (eventKey === 'changeColor') {
       openModal();
     } else if (eventKey === 'remove') {
-      setShowConfirmModal(true); 
+      setShowConfirmModal(true);
     }
-    setDropdownOpen(false); 
+    setDropdownOpen(false);
   };
 
   const handleRemovePhoto = () => {
-    setUploadedPhoto(null); 
-    setShowConfirmModal(false); 
+    setUploadedPhoto(null);
+    formik.setFieldValue('imageProfileURL', '');
+    setShowConfirmModal(false);
   };
 
   const handleCloseConfirmModal = () => {
-    setShowConfirmModal(false); 
+    setShowConfirmModal(false);
   };
 
-  const formAction = async (values) => {
+  async function formAction(values) {
     try {
-      await createKid(values);
+      const response = await createKid(values);
       setFetchKidsCount(fetchKidsCount + 1);
+      // eslint-disable-next-line no-console
+      console.log('Kid created:', response.data);
     } catch (error) {
+      // Improved error logging
       console.error('Error occurred:', error.message);
       if (error.response) {
-        console.error('Server responded with:', error.response.status, error.response.data);
+        console.error(
+          'Server responded with:',
+          error.response.status,
+          error.response.data
+        );
       } else {
         console.error('No response from server');
       }
     }
-  };
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -96,6 +106,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       interests: [],
       fears: [],
       otherNotes: '',
+      //imageProfileURL: '',
     },
     validationSchema: kidValidateSchema,
     onSubmit: (values, { resetForm }) => {
@@ -113,32 +124,13 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
         colors={colors}
         color={color}
         setColor={setColor}
-        customHandleChange={formik.setFieldValue} 
+        customHandleChange={formik.setFieldValue}
       />
-      {/* Confirmation Modal */}
-      <Modal 
-        show={showConfirmModal} 
-        onHide={handleCloseConfirmModal} 
-        centered
-        dialogClassName="custom-modal"
-      >
-        <Modal.Header closeButton>
-          
-        </Modal.Header>
-        <Modal.Body className={styles.modalBody}>
-           Are you sure you want to remove the profile picture?
-        </Modal.Body>
-
-        <Modal.Footer className="justify-content-center">
-          <div className="d-flex gap-3">
-            <div className="button-container">
-              <button className={styles.cancelButton} onClick={handleCloseConfirmModal}>Cancel</button>
-              <button className={styles.deleteButton} onClick={handleRemovePhoto}>Delete</button>
-            </div>
-          </div>
-        </Modal.Footer>
-      </Modal>
-
+      <ConfirmationModal
+        show={showConfirmModal}
+        onHide={handleCloseConfirmModal}
+        onConfirm={handleRemovePhoto}
+      />
       <Container fluid>
         <Form onSubmit={formik.handleSubmit}>
           <Row className={styles['kid-details-row']}>
@@ -160,7 +152,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
               </div>
               <input
                 type="file"
-                id="photoInput"
+                id="imageProfileURL"
                 style={{ display: 'none' }}
                 accept="image/*"
                 onChange={handleFileChange}
