@@ -31,9 +31,10 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [color, setColor] = useState(colors[2]);
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -45,19 +46,14 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUploadedPhoto(reader.result);
-        formik.setFieldValue('imageProfileURL', reader.result);
-      };
-      reader.readAsDataURL(file);
+      setUploadedPhoto(URL.createObjectURL(file));
+      setUploadedFile(file);
     }
   };
-
+  
   const handleDropdownSelect = (eventKey) => {
     if (eventKey === 'upload') {
       document.getElementById('imageProfileURL').click();
-   
     } else if (eventKey === 'changeColor') {
       openModal();
     } else if (eventKey === 'remove') {
@@ -68,7 +64,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
 
   const handleRemovePhoto = () => {
     setUploadedPhoto(null);
-    formik.setFieldValue('imageProfileURL', '');
+    formik.setFieldValue('profilePicture', '');
     setShowConfirmModal(false);
   };
 
@@ -77,6 +73,15 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   };
 
   async function formAction(values) {
+    const data = new FormData();
+    //append all form values to FormData
+    for (const key in values) {
+      data.append(key, values[key]);
+    }
+    //Append the uploaded file
+    if (uploadedFile) {
+      data.append('imageProfileURL', uploadedFile);
+    }
     try {
       const response = await createKid(values);
       setFetchKidsCount(fetchKidsCount + 1);
@@ -106,12 +111,17 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       interests: [],
       fears: [],
       otherNotes: '',
-      //imageProfileURL: '',
+      
     },
     validationSchema: kidValidateSchema,
     onSubmit: (values, { resetForm }) => {
+      // eslint-disable-next-line no-console
+      console.log('Collected form values:', values);
+
       formAction(values);
+
       resetForm();
+      setUploadedPhoto(null); 
       openKidForm(false);
     },
   });
@@ -126,10 +136,10 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
         setColor={setColor}
         customHandleChange={formik.setFieldValue}
       />
-      <ConfirmationModal
-        show={showConfirmModal}
-        onHide={handleCloseConfirmModal}
-        onConfirm={handleRemovePhoto}
+      <ConfirmationModal 
+        show={showConfirmModal} 
+        onHide={handleCloseConfirmModal} 
+        onConfirm={handleRemovePhoto} 
       />
       <Container fluid>
         <Form onSubmit={formik.handleSubmit}>
