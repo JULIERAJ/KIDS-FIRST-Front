@@ -78,20 +78,19 @@
 }
 
 .action-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   margin-right: 8px;
 }
 
 .action-text {
   font-weight: 700;
-  min-width: 69px;
   width: auto;
   height: 24px;
   padding: 0px 8px;
   gap: 8px;
   line-height: 24px;
-  font-size: 24px;
+  font-size: var(--fontsizeL);
 }
 
 .info-list {

@@ -17,11 +17,11 @@ const Kids = () => {
   const [fetchKidsCount, setFetchKidsCount] = useState(0);
   const [kidsProfiles, setKidsProfiles] = useState();
   const colors = {
-    yellow: '#FFE08C',
-    red: '#FDA4A6',
-    purple: '#CFB6EF',
-    blue: '#A4D1F1',
-    green: '#ADE4DA',
+    yellow: '#FFD66633',
+    red: '#FF6B6D33',
+    purple: '#C29EEF33',
+    blue: '#8CC7F133',
+    green: '#85E4D133',
   };
 
   useEffect(() => {

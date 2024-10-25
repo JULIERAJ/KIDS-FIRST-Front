@@ -83,7 +83,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       data.append('imageProfileURL', uploadedFile);
     }
     try {
-      const response = await createKid(values);
+      const response = await createKid(data);
       setFetchKidsCount(fetchKidsCount + 1);
       // eslint-disable-next-line no-console
       console.log('Kid created:', response.data);
