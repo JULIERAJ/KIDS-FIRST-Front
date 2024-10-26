@@ -1,12 +1,12 @@
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
 import { createKid } from '@api';
 import ModalKid from '@components/Dashboard/Kids/ModalKid/ModalKid';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
-
 import edit from '@media/icons/edit.svg';
 
 import AttributesSelect from './AttributesSelect';
@@ -14,9 +14,11 @@ import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
 import { ALLERGIES_VALUE } from './constants/allergies';
 import { FEARS_VALUE } from './constants/fears';
 import { INTEREST_VALUE } from './constants/interests';
+//import kid from './kid.png';
 import PhotoOptionsDropdown from './Dropdown/PhotoOptionsDropdown';
 import kidPlaceholder from './kid.png';
 import styles from './KidForm.module.css';
+
 import { kidValidateSchema } from './kidValidateSchema';
 
 const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
@@ -27,9 +29,10 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
     { name: 'blue', hex: '#A4D1F1' },
     { name: 'green', hex: '#ADE4DA' },
   ];
-
+  const [countSymbol, setCountSymbol] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [color, setColor] = useState(colors[2]);
+
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -64,7 +67,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
 
   const handleRemovePhoto = () => {
     setUploadedPhoto(null);
-    formik.setFieldValue('profilePicture', '');
+    setUploadedFile(null);
     setShowConfirmModal(false);
   };
 
@@ -74,11 +77,9 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
 
   async function formAction(values) {
     const data = new FormData();
-    //append all form values to FormData
     for (const key in values) {
       data.append(key, values[key]);
     }
-    //Append the uploaded file
     if (uploadedFile) {
       data.append('imageProfileURL', uploadedFile);
     }
@@ -101,7 +102,6 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       }
     }
   }
-
   const formik = useFormik({
     initialValues: {
       childColor: color.name,
@@ -111,7 +111,6 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       interests: [],
       fears: [],
       otherNotes: '',
-      
     },
     validationSchema: kidValidateSchema,
     onSubmit: (values, { resetForm }) => {
@@ -125,7 +124,13 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       openKidForm(false);
     },
   });
-
+  
+  const handleCountSymbol = (event) => {
+    setCountSymbol(event.target.value);
+  };
+  //const customHandleChange = (fieldName, value) => {
+  //formik.handleChange({ target: { name: fieldName, value: value } });
+  //};
   return (
     <>
       <ModalKid
@@ -161,34 +166,34 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
                 {dropdownOpen && <PhotoOptionsDropdown onSelect={handleDropdownSelect} />}
               </div>
               <input
-                type="file"
-                id="imageProfileURL"
+                type='file'
+                id='imageProfileURL'
                 style={{ display: 'none' }}
-                accept="image/*"
+                accept='image/*'
                 onChange={handleFileChange}
               />
             </Col>
             <Col xs={4}>
               <Form.Label>Kid&apos;s Name</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Full Name"
-                name="name"
+                type='text'
+                placeholder='Full Name'
+                name='name'
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 isInvalid={!!formik.errors.name}
                 style={{ height: '3.5em' }}
               />
-              <Form.Control.Feedback type="invalid" style={{ display: 'block', minHeight: '1.5em' }}>
+              <Form.Control.Feedback type='invalid' style={{ display: 'block', minHeight: '1.5em' }}>
                 {formik.errors.name}
               </Form.Control.Feedback>
             </Col>
             <Col xs={3}>
               <Form.Label>Birth Date</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="MM/DD/YY"
-                name="dateOfBirthday"
+                type='text'
+                placeholder='MM/DD/YY'
+                name='dateOfBirthday'
                 value={formik.values.dateOfBirthday}
                 onChange={formik.handleChange}
                 isInvalid={!!formik.errors.dateOfBirthday}
@@ -206,37 +211,56 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
               <p>Add items in the fields below to keep each other in the loop.</p>
               <Form.Group>
                 <AttributesSelect
-                  label="Allergies"
+                  label='Allergies'
                   options={ALLERGIES_VALUE}
                   value={formik.values.allergies}
                   setFieldValue={formik.setFieldValue}
-                  name="allergies"
+                  name='allergies'
                   error={formik.errors.allergies}
                 />
                 <AttributesSelect
-                  label="Interests"
+                  label='Interests'
                   options={INTEREST_VALUE}
                   value={formik.values.interests}
                   setFieldValue={formik.setFieldValue}
-                  name="interests"
+                  name='interests'
                   error={formik.errors.interests}
                 />
                 <AttributesSelect
-                  label="Fears"
+                  label='Fears'
                   options={FEARS_VALUE}
                   value={formik.values.fears}
                   setFieldValue={formik.setFieldValue}
-                  name="fears"
+                  name='fears'
                   error={formik.errors.fears}
                 />
-                <Form.Label>Other Notes</Form.Label>
+                <Form.Label className={styles['kid-form-label']}>
+                  Other
+                </Form.Label>
                 <Form.Control
-                  as="textarea"
-                  rows={4}
-                  name="otherNotes"
+                  as='textarea'
+                  rows={3}
+                  className='p-3'
                   value={formik.values.otherNotes}
-                  onChange={formik.handleChange}
+                  name='otherNotes'
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    handleCountSymbol(e);
+                  }}
+                  placeholder='Here you can write additional information...'
+                  isInvalid={!!formik.errors.otherNotes}
                 />
+                <div className='d-flex py-1'>
+                  <Form.Control.Feedback
+                    type='invalid'
+                    style={{ display: 'block', minHeight: '1.5em' }}
+                  >
+                    {formik.errors.otherNotes}
+                  </Form.Control.Feedback>
+                  <Form.Text className='text-muted'>
+                    {countSymbol.length}/200
+                  </Form.Text>
+                </div>
               </Form.Group>
             </Col>
           </Row>
