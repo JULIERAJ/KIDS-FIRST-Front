@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';

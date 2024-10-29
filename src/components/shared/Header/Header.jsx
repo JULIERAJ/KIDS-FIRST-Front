@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import { Container, Image, Navbar } from 'react-bootstrap';
 
