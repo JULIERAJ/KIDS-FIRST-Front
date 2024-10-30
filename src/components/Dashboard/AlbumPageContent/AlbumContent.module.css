@@ -1,0 +1,136 @@
+.page-window {
+  /* border-radius: 10px;
+  background-color: rgba(252, 252, 252, 1);
+  min-height: 80vh;
+  padding: 24px 16px; */
+
+}
+
+.sub-header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(252, 252, 252, 1);
+  border-top-left-radius: 1rem; 
+  border-top-right-radius: 1rem;
+  padding: 24px 40px;
+}
+
+.custom-button-select,.text-style {
+  border: none !important;
+  color: #3B494F !important;
+}
+
+
+
+.dropdown-horizontal {
+  position: relative;
+  display: flex;
+  flex-direction: row; 
+  column-gap: 1rem;
+  right: 1.5rem;
+  
+}
+
+.action-buttons-container {
+  display: inline-flex;
+  gap: 10px; 
+  margin-left: 10px; 
+}
+
+
+
+
+
+.custom-button-delete {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: none !important;
+  color: #3B494F !important;
+}
+
+.custom-button-cancel {
+  padding: 8px 12px;
+  border: none !important;
+  color: #3B494F !important;
+}
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+.circle-overlay {
+  position: absolute;
+  bottom: 50px;
+  right: 14px;
+  width: 48px; 
+  height: 48px; 
+  border: 8px;
+  
+}
+
+.circle-wrapper-overlay{
+  position: absolute;
+  bottom: 50px;
+  right: 14px;
+  width: 48px; 
+  height: 48px; 
+  border: 8px;
+ 
+
+}
+
+
+
+.custom-button-sort {
+ 
+}
+
+.dropdown-vertical {
+  width: inherit !important;
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.dropdown-menu-width {
+  min-width: 100%; /* Ensures the dropdown menu matches the width of the toggle */
+  width: auto; /* Keeps width consistent with the toggle */
+}
+
+.image-storage-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.image-section {
+  display: flex;
+  margin-top: 0.4rem;
+  padding: 24px 40px;
+  background-color: rgba(252, 252, 252, 1);
+  border-bottom-left-radius: 1rem; 
+  border-bottom-right-radius: 1rem;
+ }
+
+.image-progress-bar {
+  width: 177px;
+  height: 4px;
+}
+
+.image-styles {
+  display: flex;
+  padding-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.month-text-style {
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeS);
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: left;
+  color: #000000;
+}
