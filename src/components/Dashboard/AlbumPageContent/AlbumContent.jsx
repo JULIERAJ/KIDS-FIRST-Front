@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import { Container, ProgressBar, Row, Col, Dropdown } from 'react-bootstrap';
 
 import DeleteMessageModal from '@components/shared/Modal/DeleteMessageModal';
@@ -42,14 +42,14 @@ const AlbumContent = () => {
         { src: IMG8847, alt: 'IMG-8847' },
       ]
     }
-
   ];
 
   const [isSelectVisible, setIsSelectVisible] = useState(true);
-  const [showCircleOverlay, setShowCircleOverlay] = useState(false); 
+  const [showCircleOverlay, setShowCircleOverlay] = useState(false);
   const [isCancelVisible, setIsCancelVisible] = useState(true);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [highlightedImage, setHighlightedImage] = useState(null); 
+  const [highlightedImage, setHighlightedImage] = useState(false);
+  const [isImageClickable, setIsImageClickable] = useState(false); 
 
   // Handle Select button click (show circle overlay for all images)
   const handleSelectClick = () => {
@@ -57,112 +57,120 @@ const AlbumContent = () => {
     setShowCircleOverlay(true);
     setIsSelectVisible(false);
     setHighlightedImage(allImages);
+    setIsImageClickable(true); 
   };
 
   // Handle Cancel button click in sub-header (reset all selections)
   const handleCancelClick = () => {
     setShowCircleOverlay(false);
     setIsSelectVisible(true);
-    setHighlightedImage(data.images); // Reset highlighted image when canceled
+    setHighlightedImage(null); 
+    setIsImageClickable(false); 
   };
 
   // Handle Delete button click to show modal and hide Cancel button in sub-header
   const handleDeleteClick = () => {
     setShowCircleOverlay(false);
     setDeleteModalOpen(true);
-    setIsCancelVisible(false); 
   };
 
   // Close modal and reset Cancel button visibility in sub-header
   const closeDeleteModal = () => {
     setDeleteModalOpen(false);
-    setIsCancelVisible(true); 
+    setIsCancelVisible(true);
+    setShowCircleOverlay(true);
   };
 
   // Handle unique image click to show CircleWrapper on the selected image
   const handleImageClick = (uniqueKey) => {
-    setHighlightedImage(uniqueKey);
+    if (isImageClickable) { // Only allow clicking if enabled
+      setHighlightedImage(uniqueKey);
+    }
   };
 
   return (
     <Container fluid className={styles['page-window']}>
-      <Row className={styles['sub-header']}>
-        <Col>
-          <p>Storage</p>
-          <ProgressBar
-            className={styles['image-progress-bar']}
-            now={now}
-            label={`${now}%`}
-            visuallyHidden
-          >
-            <div className="progress-bar" style={{ backgroundColor: '#DB5C00', width: `${now}%` }} />
-          </ProgressBar>
-          <p>X MB of Y MB used</p>
-        </Col>
-        <Col xs="auto">
-          <Dropdown>
-            {isSelectVisible ? (
-              <Dropdown.Toggle
-                as={CustomButton}
-                className={`secondary-light xsml ${styles['custom-button-select']}`}
-                id="dropdown-basic"
-                onClick={handleSelectClick}
-              >
-                <p className={styles['text-style']}>Select</p>
-              </Dropdown.Toggle>
-            ) : (
-              <div className={styles['dropdown-horizontal']}>
-                <Dropdown.Item
-                  as={CustomButton}
-                  iconLeft={<Delete className={styles['delete-icon']} />}
-                  className={`secondary-light xsml ${styles['custom-button-delete']}`}
-                  onClick={handleDeleteClick}
-                >
-                  <p className={styles['text-style']}>Delete</p>
-                </Dropdown.Item>
-                {isCancelVisible && (
-                  <Dropdown.Item
-                    as={CustomButton}
-                    className={`secondary-light xsml ${styles['custom-button-cancel']}`}
-                    onClick={handleCancelClick}
-                  >
-                    <p className={styles['text-style']}>Cancel</p>
-                  </Dropdown.Item>
-                )}
-              </div>
-            )}
-          </Dropdown>
-        </Col>
-        <Col xs="auto">
-          <Dropdown>
-            <Dropdown.Toggle
-              as={CustomButton}
-              iconRight={<Expand />}
-              className={`secondary-light xsml ${styles['custom-button-sort']}`}
-              id="dropdown-basic"
+      <Row >
+        <div className={styles['sub-header']}>
+          <div className={styles['progress-bar-container']}>
+            <p className={styles['storage-text']}>Storage</p>
+            <ProgressBar
+              className={styles['image-progress-bar']}
+              now={now}
+              label={`${now}%`}
+              visuallyHidden
             >
-              Sort
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={`${styles['dropdown-vertical']} ${styles['dropdown-menu-width']}`}>
-              <Dropdown.Item href="/newest">Newest</Dropdown.Item>
-              <Dropdown.Item href="/oldest">Oldest</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
+              <div className="progress-bar" style={{ backgroundColor: '#EB7005', width: `${now}%` }} />
+            </ProgressBar>
+            <p style={{ margin: '-5px 0' }}>X MB of Y MB used</p>
+          </div>
+          <div className={styles['action-buttons-container']}>
+            <div>
+              <Dropdown>
+                {isSelectVisible ? (
+                  <Dropdown.Toggle
+                    as={CustomButton}
+                    className={`secondary-light xsml ${styles['custom-button-select']}`}
+                    id="dropdown-basic"
+                    onClick={handleSelectClick}
+                  >
+                    <p className={styles['text-style']}>Select</p>
+                  </Dropdown.Toggle>
+                ) : (
+                  <div className={styles['dropdown-horizontal']}>
+                    <Dropdown.Item
+                      as={CustomButton}
+                      iconLeft={<Delete />}
+                      className={`xsml ${styles['custom-button-delete']}`}
+                      onClick={handleDeleteClick}
+                    >
+                      <p className={styles['text-style']}>Delete</p>
+                    </Dropdown.Item>
+                    {isCancelVisible && (
+                      <Dropdown.Item
+                        as={CustomButton}
+                        className={`secondary-light xsml ${styles['custom-button-cancel']}`}
+                        onClick={handleCancelClick}
+                      >
+                        <p className={styles['text-style']}>Cancel</p>
+                      </Dropdown.Item>
+                    )}
+                  </div>
+                )}
+              </Dropdown>
+            </div>
+            <div className="d-flex justify-content-end">
+              <Dropdown>
+                <Dropdown.Toggle
+                  as={CustomButton}
+                  iconRight={<Expand />}
+                  className={`secondary-light xsml ${styles['custom-button-sort']}`}
+                  id="dropdown-basic"
+                >
+                  Sort
+                </Dropdown.Toggle>
+                <Dropdown.Menu className={`${styles['dropdown-vertical']} ${styles['dropdown-menu-width']}`}>
+                  <Dropdown.Item href="/newest">Newest</Dropdown.Item>
+                  <Dropdown.Item href="/oldest">Oldest</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
+        </div>
       </Row>
 
-      <Row className={styles['image-section']}>
+      <Row className={styles['image-section-container']}>
         {data.map((section, monthIndex) => (
-          <>
+          <React.Fragment key={monthIndex}>
             <p className={styles['month-text-style']}>{section.title}</p>
-            <Row md={4} key={monthIndex} className={styles['image-styles']}>
+            <Row md={4} className={styles['image-styles']}>
               {section.images.map((image, index) => {
                 const uniqueKey = `${section.title}-${index}`;
                 return (
                   <Col key={index} sm>
                     <div
                       className={styles['image-container']}
-                      onClick={() => handleImageClick(uniqueKey)} 
+                      onClick={() => handleImageClick(uniqueKey)}
                     >
                       <img
                         src={image.src}
@@ -189,16 +197,16 @@ const AlbumContent = () => {
                           alt="CircleWrapper Icon"
                           className={styles['circle-wrapper-overlay']}
                         />
-                        
                       )}
-
                     </div>
+              
                   </Col>
                 );
               })}
             </Row>
-          </>
+          </React.Fragment>
         ))}
+       
       </Row>
 
       {isDeleteModalOpen && (
@@ -206,7 +214,7 @@ const AlbumContent = () => {
           onClose={closeDeleteModal}
           message={
             <>
-             Deleting file(s) will also remove them from messages.<br />
+              Deleting file(s) will also remove them from messages.<br />
               Are sure you want to delete?
             </>
           }
