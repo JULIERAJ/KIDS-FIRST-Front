@@ -32,7 +32,6 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const [countSymbol, setCountSymbol] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [color, setColor] = useState(colors[2]);
-
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -128,9 +127,9 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const handleCountSymbol = (event) => {
     setCountSymbol(event.target.value);
   };
-  //const customHandleChange = (fieldName, value) => {
-  //formik.handleChange({ target: { name: fieldName, value: value } });
-  //};
+  const customHandleChange = (fieldName, value) => {
+    formik.handleChange({ target: { name: fieldName, value: value } });
+  };
   return (
     <>
       <ModalKid
@@ -139,7 +138,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
         colors={colors}
         color={color}
         setColor={setColor}
-        customHandleChange={formik.setFieldValue}
+        customHandleChange={customHandleChange}
       />
       <ConfirmationModal 
         show={showConfirmModal} 
