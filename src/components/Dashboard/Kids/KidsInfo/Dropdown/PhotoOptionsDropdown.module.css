@@ -1,0 +1,36 @@
+/*------ Dropdown ----*/
+.dropdown {
+  background-color: #fff;
+}
+
+.edit-avatar-overlay {
+  position: relative;
+}
+
+/* ------- Positioning of the dropdown ---------*/
+.dropdownMenu {
+  position: absolute;
+  top: 100%; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 1000; 
+  margin-left: -55px; 
+  background-color: #fff;
+  color: rgba(29, 31, 32, 1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.dropdownItem {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+/* --------- Active state for dropdown items ----------*/
+.dropdownItem.active,
+.dropdownItem:active,
+.dropdownItem:hover {
+  background-color: rgba(253, 241, 230, 1)!important; 
+  color: rgba(29, 31, 32, 1) !important; 
+  font-weight: 700;
+}

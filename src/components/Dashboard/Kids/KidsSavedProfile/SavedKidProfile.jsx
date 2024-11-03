@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; 
 import React from 'react';
 import { Container, Image, Row, Col } from 'react-bootstrap';
+
+import { useNavigate } from 'react-router-dom';
 
 import edit from '@media/icons/edit.svg';
 
@@ -11,11 +13,19 @@ import KidProfilePic from '../KidsInfo/kid.png';
 import styles from './SavedKidProfile.module.css';
 
 const SavedKidProfile = ({ kidProfile, colors }) => {
+  const navigate = useNavigate();
+
+  // Check if kidProfile exists and has required fields
+  if (!kidProfile) {
+    return <p>No profile saved yet.</p>;
+  }
+
+  // Add default values for missing fields
   const infoList = [
-    { label: 'Allergies', value: kidProfile.allergies.join(', ') },
-    { label: 'Interests', value: kidProfile.interests.join(', ') },
-    { label: 'Fears', value: kidProfile.fears.join(', ') },
-    { label: 'Other', value: kidProfile.otherNotes },
+    { label: 'Allergies', value: kidProfile.allergies?.length ? kidProfile.allergies.join(', ') : 'None' },
+    { label: 'Interests', value: kidProfile.interests?.length ? kidProfile.interests.join(', ') : 'None' },
+    { label: 'Fears', value: kidProfile.fears?.length ? kidProfile.fears.join(', ') : 'None' },
+    { label: 'Other', value: kidProfile.otherNotes || 'None' },
   ];
 
   return (
@@ -26,7 +36,7 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
       >
         <Col xs={12} md={6} className={styles['kid-details']}>
           <Image
-            src={KidProfilePic}
+            src={kidProfile.imageProfileURL || KidProfilePic}
             alt={kidProfile.name}
             className={styles['kid-profile-img']}
             roundedCircle
@@ -34,7 +44,7 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
           <div className={styles['kid-info']}>
             <h2 className={styles['kid-profile-name']}>{kidProfile.name}</h2>
             <p className={styles['kid-dob']}>
-              {kidProfile.dateOfBirthday} ({kidProfile.age} Years Old)
+              {kidProfile.dateOfBirthday} ({kidProfile.age || 'N/A'} Years Old)
             </p>
           </div>
         </Col>
@@ -43,7 +53,16 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
             <span className={styles['action-text']}>Share</span>
             <Image src={share} alt='Share' className={styles['action-icon']} />
           </div>
-          <div className={styles['action-item']}>
+          <div
+            className={styles['action-item']}
+            onClick={() => {
+              if (kidProfile.id) {
+                navigate(`/dashboard/kidsForm/${kidProfile.id}`);
+              } else {
+                console.error('kidProfile.id is undefined');
+              }
+            }}
+          >
             <span className={styles['action-text']}>Edit</span>
             <Image src={edit} alt='Edit' className={styles['action-icon']} />
           </div>
@@ -67,19 +86,19 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
 };
 
 SavedKidProfile.propTypes = {
-  kidProfile: {
+  kidProfile: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string,
-    dob: PropTypes.string,
+    dateOfBirthday: PropTypes.string,
     age: PropTypes.string,
     allergies: PropTypes.arrayOf(PropTypes.string),
     interests: PropTypes.arrayOf(PropTypes.string),
     fears: PropTypes.arrayOf(PropTypes.string),
-    otherDetails: PropTypes.string,
-  },
-  colors: {
-    name: PropTypes.string,
-    hex: PropTypes.string,
-  },
+    otherNotes: PropTypes.string,
+    childColor: PropTypes.string,
+    imageProfileURL: PropTypes.string,
+  }).isRequired,
+  colors: PropTypes.object.isRequired,
 };
 
 export default SavedKidProfile;
