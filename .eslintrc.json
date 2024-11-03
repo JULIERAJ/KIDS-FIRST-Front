@@ -2,7 +2,8 @@
   "env": {
     "es2021": true,
     "node": true,
-    "browser": true
+    "browser": true,
+    "jest/globals": true
   },
   "root": true,
   "extends": [
@@ -10,9 +11,10 @@
     "plugin:import/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
-  "plugins": ["import"],
+  "plugins": ["import", "jest"],
   "overrides": [
     {
       "files": ["*.js"],

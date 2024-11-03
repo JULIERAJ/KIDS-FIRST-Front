@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 
 import ProfileModal from '@components/shared/Modal/ProfileModal';
-
 import done from '@media/icons/done.svg';
 
 import styles from './ModalKid.module.css';

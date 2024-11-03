@@ -1,0 +1,7 @@
+// Babel configuration is set to support .jsx in .test.js files: https://www.dhiwise.com/post/fixing-the-error-jest-support-for-the-experimental-syntax-jsx
+{
+  "presets": [
+    "@babel/preset-env",
+    ["@babel/preset-react", { "runtime": "automatic" }]
+  ]
+}
