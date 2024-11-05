@@ -56,12 +56,14 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
           <div
             className={styles['action-item']}
             onClick={() => {
+              console.log('Edit clicked for ID:', kidProfile.id);
               if (kidProfile.id) {
-                navigate(`/dashboard/kidsForm/${kidProfile.id}`);
+                navigate(`/dashboard/EditKid/${kidProfile.id}`);
               } else {
                 console.error('kidProfile.id is undefined');
               }
             }}
+            style={{ cursor: 'pointer' }}
           >
             <span className={styles['action-text']}>Edit</span>
             <Image src={edit} alt='Edit' className={styles['action-icon']} />

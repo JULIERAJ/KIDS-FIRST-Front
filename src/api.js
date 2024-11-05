@@ -38,3 +38,9 @@ export const resendEmailVerification = (email) =>
 export const createKid = (data) => axiosInstance.post('kids', data);
 
 export const getAllKids = () => axiosInstance.get('kids');
+
+// API function to fetch a single kid profile by ID
+export const getKidById = (id) => axiosInstance.get(`kids/${id}`);
+
+// API function to update a kid profile by ID
+export const updateKid = (id, data) => axiosInstance.put(`kids/${id}`, data);

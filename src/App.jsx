@@ -6,6 +6,7 @@ import HomeDashboard from '@components/Dashboard/HomeDashboard';
 
 import Kids from '@components/Dashboard/Kids/Kids';
 
+import EditKid from '@components/Dashboard/Kids/KidsInfo/EditKid';
 import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
@@ -47,10 +48,7 @@ const App = () => (
             path='/reset-password/:email/:resetPasswordToken'
             element={<ResetPassword />}
           />
-          <Route
-            path='/reset-password/:email/:resetPasswordToken'
-            element={<ResetPassword />}
-          />
+          
           <Route path='/password-changed' element={<PasswordChanged />} />
 
         </Route>
@@ -68,6 +66,7 @@ const App = () => (
             <Route path='messages' element={<MessageBar />} />
             <Route path='album' element={<Album />} />
             <Route path='kids' element={<Kids />} />
+            <Route path='editkid/:id' element={<EditKid />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='help' /> */}
           </Route>

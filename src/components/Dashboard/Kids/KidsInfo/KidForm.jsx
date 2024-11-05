@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
-import { createKid } from '@api';
+import { useParams } from 'react-router-dom';
+
+import { createKid, getKidById, updateKid } from '@api';
 import ModalKid from '@components/Dashboard/Kids/ModalKid/ModalKid';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import edit from '@media/icons/edit.svg';
@@ -22,6 +24,7 @@ import styles from './KidForm.module.css';
 import { kidValidateSchema } from './kidValidateSchema';
 
 const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
+  const { id } = useParams();
   const colors = [
     { name: 'yellow', hex: '#FFE08C' },
     { name: 'red', hex: '#FDA4A6' },
@@ -37,6 +40,22 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   
+  useEffect(() => {
+    if (id) {
+      fetchKidData(id);
+    }
+  }, [id]);
+
+  const fetchKidData = async (id) => {
+    try {
+      const response = await getKidById(id);
+      formik.setValues(response.data); // Set the form values with the fetched data
+      setColor(colors.find(c => c.name === response.data.childColor));
+    } catch (error) {
+      console.error('Error fetching kid data:', error);
+    }
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -83,10 +102,19 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       data.append('imageProfileURL', uploadedFile);
     }
     try {
-      const response = await createKid(data);
+      let response;
+      if (id) {
+        // Update existing kid profile
+        response = await updateKid(id, data);
+        console.log('Kid updated:', response.data);
+      } else {
+        // Create new kid profile
+        response = await createKid(data);
+        console.log('Kid created:', response.data);
+      }
       setFetchKidsCount(fetchKidsCount + 1);
       // eslint-disable-next-line no-console
-      console.log('Kid created:', response.data);
+      //console.log('Kid created:', response.data);
     } catch (error) {
       // Improved error logging
       console.error('Error occurred:', error.message);
