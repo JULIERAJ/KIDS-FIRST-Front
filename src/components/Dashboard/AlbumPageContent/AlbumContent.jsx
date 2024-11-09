@@ -150,8 +150,8 @@ const AlbumContent = () => {
                   Sort
                 </Dropdown.Toggle>
                 <Dropdown.Menu className={`${styles['dropdown-vertical']} ${styles['dropdown-menu-width']}`}>
-                  <Dropdown.Item href="/newest">Newest</Dropdown.Item>
-                  <Dropdown.Item href="/oldest">Oldest</Dropdown.Item>
+                  <Dropdown.Item href="/newest" className={styles['drop-down-text']}>Newest</Dropdown.Item>
+                  <Dropdown.Item href="/oldest" className={styles['drop-down-text']}>Oldest</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>

@@ -64,6 +64,10 @@
   width: auto; /* Keeps width consistent with the toggle */
 }
 
+.drop-down-text {
+  font-size: 0.875rem;
+}
+
 .progress-bar-container {
   width: 11.063rem;
   display: flex;

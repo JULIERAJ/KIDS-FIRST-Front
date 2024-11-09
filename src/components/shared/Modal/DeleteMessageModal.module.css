@@ -6,7 +6,7 @@
     bottom: 0;
     max-width: 100% !important;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,6 +35,7 @@
     font-weight: 700;
     text-align: center;
     color: #1D1F20;
+    margin-bottom: 0;
   }
 
   .modal-buttons {
