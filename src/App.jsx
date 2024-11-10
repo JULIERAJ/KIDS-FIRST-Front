@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+
 import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
+import Album from '@components/Dashboard/Album/Album';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 
@@ -66,10 +68,11 @@ const App = () => (
             />
             <Route path='homedashboard' element={<HomeDashboard />} />
             <Route path='messages' element={<MessageBar />} />
+            <Route path='album' element={<Album />} />
+            <Route path='albumContent' element={<AlbumContent />} />
             <Route path='kids' element={<Kids />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='help' /> */}
-            <Route path='albumContent' element={<AlbumContent />} />
           </Route>
         </Route>
       </Routes>

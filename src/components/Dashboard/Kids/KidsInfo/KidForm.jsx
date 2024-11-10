@@ -10,10 +10,13 @@ import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import edit from '@media/icons/edit.svg';
 
 import AttributesSelect from './AttributesSelect';
+import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
 import { ALLERGIES_VALUE } from './constants/allergies';
 import { FEARS_VALUE } from './constants/fears';
 import { INTEREST_VALUE } from './constants/interests';
-import kid from './kid.png';
+//import kid from './kid.png';
+import PhotoOptionsDropdown from './Dropdown/PhotoOptionsDropdown';
+import kidPlaceholder from './kid.png';
 import styles from './KidForm.module.css';
 
 import { kidValidateSchema } from './kidValidateSchema';
@@ -29,7 +32,11 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   const [countSymbol, setCountSymbol] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [color, setColor] = useState(colors[2]);
-
+  const [uploadedPhoto, setUploadedPhoto] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -38,9 +45,45 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
     setIsModalOpen(false);
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setUploadedPhoto(URL.createObjectURL(file));
+      setUploadedFile(file);
+    }
+  };
+  
+  const handleDropdownSelect = (eventKey) => {
+    if (eventKey === 'upload') {
+      document.getElementById('imageProfileURL').click();
+    } else if (eventKey === 'changeColor') {
+      openModal();
+    } else if (eventKey === 'remove') {
+      setShowConfirmModal(true);
+    }
+    setDropdownOpen(false);
+  };
+
+  const handleRemovePhoto = () => {
+    setUploadedPhoto(null);
+    setUploadedFile(null);
+    setShowConfirmModal(false);
+  };
+
+  const handleCloseConfirmModal = () => {
+    setShowConfirmModal(false);
+  };
+
   async function formAction(values) {
+    const data = new FormData();
+    for (const key in values) {
+      data.append(key, values[key]);
+    }
+    if (uploadedFile) {
+      data.append('imageProfileURL', uploadedFile);
+    }
     try {
-      const response = await createKid(values);
+      const response = await createKid(data);
       setFetchKidsCount(fetchKidsCount + 1);
       // eslint-disable-next-line no-console
       console.log('Kid created:', response.data);
@@ -76,10 +119,11 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       formAction(values);
 
       resetForm();
+      setUploadedPhoto(null); 
       openKidForm(false);
     },
   });
-
+  
   const handleCountSymbol = (event) => {
     setCountSymbol(event.target.value);
   };
@@ -96,19 +140,37 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
         setColor={setColor}
         customHandleChange={customHandleChange}
       />
+      <ConfirmationModal 
+        show={showConfirmModal} 
+        onHide={handleCloseConfirmModal} 
+        onConfirm={handleRemovePhoto} 
+      />
       <Container fluid>
         <Form onSubmit={formik.handleSubmit}>
           <Row className={styles['kid-details-row']}>
             <Col xs={3} className={styles['avatar-container']}>
-              <Image src={kid} width={158} height={158} roundedCircle />
-              <button
-                type='button'
-                onClick={openModal}
-                className={styles['edit-avatar-overlay']}
-                style={{ backgroundColor: color.hex }}
-              >
-                <Image src={edit} alt='edit kid avatar' />
-              </button>
+              <Image
+                src={uploadedPhoto || kidPlaceholder}
+                width={158}
+                height={158}
+                roundedCircle
+              />
+              <div className={styles['edit-avatar-overlay']} style={{ backgroundColor: color.hex }}>
+                <Image
+                  src={edit}
+                  alt="edit kid avatar"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className={styles['edit-avatar-icon']}
+                />
+                {dropdownOpen && <PhotoOptionsDropdown onSelect={handleDropdownSelect} />}
+              </div>
+              <input
+                type='file'
+                id='imageProfileURL'
+                style={{ display: 'none' }}
+                accept='image/*'
+                onChange={handleFileChange}
+              />
             </Col>
             <Col xs={4}>
               <Form.Label>Kid&apos;s Name</Form.Label>
@@ -121,10 +183,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
                 isInvalid={!!formik.errors.name}
                 style={{ height: '3.5em' }}
               />
-              <Form.Control.Feedback
-                type='invalid'
-                style={{ display: 'block', minHeight: '1.5em' }}
-              >
+              <Form.Control.Feedback type='invalid' style={{ display: 'block', minHeight: '1.5em' }}>
                 {formik.errors.name}
               </Form.Control.Feedback>
             </Col>
@@ -139,10 +198,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
                 isInvalid={!!formik.errors.dateOfBirthday}
                 style={{ height: '3.5em' }}
               />
-              <Form.Control.Feedback
-                type='invalid'
-                style={{ display: 'block', minHeight: '1.5em' }}
-              >
+              <Form.Control.Feedback type="invalid" style={{ display: 'block', minHeight: '1.5em' }}>
                 {formik.errors.dateOfBirthday}
               </Form.Control.Feedback>
             </Col>
@@ -150,10 +206,8 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
           <Row>
             <Col xs={3}></Col>
             <Col xs={7}>
-              <h4 className='mb-2'>More Information</h4>
-              <p>
-                Add items in the fields below to keep each other in the loop.
-              </p>
+              <h4 className="mb-2">More Information</h4>
+              <p>Add items in the fields below to keep each other in the loop.</p>
               <Form.Group>
                 <AttributesSelect
                   label='Allergies'

@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 import React, { useContext, useMemo, useState } from 'react';
-
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 
 import EventContext from '@context/EventContext.jsx';
