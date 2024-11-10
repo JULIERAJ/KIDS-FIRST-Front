@@ -1,0 +1,153 @@
+.sub-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(252, 252, 252, 1);
+  border-top-left-radius: 1rem; 
+  border-top-right-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.action-buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.8rem; 
+  margin-right: 2rem;
+}
+
+.custom-button-select,.text-style {
+  border: none !important;
+  color: #3B494F !important;
+}
+
+.dropdown-horizontal {
+  position: relative;
+  display: flex;
+  flex-direction: row; 
+  column-gap: 1rem;
+  
+}
+
+ .custom-button-cancel {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border: none !important;
+  color: #3B494F !important;
+}
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.circle-overlay, .circle-wrapper-overlay {
+  position: absolute;
+  bottom: 3.125rem;
+  right: 0.875rem;
+  width: 3rem; 
+  height: 3rem; 
+  border: 0.5rem;
+}
+
+.dropdown-vertical {
+  width: inherit !important;
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.dropdown-menu-width {
+  min-width: 100%; /* Ensures the dropdown menu matches the width of the toggle */
+  width: auto; /* Keeps width consistent with the toggle */
+}
+
+.drop-down-text {
+  font-size: 0.875rem;
+}
+
+.progress-bar-container {
+  width: 11.063rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1.3rem;
+}
+
+.progress-bar-container .storage-text {
+  margin: 0.8rem 0; 
+}
+
+.image-progress-bar {
+  width: 11.063rem;
+  height: 0.25rem;
+  margin-bottom: 0.8rem !important;
+}
+
+.image-storage-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-section-container {
+  max-height: 100vh;
+  position: relative;
+  height: 68vh;
+  overflow-y: auto;
+  box-sizing: border-box; 
+  display: flex;
+  margin-top: 0.4rem;
+  padding: 2rem;
+  background-color: rgba(252, 252, 252, 1);
+  border-bottom-left-radius: 1rem; 
+  border-bottom-right-radius: 1rem;
+ }
+ 
+ .custom-button-delete {
+  width: 8rem;
+  height: 3.5rem; 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ .custom-button-delete:hover,
+ .custom-button-delete:active {
+  border: 2px solid #DB5C00 !important;
+  border-radius: 8px;
+  color: #DB5C00;
+  background: none !important;
+  }
+  
+  
+  /* .custom-button-delete:disabled,
+  .custom-button-delete[disabled] {
+    opacity: 0.8;
+    border: 2px solid #f29d58;
+  } */
+
+.storage-text {
+  font-weight: 600;
+  line-height: 1.225rem;
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeXS);
+}
+
+.image-styles {
+  display: flex;
+  height: 17.938rem;
+  padding-top: 1rem;
+}
+
+.month-text-style {
+  font-family: var(--fontfamily);
+  font-size: var(--fontsizeS);
+  font-weight: 500;
+  line-height: 1.2rem;
+  text-align: left;
+  color: #000000;
+}

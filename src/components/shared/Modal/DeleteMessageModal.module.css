@@ -1,0 +1,47 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100% !important;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-container {
+    width: 37.5rem !important;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    position: relative;
+    background: var(--color-bg-light);
+    z-index: 101;
+    color: var(--color-fg-light);
+    font-family: Roboto, sans-serif;
+  }
+  .modal-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modal-message {
+    font-size: var(--fontsizeS);
+    font-family: var(--fontfamily);
+    line-height: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1D1F20;
+    margin-bottom: 0;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5rem !important;
+    gap: 1.5rem;
+  }
