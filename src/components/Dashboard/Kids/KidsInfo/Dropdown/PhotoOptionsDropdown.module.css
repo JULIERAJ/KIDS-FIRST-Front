@@ -41,11 +41,9 @@
 }
 
 .dropdownItem {
-  padding: 0.4em 0.8em; 
-  width: 200px;
+  padding: 0.4em 2.3em; 
   cursor: pointer;
-  display: flex;
-  justify-content: center;
+  font-size: 14px;  
 }
 
 /* --------- Active state for dropdown items ----------*/
