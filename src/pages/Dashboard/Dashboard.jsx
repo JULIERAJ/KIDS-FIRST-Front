@@ -20,7 +20,7 @@ const Dashboard = () => {
       <Sidebar onTitleChange={handleTitleChange} />
       <div className={styles.content}>
         <DashboardHeader title={title} user={user} />
-        <Outlet />
+        <Outlet context={{ onTitleChange: handleTitleChange }}/>
       </div>
     </div>
   );
