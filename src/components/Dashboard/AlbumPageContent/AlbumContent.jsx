@@ -1,15 +1,27 @@
+// eslint-disable-next-line import/order
 import React, { useState } from 'react';
+// eslint-disable-next-line import/order
 import { Container, ProgressBar, Row, Col, Dropdown } from 'react-bootstrap';
 
-import DeleteMessageModal from '@components/shared/Modal/DeleteMessageModal';
+// eslint-disable-next-line import/order, import/no-unresolved
+import ConfirmationModal from '@components/shared/Modal/ConfirmationModal';
+// eslint-disable-next-line import/order, import/no-unresolved
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
+// eslint-disable-next-line import/order, import/no-unresolved
 import CircleWrapper from '@media/icons/circle-wrapper.svg';
+// eslint-disable-next-line import/order, import/no-unresolved
 import Circle from '@media/icons/circle.svg';
+// eslint-disable-next-line import/no-unresolved
 import { ReactComponent as Delete } from '@media/icons/delete.svg';
+// eslint-disable-next-line import/no-unresolved
 import { ReactComponent as Expand } from '@media/icons/expand-more.svg';
+// eslint-disable-next-line import/no-unresolved
 import IMG5117 from '@media/icons/img-5117.svg';
+// eslint-disable-next-line import/no-unresolved
 import IMG5122 from '@media/icons/img-5122.svg';
+// eslint-disable-next-line import/no-unresolved
 import IMG5123 from '@media/icons/img-5123.svg';
+// eslint-disable-next-line import/no-unresolved
 import IMG8847 from '@media/icons/pic8847.svg';
 
 import styles from './AlbumContent.module.css';
@@ -210,7 +222,7 @@ const AlbumContent = () => {
       </Row>
 
       {isDeleteModalOpen && (
-        <DeleteMessageModal
+        <ConfirmationModal
           onClose={closeDeleteModal}
           message={
             <>

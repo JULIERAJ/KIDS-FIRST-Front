@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 
 import { Container } from 'react-bootstrap';
 
+// eslint-disable-next-line import/order, import/no-unresolved
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 
-import modalStyles from './DeleteMessageModal.module.css';
+import modalStyles from './ConfirmationModal.module.css';
 
-const DeleteMessageModal = ({
+const ConfirmationModal = ({
   message,
   rightButtonText,
   onRightButtonClick,
@@ -41,7 +42,7 @@ const DeleteMessageModal = ({
   );
 };
 
-DeleteMessageModal.propTypes = {
+ConfirmationModal.propTypes = {
   message: PropTypes.string,
   rightButtonText: PropTypes.string,
   onRightButtonClick: PropTypes.func.isRequired,
@@ -50,4 +51,4 @@ DeleteMessageModal.propTypes = {
   isLeftButton: PropTypes.bool,
 };
 
-export default DeleteMessageModal;
+export default ConfirmationModal;

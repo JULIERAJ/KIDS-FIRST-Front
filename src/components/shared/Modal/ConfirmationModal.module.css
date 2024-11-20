@@ -13,7 +13,8 @@
   }
   .modal-container {
     width: 37.5rem !important;
-    padding: 2.5rem;
+    height: 14.688rem;
+    padding: 4rem;
     border-radius: 1rem;
     position: relative;
     background: var(--color-bg-light);
