@@ -39,8 +39,6 @@ export const createKid = (data) => axiosInstance.post('kids', data);
 
 export const getAllKids = () => axiosInstance.get('kids');
 
-// API function to fetch a single kid profile by ID
-export const getKidById = (id) => axiosInstance.get(`kids/${id}`);
+export const getKidById = (kidId) => axiosInstance.get(`kids/${kidId}`);
 
-// API function to update a kid profile by ID
-export const updateKid = (id, data) => axiosInstance.put(`kids/${id}`, data);
+export const updateKid = (kidId, data) => axiosInstance.put(`/api/kids/${kidId}`, data);
