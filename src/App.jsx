@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
-import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import Album from '@components/Dashboard/Album/Album';
+import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 
 import Kids from '@components/Dashboard/Kids/Kids';
 
-import MessageBar from '@components/MessageBar';
+//import MessageBar from '@components/MessageBar';
+import MessagesScreen from '@components/Messages/Messages';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
 import { EventProvider } from '@context/EventContext';
@@ -67,7 +67,8 @@ const App = () => (
               }
             />
             <Route path='homedashboard' element={<HomeDashboard />} />
-            <Route path='messages' element={<MessageBar />} />
+            {/* <Route path='messages' element={<MessageBar />} /> */}
+            <Route path='messages' element={<MessagesScreen />} />
             <Route path='album' element={<Album />} />
             <Route path='albumContent' element={<AlbumContent />} />
             <Route path='kids' element={<Kids />} />
