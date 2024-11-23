@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import { ReactComponent as AddIcon } from '@media/icons/plus.svg';
@@ -12,10 +12,12 @@ import WeeksOverview from './WeeksOverview';
 
 const HomeDashboard = () => {
   const navigate = useNavigate();
+  const { onTitleChange } = useOutletContext();
 
   const childExists = false;
 
   const handleButtonClick = () => {
+    onTitleChange('Kid\'s Info');
     navigate('/dashboard/kids');
   };
 

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Image, Navbar } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import kidsFirstLogo from '@media/logo/LOGO-BYME.svg';
 
@@ -10,11 +11,22 @@ import { SIDEBAR_DATA } from './sidebarData';
 import SidebarItemsCard from './SidebarItemsCard';
 
 const Sidebar = ({ onTitleChange }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState(null);
+
+  useEffect(() => {
+    const currentItem =SIDEBAR_DATA.find(item => item.path === location.pathname);
+    if(currentItem) {
+      setActiveLink(location.pathname);
+      onTitleChange(currentItem.title);
+    }
+  },[location.pathname, onTitleChange]);
 
   const handleClick = (title, path) => {
     setActiveLink(path);
     onTitleChange(title);
+    navigate(path);
   };
 
   // Separate sidebar items into two arrays: one for "Help" and one for others
@@ -38,7 +50,7 @@ const Sidebar = ({ onTitleChange }) => {
                 key={key}
                 {...item}
                 isActive={item.path === activeLink}
-                onClick={handleClick}
+                onClick={() => handleClick(item.title, item.path)}
               />
             ))}
           </div>
@@ -52,7 +64,7 @@ const Sidebar = ({ onTitleChange }) => {
                   key={key}
                   {...item}
                   isActive={item.path === activeLink}
-                  onClick={handleClick}
+                  onClick={() => handleClick(item.title, item.path)}
                 />
               )
             ))}
