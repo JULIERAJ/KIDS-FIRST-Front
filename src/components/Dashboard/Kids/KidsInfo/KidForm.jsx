@@ -283,17 +283,9 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
         </Form>
         {showConfirmationModal && (
           <ConfirmationModal
-           
-            message={
-              <>
-                Arr you sure you want to remove the profile picture?
-              </>
-            }
+            message="Are you sure you want to remove the profile picture?"
             rightButtonText="Delete"
-            onRightButtonClick={() => {
-              // Implement delete logic here
-              handleRemovePhoto;
-            }}
+            onRightButtonClick={handleRemovePhoto}
             leftButtonText="Cancel"
             onLeftButtonClick={handleCancelDelete}
             isLeftButton={true}
