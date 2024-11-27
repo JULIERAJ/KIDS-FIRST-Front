@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
-import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import Album from '@components/Dashboard/Album/Album';
+import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 
