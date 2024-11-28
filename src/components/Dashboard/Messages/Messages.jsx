@@ -18,10 +18,16 @@ const messagesScreen = () => {
   };
   return(
     <Container fluid className={styles['messages-container']}>
-      <Row><img src={messages} alt= "Messages" style={{ width: '18.75rem', height: '17.938rem' }} /></Row>
       <Row>
-        <p className={styles['content-style']}>Ready to chat? Share your Kid Profile with co-parent <br />
-              to unlock the Messaging feature
+        <img 
+          src={messages} alt= "Messages" 
+          className={styles['messages-image']}
+        />
+      </Row>
+      <Row>
+        <p className={styles['content-style']}>
+          Ready to chat? Share your Kid Profile with co-parent <br />
+          to unlock the Messaging feature
         </p>
       </Row>
       <Row>

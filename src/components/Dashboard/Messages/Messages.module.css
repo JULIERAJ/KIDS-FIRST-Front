@@ -11,11 +11,12 @@
   row-gap: 2rem;
   background-color: #fcfcfc;
 }
-
+.messages-image {
+  width: 18.75rem;
+  height: 17.938rem;
+}
 .content-style {
-  color: #1d1f20;
-  font-family: var(--fontfamily);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.35rem;
   text-align: center;
