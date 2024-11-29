@@ -41,4 +41,4 @@ export const getAllKids = () => axiosInstance.get('kids');
 
 export const getKidById = (kidId) => axiosInstance.get(`kids/${kidId}`);
 
-export const updateKid = (kidId, data) => axiosInstance.put(`/api/kids/${kidId}`, data);
+export const updateKid = (kidId, data) => axiosInstance.put(`kids/${kidId}`, data);

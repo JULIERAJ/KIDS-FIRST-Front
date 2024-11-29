@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
-import { propTypes } from 'react-bootstrap/esm/Image';
-
-import { createKid } from '@api';
+import { createKid, updateKid } from '@api';
 import ModalKid from '@components/Dashboard/Kids/ModalKid/ModalKid';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import edit from '@media/icons/edit.svg';
@@ -79,7 +77,13 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
     setShowConfirmModal(false);
   };
 
-  async function formAction(values, resetForm ) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function formAction(values, resetForm) {
+    // Prevent duplicate submissions if a submission is already in progress
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    
     const data = new FormData();
     for (const key in values) {
       data.append(key, values[key]);
@@ -88,10 +92,16 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
       data.append('imageProfileURL', uploadedFile);
     }
     try {
-      const response = await createKid(data);
+      let response;
+      if(kidData?._id) {
+        response = await updateKid(kidData._id, data);
+        console.log('Updating kid with ID:', kidData._id, response.data);
+      } else {
+        response = await createKid(data);
+        console.log('Creating a new kid', response.data);
+      }
+
       setFetchKidsCount(fetchKidsCount + 1);
-      // eslint-disable-next-line no-console
-      console.log('Kid created:', response.data);
       resetForm(); 
       setUploadedPhoto(kidPlaceholder); 
       openKidForm(false); 
@@ -107,6 +117,8 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
         console.error('No response from server');
       }
     }
+    // Reset the submitting state after the form action completes
+    setIsSubmitting(false);
   }
   const formik = useFormik({
     initialValues: {
@@ -123,11 +135,11 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
       // eslint-disable-next-line no-console
       console.log('Collected form values:', values);
 
-      formAction(values);
+      formAction(values, resetForm);
 
-      resetForm();
-      setUploadedPhoto(null); 
-      openKidForm(false);
+      // resetForm();
+      // setUploadedPhoto(null); 
+      // openKidForm(false);
     },
   });
   
@@ -298,7 +310,7 @@ KidForm.propTypes = {
   openKidForm: PropTypes.func,
   setFetchKidsCount: PropTypes.func,
   fetchKidsCount: PropTypes.number,
-  kidData: propTypes.object
+  kidData: PropTypes.object
 };
 
 export default KidForm;

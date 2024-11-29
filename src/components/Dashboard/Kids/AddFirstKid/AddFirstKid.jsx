@@ -28,7 +28,7 @@ const AddFirstKid = ({ openKidForm }) => {
 };
 
 AddFirstKid.propTypes = {
-  openKidForm: PropTypes.func.required,
+  openKidForm: PropTypes.func.isRequired,
 };
 
 export default AddFirstKid;
