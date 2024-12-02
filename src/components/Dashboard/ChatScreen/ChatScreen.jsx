@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/order */
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import MessageIllustration from '@media/icons/message-illustration.svg';
@@ -12,6 +12,7 @@ import styles from './ChatScreen.module.css';
 const ChatScreen = () => {
   const firstName = 'John';
   const initial = `${firstName.charAt(0)}`.toUpperCase();
+  const [message, setMessage] = useState(null);
 
   return (
     <Container fluid className={styles['page-window']}>
@@ -57,14 +58,17 @@ const ChatScreen = () => {
             />
           </div>
           <div className={styles['input-wrapper']}>
-            <input 
+            <textarea 
               type="text" 
               className={styles['chat-input-box']} 
-              placeholder="Send a message" 
+              placeholder='Send a message' 
+             
             />
           </div>
           <div className={styles['custom-button-send']}>
-            <CustomButton className="xsml primary-light textStyels">
+            <CustomButton 
+              className="xsml primary-light textStyels"
+            >
               Send
             </CustomButton>
           </div>

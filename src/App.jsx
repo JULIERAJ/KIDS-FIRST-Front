@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Album from '@components/Dashboard/Album/Album';
 import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
+import ChatScreen from '@components/Dashboard/ChatScreen/ChatScreen';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 
 import Kids from '@components/Dashboard/Kids/Kids';
 
-import ChatScreen from '@components/Dashboard/Messages/ChatScreen';
 import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
