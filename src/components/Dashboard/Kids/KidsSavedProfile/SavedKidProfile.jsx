@@ -65,8 +65,8 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
             <span className={styles['action-text']}>Share</span>
             <Image src={share} alt='Share' className={styles['action-icon']} />
           </div>
-          <div className={styles['action-item']} >
-            <span className={styles['action-text']} onClick={handleEditClick}>Edit</span>
+          <div className={styles['action-item']} onClick={handleEditClick}>
+            <span className={styles['action-text']}>Edit</span>
             <Image src={edit} alt='Edit' className={styles['action-icon']} />
           </div>
         </Col>
