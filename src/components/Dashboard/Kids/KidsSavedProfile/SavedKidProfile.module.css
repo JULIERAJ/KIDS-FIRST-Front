@@ -66,15 +66,24 @@
   height: 56px;
   gap: 4px;
   opacity: 0px;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .action-item {
   display: flex;
   align-items: center;
-  margin-left: 16px;
+  justify-content: center;
   width: 128px;
   height: 56px;
-  border-radius: 8px 0px 0px 0px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.action-item:hover {
+  border: 2px solid #db5c00;
 }
 
 .action-icon {
@@ -90,7 +99,7 @@
   padding: 0px 8px;
   gap: 8px;
   line-height: 24px;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .info-list {
