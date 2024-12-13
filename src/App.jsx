@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Album from '@components/Dashboard/Album/Album';
 import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
+import ChatScreen from '@components/Dashboard/ChatScreen/ChatScreen';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
 import Kids from '@components/Dashboard/Kids/Kids';
 import EditKidForm from '@components/Dashboard/Kids/KidsInfo/EditKidForm';
@@ -64,6 +65,7 @@ const App = () => (
             />
             <Route path='homedashboard' element={<HomeDashboard />} />
             <Route path='messages' element={<MessageBar />} />
+            <Route path='chatscreen' element={<ChatScreen />} />
             <Route path='album' element={<Album />} />
             <Route path='albumContent' element={<AlbumContent />} />
             <Route path='kids' element={<Kids />} />
