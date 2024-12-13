@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'; 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { Container, Image, Row, Col } from 'react-bootstrap';
 
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,15 @@ import styles from './SavedKidProfile.module.css';
 
 const SavedKidProfile = ({ kidProfile, colors }) => {
   const navigate = useNavigate();
+  const [profile, setProfile] = useState(kidProfile);
+  // Fetch updated profile data when component mounts or fetchKidData changes
+  useEffect(() => {
+    setProfile(kidProfile);
+  }, [kidProfile]);
 
+  const handleEditClick = () => {
+    navigate(`/dashboard/kids/editkid/${profile._id}`);
+  };
   // Check if kidProfile exists and has required fields
   if (!kidProfile) {
     return <p>No profile saved yet.</p>;
@@ -27,6 +36,9 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
     { label: 'Fears', value: kidProfile.fears?.length ? kidProfile.fears.join(', ') : 'None' },
     { label: 'Other', value: kidProfile.otherNotes || 'None' },
   ];
+  //const handleEditClick = () => {
+    //navigate(`/dashboard/kids/editkid/${kidProfile._id}`);
+  //};
 
   return (
     <Container>
@@ -53,16 +65,7 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
             <span className={styles['action-text']}>Share</span>
             <Image src={share} alt='Share' className={styles['action-icon']} />
           </div>
-          <div
-            className={styles['action-item']}
-            onClick={() => {
-              if (kidProfile.id) {
-                navigate(`/dashboard/kidsForm/${kidProfile.id}`);
-              } else {
-                console.error('kidProfile.id is undefined');
-              }
-            }}
-          >
+          <div className={styles['action-item']} onClick={handleEditClick}>
             <span className={styles['action-text']}>Edit</span>
             <Image src={edit} alt='Edit' className={styles['action-icon']} />
           </div>
@@ -87,7 +90,7 @@ const SavedKidProfile = ({ kidProfile, colors }) => {
 
 SavedKidProfile.propTypes = {
   kidProfile: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired, 
     name: PropTypes.string,
     dateOfBirthday: PropTypes.string,
     age: PropTypes.string,

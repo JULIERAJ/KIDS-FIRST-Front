@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
-import { createKid } from '@api';
-// eslint-disable-next-line import/order
+import { createKid, updateKid } from '@api';
 import ModalKid from '@components/Dashboard/Kids/ModalKid/ModalKid';
 import ConfirmationModal from '@components/shared/Modal/ConfirmationModal';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
@@ -23,7 +22,8 @@ import styles from './KidForm.module.css';
 
 import { kidValidateSchema } from './kidValidateSchema';
 
-const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
+const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) => {
+  
   const colors = [
     { name: 'yellow', hex: '#FFE08C' },
     { name: 'red', hex: '#FDA4A6' },
@@ -33,11 +33,13 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
   ];
   const [countSymbol, setCountSymbol] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [color, setColor] = useState(colors[2]);
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [color, setColor] = useState(
+    kidData ? colors.find(c => c.name === kidData.childColor) : colors[2]
+  );
   
   const openModal = () => {
     setIsModalOpen(true);
@@ -76,7 +78,13 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
     setShowConfirmationModal(false);
   };
 
-  async function formAction(values) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function formAction(values, resetForm) {
+    // Prevent duplicate submissions if a submission is already in progress
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    
     const data = new FormData();
     for (const key in values) {
       data.append(key, values[key]);
@@ -85,12 +93,20 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
       data.append('imageProfileURL', uploadedFile);
     }
     try {
-      const response = await createKid(data);
+      let response;
+      if(kidData?._id) {
+        response = await updateKid(kidData._id, data);
+        console.log('Updating kid with ID:', kidData._id, response.data);
+      } else {
+        response = await createKid(data);
+        console.log('Creating a new kid', response.data);
+      }
+
       setFetchKidsCount(fetchKidsCount + 1);
-      // eslint-disable-next-line no-console
-      console.log('Kid created:', response.data);
+      resetForm(); 
+      setUploadedPhoto(kidPlaceholder); 
+      openKidForm(false); 
     } catch (error) {
-      // Improved error logging
       console.error('Error occurred:', error.message);
       if (error.response) {
         console.error(
@@ -102,27 +118,29 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
         console.error('No response from server');
       }
     }
+    // Reset the submitting state after the form action completes
+    setIsSubmitting(false);
   }
   const formik = useFormik({
     initialValues: {
       childColor: color.name,
-      name: '',
-      dateOfBirthday: '',
-      allergies: [],
-      interests: [],
-      fears: [],
-      otherNotes: '',
+      name: kidData?.name || '',
+      dateOfBirthday: kidData?.dateOfBirthday || '',
+      allergies: kidData?.allergies || [],
+      interests: kidData?. interests || [],
+      fears: kidData?.fears || [],
+      otherNotes: kidData?.otherNotes || '',
     },
     validationSchema: kidValidateSchema,
     onSubmit: (values, { resetForm }) => {
       // eslint-disable-next-line no-console
       console.log('Collected form values:', values);
 
-      formAction(values);
+      formAction(values, resetForm);
 
-      resetForm();
-      setUploadedPhoto(null); 
-      openKidForm(false);
+      // resetForm();
+      // setUploadedPhoto(null); 
+      // openKidForm(false);
     },
   });
   
@@ -147,7 +165,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
           <Row className={styles['kid-details-row']}>
             <Col xs={3} className={styles['avatar-container']}>
               <Image
-                src={uploadedPhoto || kidPlaceholder}
+                src={uploadedPhoto || kidData?.imageProfileURL || kidPlaceholder}
                 width={158}
                 height={158}
                 roundedCircle
@@ -264,11 +282,8 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
             <CustomButton
               styles='secondary-light mx-2'
               size='xsml'
-              type='button'
-              onClick={() => {
-                formik.resetForm();
-                openKidForm(false);
-              }}
+              type='submit'
+              onClick={() => openKidForm(false)}
             >
               Cancel
             </CustomButton>
@@ -276,6 +291,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
               type='submit'
               styles='primary-light mx-2'
               size='xsml'
+              onClick={() => formik.handleSubmit()}
             >
               Save
             </CustomButton>
@@ -299,7 +315,8 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount }) => {
 KidForm.propTypes = {
   openKidForm: PropTypes.func,
   setFetchKidsCount: PropTypes.func,
-  fetchKidsCount: PropTypes.number
+  fetchKidsCount: PropTypes.number,
+  kidData: PropTypes.object
 };
 
 export default KidForm;

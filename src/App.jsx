@@ -1,13 +1,12 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
-import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import Album from '@components/Dashboard/Album/Album';
+import AlbumContent from '@components/Dashboard/AlbumPageContent/AlbumContent';
 import KFCalendar from '@components/Dashboard/Calendar/KFCalendar';
 import HomeDashboard from '@components/Dashboard/HomeDashboard';
-
 import Kids from '@components/Dashboard/Kids/Kids';
-
+import EditKidForm from '@components/Dashboard/Kids/KidsInfo/EditKidForm';
 import MessageBar from '@components/MessageBar';
 import LandingLayout from '@components/shared/LandingLayout';
 import { AuthProvider } from '@context/AuthContext';
@@ -49,10 +48,7 @@ const App = () => (
             path='/reset-password/:email/:resetPasswordToken'
             element={<ResetPassword />}
           />
-          <Route
-            path='/reset-password/:email/:resetPasswordToken'
-            element={<ResetPassword />}
-          />
+         
           <Route path='/password-changed' element={<PasswordChanged />} />
 
         </Route>
@@ -71,6 +67,7 @@ const App = () => (
             <Route path='album' element={<Album />} />
             <Route path='albumContent' element={<AlbumContent />} />
             <Route path='kids' element={<Kids />} />
+            <Route path="kids/editkid/:kidId" element={<EditKidForm />} />
             {/* Need to add them when Sidebar component is refactored and uses path via router */}
             {/* <Route path='help' /> */}
           </Route>
