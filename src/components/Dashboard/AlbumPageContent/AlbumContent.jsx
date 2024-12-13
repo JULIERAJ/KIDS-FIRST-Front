@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, ProgressBar, Row, Col, Dropdown } from 'react-bootstrap';
 
-import DeleteMessageModal from '@components/shared/Modal/DeleteMessageModal';
+import ConfirmationModal from '@components/shared/Modal/ConfirmationModal';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import CircleWrapper from '@media/icons/circle-wrapper.svg';
 import Circle from '@media/icons/circle.svg';
@@ -210,19 +210,12 @@ const AlbumContent = () => {
       </Row>
 
       {isDeleteModalOpen && (
-        <DeleteMessageModal
+        <ConfirmationModal
           onClose={closeDeleteModal}
-          message={
-            <>
-              Deleting file(s) will also remove them from messages.<br />
-              Are sure you want to delete?
-            </>
-          }
+          message="Deleting file(s) will also remove them from messages./n
+                   Are sure you want to delete?"
           rightButtonText="Delete"
-          onRightButtonClick={() => {
-            // Implement delete logic here
-            closeDeleteModal();
-          }}
+          onRightButtonClick={closeDeleteModal}
           leftButtonText="Cancel"
           onLeftButtonClick={closeDeleteModal}
           isLeftButton={true}

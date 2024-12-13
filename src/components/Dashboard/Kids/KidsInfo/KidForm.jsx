@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
@@ -6,11 +7,11 @@ import { Col, Form, Row, Image, Container } from 'react-bootstrap';
 
 import { createKid, updateKid } from '@api';
 import ModalKid from '@components/Dashboard/Kids/ModalKid/ModalKid';
+import ConfirmationModal from '@components/shared/Modal/ConfirmationModal';
 import { CustomButton } from '@components/shared/ui/Button/CustomButton';
 import edit from '@media/icons/edit.svg';
 
 import AttributesSelect from './AttributesSelect';
-import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
 import { ALLERGIES_VALUE } from './constants/allergies';
 import { FEARS_VALUE } from './constants/fears';
 import { INTEREST_VALUE } from './constants/interests';
@@ -34,7 +35,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [color, setColor] = useState(
     kidData ? colors.find(c => c.name === kidData.childColor) : colors[2]
@@ -62,7 +63,7 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
     } else if (eventKey === 'changeColor') {
       openModal();
     } else if (eventKey === 'remove') {
-      setShowConfirmModal(true);
+      setShowConfirmationModal(true);
     }
     setDropdownOpen(false);
   };
@@ -70,11 +71,11 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
   const handleRemovePhoto = () => {
     setUploadedPhoto(null);
     setUploadedFile(null);
-    setShowConfirmModal(false);
+    setShowConfirmationModal(false);
   };
 
-  const handleCloseConfirmModal = () => {
-    setShowConfirmModal(false);
+  const handleCancelDelete = () => {
+    setShowConfirmationModal(false);
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -158,11 +159,6 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
         color={color}
         setColor={setColor}
         customHandleChange={customHandleChange}
-      />
-      <ConfirmationModal 
-        show={showConfirmModal} 
-        onHide={handleCloseConfirmModal} 
-        onConfirm={handleRemovePhoto} 
       />
       <Container fluid>
         <Form onSubmit={formik.handleSubmit}>
@@ -301,6 +297,16 @@ const KidForm = ({ openKidForm, setFetchKidsCount, fetchKidsCount, kidData }) =>
             </CustomButton>
           </div>
         </Form>
+        {showConfirmationModal && (
+          <ConfirmationModal
+            message="Are you sure you want to remove the profile picture?"
+            rightButtonText="Delete"
+            onRightButtonClick={handleRemovePhoto}
+            leftButtonText="Cancel"
+            onLeftButtonClick={handleCancelDelete}
+            isLeftButton={true}
+          />
+        )}
       </Container>
     </>
   );
